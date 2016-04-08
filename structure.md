@@ -1,0 +1,67 @@
+AgriCraft:
+ - Plants
+   - AgriPlantRegistry
+     - AgriPlants
+     - AgriMutations
+   - AgriPlant
+     - Block
+   - AgriProduct
+     - List of products.
+   - AgriRequirement
+     - Soil Block(s)
+     - Base Block(s)
+     - Light Level
+     - Nearby Block(s)
+   - AgriMutation
+     - Chance
+     - Parents
+     - Product
+   - AgriStat
+     - Growth
+     - Gain
+     - Strength
+     - Analyzed
+   - AgriSeed
+     - AgriPlant pointer
+     - AgriStat
+   - AgriClipping
+     - AgriPlant pointer
+     - AgriStat
+ - Blocks
+   - Analyzer
+   - Crops ( Stores AgriPlant pointer, AgriStat, and Growth Stage )
+   - Polyblocks ( Stores material pointer - (Issue for 1.8+) )
+     - Decoration
+         - Grate
+     - Irrigation
+         - Tank ( Stores pointer to tank controller )
+         - Channel ( Stores pointer to channel controller )
+ - Items
+   - Journal
+     - Displays known mutations.
+   - Clipper
+     - Creates Clippings
+   - Rake
+     - Removes Weeds
+   - Magnifying Glass
+     - Shows AgriStat in chat of analyzed plant
+   - Trowel
+     - AgriPlant pointer
+     - AgriStat
+     - Growth Stage
+ - Configuration
+   - Manifest.agri
+     - List of groups to load.
+   - PlantGroup.agrigroup
+     - List of related plants.
+     - Makes groups, such as resource crops easy to turn off.
+   - Plant.agriplant
+     - Replaces API
+     - Allows for version-independent functionality.
+     - Allows for full end-user customization.
+     - All plants are to be done this way.
+     - (Plants that do special things really shouldn't be messed with anyway.)
+     - Parameters:
+       - Plant block registry name.
+       - Plant products.
+       - All plants to be done this way.

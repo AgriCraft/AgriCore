@@ -1,0 +1,14 @@
+{
+  "plants": {
+    "wheat": {
+      "name": "Wheat",
+      "path": "wheat.agriplant",
+      "enabled": true
+    },
+    "yellow": {
+      "name": "Yellow Flower",
+      "path": "yellow.agriplant",
+      "enabled": true
+    }
+  }
+}

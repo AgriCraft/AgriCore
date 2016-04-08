@@ -1,0 +1,14 @@
+{
+  "groups": {
+    "vanilla": {
+      "name": "vanilla",
+      "path": "vanilla/vanilla.agrigroup",
+      "enabled": true
+    },
+    "resource": {
+      "name": "resource",
+      "path": "resource/resource.agrigroup",
+      "enabled": false
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "block": "yellow_flower",
+  "products": {
+    "products": [
+      {
+        "item": "yellow_dye",
+        "meta": 0,
+        "base": 0,
+        "range": 5,
+        "chance": 500
+      }
+    ]
+  },
+  "requirement": {
+    "soils": [
+      "dirt"
+    ],
+    "bases": [
+      "any"
+    ],
+    "nearby": {
+      "air": 1
+    }
+  },
+  "texture": {
+    "seed_texture": "seed_yellow",
+    "plant_textures": [
+      "yellow",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  }
+}

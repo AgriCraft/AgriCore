@@ -1,0 +1,47 @@
+{
+  "block": "wheat_plant",
+  "products": {
+    "products": [
+      {
+        "item": "wheat",
+        "meta": 0,
+        "base": 1,
+        "range": 3,
+        "chance": 500
+      }
+    ]
+  },
+  "requirement": {
+    "soils": [
+      "dirt"
+    ],
+    "bases": [
+      "stone"
+    ],
+    "nearby": {
+      "air": 1
+    }
+  },
+  "texture": {
+    "render_type": "CROSS",
+    "seed_texture": "seed_wheat",
+    "plant_textures": [
+      "wheat",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  }
+}
