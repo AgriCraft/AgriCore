@@ -53,7 +53,7 @@ public class TestPlant {
 		AgriTexture texture = new AgriTexture("seed_wheat", AgriRenderType.CROSS, new String[]{"wheat"});
 
 		// Setup Plant
-		plant = new AgriPlant("wheat_plant", products, requirement, texture);
+		plant = new AgriPlant("wheat_plant", false, products, requirement, texture);
 	}
 
 	@BeforeClass

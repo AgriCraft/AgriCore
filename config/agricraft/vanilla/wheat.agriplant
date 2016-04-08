@@ -1,5 +1,6 @@
 {
   "block": "wheat_plant",
+  "bonemeal": false,
   "products": {
     "products": [
       {

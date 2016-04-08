@@ -1,5 +1,6 @@
 {
   "block": "yellow_flower",
+  "bonemeal": false,
   "products": {
     "products": [
       {
@@ -23,9 +24,18 @@
     }
   },
   "texture": {
+    "render_type": "CROSS",
     "seed_texture": "seed_yellow",
     "plant_textures": [
       "yellow",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
       null,
       null,
       null,
