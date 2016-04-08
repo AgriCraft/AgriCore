@@ -49,7 +49,7 @@ public class AgriManifest {
 			
 			// Generate Defaults
 			Map<String, AgriManifestEntry> groups = new HashMap<>();
-			groups.put("vanilla", new AgriManifestEntry("vanilla", "vanilla/vanilla.agrigroup", true));
+			groups.put("vanilla", new AgriManifestEntry("vanilla", "vanilla/vanilla_group.json", true));
 			
 			return new AgriManifest(groups);
 		}

@@ -49,7 +49,7 @@ public class TestManifest {
 	@Test
 	public void testload() {
 
-		Path p = Paths.get("config", "agricraft", "manifest.agri");
+		Path p = Paths.get("config", "agricraft", "manifest.json");
 		AgriManifest m = AgriManifest.load(p);
 		assertNotNull(m);
 		AgriCore.getLogger().info(m);

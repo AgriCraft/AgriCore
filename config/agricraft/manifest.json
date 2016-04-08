@@ -2,12 +2,12 @@
   "groups": {
     "vanilla": {
       "name": "vanilla",
-      "path": "vanilla/vanilla.agrigroup",
+      "path": "vanilla/vanilla_group.json",
       "enabled": true
     },
     "resource": {
       "name": "resource",
-      "path": "resource/resource.agrigroup",
+      "path": "resource/resource_group.json",
       "enabled": false
     }
   }

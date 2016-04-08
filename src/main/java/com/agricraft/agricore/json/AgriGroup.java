@@ -50,7 +50,7 @@ public class AgriGroup {
 			
 			// Generate Defaults
 			Map<String, AgriManifestEntry> groups = new HashMap<>();
-			groups.put("wheat", new AgriManifestEntry("wheat", "wheat.agriplant", true));
+			groups.put("wheat", new AgriManifestEntry("wheat", "wheat_plant.json", true));
 			
 			return new AgriGroup(groups);
 		}

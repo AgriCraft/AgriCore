@@ -2,12 +2,12 @@
   "plants": {
     "wheat": {
       "name": "Wheat",
-      "path": "wheat.agriplant",
+      "path": "wheat_plant.json",
       "enabled": true
     },
     "yellow": {
       "name": "Yellow Flower",
-      "path": "yellow.agriplant",
+      "path": "yellow_plant.json",
       "enabled": true
     }
   }
