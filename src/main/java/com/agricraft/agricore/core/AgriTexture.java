@@ -9,7 +9,7 @@ import java.util.Arrays;
  * @author RlonRyan
  */
 public class AgriTexture {
-	
+
 	private final AgriRenderType render_type;
 	private final String seed_texture;
 	private final String[] plant_textures;
@@ -18,6 +18,15 @@ public class AgriTexture {
 		this.render_type = render_type;
 		this.seed_texture = seed_texture;
 		this.plant_textures = Arrays.copyOf(plant_textures, 16);
+		// Distribute the textures.
+		String last = "NO TEXTURE!";
+		for(int i = 0; i < this.plant_textures.length; i++) {
+			if(this.plant_textures[i] == null) {
+				this.plant_textures[i] = last;
+			} else {
+				last = this.plant_textures[i];
+			}
+		}
 	}
 
 	public AgriRenderType getRenderType() {
@@ -28,18 +37,26 @@ public class AgriTexture {
 		return seed_texture;
 	}
 
-	
 	public String[] getPlantTextures() {
 		return Arrays.copyOf(plant_textures, plant_textures.length);
 	}
 
+	public String getPlantTexture(int stage) {
+		return this.plant_textures[stage % this.plant_textures.length];
+	}
+
 	public boolean validate() {
-		if (false) {
-			AgriCore.getLogger().debug("Invalid Plant! Invalid Requirement!");
+		if (!AgriCore.getValidator().isValidTexture(seed_texture)) {
+			AgriCore.getLogger().debug("Invalid AgriTexture! Invalid Seed Texture: " + seed_texture);
 			return false;
-		} else {
-			return true;
 		}
+		for (String texture : plant_textures) {
+			if (!AgriCore.getValidator().isValidTexture(texture)) {
+				AgriCore.getLogger().debug("Invalid AgriTexture! Invalid Plant Texture: " + texture);
+				return false;
+			}
+		}
+		return true;
 	}
 
 	@Override
@@ -53,5 +70,5 @@ public class AgriTexture {
 		}
 		return sb.toString();
 	}
-	
+
 }

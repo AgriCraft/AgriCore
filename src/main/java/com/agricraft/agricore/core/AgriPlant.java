@@ -34,7 +34,7 @@ public class AgriPlant {
 			AgriCore.getLogger().debug("Invalid Plant! Invalid Product!");
 			return false;
 		} else if (!this.texture.validate()) {
-			AgriCore.getLogger().debug("Invalid Plant! Invalid Icons!");
+			AgriCore.getLogger().debug("Invalid Plant! Invalid Texture!");
 			return false;
 		} else {
 			return true;
