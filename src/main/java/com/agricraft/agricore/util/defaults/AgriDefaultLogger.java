@@ -44,6 +44,11 @@ public class AgriDefaultLogger implements AgriLogger {
 	}
 
 	@Override
+	public void error(Object object) {
+		log(Level.SEVERE, object);
+	}
+
+	@Override
 	public void debug(Object object) {
 		log(Level.INFO, "[AGRI-DEBUG] " + object);
 	}

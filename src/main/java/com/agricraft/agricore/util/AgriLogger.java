@@ -19,6 +19,8 @@ public interface AgriLogger {
 	void warn(Object object);
 
 	void debug(Object object);
+	
+	void error(Object object);
 
 	void trace(Exception e);
 
