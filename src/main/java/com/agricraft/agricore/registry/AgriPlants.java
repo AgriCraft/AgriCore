@@ -2,7 +2,7 @@
  */
 package com.agricraft.agricore.registry;
 
-import com.agricraft.agricore.core.plant.AgriPlant;
+import com.agricraft.agricore.plant.AgriPlant;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

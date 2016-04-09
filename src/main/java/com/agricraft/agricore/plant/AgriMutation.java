@@ -1,6 +1,6 @@
 /*
  */
-package com.agricraft.agricore.core.plant;
+package com.agricraft.agricore.plant;
 
 import com.agricraft.agricore.core.AgriCore;
 import java.util.Random;
@@ -50,6 +50,18 @@ public class AgriMutation {
 		} else {
 			return true;
 		}
+	}
+
+	@Override
+	public String toString() {
+		final StringBuilder sb = new StringBuilder("\nMutation:\n");
+		sb.append("\t- Parents:\n");
+		sb.append("\t\t- Parent 1: ").append(parent1).append("\n");
+		sb.append("\t\t- Parent 2: ").append(parent2).append("\n");
+		sb.append("\t- Child: ").append(child).append("\n");
+		sb.append("\t- Chance: ").append(chance).append("\n");
+		sb.append("\t- ").append(requirement.toString().replaceAll("\n", "\n\t").trim()).append("\n");
+		return sb.toString();
 	}
 
 }

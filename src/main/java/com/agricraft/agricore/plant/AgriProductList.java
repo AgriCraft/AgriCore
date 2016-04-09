@@ -1,6 +1,6 @@
 /*
  */
-package com.agricraft.agricore.core.plant;
+package com.agricraft.agricore.plant;
 
 import com.agricraft.agricore.core.AgriCore;
 import java.util.ArrayList;

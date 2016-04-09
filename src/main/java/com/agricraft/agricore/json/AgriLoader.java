@@ -3,8 +3,8 @@
 package com.agricraft.agricore.json;
 
 import com.agricraft.agricore.core.AgriCore;
-import com.agricraft.agricore.core.plant.AgriMutation;
-import com.agricraft.agricore.core.plant.AgriPlant;
+import com.agricraft.agricore.plant.AgriMutation;
+import com.agricraft.agricore.plant.AgriPlant;
 import com.agricraft.agricore.registry.AgriMutations;
 import com.agricraft.agricore.registry.AgriPlants;
 import com.google.gson.Gson;

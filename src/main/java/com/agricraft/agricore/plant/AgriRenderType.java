@@ -1,6 +1,6 @@
 /*
  */
-package com.agricraft.agricore.core.plant;
+package com.agricraft.agricore.plant;
 
 import com.google.gson.annotations.SerializedName;
 
