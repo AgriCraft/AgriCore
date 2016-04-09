@@ -8,19 +8,19 @@ package com.agricraft.agricore.json;
  */
 public final class AgriManifestEntry {
 	
-	public final String name;
+	public final AgriManifestEntryType type;
 	public final String path;
 	public final boolean enabled;
 
-	public AgriManifestEntry(String name, String path, boolean enabled) {
-		this.name = name;
+	public AgriManifestEntry(AgriManifestEntryType type, String path, boolean enabled) {
+		this.type = type;
 		this.path = path;
 		this.enabled = enabled;
 	}
 
 	@Override
 	public String toString() {
-		return "\nGroup: " + name + "\n\t- Path: " + path + "\n\t- Enabled: " + enabled + "\n";
+		return "\nEntry:\n\t- Type: " + type + "\n\t- Path: " + path + "\n\t- Enabled: " + enabled + "\n";
 	}
 	
 }

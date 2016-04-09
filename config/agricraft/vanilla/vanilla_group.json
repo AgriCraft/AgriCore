@@ -1,14 +1,14 @@
 {
-  "plants": {
-    "wheat": {
-      "name": "Wheat",
+  "elements": [
+    {
+      "type": "plant",
       "path": "wheat_plant.json",
       "enabled": true
     },
-    "yellow": {
-      "name": "Yellow Flower",
+    {
+      "type": "plant",
       "path": "yellow_plant.json",
       "enabled": true
     }
-  }
+  ]
 }

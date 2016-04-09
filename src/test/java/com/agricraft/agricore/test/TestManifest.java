@@ -3,10 +3,10 @@
 package com.agricraft.agricore.test;
 
 import com.agricraft.agricore.core.AgriCore;
-import com.agricraft.agricore.json.AgriGroup;
+import com.agricraft.agricore.json.AgriLoader;
 import com.agricraft.agricore.json.AgriManifest;
 import com.agricraft.agricore.json.AgriManifestEntry;
-import com.agricraft.agricore.json.AgriPlants;
+import com.agricraft.agricore.json.AgriManifestEntryType;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import org.junit.After;
@@ -47,37 +47,25 @@ public class TestManifest {
 	// @Test
 	// public void hello() {}
 	@Test
-	public void testload() {
+	public void testLoad() {
+		
+		AgriCore.init();
+		
+		AgriManifest manifest = AgriManifest.getEmptyManifest();
+		
+		manifest.elements.add(new AgriManifestEntry(AgriManifestEntryType.GROUP, "vanilla/vanilla_group.json", false));
+		manifest.elements.add(new AgriManifestEntry(AgriManifestEntryType.PLANT, "vanilla/wheat_plant.json", false));
+		manifest.elements.add(new AgriManifestEntry(AgriManifestEntryType.MUTATION, "vanilla/wheat_mutation.json", false));
+		
+		AgriManifest.save(Paths.get("config", "agricraft", "example.json"), manifest);
 
 		Path p = Paths.get("config", "agricraft", "manifest.json");
-		AgriManifest m = AgriManifest.load(p);
-		assertNotNull(m);
-		AgriCore.getLogger().info(m);
-
-		AgriCore.getLogger().info(m.groups.containsKey("vanilla") ? m.groups.get("vanilla") : "No Vanilla category!");
-		AgriManifest.save(p, m);
-
-		AgriManifest n = AgriManifest.load(p);
-		assertNotNull(n);
-		AgriCore.getLogger().info(n);
-		assertTrue(m.toString().equals(n.toString()));
-
-		for (AgriManifestEntry e : m.groups.values()) {
-			if (e.enabled) {
-				Path np = p.getParent().resolve(e.path);
-				AgriGroup nm = AgriGroup.load(np);
-				assertNotNull(nm);
-				AgriCore.getLogger().info(np.toAbsolutePath());
-				AgriCore.getLogger().info(nm);
-				AgriGroup.save(np, nm);
-			}
-		}
 		
-		AgriPlants plants = new AgriPlants(p);
-		
-		plants.loadPlants();
-		
-		AgriCore.getLogger().debug(plants.toString());
+		assertNotNull(p);
+
+		AgriLoader.loadManifest(p, AgriCore.getPlants(), AgriCore.getMutations());
+
+		AgriCore.getLogger().info(AgriCore.getPlants());
 
 	}
 

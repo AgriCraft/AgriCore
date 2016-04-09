@@ -3,7 +3,11 @@
 package com.agricraft.agricore.core;
 
 import com.agricraft.agricore.config.AgriConfig;
+import com.agricraft.agricore.json.AgriLoader;
+import com.agricraft.agricore.registry.AgriMutations;
+import com.agricraft.agricore.registry.AgriPlants;
 import com.agricraft.agricore.util.AgriLogger;
+import com.agricraft.agricore.util.AgriProvider;
 import com.agricraft.agricore.util.AgriValidator;
 import com.agricraft.agricore.util.defaults.AgriDefaultLogger;
 import com.agricraft.agricore.util.defaults.AgriDefaultProvider;
@@ -16,13 +20,29 @@ import java.nio.file.Paths;
  */
 public final class AgriCore {
 	
-	private static AgriLogger logger = new AgriDefaultLogger();
+	private static AgriLogger logger;
 	
-	private static AgriValidator validator = new AgriDefaultValidator();
+	private static AgriValidator validator;
 	
-	private static AgriConfig config = new AgriConfig(new AgriDefaultProvider(Paths.get("config", "agricraft", "agricraft.config")));
+	private static AgriConfig config;
+	
+	private static AgriMutations mutations;
+	
+	private static AgriPlants plants;
 	
 	private AgriCore() {
+	}
+	
+	public static void init() {
+		AgriCore.init(new AgriDefaultLogger(), new AgriDefaultValidator(), new AgriDefaultProvider(Paths.get("config", "agricraft", "agricraft.config")));
+	}
+	
+	public static void init(AgriLogger logger, AgriValidator validator, AgriProvider provider) {
+		AgriCore.logger = logger;
+		AgriCore.validator = validator;
+		AgriCore.config = new AgriConfig(provider);
+		AgriCore.plants = new AgriPlants();
+		AgriCore.mutations = new AgriMutations();
 	}
 
 	public static AgriLogger getLogger() {
@@ -37,16 +57,20 @@ public final class AgriCore {
 		return config;
 	}
 
+	public static AgriMutations getMutations() {
+		return mutations;
+	}
+
+	public static AgriPlants getPlants() {
+		return plants;
+	}
+
 	public static void setLogger(AgriLogger logger) {
 		AgriCore.logger = logger;
 	}
 
 	public static void setValidator(AgriValidator validator) {
 		AgriCore.validator = validator;
-	}
-
-	public static void setConfig(AgriConfig config) {
-		AgriCore.config = config;
 	}
 	
 }

@@ -12,8 +12,8 @@ import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -21,37 +21,33 @@ import java.util.Map;
  */
 public class AgriManifest {
 
-	public final Map<String, AgriManifestEntry> groups;
+	public final List<AgriManifestEntry> elements;
 
-	private AgriManifest(Map<String, AgriManifestEntry> groups) {
-		this.groups = groups;
+	private AgriManifest() {
+		this.elements = new ArrayList<>();
 	}
 
 	@Override
 	public String toString() {
 		final StringBuilder sb = new StringBuilder();
 		sb.append("\nManifest:\n");
-		for (Map.Entry<String, AgriManifestEntry> e : groups.entrySet()) {
-			sb.append("\t- Group: ").append(e.getKey()).append("\n");
-			sb.append("\t\t- Name: ").append(e.getValue().name).append("\n");
-			sb.append("\t\t- Path: ").append(e.getValue().path).append("\n");
-			sb.append("\t\t- Enabled: ").append(e.getValue().enabled).append("\n");
+		for (AgriManifestEntry e : elements) {
+			sb.append("\t- Entry:\n");
+			sb.append("\t\t- Type: ").append(e.type).append("\n");
+			sb.append("\t\t- Path: ").append(e.path).append("\n");
+			sb.append("\t\t- Enabled: ").append(e.enabled).append("\n");
 		}
 		return sb.toString();
 	}
 
-	public static AgriManifest load(Path p) {
+	public static AgriManifest getEmptyManifest() {
+		return new AgriManifest();
+	}
+
+	public static AgriManifest load(Path p) throws IOException {
 		try (Reader reader = Files.newBufferedReader(p)) {
 			Gson gson = new Gson();
 			return gson.fromJson(reader, AgriManifest.class);
-		} catch (IOException e) {
-			AgriCore.getLogger().trace(e);
-			
-			// Generate Defaults
-			Map<String, AgriManifestEntry> groups = new HashMap<>();
-			groups.put("vanilla", new AgriManifestEntry("vanilla", "vanilla/vanilla_group.json", true));
-			
-			return new AgriManifest(groups);
 		}
 	}
 

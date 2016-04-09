@@ -42,6 +42,7 @@ public class TestConfig {
 	// public void hello() {}
 	@Test
 	public void testConfig() {
+		AgriCore.init();
 		AgriCore.getConfig().load();
 		AgriCore.getLogger().info(AgriCore.getConfig().toString());
 		AgriCore.getLogger().info(DummyConfig.asString());

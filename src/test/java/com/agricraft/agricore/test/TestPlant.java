@@ -5,12 +5,12 @@ package com.agricraft.agricore.test;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.agricraft.agricore.core.AgriCore;
-import com.agricraft.agricore.core.AgriTexture;
-import com.agricraft.agricore.core.AgriPlant;
-import com.agricraft.agricore.core.AgriProduct;
-import com.agricraft.agricore.core.AgriProductList;
-import com.agricraft.agricore.core.AgriRenderType;
-import com.agricraft.agricore.core.AgriRequirement;
+import com.agricraft.agricore.core.plant.AgriTexture;
+import com.agricraft.agricore.core.plant.AgriPlant;
+import com.agricraft.agricore.core.plant.AgriProduct;
+import com.agricraft.agricore.core.plant.AgriProductList;
+import com.agricraft.agricore.core.plant.AgriRenderType;
+import com.agricraft.agricore.core.plant.AgriRequirement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -53,7 +53,7 @@ public class TestPlant {
 		AgriTexture texture = new AgriTexture("seed_wheat", AgriRenderType.CROSS, new String[]{"wheat"});
 
 		// Setup Plant
-		plant = new AgriPlant("wheat_plant", false, products, requirement, texture);
+		plant = new AgriPlant("Wheat", "wheat_plant", false, products, requirement, texture);
 	}
 
 	@BeforeClass
@@ -79,6 +79,8 @@ public class TestPlant {
 	// public void hello() {}
 	@Test
 	public void test() {
+		
+		AgriCore.init();
 
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 

@@ -1,0 +1,19 @@
+{
+  "elements": [
+    {
+      "type": "group",
+      "path": "vanilla/vanilla_group.json",
+      "enabled": false
+    },
+    {
+      "type": "plant",
+      "path": "vanilla/wheat_plant.json",
+      "enabled": false
+    },
+    {
+      "type": "mutation",
+      "path": "vanilla/wheat_mutation.json",
+      "enabled": false
+    }
+  ]
+}

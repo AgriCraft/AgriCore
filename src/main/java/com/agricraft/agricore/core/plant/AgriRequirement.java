@@ -1,8 +1,9 @@
 /*
  */
-package com.agricraft.agricore.core;
+package com.agricraft.agricore.core.plant;
 
 
+import com.agricraft.agricore.core.AgriCore;
 import java.util.List;
 import java.util.Map;
 

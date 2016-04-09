@@ -1,14 +1,14 @@
 {
-  "groups": {
-    "vanilla": {
-      "name": "vanilla",
+  "elements": [
+    {
+      "type": "group",
       "path": "vanilla/vanilla_group.json",
       "enabled": true
     },
-    "resource": {
-      "name": "resource",
+    {
+      "type": "group",
       "path": "resource/resource_group.json",
       "enabled": false
     }
-  }
+  ]
 }

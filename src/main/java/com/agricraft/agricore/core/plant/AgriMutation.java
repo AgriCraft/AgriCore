@@ -1,7 +1,9 @@
 /*
  */
-package com.agricraft.agricore.core;
+package com.agricraft.agricore.core.plant;
 
+import com.agricraft.agricore.core.AgriCore;
+import com.agricraft.agricore.core.plant.AgriRequirement;
 import java.util.Random;
 
 /**

@@ -1,6 +1,6 @@
 /*
  */
-package com.agricraft.agricore.core;
+package com.agricraft.agricore.core.plant;
 
 /**
  *
@@ -8,7 +8,7 @@ package com.agricraft.agricore.core;
  */
 public enum AgriRenderType {
 	
-	HASHTAG('#'),
+	HASH('#'),
 	CROSS('X');
 	
 	private final char id;

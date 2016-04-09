@@ -8,6 +8,6 @@ repositories {
 }
 
 dependencies {
-    compile 'com.google.code.gson:gson:1.7.2'
+    compile 'com.google.code.gson:gson:2.6.2'
     testCompile 'junit:junit:4.12'
 }

@@ -1,6 +1,6 @@
 /*
  */
-package com.agricraft.agricore.core;
+package com.agricraft.agricore.core.plant;
 
 /**
  *
