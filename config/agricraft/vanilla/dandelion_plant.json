@@ -1,6 +1,6 @@
 {
   "name": "Yellow Flower",
-  "block": "yellow_flower",
+  "id": "yellow_flower",
   "bonemeal": false,
   "products": {
     "products": [

@@ -15,7 +15,7 @@ public class AgriTexture {
 	private final String seed_texture;
 	private final String[] plant_textures;
 
-	public AgriTexture(String seed_texture, AgriRenderType render_type, String[] plant_textures) {
+	public AgriTexture(AgriRenderType render_type, String seed_texture, String[] plant_textures) {
 		this.render_type = render_type;
 		this.seed_texture = seed_texture;
 		this.plant_textures = Arrays.copyOf(plant_textures, 16);

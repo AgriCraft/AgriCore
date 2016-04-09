@@ -25,7 +25,7 @@ public class AgriPlants {
 	}
 	
 	public boolean addPlant(AgriPlant plant) {
-		return this.plants.putIfAbsent(plant.name, plant) == null;
+		return this.plants.putIfAbsent(plant.id, plant) == null;
 	}
 	
 	public AgriPlant getPlant(String id) {
@@ -41,7 +41,7 @@ public class AgriPlants {
 		final StringBuilder sb = new StringBuilder();
 		sb.append("\nPlants:");
 		for (Map.Entry<String, AgriPlant> e : plants.entrySet()) {
-			sb.append("\n\t- Plant: ").append(e.getKey()).append("\n\t");
+			sb.append("\n\t- Plant: ");
 			sb.append(e.getValue().toString().replaceAll("\n", "\n\t").trim());
 		}
 		return sb.append("\n").toString();

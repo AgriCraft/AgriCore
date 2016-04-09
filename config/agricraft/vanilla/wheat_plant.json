@@ -1,6 +1,6 @@
 {
   "name": "Wheat",
-  "block": "wheat_plant",
+  "id": "wheat_plant",
   "bonemeal": false,
   "products": {
     "products": [
@@ -27,25 +27,25 @@
     }
   },
   "texture": {
-    "render_type": "CROSS",
+    "render_type": "hash",
     "seed_texture": "seed_wheat",
     "plant_textures": [
-      "wheat",
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null
+      "plants/wheat_stage_0",
+      "plants/wheat_stage_0",
+      "plants/wheat_stage_0",
+      "plants/wheat_stage_1",
+      "plants/wheat_stage_1",
+      "plants/wheat_stage_2",
+      "plants/wheat_stage_2",
+      "plants/wheat_stage_3",
+      "plants/wheat_stage_3",
+      "plants/wheat_stage_4",
+      "plants/wheat_stage_4",
+      "plants/wheat_stage_5",
+      "plants/wheat_stage_5",
+      "plants/wheat_stage_6",
+      "plants/wheat_stage_6",
+      "plants/wheat_stage_7"
     ]
   }
 }
