@@ -52,7 +52,7 @@ public class DummyConfig {
 		final StringBuilder sb = new StringBuilder().append("Dummy Config:\n");
 		for (Field f : DummyConfig.class.getFields()) {
 			try {
-				sb.append("\t- " + f.getName() + ": " + f.get(null) + "\n");
+				sb.append("\t- ").append(f.getName()).append(": ").append(f.get(null)).append("\n");
 			} catch (IllegalAccessException | IllegalArgumentException e) {
 				AgriCore.getLogger().trace(e);
 			}

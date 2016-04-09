@@ -9,7 +9,7 @@ import com.agricraft.agricore.core.AgriCore;
  * @author RlonRyan
  */
 public class AgriPlant {
-
+	
 	public final String name;
 	
 	public final String block;

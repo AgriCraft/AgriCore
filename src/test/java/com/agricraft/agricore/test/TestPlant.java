@@ -53,7 +53,7 @@ public class TestPlant {
 		nearby.put("air", 1);
 
 		// Setup Requirement
-		AgriRequirement requirement = new AgriRequirement(Arrays.asList("dirt"), Arrays.asList("stone"), nearby);
+		AgriRequirement requirement = new AgriRequirement(Arrays.asList("dirt"), Arrays.asList("stone"), nearby, 0, 10);
 
 		// Setup Icon
 		AgriTexture texture = new AgriTexture("seed_wheat", AgriRenderType.CROSS, new String[]{"wheat"});

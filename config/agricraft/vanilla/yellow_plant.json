@@ -14,6 +14,8 @@
     ]
   },
   "requirement": {
+    "min_light": 0,
+    "max_light": 10,
     "soils": [
       "dirt"
     ],

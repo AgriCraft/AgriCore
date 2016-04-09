@@ -6,11 +6,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.core.plant.AgriMutation;
-import com.agricraft.agricore.core.plant.AgriTexture;
-import com.agricraft.agricore.core.plant.AgriPlant;
-import com.agricraft.agricore.core.plant.AgriProduct;
-import com.agricraft.agricore.core.plant.AgriProductList;
-import com.agricraft.agricore.core.plant.AgriRenderType;
 import com.agricraft.agricore.core.plant.AgriRequirement;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -18,10 +13,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import org.junit.After;
@@ -29,7 +22,6 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -46,7 +38,7 @@ public class TestMutation {
 		nearby.put("gold", 1);
 		
 		// Setup Requirement
-		AgriRequirement requirement = new AgriRequirement(Arrays.asList("dirt"), Arrays.asList("stone"), nearby);
+		AgriRequirement requirement = new AgriRequirement(Arrays.asList("dirt"), Arrays.asList("stone"), nearby, 0, 10);
 
 		// Setup Mutation
 		this.mutation = new AgriMutation(500, "Wheat", "Wheat", "Wheat", requirement);
