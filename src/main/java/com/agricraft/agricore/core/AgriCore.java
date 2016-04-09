@@ -3,7 +3,6 @@
 package com.agricraft.agricore.core;
 
 import com.agricraft.agricore.config.AgriConfig;
-import com.agricraft.agricore.json.AgriLoader;
 import com.agricraft.agricore.registry.AgriMutations;
 import com.agricraft.agricore.registry.AgriPlants;
 import com.agricraft.agricore.util.AgriLogger;

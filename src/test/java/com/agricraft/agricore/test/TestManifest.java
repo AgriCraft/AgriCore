@@ -48,24 +48,29 @@ public class TestManifest {
 	// public void hello() {}
 	@Test
 	public void testLoad() {
-		
+
 		AgriCore.init();
-		
-		AgriManifest manifest = AgriManifest.getEmptyManifest();
-		
-		manifest.elements.add(new AgriManifestEntry(AgriManifestEntryType.GROUP, "vanilla/vanilla_group.json", false));
-		manifest.elements.add(new AgriManifestEntry(AgriManifestEntryType.PLANT, "vanilla/wheat_plant.json", false));
-		manifest.elements.add(new AgriManifestEntry(AgriManifestEntryType.MUTATION, "vanilla/wheat_mutation.json", false));
-		
-		AgriManifest.save(Paths.get("config", "agricraft", "example.json"), manifest);
 
 		Path p = Paths.get("config", "agricraft", "manifest.json");
-		
+
 		assertNotNull(p);
 
 		AgriLoader.loadManifest(p, AgriCore.getPlants(), AgriCore.getMutations());
 
 		AgriCore.getLogger().info(AgriCore.getPlants());
+
+	}
+
+	@Test
+	public void testSave() {
+
+		AgriManifest manifest = AgriManifest.getEmptyManifest();
+
+		manifest.elements.add(new AgriManifestEntry(AgriManifestEntryType.GROUP, "vanilla/vanilla_group.json", false));
+		manifest.elements.add(new AgriManifestEntry(AgriManifestEntryType.PLANT, "vanilla/wheat_plant.json", false));
+		manifest.elements.add(new AgriManifestEntry(AgriManifestEntryType.MUTATION, "vanilla/wheat_mutation.json", false));
+
+		AgriManifest.save(Paths.get("config", "agricraft", "example.json"), manifest);
 
 	}
 
