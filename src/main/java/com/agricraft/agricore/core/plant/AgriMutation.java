@@ -3,7 +3,6 @@
 package com.agricraft.agricore.core.plant;
 
 import com.agricraft.agricore.core.AgriCore;
-import com.agricraft.agricore.core.plant.AgriRequirement;
 import java.util.Random;
 
 /**
@@ -16,14 +15,14 @@ public class AgriMutation {
 
 	public final int chance;
 
-	public final AgriPlant child;
+	public final String child;
 
-	public final AgriPlant parent1;
-	public final AgriPlant parent2;
+	public final String parent1;
+	public final String parent2;
 
 	public final AgriRequirement requirement;
 
-	public AgriMutation(int chance, AgriPlant child, AgriPlant parent1, AgriPlant parent2, AgriRequirement requirement) {
+	public AgriMutation(int chance, String child, String parent1, String parent2, AgriRequirement requirement) {
 		this.chance = chance;
 		this.child = child;
 		this.parent1 = parent1;
@@ -36,13 +35,13 @@ public class AgriMutation {
 	}
 
 	public boolean validate() {
-		if (!this.child.validate()) {
+		if (!AgriCore.getPlants().hasPlant(child)) {
 			AgriCore.getLogger().info("Invalid Mutation: Invalid Child!");
 			return false;
-		} else if (!this.parent1.validate()) {
+		} else if (!AgriCore.getPlants().hasPlant(parent1)) {
 			AgriCore.getLogger().info("Invalid Mutation: Invalid Parent 1!");
 			return false;
-		} else if (!this.parent2.validate()) {
+		} else if (!AgriCore.getPlants().hasPlant(parent2)) {
 			AgriCore.getLogger().info("Invalid Mutation: Invalid Parent 2!");
 			return false;
 		} else if (!this.requirement.validate()) {

@@ -3,7 +3,6 @@
 package com.agricraft.agricore.registry;
 
 import com.agricraft.agricore.core.plant.AgriMutation;
-import com.agricraft.agricore.core.plant.AgriPlant;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -29,10 +28,10 @@ public class AgriMutations {
 		return this.mutations.add(mutation);
 	}
 	
-	public List<AgriMutation> getMutation(AgriPlant parent1, AgriPlant parent2) {
+	public List<AgriMutation> getMutation(String parent1, String parent2) {
 		final List<AgriMutation> results = new ArrayList<>();
 		for(AgriMutation mutation : mutations) {
-			if((mutation.parent1 == parent1 || mutation.parent1 == parent2) && (mutation.parent2 == parent1 || mutation.parent2 == parent2)) {
+			if((mutation.parent1.equals(parent1) || mutation.parent1.equals(parent2)) && (mutation.parent2.equals(parent1) || mutation.parent2.equals(parent2))) {
 				results.add(mutation);
 			}
 		}
@@ -46,7 +45,7 @@ public class AgriMutations {
 	@Override
 	public String toString() {
 		final StringBuilder sb = new StringBuilder();
-		sb.append("\nPlants:");
+		sb.append("\nMutations:");
 		for (AgriMutation mutation : mutations) {
 			sb.append("\n\t- ").append(mutation).append("\n\t");
 		}

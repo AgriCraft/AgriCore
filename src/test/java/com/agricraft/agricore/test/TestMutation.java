@@ -5,6 +5,7 @@ package com.agricraft.agricore.test;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.agricraft.agricore.core.AgriCore;
+import com.agricraft.agricore.core.plant.AgriMutation;
 import com.agricraft.agricore.core.plant.AgriTexture;
 import com.agricraft.agricore.core.plant.AgriPlant;
 import com.agricraft.agricore.core.plant.AgriProduct;
@@ -34,32 +35,22 @@ import static org.junit.Assert.*;
  *
  * @author RlonRyan
  */
-public class TestPlant {
+public class TestMutation {
 
-	public final AgriPlant plant;
+	public final AgriMutation mutation;
 
-	public TestPlant() {
-
-		// Setup Product
-		AgriProduct item = new AgriProduct("wheat", 0, 1, 3, 500);
-
-		// Setup Products
-		List<AgriProduct> items = new ArrayList<>();
-		items.add(item);
-		AgriProductList products = new AgriProductList(items);
-
+	public TestMutation() {
+		
 		// Setup Nearby
 		Map<String, Integer> nearby = new HashMap<>();
-		nearby.put("air", 1);
-
+		nearby.put("gold", 1);
+		
 		// Setup Requirement
 		AgriRequirement requirement = new AgriRequirement(Arrays.asList("dirt"), Arrays.asList("stone"), nearby);
 
-		// Setup Icon
-		AgriTexture texture = new AgriTexture("seed_wheat", AgriRenderType.CROSS, new String[]{"wheat"});
-
-		// Setup Plant
-		plant = new AgriPlant("Wheat", "wheat_plant", false, products, requirement, texture);
+		// Setup Mutation
+		this.mutation = new AgriMutation(500, "Wheat", "Wheat", "Wheat", requirement);
+		
 	}
 
 	@BeforeClass
@@ -87,7 +78,7 @@ public class TestPlant {
 	@Test
 	public void testValidate() {
 
-		assertTrue(plant.validate());
+		//assertTrue(mutation.validate());
 
 		final Random rand = new Random();
 
@@ -96,13 +87,14 @@ public class TestPlant {
 		int hits = 0;
 
 		for (int i = 0; i < trials; i++) {
-			List<AgriProduct> drops = plant.products.getRandom(rand);
-			hits += drops.size();
+			if (mutation.randomMutate(rand)) {
+				hits++;
+			}
 		}
 
-		AgriCore.getLogger().info("Number of times items were dropped over " + trials + " trials: " + hits + " at a " + (((double) hits) / trials) * 100 + "% yield.");
+		AgriCore.getLogger().info("Number of times mutated over " + trials + " trials: " + hits + " at a " + (((double) hits) / trials) * 100 + "% yield.");
 
-		AgriCore.getLogger().debug(plant);
+		AgriCore.getLogger().debug(mutation);
 
 	}
 
@@ -110,10 +102,10 @@ public class TestPlant {
 	public void testSave() {
 
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		Path path = Paths.get("config", "agricraft", "example", "example_plant.json");
+		Path path = Paths.get("config", "agricraft", "example", "example_mutation.json");
 
 		try(BufferedWriter out = Files.newBufferedWriter(path, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING)){
-			gson.toJson(plant, out);
+			gson.toJson(mutation, out);
 		} catch (IOException e) {
 			AgriCore.getLogger().trace(e);
 		}

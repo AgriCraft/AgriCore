@@ -1,0 +1,49 @@
+{
+  "name": "Wheat",
+  "block": "wheat_plant",
+  "bonemeal": false,
+  "products": {
+    "products": [
+      {
+        "item": "wheat",
+        "meta": 0,
+        "base": 1,
+        "range": 3,
+        "chance": 500
+      }
+    ]
+  },
+  "requirement": {
+    "soils": [
+      "dirt"
+    ],
+    "bases": [
+      "stone"
+    ],
+    "nearby": {
+      "air": 1
+    }
+  },
+  "texture": {
+    "render_type": "cross",
+    "seed_texture": "seed_wheat",
+    "plant_textures": [
+      "wheat",
+      "wheat",
+      "wheat",
+      "wheat",
+      "wheat",
+      "wheat",
+      "wheat",
+      "wheat",
+      "wheat",
+      "wheat",
+      "wheat",
+      "wheat",
+      "wheat",
+      "wheat",
+      "wheat",
+      "wheat"
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "chance": 500,
+  "child": "Wheat",
+  "parent1": "Wheat",
+  "parent2": "Wheat",
+  "requirement": {
+    "soils": [
+      "dirt"
+    ],
+    "bases": [
+      "stone"
+    ],
+    "nearby": {
+      "gold": 1
+    }
+  }
+}

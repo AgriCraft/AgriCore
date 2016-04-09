@@ -35,6 +35,7 @@ public class TestManifest {
 
 	@Before
 	public void setUp() {
+		AgriCore.init();
 	}
 
 	@After
@@ -48,8 +49,6 @@ public class TestManifest {
 	// public void hello() {}
 	@Test
 	public void testLoad() {
-
-		AgriCore.init();
 
 		Path p = Paths.get("config", "agricraft", "manifest.json");
 
@@ -70,7 +69,7 @@ public class TestManifest {
 		manifest.elements.add(new AgriManifestEntry(AgriManifestEntryType.PLANT, "vanilla/wheat_plant.json", false));
 		manifest.elements.add(new AgriManifestEntry(AgriManifestEntryType.MUTATION, "vanilla/wheat_mutation.json", false));
 
-		AgriManifest.save(Paths.get("config", "agricraft", "example.json"), manifest);
+		AgriManifest.save(Paths.get("config", "agricraft", "example", "example_group.json"), manifest);
 
 	}
 
