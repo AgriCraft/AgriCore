@@ -8,8 +8,6 @@ package com.agricraft.agricore.util;
  */
 public interface AgriLogger {
 
-	void log(Object logLevel, Object object);
-
 	void all(Object object);
 
 	void severe(Object object);

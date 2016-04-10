@@ -14,13 +14,8 @@ public class AgriDefaultLogger implements AgriLogger {
 
 	public static final Logger logger = Logger.getLogger("AgriCore");
 
-	@Override
-	public void log(Object level, Object object) {
-		if (level instanceof Level) {
-			logger.log((Level) level, String.valueOf(object));
-		} else {
-			logger.log(Level.WARNING, String.valueOf(object));
-		}
+	public void log(Level level, Object object) {
+		logger.log((Level) level, String.valueOf(object));
 	}
 
 	@Override

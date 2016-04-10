@@ -1,6 +1,6 @@
 {
   "name": "Wheat",
-  "block": "wheat_plant",
+  "id": "wheat_plant",
   "bonemeal": false,
   "products": {
     "products": [
