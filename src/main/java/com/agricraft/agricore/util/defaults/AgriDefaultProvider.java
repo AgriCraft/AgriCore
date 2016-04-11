@@ -27,11 +27,6 @@ public class AgriDefaultProvider implements AgriProvider {
 	}
 
 	@Override
-	public void init() {
-		this.load();
-	}
-
-	@Override
 	public void load() {
 		AgriCore.getLogger().debug("Loading Properties: " + this.path + "!");
 		try (BufferedReader in = Files.newBufferedReader(this.path)) {

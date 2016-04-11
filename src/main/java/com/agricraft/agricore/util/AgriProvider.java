@@ -8,8 +8,6 @@ package com.agricraft.agricore.util;
  */
 public interface AgriProvider {
 	
-	void init();
-	
 	void load();
 	
 	void save();

@@ -28,7 +28,7 @@ public class AgriConfig {
 	
 	public void init() {
 		//AgriCore.getLogger().debug("Initializing Config!");
-		this.provider.init();
+		this.provider.load();
 		//AgriCore.getLogger().debug("Initialized Config!");
 	}
 	
