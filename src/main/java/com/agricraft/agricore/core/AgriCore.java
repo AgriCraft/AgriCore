@@ -37,11 +37,22 @@ public final class AgriCore {
 	}
 	
 	public static void init(AgriLogger logger, AgriValidator validator, AgriProvider provider) {
+		logger.info("[AgriCore] Initializing core!");
 		AgriCore.logger = logger;
 		AgriCore.validator = validator;
 		AgriCore.config = new AgriConfig(provider);
 		AgriCore.plants = new AgriPlants();
 		AgriCore.mutations = new AgriMutations();
+		logger.info("[AgriCore] Initializing config!");
+		AgriCore.config.init();
+		logger.info("[AgriCore] Initialized config!");
+		logger.info("[AgriCore] Configuring modules!");
+		AgriCore.config.addConfigurable(logger);
+		AgriCore.config.addConfigurable(validator);
+		AgriCore.config.addConfigurable(plants);
+		AgriCore.config.addConfigurable(mutations);
+		logger.info("[AgriCore] Configured modules!");
+		logger.info("[AgriCore] Initialized core!");
 	}
 
 	public static AgriLogger getLogger() {

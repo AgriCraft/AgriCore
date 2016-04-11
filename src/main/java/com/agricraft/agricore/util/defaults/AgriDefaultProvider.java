@@ -27,7 +27,12 @@ public class AgriDefaultProvider implements AgriProvider {
 	}
 
 	@Override
-	public AgriProvider load() {
+	public void init() {
+		this.load();
+	}
+
+	@Override
+	public void load() {
 		AgriCore.getLogger().debug("Loading Properties: " + this.path + "!");
 		try (BufferedReader in = Files.newBufferedReader(this.path)) {
 			this.properties.load(in);
@@ -36,11 +41,10 @@ public class AgriDefaultProvider implements AgriProvider {
 			AgriCore.getLogger().warn("Unable to load config!");
 			AgriCore.getLogger().trace(e);
 		}
-		return this;
 	}
 
 	@Override
-	public AgriProvider save() {
+	public void save() {
 
 		// Ensure path is good.
 		this.path.getParent().toFile().mkdirs();
@@ -55,7 +59,6 @@ public class AgriDefaultProvider implements AgriProvider {
 			AgriCore.getLogger().trace(e);
 		}
 
-		return this;
 	}
 
 	@Override

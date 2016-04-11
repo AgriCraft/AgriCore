@@ -19,11 +19,17 @@ public class AgriConfig {
 	
 	private final AgriProvider provider;
 	
-	private final Map<Class, List<Field>> configurables;
+	private final Map<Object, List<Field>> configurables;
 
 	public AgriConfig(AgriProvider provider) {
 		this.configurables = new HashMap<>();
 		this.provider = provider;
+	}
+	
+	public void init() {
+		AgriCore.getLogger().debug("Initializing Config!");
+		this.provider.init();
+		AgriCore.getLogger().debug("Initialized Config!");
 	}
 	
 	public void load() {
@@ -33,7 +39,11 @@ public class AgriConfig {
 	}
 	
 	public void reload() {
-		this.configurables.values().forEach((l) -> l.forEach((e) -> handleConfigurable(e)));
+		this.configurables.forEach(
+				(configurable, fields) -> fields.forEach(
+						(field) -> handleConfigurable(configurable, field)
+				)
+		);
 	}
 	
 	public void save() {
@@ -42,35 +52,33 @@ public class AgriConfig {
 		AgriCore.getLogger().debug("Config Saved!");
 	}
 
-	public final synchronized void addConfigurable(Class clazz) {
-		if (!configurables.containsKey(clazz)) {
+	public final synchronized void addConfigurable(Object configurable) {
+		if (!configurables.containsKey(configurable)) {
 			List<Field> fields = new ArrayList<>();
 			//LogHelper.debug("Registering Configurable: " + clazz.getCanonicalName());
-			for (Field f : clazz.getDeclaredFields()) {
+			for (Field f : configurable.getClass().getDeclaredFields()) {
 				if (f.getAnnotation(AgriConfigurable.class) != null) {
 					//LogHelper.debug("Handling Configurable Field: " + f.getName());
-					if (!Modifier.isStatic(f.getModifiers())) {
-						AgriCore.getLogger().error("Configurable Field: " + f.getName() + " is not static!");
-					} else if (Modifier.isFinal(f.getModifiers())) {
+					if (Modifier.isFinal(f.getModifiers())) {
 						AgriCore.getLogger().error("Configurable Field: " + f.getName() + " is final!");
 					} else {
-						handleConfigurable(f);
+						handleConfigurable(configurable, f);
 						fields.add(f);
 					}
 				}
 			}
-			configurables.put(clazz, fields);
+			configurables.put(configurable, fields);
 		}
 	}
 
-	protected final void handleConfigurable(Field f) {
+	protected final void handleConfigurable(Object configurable, Field f) {
 
 		//LogHelper.debug("Loading Configurable Field: " + e.getName());
 		final AgriConfigurable anno = f.getAnnotation(AgriConfigurable.class);
 		try {
 
 			f.setAccessible(true);
-			Object obj = f.get(null);
+			Object obj = f.get(configurable);
 
 			if (obj instanceof String) {
 				f.set(null, provider.getString(anno.key(), anno.category().name(), (String) obj, anno.comment()));

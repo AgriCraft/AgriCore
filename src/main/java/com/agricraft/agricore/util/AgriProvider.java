@@ -8,9 +8,11 @@ package com.agricraft.agricore.util;
  */
 public interface AgriProvider {
 	
-	AgriProvider load();
+	void init();
 	
-	AgriProvider save();
+	void load();
+	
+	void save();
 	
 	boolean getBoolean(String name, String category, boolean defaultValue, String comment);
 	
