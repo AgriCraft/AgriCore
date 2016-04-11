@@ -27,15 +27,15 @@ public class AgriConfig {
 	}
 	
 	public void init() {
-		AgriCore.getLogger().debug("Initializing Config!");
+		//AgriCore.getLogger().debug("Initializing Config!");
 		this.provider.init();
-		AgriCore.getLogger().debug("Initialized Config!");
+		//AgriCore.getLogger().debug("Initialized Config!");
 	}
 	
 	public void load() {
-		AgriCore.getLogger().debug("Loading Config!");
+		//AgriCore.getLogger().debug("Loading Config!");
 		this.provider.load();
-		AgriCore.getLogger().debug("Config Loaded!");
+		//AgriCore.getLogger().debug("Loaded Config!");
 	}
 	
 	public void reload() {
@@ -47,9 +47,9 @@ public class AgriConfig {
 	}
 	
 	public void save() {
-		AgriCore.getLogger().debug("Saving Config!");
+		//AgriCore.getLogger().debug("Saving Config!");
 		this.provider.save();
-		AgriCore.getLogger().debug("Config Saved!");
+		//AgriCore.getLogger().debug("Config Saved!");
 	}
 
 	public final synchronized void addConfigurable(Object configurable) {

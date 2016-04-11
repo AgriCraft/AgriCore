@@ -43,15 +43,18 @@ public final class AgriCore {
 		AgriCore.config = new AgriConfig(provider);
 		AgriCore.plants = new AgriPlants();
 		AgriCore.mutations = new AgriMutations();
-		logger.info("[AgriCore] Initializing config!");
-		AgriCore.config.init();
-		logger.info("[AgriCore] Initialized config!");
+		logger.info("[AgriCore] Loading config!");
+		AgriCore.config.load();
+		logger.info("[AgriCore] Loaded config!");
 		logger.info("[AgriCore] Configuring modules!");
 		AgriCore.config.addConfigurable(logger);
 		AgriCore.config.addConfigurable(validator);
 		AgriCore.config.addConfigurable(plants);
 		AgriCore.config.addConfigurable(mutations);
 		logger.info("[AgriCore] Configured modules!");
+		logger.info("[AgriCore] Saving config!");
+		AgriCore.config.save();
+		logger.info("[AgriCore] Saved config!");
 		logger.info("[AgriCore] Initialized core!");
 	}
 
