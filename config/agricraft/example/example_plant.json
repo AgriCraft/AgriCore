@@ -29,23 +29,28 @@
   "texture": {
     "render_type": "cross",
     "seed_texture": "seed_wheat",
+    "seed_color": [
+      0,
+      0,
+      0
+    ],
     "plant_textures": [
-      "wheat",
-      "wheat",
-      "wheat",
-      "wheat",
-      "wheat",
-      "wheat",
-      "wheat",
-      "wheat",
-      "wheat",
-      "wheat",
-      "wheat",
-      "wheat",
-      "wheat",
-      "wheat",
-      "wheat",
-      "wheat"
+      "minecraft:wheat_stage_0",
+      "minecraft:wheat_stage_0",
+      "minecraft:wheat_stage_0",
+      "minecraft:wheat_stage_1",
+      "minecraft:wheat_stage_1",
+      "minecraft:wheat_stage_2",
+      "minecraft:wheat_stage_2",
+      "minecraft:wheat_stage_3",
+      "minecraft:wheat_stage_3",
+      "minecraft:wheat_stage_4",
+      "minecraft:wheat_stage_4",
+      "minecraft:wheat_stage_5",
+      "minecraft:wheat_stage_5",
+      "minecraft:wheat_stage_6",
+      "minecraft:wheat_stage_6",
+      "minecraft:wheat_stage_7"
     ]
   }
 }

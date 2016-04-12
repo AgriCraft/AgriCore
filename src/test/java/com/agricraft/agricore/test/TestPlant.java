@@ -56,7 +56,7 @@ public class TestPlant {
 		AgriRequirement requirement = new AgriRequirement(Arrays.asList("dirt"), Arrays.asList("stone"), nearby, 0, 10);
 
 		// Setup Icon
-		AgriTexture texture = new AgriTexture(AgriRenderType.CROSS, "seed_wheat", new String[]{"wheat"});
+		AgriTexture texture = new AgriTexture(AgriRenderType.CROSS, "seed_wheat", new byte[0], new String[0]);
 
 		// Setup Plant
 		plant = new AgriPlant("Wheat", "wheat_plant", false, products, requirement, texture);
@@ -103,6 +103,8 @@ public class TestPlant {
 		AgriCore.getLogger().info("Number of times items were dropped over " + trials + " trials: " + hits + " at a " + (((double) hits) / trials) * 100 + "% yield.");
 
 		AgriCore.getLogger().debug(plant);
+		
+		AgriCore.getLogger().debug(plant.texture);
 
 	}
 

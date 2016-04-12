@@ -53,7 +53,7 @@ public final class AgriStat {
 	// Packing Method
 	// --------------------
 	
-	public static int hashCode(final int growth, final int gain, final int strength) {
+	public static int encode(final int growth, final int gain, final int strength) {
 		return ((strength & STAT_MAX) << 16) | ((gain & STAT_MAX) << 8) | ((growth & STAT_MAX));
 	}
 	
