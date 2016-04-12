@@ -20,6 +20,8 @@ import java.util.List;
  * @author RlonRyan
  */
 public class AgriManifest {
+	
+	private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
 	public final List<AgriManifestEntry> elements;
 
@@ -46,7 +48,6 @@ public class AgriManifest {
 
 	public static AgriManifest load(Path p) throws IOException {
 		try (Reader reader = Files.newBufferedReader(p)) {
-			Gson gson = new Gson();
 			return gson.fromJson(reader, AgriManifest.class);
 		}
 	}
@@ -54,7 +55,6 @@ public class AgriManifest {
 	public static boolean save(Path p, AgriManifest m) {
 		p.getParent().toFile().mkdirs();
 		try (BufferedWriter out = Files.newBufferedWriter(p, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING)) {
-			Gson gson = new GsonBuilder().setPrettyPrinting().create();
 			out.append(gson.toJson(m));
 			out.newLine();
 			return true;

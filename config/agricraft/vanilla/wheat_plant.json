@@ -29,6 +29,11 @@
   "texture": {
     "render_type": "hash",
     "seed_texture": "seed_wheat",
+    "seed_color": [
+      0,
+      0,
+      0
+    ],
     "plant_textures": [
       "plants/wheat_stage_0",
       "plants/wheat_stage_0",

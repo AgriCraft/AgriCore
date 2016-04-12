@@ -27,8 +27,13 @@
     }
   },
   "texture": {
-    "render_type": "CROSS",
+    "render_type": "cross",
     "seed_texture": "seed_yellow",
+    "seed_color": [
+      0,
+      0,
+      0
+    ],
     "plant_textures": [
       "yellow",
       null,
