@@ -14,7 +14,7 @@ public class AgriTexture {
 	private AgriRenderType render_type = AgriRenderType.HASH;
 	private String seed_texture = "minecraft:wheat_seed";
 
-	private final byte[] seed_color = new byte[]{0, 0, 0};
+	private final int[] seed_color = new int[]{0, 0, 0};
 	private final String[] plant_textures = new String[]{
 		"minecraft:wheat_stage_0",
 		"minecraft:wheat_stage_0",
@@ -37,7 +37,7 @@ public class AgriTexture {
 	// GSON Tricker
 	public AgriTexture() {}
 
-	public AgriTexture(AgriRenderType render_type, String seed_texture, byte[] seed_color, String[] plant_textures) {
+	public AgriTexture(AgriRenderType render_type, String seed_texture, int[] seed_color, String[] plant_textures) {
 
 		this.render_type = render_type;
 		this.seed_texture = seed_texture;
@@ -65,14 +65,14 @@ public class AgriTexture {
 		return seed_texture;
 	}
 
-	public byte[] getSeedColor() {
+	public int[] getSeedColor() {
 		return Arrays.copyOf(seed_color, seed_color.length);
 	}
 
 	public int getSeedColorRGB() {
-		int res = seed_color[2];
-		res |= seed_color[1] << 8;
-		res |= seed_color[0] << 16;
+		int res = (seed_color[2] & 0b11111111);
+		res |= (seed_color[1] & 0b11111111) << 8;
+		res |= (seed_color[0] & 0b11111111) << 16;
 		return res;
 	}
 

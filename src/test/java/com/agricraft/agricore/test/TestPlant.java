@@ -56,7 +56,7 @@ public class TestPlant {
 		AgriRequirement requirement = new AgriRequirement(Arrays.asList("dirt"), Arrays.asList("stone"), nearby, 0, 10);
 
 		// Setup Icon
-		AgriTexture texture = new AgriTexture(AgriRenderType.CROSS, "seed_wheat", new byte[0], new String[0]);
+		AgriTexture texture = new AgriTexture(AgriRenderType.CROSS, "seed_wheat", new int[0], new String[0]);
 
 		// Setup Plant
 		plant = new AgriPlant("Wheat", "wheat_plant", false, products, requirement, texture);
