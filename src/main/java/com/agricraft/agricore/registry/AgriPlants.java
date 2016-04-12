@@ -35,6 +35,10 @@ public class AgriPlants {
 	public List<AgriPlant> getAll() {
 		return new ArrayList<>(this.plants.values());
 	}
+	
+	public void validate() {
+		plants.entrySet().removeIf((e) -> (!e.getValue().validate()));
+	}
 
 	@Override
 	public String toString() {

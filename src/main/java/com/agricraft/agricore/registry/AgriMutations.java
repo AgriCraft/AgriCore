@@ -41,6 +41,10 @@ public class AgriMutations {
 	public List<AgriMutation> getAll() {
 		return new ArrayList<>(this.mutations);
 	}
+	
+	public void validate() {
+		mutations.removeIf((e) -> (!e.validate()));
+	}
 
 	@Override
 	public String toString() {
