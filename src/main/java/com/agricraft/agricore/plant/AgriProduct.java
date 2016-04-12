@@ -51,6 +51,10 @@ public class AgriProduct {
 			return true;
 		}
 	}
+	
+	public Object toStack(Random rand) {
+		return AgriCore.getConverter().toStack(this.item, this.getAmount(rand), this.meta);
+	}
 
 	@Override
 	public String toString() {

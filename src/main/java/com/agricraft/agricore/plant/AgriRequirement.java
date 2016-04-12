@@ -32,19 +32,19 @@ public class AgriRequirement {
 	public boolean validate() {
 		for (String block : soils) {
 			if (!AgriCore.getValidator().isValidBlock(block)) {
-				AgriCore.getLogger().info("Invalid Requirement: Invalid Soil!");
+				AgriCore.getLogger().info("Invalid Requirement: Invalid Soil: " + block + "!");
 				return false;
 			}
 		}
 		for (String block : bases) {
 			if (!AgriCore.getValidator().isValidBlock(block)) {
-				AgriCore.getLogger().info("Invalid Requirement: Invalid Base!");
+				AgriCore.getLogger().info("Invalid Requirement: Invalid Base: " + block + "!");
 				return false;
 			}
 		}
 		for (String block : nearby.keySet()) {
 			if (!AgriCore.getValidator().isValidBlock(block)) {
-				AgriCore.getLogger().info("Invalid Requirement: Invalid Nearby!");
+				AgriCore.getLogger().info("Invalid Requirement: Invalid Nearby: " + block + "!");
 				return false;
 			}
 		}
@@ -68,7 +68,7 @@ public class AgriRequirement {
 		});
 		sb.append("\t- Nearby:\n");
 		this.nearby.entrySet().forEach((e) -> {
-			sb.append("\t\t- Block: ").append(e.getValue()).append("\n\t");
+			sb.append("\t\t- Block: ").append(e.getKey()).append("\n\t");
 			sb.append("\t\t- Distance: ").append(e.getValue()).append("\n");
 		});
 		return sb.toString();

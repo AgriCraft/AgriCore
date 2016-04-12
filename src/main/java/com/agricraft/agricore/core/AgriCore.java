@@ -5,9 +5,11 @@ package com.agricraft.agricore.core;
 import com.agricraft.agricore.config.AgriConfig;
 import com.agricraft.agricore.registry.AgriMutations;
 import com.agricraft.agricore.registry.AgriPlants;
+import com.agricraft.agricore.util.AgriConverter;
 import com.agricraft.agricore.util.AgriLogger;
 import com.agricraft.agricore.util.AgriProvider;
 import com.agricraft.agricore.util.AgriValidator;
+import com.agricraft.agricore.util.defaults.AgriDefaultConverter;
 import com.agricraft.agricore.util.defaults.AgriDefaultLogger;
 import com.agricraft.agricore.util.defaults.AgriDefaultProvider;
 import com.agricraft.agricore.util.defaults.AgriDefaultValidator;
@@ -23,6 +25,8 @@ public final class AgriCore {
 	
 	private static AgriValidator validator;
 	
+	private static AgriConverter converter;
+	
 	private static AgriConfig config;
 	
 	private static AgriMutations mutations;
@@ -33,10 +37,15 @@ public final class AgriCore {
 	}
 	
 	public static void init() {
-		AgriCore.init(new AgriDefaultLogger(), new AgriDefaultValidator(), new AgriDefaultProvider(Paths.get("config", "agricraft", "agricraft.config")));
+		AgriCore.init(
+				new AgriDefaultLogger(),
+				new AgriDefaultValidator(),
+				new AgriDefaultConverter(),
+				new AgriDefaultProvider(Paths.get("config", "agricraft", "agricraft.config"))
+		);
 	}
 	
-	public static void init(AgriLogger logger, AgriValidator validator, AgriProvider provider) {
+	public static void init(AgriLogger logger, AgriValidator validator, AgriConverter converter, AgriProvider provider) {
 		logger.info("[AgriCore] Initializing core!");
 		AgriCore.logger = logger;
 		AgriCore.validator = validator;
@@ -66,6 +75,10 @@ public final class AgriCore {
 		return validator;
 	}
 
+	public static AgriConverter getConverter() {
+		return converter;
+	}
+
 	public static AgriConfig getConfig() {
 		return config;
 	}
@@ -76,14 +89,6 @@ public final class AgriCore {
 
 	public static AgriPlants getPlants() {
 		return plants;
-	}
-
-	public static void setLogger(AgriLogger logger) {
-		AgriCore.logger = logger;
-	}
-
-	public static void setValidator(AgriValidator validator) {
-		AgriCore.validator = validator;
 	}
 	
 }
