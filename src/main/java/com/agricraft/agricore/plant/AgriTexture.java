@@ -11,8 +11,8 @@ import java.util.Arrays;
  */
 public class AgriTexture {
 
-	private final AgriRenderType render_type;
-	private final String seed_texture;
+	private AgriRenderType render_type = AgriRenderType.HASH;
+	private String seed_texture = "minecraft:wheat_seed";
 
 	private final byte[] seed_color = new byte[]{0, 0, 0};
 	private final String[] plant_textures = new String[]{
@@ -33,6 +33,9 @@ public class AgriTexture {
 		"minecraft:wheat_stage_6",
 		"minecraft:wheat_stage_7"
 	};
+
+	// GSON Tricker
+	public AgriTexture() {}
 
 	public AgriTexture(AgriRenderType render_type, String seed_texture, byte[] seed_color, String[] plant_textures) {
 
