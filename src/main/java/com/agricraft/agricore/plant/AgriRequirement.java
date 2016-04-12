@@ -4,6 +4,8 @@ package com.agricraft.agricore.plant;
 
 
 import com.agricraft.agricore.core.AgriCore;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +22,14 @@ public class AgriRequirement {
 	private final List<String> bases;
 
 	private final Map<String, Integer> nearby;
+
+	public AgriRequirement() {
+		this.min_light = 10;
+		this.max_light = 16;
+		this.soils = new ArrayList<>();
+		this.bases = new ArrayList<>();
+		this.nearby = new HashMap<>();
+	}
 
 	public AgriRequirement(List<String> soils, List<String> bases, Map<String, Integer> nearby, int min_light, int max_light) {
 		this.soils = soils;

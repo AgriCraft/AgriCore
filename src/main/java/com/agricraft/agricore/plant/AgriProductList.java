@@ -17,6 +17,11 @@ public class AgriProductList {
 	
 	private final List<AgriProduct> products;
 
+	public AgriProductList() {
+		this.products = new ArrayList<>();
+		this.products.add(new AgriProduct());
+	}
+
 	public AgriProductList(List<AgriProduct> products) {
 		this.products = products;
 	}

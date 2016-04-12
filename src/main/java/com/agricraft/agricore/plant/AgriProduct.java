@@ -34,6 +34,14 @@ public class AgriProduct {
 		return base + rand.nextInt(range);
 	}
 
+	public AgriProduct() {
+		this.item = "minecraft:wheat";
+		this.meta = 0;
+		this.base = 5;
+		this.range = 5;
+		this.chance = 1000;
+	}
+
 	public AgriProduct(String item, int meta, int base, int range, int chance) {
 		this.item = item;
 		this.meta = meta;

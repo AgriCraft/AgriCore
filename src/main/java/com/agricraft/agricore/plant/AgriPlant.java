@@ -22,6 +22,15 @@ public class AgriPlant {
 	
 	public final AgriTexture texture;
 
+	public AgriPlant() {
+		this.name = "Weed";
+		this.id = "weed_plant";
+		this.bonemeal = true;
+		this.products = new AgriProductList();
+		this.requirement = new AgriRequirement();
+		this.texture = new AgriTexture();
+	}
+
 	public AgriPlant(String name, String id, boolean bonemeal, AgriProductList products, AgriRequirement requirement, AgriTexture texture) {
 		this.name = name;
 		this.id = id;

@@ -22,12 +22,32 @@ public class AgriMutation {
 
 	public final AgriRequirement requirement;
 
+	public AgriMutation() {
+		this.chance = 0;
+		this.child = "carrot_plant";
+		this.parent1 = "wheat_plant";
+		this.parent2 = "potato_plant";
+		this.requirement = new AgriRequirement();
+	}
+
 	public AgriMutation(int chance, String child, String parent1, String parent2, AgriRequirement requirement) {
 		this.chance = chance;
 		this.child = child;
 		this.parent1 = parent1;
 		this.parent2 = parent2;
 		this.requirement = requirement;
+	}
+
+	public AgriPlant getChild() {
+		return AgriCore.getPlants().getPlant(child);
+	}
+
+	public AgriPlant getParent1() {
+		return AgriCore.getPlants().getPlant(parent1);
+	}
+
+	public AgriPlant getParent2() {
+		return AgriCore.getPlants().getPlant(parent2);
 	}
 
 	public boolean randomMutate(final Random rand) {
