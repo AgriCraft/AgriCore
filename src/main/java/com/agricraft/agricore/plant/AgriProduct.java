@@ -18,8 +18,7 @@ public class AgriProduct {
 			"\t- Item: %s\n" +
 			"\t- Meta: %d\n" + 
 			"\t- Base Amount: %d\n" + 
-			"\t- Range Amount: %d\n" + 
-			"\t- Sample Amount: %d\n" +
+			"\t- Range Amount: %d\n" +
 			"\t- Chance: %d out of %d\n";
 
 	public final String item;
@@ -58,7 +57,7 @@ public class AgriProduct {
 
 	@Override
 	public String toString() {
-		return String.format(STRING_FORMAT, item, meta, base, range, getAmount(new Random()), chance, MAX_CHANCE);
+		return String.format(STRING_FORMAT, item, meta, base, range, chance, MAX_CHANCE);
 	}
 
 }

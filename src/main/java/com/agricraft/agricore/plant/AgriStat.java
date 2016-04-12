@@ -29,7 +29,7 @@ public final class AgriStat {
 	// Test Methods
 	// --------------------
 	
-	public boolean isValid(final int statcode) {
+	public static boolean isValid(final int statcode) {
 		return (statcode & BAD_MASK) == 0;
 	}
 	
@@ -37,15 +37,15 @@ public final class AgriStat {
 	// Unpacking Methods
 	// --------------------
 	
-	public int getGrowth(final int statcode) {
+	public static int getGrowth(final int statcode) {
 		return statcode & STAT_MAX;
 	}
 	
-	public int getGain(final int statcode) {
+	public static int getGain(final int statcode) {
 		return (statcode >>> 8) & STAT_MAX;
 	}
 	
-	public int getStrength(final int statcode) {
+	public static int getStrength(final int statcode) {
 		return (statcode >>> 16) & STAT_MAX;
 	}
 	
@@ -53,7 +53,7 @@ public final class AgriStat {
 	// Packing Method
 	// --------------------
 	
-	public int hashCode(final int growth, final int gain, final int strength) {
+	public static int hashCode(final int growth, final int gain, final int strength) {
 		return ((strength & STAT_MAX) << 16) | ((gain & STAT_MAX) << 8) | ((growth & STAT_MAX));
 	}
 	
@@ -61,7 +61,7 @@ public final class AgriStat {
 	// String Methods
 	// --------------------
 	
-	public String toString(final int statcode) {
+	public static String toString(final int statcode) {
 		return String.format(STRING_TEMPLATE, getGrowth(statcode), getGain(statcode), getStrength(statcode));
 	}
 	
