@@ -31,7 +31,8 @@ public class AgriTexture {
 		"minecraft:wheat_stage_5",
 		"minecraft:wheat_stage_6",
 		"minecraft:wheat_stage_6",
-		"minecraft:wheat_stage_7",};
+		"minecraft:wheat_stage_7"
+	};
 
 	public AgriTexture(AgriRenderType render_type, String seed_texture, byte[] seed_color, String[] plant_textures) {
 
