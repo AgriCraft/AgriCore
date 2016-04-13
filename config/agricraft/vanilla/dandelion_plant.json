@@ -2,6 +2,7 @@
   "name": "Yellow Flower",
   "id": "yellow_flower",
   "bonemeal": false,
+  "growth_chance": 100,
   "products": {
     "products": [
       {

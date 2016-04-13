@@ -3,6 +3,7 @@
 package com.agricraft.agricore.plant;
 
 import com.agricraft.agricore.core.AgriCore;
+import java.util.Random;
 
 /**
  *
@@ -15,6 +16,8 @@ public class AgriPlant {
 	public final String id;
 	
 	public final boolean bonemeal;
+	
+	public final int growth_chance;
 
 	public final AgriProductList products;
 
@@ -26,18 +29,24 @@ public class AgriPlant {
 		this.name = "Weed";
 		this.id = "weed_plant";
 		this.bonemeal = true;
+		this.growth_chance = 900;
 		this.products = new AgriProductList();
 		this.requirement = new AgriRequirement();
 		this.texture = new AgriTexture();
 	}
 
-	public AgriPlant(String name, String id, boolean bonemeal, AgriProductList products, AgriRequirement requirement, AgriTexture texture) {
+	public AgriPlant(String name, String id, boolean bonemeal, int growth_chance, AgriProductList products, AgriRequirement requirement, AgriTexture texture) {
 		this.name = name;
 		this.id = id;
 		this.bonemeal = bonemeal;
+		this.growth_chance = growth_chance;
 		this.products = products;
 		this.requirement = requirement;
 		this.texture = texture;
+	}
+	
+	public boolean shouldGrow(Random rand) {
+		return rand.nextInt(1000) < this.growth_chance;
 	}
 
 	public boolean validate() {
@@ -61,6 +70,7 @@ public class AgriPlant {
 		sb.append("\n").append(name).append(":\n");
 		sb.append("\t- Id: ").append(id).append("\n");
 		sb.append("\t- Bonemeal: ").append(bonemeal).append("\n");
+		sb.append("\t- Growth Chance: ").append(growth_chance).append("\n");
 		sb.append("\t- ").append(products.toString().replaceAll("\n", "\n\t").trim()).append("\n");
 		sb.append("\t- ").append(requirement.toString().replaceAll("\n", "\n\t").trim()).append("\n");
 		return sb.toString();

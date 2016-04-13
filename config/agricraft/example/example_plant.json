@@ -2,6 +2,7 @@
   "name": "Wheat",
   "id": "wheat_plant",
   "bonemeal": false,
+  "growth_chance": 100,
   "products": {
     "products": [
       {

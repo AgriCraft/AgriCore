@@ -3,7 +3,6 @@
 package com.agricraft.agricore.json;
 
 import com.agricraft.agricore.core.AgriCore;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.io.BufferedWriter;

@@ -2,15 +2,15 @@
  */
 package com.agricraft.agricore.test;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.agricraft.agricore.core.AgriCore;
-import com.agricraft.agricore.plant.AgriTexture;
 import com.agricraft.agricore.plant.AgriPlant;
 import com.agricraft.agricore.plant.AgriProduct;
 import com.agricraft.agricore.plant.AgriProductList;
 import com.agricraft.agricore.plant.AgriRenderType;
 import com.agricraft.agricore.plant.AgriRequirement;
+import com.agricraft.agricore.plant.AgriTexture;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -25,10 +25,10 @@ import java.util.Map;
 import java.util.Random;
 import org.junit.After;
 import org.junit.AfterClass;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -59,7 +59,7 @@ public class TestPlant {
 		AgriTexture texture = new AgriTexture(AgriRenderType.CROSS, "seed_wheat", new int[0], new String[0]);
 
 		// Setup Plant
-		plant = new AgriPlant("Wheat", "wheat_plant", false, products, requirement, texture);
+		plant = new AgriPlant("Wheat", "wheat_plant", false, 100, products, requirement, texture);
 	}
 
 	@BeforeClass
