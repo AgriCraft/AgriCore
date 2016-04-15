@@ -59,6 +59,10 @@ public class AgriProduct {
 		}
 	}
 	
+	public Object toStack() {
+		return AgriCore.getConverter().toStack(this.item, this.base + 1, this.meta);
+	}
+	
 	public Object toStack(Random rand) {
 		return AgriCore.getConverter().toStack(this.item, this.getAmount(rand), this.meta);
 	}

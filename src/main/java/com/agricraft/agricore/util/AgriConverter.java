@@ -8,6 +8,8 @@ package com.agricraft.agricore.util;
  */
 public interface AgriConverter {
 	
+	Object toStack(String element);
+	
 	Object toStack(String element, int amount, int meta);
 	
 }

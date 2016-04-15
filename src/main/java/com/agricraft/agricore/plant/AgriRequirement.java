@@ -39,6 +39,30 @@ public class AgriRequirement {
 		this.max_light = 10;
 	}
 
+	public int getMinLight() {
+		return min_light;
+	}
+
+	public int getMaxLight() {
+		return max_light;
+	}
+
+	public List<Object> getSoils() {
+		List<Object> res = new ArrayList<>(this.soils.size());
+		soils.forEach((s) -> {
+			res.add(AgriCore.getConverter().toStack(s));
+		});
+		return res;	
+	}
+
+	public List<Object> getBases() {
+		List<Object> res = new ArrayList<>(this.bases.size());
+		bases.forEach((b) -> {
+			res.add(AgriCore.getConverter().toStack(b));
+		});
+		return res;	
+	}
+
 	public boolean validate() {
 		for (String block : soils) {
 			if (!AgriCore.getValidator().isValidBlock(block)) {
