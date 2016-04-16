@@ -47,6 +47,16 @@ public class AgriMutations {
 	public boolean addMutation(AgriMutation mutation) {
 		return this.mutations.add(mutation);
 	}
+	
+	public List<AgriMutation> getMutation(String child) {
+		final List<AgriMutation> results = new ArrayList<>();
+		this.mutations.forEach((m) -> {
+			if (m.getChild().id.equals(child)) {
+				results.add(m);
+			}
+		});
+		return results;
+	}
 
 	public List<AgriMutation> getMutation(String parent1, String parent2) {
 		final List<AgriMutation> results = new ArrayList<>();

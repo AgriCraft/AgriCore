@@ -12,37 +12,27 @@ import java.util.Arrays;
 public class AgriTexture {
 
 	private AgriRenderType render_type = AgriRenderType.HASH;
-	private String seed_texture = "minecraft:wheat_seed";
+	private String seed_texture = "minecraft:items/seeds_wheat";
 
-	private final int[] seed_color = new int[]{0, 0, 0};
 	private final String[] plant_textures = new String[]{
-		"minecraft:wheat_stage_0",
-		"minecraft:wheat_stage_0",
-		"minecraft:wheat_stage_0",
-		"minecraft:wheat_stage_1",
-		"minecraft:wheat_stage_1",
-		"minecraft:wheat_stage_2",
-		"minecraft:wheat_stage_2",
-		"minecraft:wheat_stage_3",
-		"minecraft:wheat_stage_3",
-		"minecraft:wheat_stage_4",
-		"minecraft:wheat_stage_4",
-		"minecraft:wheat_stage_5",
-		"minecraft:wheat_stage_5",
-		"minecraft:wheat_stage_6",
-		"minecraft:wheat_stage_6",
-		"minecraft:wheat_stage_7"
+		"minecraft:blocks/wheat_stage_0",
+		"minecraft:blocks/wheat_stage_1",
+		"minecraft:blocks/wheat_stage_2",
+		"minecraft:blocks/wheat_stage_3",
+		"minecraft:blocks/wheat_stage_4",
+		"minecraft:blocks/wheat_stage_5",
+		"minecraft:blocks/wheat_stage_6",
+		"minecraft:blocks/wheat_stage_7"
 	};
 
 	// GSON Tricker
 	public AgriTexture() {}
 
-	public AgriTexture(AgriRenderType render_type, String seed_texture, int[] seed_color, String[] plant_textures) {
+	public AgriTexture(AgriRenderType render_type, String seed_texture, String[] plant_textures) {
 
 		this.render_type = render_type;
 		this.seed_texture = seed_texture;
 
-		System.arraycopy(seed_color, 0, this.seed_color, 0, seed_color.length < this.seed_color.length ? seed_color.length : this.seed_color.length);
 		System.arraycopy(plant_textures, 0, this.plant_textures, 0, plant_textures.length < this.plant_textures.length ? plant_textures.length : this.plant_textures.length);
 
 		// Distribute the textures.
@@ -65,16 +55,16 @@ public class AgriTexture {
 		return seed_texture;
 	}
 
-	public int[] getSeedColor() {
-		return Arrays.copyOf(seed_color, seed_color.length);
-	}
-
-	public int getSeedColorRGB() {
-		int res = (seed_color[2] & 0b11111111);
-		res |= (seed_color[1] & 0b11111111) << 8;
-		res |= (seed_color[0] & 0b11111111) << 16;
-		return res;
-	}
+//	public int[] getSeedColor() {
+//		return Arrays.copyOf(seed_color, seed_color.length);
+//	}
+//
+//	public int getSeedColorRGB() {
+//		int res = (seed_color[2] & 0b11111111);
+//		res |= (seed_color[1] & 0b11111111) << 8;
+//		res |= (seed_color[0] & 0b11111111) << 16;
+//		return res;
+//	}
 
 	public String[] getPlantTextures() {
 		return Arrays.copyOf(plant_textures, plant_textures.length);
@@ -103,9 +93,9 @@ public class AgriTexture {
 		StringBuilder sb = new StringBuilder().append("Icon Set:\n");
 		sb.append("\t- Seed Texture: ").append(this.seed_texture).append("\n");
 		sb.append("\t- Seed Color:\n");
-		sb.append("\t\t- Red:   ").append(seed_color[0]).append("\n");
-		sb.append("\t\t- Green: ").append(seed_color[1]).append("\n");
-		sb.append("\t\t- Blue:  ").append(seed_color[2]).append("\n");
+//		sb.append("\t\t- Red:   ").append(seed_color[0]).append("\n");
+//		sb.append("\t\t- Green: ").append(seed_color[1]).append("\n");
+//		sb.append("\t\t- Blue:  ").append(seed_color[2]).append("\n");
 		sb.append("\t- Render Type: ").append(this.render_type).append("\n");
 		sb.append("\t- Plant Textures:\n");
 		for (int i = 0; i < this.plant_textures.length; i++) {
