@@ -19,6 +19,8 @@ public class AgriPlant {
 	
 	public final boolean bonemeal;
 	
+	public final int tier;
+	
 	public final int growth_chance;
 
 	public final AgriProductList products;
@@ -32,17 +34,19 @@ public class AgriPlant {
 		this.id = "weed_plant";
 		this.description = "An annoying plant.";
 		this.bonemeal = true;
+		this.tier = 1;
 		this.growth_chance = 900;
 		this.products = new AgriProductList();
 		this.requirement = new AgriRequirement();
 		this.texture = new AgriTexture();
 	}
 
-	public AgriPlant(String name, String id, String description, boolean bonemeal, int growth_chance, AgriProductList products, AgriRequirement requirement, AgriTexture texture) {
+	public AgriPlant(String name, String id, String description, boolean bonemeal, int tier, int growth_chance, AgriProductList products, AgriRequirement requirement, AgriTexture texture) {
 		this.name = name;
 		this.id = id;
 		this.description = description;
 		this.bonemeal = bonemeal;
+		this.tier = tier;
 		this.growth_chance = growth_chance;
 		this.products = products;
 		this.requirement = requirement;

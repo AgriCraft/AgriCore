@@ -59,7 +59,7 @@ public class TestPlant {
 		AgriTexture texture = new AgriTexture(AgriRenderType.CROSS, "seed_wheat", new String[0]);
 
 		// Setup Plant
-		plant = new AgriPlant("Wheat", "wheat_plant", "Wheat, the gluten that founded human society.", false, 100, products, requirement, texture);
+		plant = new AgriPlant("Wheat", "wheat_plant", "Wheat, the gluten that founded human society.", false, 1, 100, products, requirement, texture);
 	}
 
 	@BeforeClass

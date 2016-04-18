@@ -3,6 +3,7 @@
   "id": "wheat_plant",
   "description": "An annoying plant.",
   "bonemeal": false,
+  "tier": 1,
   "growth_chance": 100,
   "products": {
     "products": [
