@@ -63,21 +63,23 @@ public final class AgriLoader {
 	private static void loadPlant(Path location, AgriPlants plants) {
 
 		// The Plant to Read
-		AgriPlant plant;
+		AgriPlant plant = new AgriPlant();
 
 		// Read file, to get plant.
 		// If fails, return.
-		try (Reader reader = Files.newBufferedReader(location)) {
-			plant = gson.fromJson(reader, AgriPlant.class);
-		} catch (IOException e) {
-			AgriCore.getLogger().warn("Unable to load plant: " + location + "!");
-			AgriCore.getLogger().trace(e);
-			return;
+		if (Files.exists(location)) {
+			try (Reader reader = Files.newBufferedReader(location)) {
+				plant = gson.fromJson(reader, AgriPlant.class);
+			} catch (IOException e) {
+				AgriCore.getLogger().warn("Unable to load plant: " + location + "!");
+				AgriCore.getLogger().trace(e);
+				return;
+			}
 		}
 
 		// Writeback, to keep file formatted.
 		// If fails, ignore.
-		try (Writer writer = Files.newBufferedWriter(location, StandardOpenOption.TRUNCATE_EXISTING)) {
+		try (Writer writer = Files.newBufferedWriter(location, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING)) {
 			gson.toJson(plant, writer);
 			writer.append("\n");
 		} catch (IOException e) {
@@ -90,23 +92,25 @@ public final class AgriLoader {
 	}
 
 	private static void loadMutation(Path location, AgriMutations mutations) {
-		
+
 		// The Mutation to Read
-		AgriMutation mutation;
+		AgriMutation mutation = new AgriMutation();
 
 		// Read file, to get plant.
 		// If fails, return.
-		try (Reader reader = Files.newBufferedReader(location)) {
-			mutation = gson.fromJson(reader, AgriMutation.class);
-		} catch (IOException e) {
-			AgriCore.getLogger().warn("Unable to load plant: " + location + "!");
-			AgriCore.getLogger().trace(e);
-			return;
+		if (Files.exists(location)) {
+			try (Reader reader = Files.newBufferedReader(location)) {
+				mutation = gson.fromJson(reader, AgriMutation.class);
+			} catch (IOException e) {
+				AgriCore.getLogger().warn("Unable to load plant: " + location + "!");
+				AgriCore.getLogger().trace(e);
+				return;
+			}
 		}
 
 		// Writeback, to keep file formatted.
 		// If fails, ignore.
-		try (Writer writer = Files.newBufferedWriter(location, StandardOpenOption.TRUNCATE_EXISTING)) {
+		try (Writer writer = Files.newBufferedWriter(location, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING)) {
 			gson.toJson(mutation, writer);
 			writer.append("\n");
 		} catch (IOException e) {
@@ -115,7 +119,7 @@ public final class AgriLoader {
 
 		// Add Mutation to Registry
 		mutations.addMutation(mutation);
-		
+
 	}
 
 }

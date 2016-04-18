@@ -2,7 +2,6 @@
  */
 package com.agricraft.agricore.plant;
 
-
 import com.agricraft.agricore.core.AgriCore;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,7 +13,7 @@ import java.util.Map;
  * @author RlonRyan
  */
 public class AgriRequirement {
-	
+
 	private final int min_light;
 	private final int max_light;
 
@@ -35,8 +34,8 @@ public class AgriRequirement {
 		this.soils = soils;
 		this.bases = bases;
 		this.nearby = nearby;
-		this.min_light = 0;
-		this.max_light = 10;
+		this.min_light = 10;
+		this.max_light = 16;
 	}
 
 	public int getMinLight() {
@@ -50,17 +49,23 @@ public class AgriRequirement {
 	public List<Object> getSoils() {
 		List<Object> res = new ArrayList<>(this.soils.size());
 		soils.forEach((s) -> {
-			res.add(AgriCore.getConverter().toStack(s));
+			Object stack = AgriCore.getConverter().toStack(s);
+			if (stack != null) {
+				res.add(stack);
+			}
 		});
-		return res;	
+		return res;
 	}
 
 	public List<Object> getBases() {
 		List<Object> res = new ArrayList<>(this.bases.size());
 		bases.forEach((b) -> {
-			res.add(AgriCore.getConverter().toStack(b));
+			Object stack = AgriCore.getConverter().toStack(b);
+			if (stack != null) {
+				res.add(stack);
+			}
 		});
-		return res;	
+		return res;
 	}
 
 	public boolean validate() {
