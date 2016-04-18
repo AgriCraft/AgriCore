@@ -67,6 +67,17 @@ public class AgriRequirement {
 		});
 		return res;
 	}
+	
+	public Map<Object, Integer> getNearby() {
+		Map<Object, Integer> res = new HashMap<>();
+		nearby.forEach((block, dist) -> {
+			Object stack = AgriCore.getConverter().toStack(block);
+			if (stack != null) {
+				res.put(stack, dist);
+			}
+		});
+		return res;
+	}
 
 	public boolean validate() {
 		for (String block : soils) {

@@ -1,6 +1,7 @@
 {
   "name": "Yellow Flower",
   "id": "yellow_flower",
+  "description": "An annoying plant.",
   "bonemeal": false,
   "growth_chance": 100,
   "products": {
@@ -30,11 +31,6 @@
   "texture": {
     "render_type": "cross",
     "seed_texture": "seed_yellow",
-    "seed_color": [
-      0,
-      0,
-      0
-    ],
     "plant_textures": [
       "yellow",
       null,
