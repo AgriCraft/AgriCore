@@ -41,7 +41,7 @@ public class TestPlant {
 	public TestPlant() {
 
 		// Setup Product
-		AgriProduct item = new AgriProduct("wheat", 0, 1, 3, 500);
+		AgriProduct item = new AgriProduct("wheat", 0, 1, 3, .5);
 
 		// Setup Products
 		List<AgriProduct> items = new ArrayList<>();
@@ -59,7 +59,7 @@ public class TestPlant {
 		AgriTexture texture = new AgriTexture(AgriRenderType.CROSS, "seed_wheat", new String[0]);
 
 		// Setup Plant
-		plant = new AgriPlant("Wheat", "wheat_plant", "Wheat, the gluten that founded human society.", false, 1, 100, products, requirement, texture);
+		plant = new AgriPlant("Wheat", "wheat_plant", "Wheat, the gluten that founded human society.", false, 1, 1.0, products, requirement, texture);
 	}
 
 	@BeforeClass
@@ -96,7 +96,7 @@ public class TestPlant {
 		int hits = 0;
 
 		for (int i = 0; i < trials; i++) {
-			List<AgriProduct> drops = plant.products.getRandom(rand);
+			List<AgriProduct> drops = plant.getProducts().getRandom(rand);
 			hits += drops.size();
 		}
 
@@ -104,7 +104,7 @@ public class TestPlant {
 
 		AgriCore.getLogger().debug(plant);
 		
-		AgriCore.getLogger().debug(plant.texture);
+		AgriCore.getLogger().debug(plant.getTexture());
 
 	}
 

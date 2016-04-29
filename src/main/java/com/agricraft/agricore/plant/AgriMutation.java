@@ -11,16 +11,14 @@ import java.util.Random;
  */
 public class AgriMutation {
 
-	public static final int MAX_CHANCE = 1000;
+	private final double chance;
 
-	public final int chance;
+	private final String child;
 
-	public final String child;
+	private final String parent1;
+	private final String parent2;
 
-	public final String parent1;
-	public final String parent2;
-
-	public final AgriRequirement requirement;
+	private final AgriRequirement requirement;
 
 	public AgriMutation() {
 		this.chance = 0;
@@ -30,12 +28,24 @@ public class AgriMutation {
 		this.requirement = new AgriRequirement();
 	}
 
-	public AgriMutation(int chance, String child, String parent1, String parent2, AgriRequirement requirement) {
+	public AgriMutation(double chance, String child, String parent1, String parent2, AgriRequirement requirement) {
 		this.chance = chance;
 		this.child = child;
 		this.parent1 = parent1;
 		this.parent2 = parent2;
 		this.requirement = requirement;
+	}
+	
+	public boolean isChild(String child) {
+		return this.child.equals(child);
+	}
+	
+	public boolean isParent(String parent) {
+		return this.parent1.equals(parent) || this.parent2.equals(parent);
+	}
+
+	public double getChance() {
+		return chance;
 	}
 
 	public AgriPlant getChild() {
@@ -51,7 +61,7 @@ public class AgriMutation {
 	}
 
 	public boolean randomMutate(final Random rand) {
-		return (chance > rand.nextInt(MAX_CHANCE));
+		return (chance > rand.nextDouble());
 	}
 
 	public boolean validate() {

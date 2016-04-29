@@ -10,39 +10,24 @@ import java.util.Random;
  * @author RlonRyan
  */
 public class AgriProduct {
-	
-	public static final int MAX_CHANCE = 1000;
-	
-	private static final String STRING_FORMAT = "\n" +
-			"Product:\n" +
-			"\t- Item: %s\n" +
-			"\t- Meta: %d\n" + 
-			"\t- Base Amount: %d\n" + 
-			"\t- Range Amount: %d\n" +
-			"\t- Chance: %d out of %d\n";
 
-	public final String item;
+	private final String item;
 
-	public final int meta;
+	private final int meta;
+	private final int base;
+	private final int range;
 
-	public final int base;
-	public final int range;
-	
-	public final int chance;
-
-	public int getAmount(final Random rand) {
-		return base + rand.nextInt(range);
-	}
+	private final double chance;
 
 	public AgriProduct() {
 		this.item = "minecraft:wheat";
 		this.meta = 0;
 		this.base = 5;
 		this.range = 5;
-		this.chance = 1000;
+		this.chance = 0.99;
 	}
 
-	public AgriProduct(String item, int meta, int base, int range, int chance) {
+	public AgriProduct(String item, int meta, int base, int range, double chance) {
 		this.item = item;
 		this.meta = meta;
 		this.base = base;
@@ -59,17 +44,32 @@ public class AgriProduct {
 		}
 	}
 	
+	public boolean shouldDrop(final Random rand) {
+		return chance > rand.nextDouble();
+	}
+	
+	public int getAmount(final Random rand) {
+		return base + rand.nextInt(range);
+	}
+
 	public Object toStack() {
 		return AgriCore.getConverter().toStack(this.item, this.base + 1, this.meta);
 	}
-	
+
 	public Object toStack(Random rand) {
 		return AgriCore.getConverter().toStack(this.item, this.getAmount(rand), this.meta);
 	}
 
 	@Override
 	public String toString() {
-		return String.format(STRING_FORMAT, item, meta, base, range, chance, MAX_CHANCE);
+		final StringBuilder sb = new StringBuilder();
+		sb.append("\nProduct:");
+		sb.append("\n\t- Item: ").append(item);
+		sb.append("\n\t- Meta: ").append(meta);
+		sb.append("\n\t- Base Amount: ").append(base);
+		sb.append("\n\t- Range Amount: ").append(range);
+		sb.append("\n\t- Probability: ").append(chance);
+		return sb.toString();
 	}
 
 }

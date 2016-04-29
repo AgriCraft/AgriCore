@@ -26,7 +26,7 @@ public class AgriMutations {
 
 	public boolean hasMutation(String child) {
 		for (AgriMutation m : mutations) {
-			if (m.child.equals(child)) {
+			if (m.isChild(child)) {
 				return true;
 			}
 		}
@@ -35,9 +35,7 @@ public class AgriMutations {
 
 	public boolean hasMutation(String parent1, String parent2) {
 		for (AgriMutation m : mutations) {
-			if (m.parent1.equals(parent1) && m.parent2.equals(parent2)) {
-				return true;
-			} else if (m.parent1.equals(parent2) && m.parent2.equals(parent1)) {
+			if (m.isParent(parent1) && m.isParent(parent2)) {
 				return true;
 			}
 		}
@@ -51,7 +49,7 @@ public class AgriMutations {
 	public List<AgriMutation> getMutation(String child) {
 		final List<AgriMutation> results = new ArrayList<>();
 		this.mutations.forEach((m) -> {
-			if (m.getChild().id.equals(child)) {
+			if (m.isChild(child)) {
 				results.add(m);
 			}
 		});
@@ -60,9 +58,9 @@ public class AgriMutations {
 
 	public List<AgriMutation> getMutation(String parent1, String parent2) {
 		final List<AgriMutation> results = new ArrayList<>();
-		for (AgriMutation mutation : mutations) {
-			if ((mutation.parent1.equals(parent1) || mutation.parent1.equals(parent2)) && (mutation.parent2.equals(parent1) || mutation.parent2.equals(parent2))) {
-				results.add(mutation);
+		for (AgriMutation m : mutations) {
+			if (m.isParent(parent1) && m.isParent(parent2)) {
+				results.add(m);
 			}
 		}
 		return results;

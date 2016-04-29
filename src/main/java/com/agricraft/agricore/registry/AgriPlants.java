@@ -25,7 +25,7 @@ public class AgriPlants {
 	}
 	
 	public boolean addPlant(AgriPlant plant) {
-		return this.plants.putIfAbsent(plant.id, plant) == null;
+		return this.plants.putIfAbsent(plant.getId(), plant) == null;
 	}
 	
 	public AgriPlant getPlant(String id) {

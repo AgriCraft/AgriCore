@@ -41,7 +41,7 @@ public class TestMutation {
 		AgriRequirement requirement = new AgriRequirement(Arrays.asList("dirt"), Arrays.asList("stone"), nearby, 0, 10);
 
 		// Setup Mutation
-		this.mutation = new AgriMutation(500, "Wheat", "Wheat", "Wheat", requirement);
+		this.mutation = new AgriMutation(0.5, "Wheat", "Wheat", "Wheat", requirement);
 		
 	}
 

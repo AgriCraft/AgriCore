@@ -10,24 +10,18 @@ import java.util.Random;
  * @author RlonRyan
  */
 public class AgriPlant {
-	
-	public final String name;
-	
-	public final String id;
-	
-	public final String description;
-	
-	public final boolean bonemeal;
-	
-	public final int tier;
-	
-	public final int growth_chance;
 
-	public final AgriProductList products;
+	private final String name;
+	private final String id;
+	private final String description;
 
-	public final AgriRequirement requirement;
-	
-	public final AgriTexture texture;
+	private final double growth_chance;
+	private final boolean bonemeal;
+	private final int tier;
+
+	private final AgriProductList products;
+	private final AgriRequirement requirement;
+	private final AgriTexture texture;
 
 	public AgriPlant() {
 		this.name = "Weed";
@@ -35,13 +29,13 @@ public class AgriPlant {
 		this.description = "An annoying plant.";
 		this.bonemeal = true;
 		this.tier = 1;
-		this.growth_chance = 900;
+		this.growth_chance = 0.9;
 		this.products = new AgriProductList();
 		this.requirement = new AgriRequirement();
 		this.texture = new AgriTexture();
 	}
 
-	public AgriPlant(String name, String id, String description, boolean bonemeal, int tier, int growth_chance, AgriProductList products, AgriRequirement requirement, AgriTexture texture) {
+	public AgriPlant(String name, String id, String description, boolean bonemeal, int tier, double growth_chance, AgriProductList products, AgriRequirement requirement, AgriTexture texture) {
 		this.name = name;
 		this.id = id;
 		this.description = description;
@@ -52,9 +46,41 @@ public class AgriPlant {
 		this.requirement = requirement;
 		this.texture = texture;
 	}
-	
+
+	public String getId() {
+		return id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public AgriProductList getProducts() {
+		return products;
+	}
+
+	public AgriRequirement getRequirement() {
+		return requirement;
+	}
+
+	public AgriTexture getTexture() {
+		return texture;
+	}
+
+	public int getTier() {
+		return tier;
+	}
+
+	public boolean canBonemeal() {
+		return bonemeal;
+	}
+
 	public boolean shouldGrow(Random rand) {
-		return rand.nextInt(1000) < this.growth_chance;
+		return this.growth_chance > rand.nextDouble();
 	}
 
 	public boolean validate() {

@@ -13,8 +13,6 @@ import java.util.Random;
  */
 public class AgriProductList {
 	
-	public static final int MAX_CHANCE = 1000;
-	
 	private final List<AgriProduct> products;
 
 	public AgriProductList() {
@@ -33,7 +31,7 @@ public class AgriProductList {
 	public final List<AgriProduct> getRandom(Random rand) {
 		final List<AgriProduct> produce = new ArrayList<>();
 		products.forEach((product) -> {
-			if (product.chance > rand.nextInt(MAX_CHANCE)) {
+			if (product.shouldDrop(rand)) {
 				produce.add(product);
 			}
 		});

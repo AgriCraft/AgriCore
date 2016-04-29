@@ -2,9 +2,9 @@
   "name": "Wheat",
   "id": "wheat_plant",
   "description": "Wheat, the gluten that founded human society.",
+  "growth_chance": 1.0,
   "bonemeal": false,
   "tier": 1,
-  "growth_chance": 100,
   "products": {
     "products": [
       {
@@ -12,7 +12,7 @@
         "meta": 0,
         "base": 1,
         "range": 3,
-        "chance": 500
+        "chance": 0.5
       }
     ]
   },

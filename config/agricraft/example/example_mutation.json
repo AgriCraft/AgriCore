@@ -1,5 +1,5 @@
 {
-  "chance": 500,
+  "chance": 0.5,
   "child": "Wheat",
   "parent1": "Wheat",
   "parent2": "Wheat",
