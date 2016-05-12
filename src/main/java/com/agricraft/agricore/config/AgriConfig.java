@@ -31,10 +31,6 @@ public class AgriConfig {
 	public void load() {
 		//AgriCore.getLogger().debug("Loading Config!");
 		this.provider.load();
-		//AgriCore.getLogger().debug("Loaded Config!");
-	}
-
-	public void reload() {
 		this.configurableClasses.forEach(
 				(configurable, fields) -> fields.forEach(
 						(field) -> handleConfigurable(null, field)
@@ -45,6 +41,7 @@ public class AgriConfig {
 						(field) -> handleConfigurable(configurable, field)
 				)
 		);
+		//AgriCore.getLogger().debug("Loaded Config!");
 	}
 
 	public void save() {
@@ -73,7 +70,6 @@ public class AgriConfig {
 				}
 			}
 			configurableObjects.put(configurable, fields);
-			this.save();
 		}
 	}
 
@@ -93,7 +89,6 @@ public class AgriConfig {
 				}
 			}
 			configurableObjects.put(configurable, fields);
-			this.save();
 		}
 	}
 
