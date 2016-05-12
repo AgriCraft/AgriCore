@@ -20,6 +20,8 @@ public interface AgriProvider {
 	
 	double getDouble(String name, String category, double defaultValue, double minValue, double maxValue, String comment);
 	
-	public String getString(String name, String category, String defaultValue, String comment);
+	String getString(String name, String category, String defaultValue, String comment);
+	
+	String getLocation();
 	
 }

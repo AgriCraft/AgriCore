@@ -28,12 +28,6 @@ public class AgriConfig {
 		this.provider = provider;
 	}
 
-	public void init() {
-		//AgriCore.getLogger().debug("Initializing Config!");
-		this.provider.load();
-		//AgriCore.getLogger().debug("Initialized Config!");
-	}
-
 	public void load() {
 		//AgriCore.getLogger().debug("Loading Config!");
 		this.provider.load();
@@ -58,6 +52,10 @@ public class AgriConfig {
 		this.provider.save();
 		//AgriCore.getLogger().debug("Config Saved!");
 	}
+	
+	public String getLocation() {
+		return this.provider.getLocation();
+	}
 
 	public final synchronized void addConfigurable(Class configurable) {
 		if (!configurableClasses.containsKey(configurable)) {
@@ -75,6 +73,7 @@ public class AgriConfig {
 				}
 			}
 			configurableObjects.put(configurable, fields);
+			this.save();
 		}
 	}
 
@@ -94,6 +93,7 @@ public class AgriConfig {
 				}
 			}
 			configurableObjects.put(configurable, fields);
+			this.save();
 		}
 	}
 
@@ -132,6 +132,26 @@ public class AgriConfig {
 			AgriCore.getLogger().trace(e);
 		}
 
+	}
+
+	public boolean getBoolean(String name, AgriConfigCategory category, boolean defaultValue, String comment) {
+		return this.provider.getBoolean(name, category.name(), defaultValue, comment);
+	}
+	
+	public int getInt(String name, AgriConfigCategory category, int defaultValue, int minValue, int maxValue, String comment) {
+		return this.provider.getInt(name, category.name(), defaultValue, minValue, maxValue, comment);
+	}
+	
+	public float getFloat(String name, AgriConfigCategory category, float defaultValue, float minValue, float maxValue, String comment) {
+		return this.provider.getFloat(name, category.name(), defaultValue, minValue, maxValue, comment);
+	}
+	
+	public double getDouble(String name, AgriConfigCategory category, double defaultValue, double minValue, double maxValue, String comment) {
+		return this.provider.getDouble(name, category.name(), defaultValue, minValue, maxValue, comment);
+	}
+	
+	public String getString(String name, AgriConfigCategory category, String defaultValue, String comment) {
+		return this.provider.getString(name, category.name(), defaultValue, comment);
 	}
 
 	@Override

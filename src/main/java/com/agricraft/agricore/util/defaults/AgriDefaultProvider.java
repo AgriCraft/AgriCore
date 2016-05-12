@@ -119,8 +119,13 @@ public class AgriDefaultProvider implements AgriProvider {
 	}
 
 	@Override
+	public String getLocation() {
+		return this.path.toString();
+	}
+
+	@Override
 	public String toString() {
-		return this.path.toString() + ": "+ this.properties.toString();
+		return this.path.toString() + ": " + this.properties.toString();
 	}
 
 }
