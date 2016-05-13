@@ -42,7 +42,7 @@ public class TestPlant {
 	public TestPlant() {
 
 		// Setup Product
-		AgriProduct item = new AgriProduct("wheat", 0, 1, 3, .5);
+		AgriProduct item = new AgriProduct("wheat", 0, 1, 3, .5, true);
 
 		// Setup Products
 		List<AgriProduct> items = new ArrayList<>();

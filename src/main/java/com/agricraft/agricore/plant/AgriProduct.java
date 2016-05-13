@@ -18,6 +18,8 @@ public class AgriProduct {
 	private final int range;
 
 	private final double chance;
+	
+	private final boolean required;
 
 	public AgriProduct() {
 		this.item = "minecraft:wheat";
@@ -25,14 +27,16 @@ public class AgriProduct {
 		this.base = 5;
 		this.range = 5;
 		this.chance = 0.99;
+		this.required = true;
 	}
 
-	public AgriProduct(String item, int meta, int base, int range, double chance) {
+	public AgriProduct(String item, int meta, int base, int range, double chance, boolean required) {
 		this.item = item;
 		this.meta = meta;
 		this.base = base;
 		this.range = range;
 		this.chance = chance;
+		this.required = required;
 	}
 
 	public boolean validate() {
@@ -42,6 +46,10 @@ public class AgriProduct {
 		} else {
 			return true;
 		}
+	}
+
+	public boolean isRequired() {
+		return required;
 	}
 	
 	public boolean shouldDrop(final Random rand) {

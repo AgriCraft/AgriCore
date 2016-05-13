@@ -4,6 +4,7 @@ package com.agricraft.agricore.plant;
 
 import com.agricraft.agricore.core.AgriCore;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -12,7 +13,7 @@ import java.util.Random;
  * @author RlonRyan
  */
 public class AgriProductList {
-	
+
 	private final List<AgriProduct> products;
 
 	public AgriProductList() {
@@ -23,7 +24,7 @@ public class AgriProductList {
 	public AgriProductList(List<AgriProduct> products) {
 		this.products = products;
 	}
-	
+
 	public final List<AgriProduct> getAll() {
 		return new ArrayList<>(this.products);
 	}
@@ -37,12 +38,19 @@ public class AgriProductList {
 		});
 		return produce;
 	}
-	
+
 	public boolean validate() {
-		for (AgriProduct product : this.products) {
+		Iterator<AgriProduct> iter = this.products.iterator();
+		while(iter.hasNext()) {
+			AgriProduct product = iter.next();
 			if (!product.validate()) {
-				AgriCore.getCoreLogger().info("Invalid List: Invalid Product!");
-				return false;
+				if (product.isRequired()) {
+					AgriCore.getCoreLogger().info("Invalid List: Invalid Required Product!");
+					return false;
+				} else {
+					AgriCore.getCoreLogger().info("Product List: Removing Invalid Non-Required Product!");
+					iter.remove();
+				}
 			}
 		}
 		return true;
@@ -58,5 +66,5 @@ public class AgriProductList {
 		});
 		return sb.toString();
 	}
-	
+
 }

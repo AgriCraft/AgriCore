@@ -2,9 +2,9 @@
   "name": "Yellow Flower",
   "id": "yellow_flower",
   "description": "An annoying plant.",
+  "growth_chance": 100.0,
   "bonemeal": false,
   "tier": 1,
-  "growth_chance": 100,
   "products": {
     "products": [
       {
@@ -12,7 +12,8 @@
         "meta": 0,
         "base": 0,
         "range": 5,
-        "chance": 500
+        "chance": 500.0,
+        "required": true
       }
     ]
   },
