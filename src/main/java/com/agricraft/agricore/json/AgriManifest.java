@@ -58,8 +58,8 @@ public class AgriManifest {
 			out.newLine();
 			return true;
 		} catch (IOException e) {
-			AgriCore.getLogger().info("Unable to save manifest!");
-			AgriCore.getLogger().trace(e);
+			AgriCore.getCoreLogger().info("Unable to save manifest!");
+			AgriCore.getCoreLogger().trace(e);
 			return false;
 		}
 	}

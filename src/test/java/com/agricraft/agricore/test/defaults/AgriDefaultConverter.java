@@ -1,6 +1,6 @@
 /*
  */
-package com.agricraft.agricore.util.defaults;
+package com.agricraft.agricore.test.defaults;
 
 import com.agricraft.agricore.util.AgriConverter;
 

@@ -34,7 +34,7 @@ public final class AgriLoader {
 		try {
 			manifest = AgriManifest.load(location);
 		} catch (IOException e) {
-			AgriCore.getLogger().warn("No manifest at: " + location + "!");
+			AgriCore.getCoreLogger().warn("No manifest at: " + location + "!");
 			return false;
 		}
 
@@ -53,7 +53,7 @@ public final class AgriLoader {
 						loadMutation(location.resolve(e.path), mutations);
 						break;
 					default:
-						AgriCore.getLogger().warn("Bad manifest entry: " + e);
+						AgriCore.getCoreLogger().warn("Bad manifest entry: " + e);
 				}
 			}
 		}
@@ -71,8 +71,8 @@ public final class AgriLoader {
 			try (Reader reader = Files.newBufferedReader(location)) {
 				plant = gson.fromJson(reader, AgriPlant.class);
 			} catch (IOException e) {
-				AgriCore.getLogger().warn("Unable to load plant: " + location + "!");
-				AgriCore.getLogger().trace(e);
+				AgriCore.getCoreLogger().warn("Unable to load plant: " + location + "!");
+				AgriCore.getCoreLogger().trace(e);
 				return;
 			}
 		}
@@ -83,7 +83,7 @@ public final class AgriLoader {
 			gson.toJson(plant, writer);
 			writer.append("\n");
 		} catch (IOException e) {
-			AgriCore.getLogger().warn("Unable to write back plant: " + location + "!");
+			AgriCore.getCoreLogger().warn("Unable to write back plant: " + location + "!");
 		}
 
 		// Add Plant to Registry
@@ -102,8 +102,8 @@ public final class AgriLoader {
 			try (Reader reader = Files.newBufferedReader(location)) {
 				mutation = gson.fromJson(reader, AgriMutation.class);
 			} catch (IOException e) {
-				AgriCore.getLogger().warn("Unable to load plant: " + location + "!");
-				AgriCore.getLogger().trace(e);
+				AgriCore.getCoreLogger().warn("Unable to load plant: " + location + "!");
+				AgriCore.getCoreLogger().trace(e);
 				return;
 			}
 		}
@@ -114,7 +114,7 @@ public final class AgriLoader {
 			gson.toJson(mutation, writer);
 			writer.append("\n");
 		} catch (IOException e) {
-			AgriCore.getLogger().warn("Unable to write back plant: " + location + "!");
+			AgriCore.getCoreLogger().warn("Unable to write back plant: " + location + "!");
 		}
 
 		// Add Mutation to Registry

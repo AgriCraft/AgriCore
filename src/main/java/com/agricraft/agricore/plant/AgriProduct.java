@@ -37,7 +37,7 @@ public class AgriProduct {
 
 	public boolean validate() {
 		if (!AgriCore.getValidator().isValidItem(item)) {
-			AgriCore.getLogger().info("Invalid Product: Invalid Item: " + item + "!");
+			AgriCore.getCoreLogger().info("Invalid Product: Invalid Item: " + item + "!");
 			return false;
 		} else {
 			return true;

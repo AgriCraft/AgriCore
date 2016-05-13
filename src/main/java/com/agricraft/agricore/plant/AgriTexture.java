@@ -76,12 +76,12 @@ public class AgriTexture {
 
 	public boolean validate() {
 		if (!AgriCore.getValidator().isValidTexture(seed_texture)) {
-			AgriCore.getLogger().debug("Invalid AgriTexture! Invalid Seed Texture: " + seed_texture);
+			AgriCore.getCoreLogger().debug("Invalid AgriTexture! Invalid Seed Texture: " + seed_texture);
 			return false;
 		}
 		for (String texture : plant_textures) {
 			if (!AgriCore.getValidator().isValidTexture(texture)) {
-				AgriCore.getLogger().debug("Invalid AgriTexture! Invalid Plant Texture: " + texture);
+				AgriCore.getCoreLogger().debug("Invalid AgriTexture! Invalid Plant Texture: " + texture);
 				return false;
 			}
 		}

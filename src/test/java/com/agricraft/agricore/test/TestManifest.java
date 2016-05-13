@@ -7,6 +7,7 @@ import com.agricraft.agricore.json.AgriLoader;
 import com.agricraft.agricore.json.AgriManifest;
 import com.agricraft.agricore.json.AgriManifestEntry;
 import com.agricraft.agricore.json.AgriManifestEntryType;
+import com.agricraft.agricore.test.defaults.AgriCoreDefaultInitializer;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import org.junit.After;
@@ -35,7 +36,7 @@ public class TestManifest {
 
 	@Before
 	public void setUp() {
-		AgriCore.init();
+		AgriCoreDefaultInitializer.initCore();
 	}
 
 	@After
@@ -56,7 +57,7 @@ public class TestManifest {
 
 		AgriLoader.loadManifest(p, AgriCore.getPlants(), AgriCore.getMutations());
 
-		AgriCore.getLogger().info(AgriCore.getPlants());
+		AgriCore.getCoreLogger().info(AgriCore.getPlants());
 
 	}
 

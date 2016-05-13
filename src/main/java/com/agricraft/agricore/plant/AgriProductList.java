@@ -41,7 +41,7 @@ public class AgriProductList {
 	public boolean validate() {
 		for (AgriProduct product : this.products) {
 			if (!product.validate()) {
-				AgriCore.getLogger().info("Invalid List: Invalid Product!");
+				AgriCore.getCoreLogger().info("Invalid List: Invalid Product!");
 				return false;
 			}
 		}

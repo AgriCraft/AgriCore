@@ -3,17 +3,16 @@
 package com.agricraft.agricore.core;
 
 import com.agricraft.agricore.config.AgriConfig;
+import com.agricraft.agricore.lang.AgriTranslator;
+import com.agricraft.agricore.log.AgriLogManager;
 import com.agricraft.agricore.registry.AgriMutations;
 import com.agricraft.agricore.registry.AgriPlants;
-import com.agricraft.agricore.util.AgriConverter;
-import com.agricraft.agricore.util.AgriLogger;
-import com.agricraft.agricore.util.AgriProvider;
+import com.agricraft.agricore.log.AgriLogger;
 import com.agricraft.agricore.util.AgriValidator;
-import com.agricraft.agricore.util.defaults.AgriDefaultConverter;
-import com.agricraft.agricore.util.defaults.AgriDefaultLogger;
-import com.agricraft.agricore.util.defaults.AgriDefaultProvider;
-import com.agricraft.agricore.util.defaults.AgriDefaultValidator;
-import java.nio.file.Paths;
+import com.agricraft.agricore.config.AgriConfigAdapter;
+import com.agricraft.agricore.log.AgriLogAdapter;
+import com.agricraft.agricore.lang.AgriTranslationAdapter;
+import com.agricraft.agricore.util.AgriConverter;
 
 /**
  *
@@ -21,7 +20,9 @@ import java.nio.file.Paths;
  */
 public final class AgriCore {
 	
-	private static AgriLogger logger;
+	private static AgriLogManager logManager;
+	
+	private static AgriTranslator translator;
 	
 	private static AgriValidator validator;
 	
@@ -36,40 +37,45 @@ public final class AgriCore {
 	private AgriCore() {
 	}
 	
-	public static void init() {
-		AgriCore.init(
-				new AgriDefaultLogger(),
-				new AgriDefaultValidator(),
-				new AgriDefaultConverter(),
-				new AgriDefaultProvider(Paths.get("config", "agricraft", "agricraft.config"))
-		);
-	}
-	
-	public static void init(AgriLogger logger, AgriValidator validator, AgriConverter converter, AgriProvider provider) {
-		logger.info("[AgriCore] Initializing core!");
-		AgriCore.logger = logger;
+	public static void init(AgriLogAdapter log, AgriTranslationAdapter trans, AgriValidator validator, AgriConverter converter, AgriConfigAdapter provider) {
+		AgriCore.logManager = new AgriLogManager(log);
+		AgriCore.translator = new AgriTranslator(trans);
+		AgriLogger logger = AgriCore.getCoreLogger();
+		logger.info("Initializing core!");
 		AgriCore.validator = validator;
 		AgriCore.converter = converter;
 		AgriCore.config = new AgriConfig(provider);
 		AgriCore.plants = new AgriPlants();
 		AgriCore.mutations = new AgriMutations();
-		logger.info("[AgriCore] Loading config!");
+		logger.info("Loading config!");
 		AgriCore.config.load();
-		logger.info("[AgriCore] Loaded config!");
-		logger.info("[AgriCore] Configuring modules!");
+		logger.info("Loaded config!");
+		logger.info("Configuring modules!");
 		AgriCore.config.addConfigurable(logger);
 		AgriCore.config.addConfigurable(validator);
 		AgriCore.config.addConfigurable(plants);
 		AgriCore.config.addConfigurable(mutations);
-		logger.info("[AgriCore] Configured modules!");
-		logger.info("[AgriCore] Saving config!");
+		logger.info("Configured modules!");
+		logger.info("Saving config!");
 		AgriCore.config.save();
-		logger.info("[AgriCore] Saved config!");
-		logger.info("[AgriCore] Initialized core!");
+		logger.info("Saved config!");
+		logger.info("Initialized core!");
 	}
 
-	public static AgriLogger getLogger() {
-		return logger;
+	public static AgriLogger getCoreLogger() {
+		return getLogger("AgriCore");
+	}
+	
+	public static AgriLogger getLogger(Object source) {
+		return logManager.getLogger(source);
+	}
+
+	public static AgriTranslator getTranslator() {
+		return translator;
+	}
+
+	public static AgriLogManager getLogManager() {
+		return logManager;
 	}
 
 	public static AgriValidator getValidator() {

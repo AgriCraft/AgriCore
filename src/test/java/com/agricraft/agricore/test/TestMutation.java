@@ -5,6 +5,7 @@ package com.agricraft.agricore.test;
 import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.plant.AgriMutation;
 import com.agricraft.agricore.plant.AgriRequirement;
+import com.agricraft.agricore.test.defaults.AgriCoreDefaultInitializer;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.io.BufferedWriter;
@@ -55,7 +56,7 @@ public class TestMutation {
 
 	@Before
 	public void setUp() {
-		AgriCore.init();
+		AgriCoreDefaultInitializer.initCore();
 	}
 
 	@After
@@ -84,9 +85,9 @@ public class TestMutation {
 			}
 		}
 
-		AgriCore.getLogger().info("Number of times mutated over " + trials + " trials: " + hits + " at a " + (((double) hits) / trials) * 100 + "% yield.");
+		AgriCore.getCoreLogger().info("Number of times mutated over " + trials + " trials: " + hits + " at a " + (((double) hits) / trials) * 100 + "% yield.");
 
-		AgriCore.getLogger().debug(mutation);
+		AgriCore.getCoreLogger().debug(mutation);
 
 	}
 
@@ -99,7 +100,7 @@ public class TestMutation {
 		try(BufferedWriter out = Files.newBufferedWriter(path, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING)){
 			gson.toJson(mutation, out);
 		} catch (IOException e) {
-			AgriCore.getLogger().trace(e);
+			AgriCore.getCoreLogger().trace(e);
 		}
 
 	}

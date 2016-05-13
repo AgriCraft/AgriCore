@@ -85,13 +85,13 @@ public class AgriPlant {
 
 	public boolean validate() {
 		if (!this.requirement.validate()) {
-			AgriCore.getLogger().debug("Invalid Plant! Invalid Requirement!");
+			AgriCore.getCoreLogger().debug("Invalid Plant! Invalid Requirement!");
 			return false;
 		} else if (!this.products.validate()) {
-			AgriCore.getLogger().debug("Invalid Plant! Invalid Product!");
+			AgriCore.getCoreLogger().debug("Invalid Plant! Invalid Product!");
 			return false;
 		} else if (!this.texture.validate()) {
-			AgriCore.getLogger().debug("Invalid Plant! Invalid Texture!");
+			AgriCore.getCoreLogger().debug("Invalid Plant! Invalid Texture!");
 			return false;
 		} else {
 			return true;

@@ -3,7 +3,7 @@
 package com.agricraft.agricore.test;
 
 import com.agricraft.agricore.core.AgriCore;
-import com.agricraft.agricore.test.config.DummyConfig;
+import com.agricraft.agricore.log.AgriLogger;
 import com.agricraft.agricore.test.defaults.AgriCoreDefaultInitializer;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -15,24 +15,24 @@ import org.junit.Test;
  *
  * @author RlonRyan
  */
-public class TestConfig {
-
-	public TestConfig() {
+public class TestLogger {
+	
+	public TestLogger() {
 	}
-
+	
 	@BeforeClass
 	public static void setUpClass() {
 	}
-
+	
 	@AfterClass
 	public static void tearDownClass() {
 	}
-
+	
 	@Before
 	public void setUp() {
 		AgriCoreDefaultInitializer.initCore();
 	}
-
+	
 	@After
 	public void tearDown() {
 	}
@@ -40,16 +40,15 @@ public class TestConfig {
 	// TODO add test methods here.
 	// The methods must be annotated with annotation @Test. For example:
 	//
-	// @Test
-	// public void hello() {}
 	@Test
-	public void testConfig() {
-		AgriCore.getConfig().load();
-		AgriCore.getCoreLogger().info(AgriCore.getConfig().toString());
-		AgriCore.getCoreLogger().info(DummyConfig.asString());
-		AgriCore.getConfig().addConfigurable(DummyConfig.class);
-		AgriCore.getCoreLogger().info(DummyConfig.asString());
-		AgriCore.getConfig().save();
+	public void hello() {
+		AgriLogger logger = AgriCore.getLogger("HelloTest");
+		logger.all("log_test_key", "Hello", "All", "Hello!");
+		logger.info("log_test_key", "Hello", "Info", "Hello!");
+		logger.debug("log_test_key", "Hello", "Debug", "Hello!");
+		logger.warn("log_test_key", "Hello", "Warn", "Hello!");
+		logger.error("log_test_key", "Hello", "Error", "Hello!");
+		logger.severe("log_test_key", "Hello", "Severe", "Hello!");
 	}
-
+	
 }

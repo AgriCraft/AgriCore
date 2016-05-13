@@ -54,7 +54,7 @@ public class DummyConfig {
 			try {
 				sb.append("\t- ").append(f.getName()).append(": ").append(f.get(null)).append("\n");
 			} catch (IllegalAccessException | IllegalArgumentException e) {
-				AgriCore.getLogger().trace(e);
+				AgriCore.getCoreLogger().trace(e);
 			}
 		}
 		return sb.toString();

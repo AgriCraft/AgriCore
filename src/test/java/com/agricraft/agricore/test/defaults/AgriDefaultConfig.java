@@ -1,9 +1,8 @@
 /*
  */
-package com.agricraft.agricore.util.defaults;
+package com.agricraft.agricore.test.defaults;
 
 import com.agricraft.agricore.core.AgriCore;
-import com.agricraft.agricore.util.AgriProvider;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -11,30 +10,31 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.Properties;
+import com.agricraft.agricore.config.AgriConfigAdapter;
 
 /**
  *
  * @author RlonRyan
  */
-public class AgriDefaultProvider implements AgriProvider {
+public class AgriDefaultConfig implements AgriConfigAdapter {
 
 	private final Properties properties;
 	private final Path path;
 
-	public AgriDefaultProvider(Path path) {
+	public AgriDefaultConfig(Path path) {
 		this.properties = new Properties();
 		this.path = path;
 	}
 
 	@Override
 	public void load() {
-		AgriCore.getLogger().debug("Loading Properties: " + this.path + "!");
+		AgriCore.getCoreLogger().debug("Loading Properties: " + this.path + "!");
 		try (BufferedReader in = Files.newBufferedReader(this.path)) {
 			this.properties.load(in);
-			AgriCore.getLogger().debug("Properties Loaded!");
+			AgriCore.getCoreLogger().debug("Properties Loaded!");
 		} catch (IOException e) {
-			AgriCore.getLogger().warn("Unable to load config!");
-			AgriCore.getLogger().trace(e);
+			AgriCore.getCoreLogger().warn("Unable to load config!");
+			AgriCore.getCoreLogger().trace(e);
 		}
 	}
 
@@ -44,14 +44,14 @@ public class AgriDefaultProvider implements AgriProvider {
 		// Ensure path is good.
 		this.path.getParent().toFile().mkdirs();
 		
-		AgriCore.getLogger().debug("Saving Properties: " + this.path + "!");
+		AgriCore.getCoreLogger().debug("Saving Properties: " + this.path + "!");
 
 		try (BufferedWriter out = Files.newBufferedWriter(path, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING)) {
 			this.properties.store(out, "AgriCore Configuration File");
-			AgriCore.getLogger().debug("Properties saved!");
+			AgriCore.getCoreLogger().debug("Properties saved!");
 		} catch (IOException e) {
-			AgriCore.getLogger().warn("Unable to save config!");
-			AgriCore.getLogger().trace(e);
+			AgriCore.getCoreLogger().warn("Unable to save config!");
+			AgriCore.getCoreLogger().trace(e);
 		}
 
 	}
@@ -72,7 +72,7 @@ public class AgriDefaultProvider implements AgriProvider {
 			try {
 				return Integer.parseInt(this.properties.getProperty(name));
 			} catch (NumberFormatException e) {
-				AgriCore.getLogger().warn("Bad configuration option for: " + category + ":" + name + "!");
+				AgriCore.getCoreLogger().warn("Bad configuration option for: " + category + ":" + name + "!");
 			}
 		} else {
 			properties.setProperty(name, String.valueOf(defaultValue));
@@ -86,7 +86,7 @@ public class AgriDefaultProvider implements AgriProvider {
 			try {
 				return Float.parseFloat(this.properties.getProperty(name));
 			} catch (NumberFormatException e) {
-				AgriCore.getLogger().warn("Bad Float for Config: " + category + ":" + name + "!");
+				AgriCore.getCoreLogger().warn("Bad Float for Config: " + category + ":" + name + "!");
 			}
 		} else {
 			properties.setProperty(name, String.valueOf(defaultValue));
@@ -100,7 +100,7 @@ public class AgriDefaultProvider implements AgriProvider {
 			try {
 				return Double.parseDouble(this.properties.getProperty(name));
 			} catch (NumberFormatException e) {
-				AgriCore.getLogger().warn("Bad Double for Config: " + category + ":" + name + "!");
+				AgriCore.getCoreLogger().warn("Bad Double for Config: " + category + ":" + name + "!");
 			}
 		} else {
 			properties.setProperty(name, String.valueOf(defaultValue));

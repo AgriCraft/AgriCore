@@ -9,6 +9,7 @@ import com.agricraft.agricore.plant.AgriProductList;
 import com.agricraft.agricore.plant.AgriRenderType;
 import com.agricraft.agricore.plant.AgriRequirement;
 import com.agricraft.agricore.plant.AgriTexture;
+import com.agricraft.agricore.test.defaults.AgriCoreDefaultInitializer;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.io.BufferedWriter;
@@ -72,7 +73,7 @@ public class TestPlant {
 
 	@Before
 	public void setUp() {
-		AgriCore.init();
+		AgriCoreDefaultInitializer.initCore();
 	}
 
 	@After
@@ -100,11 +101,11 @@ public class TestPlant {
 			hits += drops.size();
 		}
 
-		AgriCore.getLogger().info("Number of times items were dropped over " + trials + " trials: " + hits + " at a " + (((double) hits) / trials) * 100 + "% yield.");
+		AgriCore.getCoreLogger().info("Number of times items were dropped over " + trials + " trials: " + hits + " at a " + (((double) hits) / trials) * 100 + "% yield.");
 
-		AgriCore.getLogger().debug(plant);
+		AgriCore.getCoreLogger().debug(plant);
 		
-		AgriCore.getLogger().debug(plant.getTexture());
+		AgriCore.getCoreLogger().debug(plant.getTexture());
 
 	}
 
@@ -117,7 +118,7 @@ public class TestPlant {
 		try(BufferedWriter out = Files.newBufferedWriter(path, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING)){
 			gson.toJson(plant, out);
 		} catch (IOException e) {
-			AgriCore.getLogger().trace(e);
+			AgriCore.getCoreLogger().trace(e);
 		}
 
 	}
