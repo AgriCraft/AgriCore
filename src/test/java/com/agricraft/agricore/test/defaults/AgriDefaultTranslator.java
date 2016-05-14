@@ -38,4 +38,9 @@ public class AgriDefaultTranslator implements AgriTranslationAdapter {
 		}
 	}
 
+	@Override
+	public String getLocale() {
+		return this.locale.toString();
+	}
+
 }

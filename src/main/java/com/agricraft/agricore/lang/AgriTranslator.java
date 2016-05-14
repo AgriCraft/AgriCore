@@ -43,5 +43,9 @@ public class AgriTranslator {
 	public List<String> translateIf(List message, boolean condition) {
 		return condition ? translate(message) : message;
 	}
+	
+	public String getLocale() {
+		return adapter.getLocale();
+	}
 
 }

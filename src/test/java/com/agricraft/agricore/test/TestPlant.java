@@ -3,6 +3,7 @@
 package com.agricraft.agricore.test;
 
 import com.agricraft.agricore.core.AgriCore;
+import com.agricraft.agricore.lang.AgriString;
 import com.agricraft.agricore.plant.AgriPlant;
 import com.agricraft.agricore.plant.AgriProduct;
 import com.agricraft.agricore.plant.AgriProductList;
@@ -60,7 +61,7 @@ public class TestPlant {
 		AgriTexture texture = new AgriTexture(AgriRenderType.CROSS, "seed_wheat", new String[0]);
 
 		// Setup Plant
-		plant = new AgriPlant("Wheat", "wheat_plant", "Wheat, the gluten that founded human society.", false, 1, 1.0, products, requirement, texture);
+		plant = new AgriPlant("Wheat", "wheat_plant", new AgriString("Wheat, the gluten that founded human society."), false, 1, 1.0, products, requirement, texture);
 	}
 
 	@BeforeClass

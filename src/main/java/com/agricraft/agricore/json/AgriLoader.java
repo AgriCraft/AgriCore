@@ -9,6 +9,8 @@ import com.agricraft.agricore.registry.AgriMutations;
 import com.agricraft.agricore.registry.AgriPlants;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonIOException;
+import com.google.gson.JsonParseException;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
@@ -33,7 +35,7 @@ public final class AgriLoader {
 
 		try {
 			manifest = AgriManifest.load(location);
-		} catch (IOException e) {
+		} catch (IOException | JsonParseException e) {
 			AgriCore.getCoreLogger().warn("No manifest at: " + location + "!");
 			return false;
 		}
@@ -70,7 +72,7 @@ public final class AgriLoader {
 		if (Files.exists(location)) {
 			try (Reader reader = Files.newBufferedReader(location)) {
 				plant = gson.fromJson(reader, AgriPlant.class);
-			} catch (IOException e) {
+			} catch (IOException | JsonParseException e) {
 				AgriCore.getCoreLogger().warn("Unable to load plant: " + location + "!");
 				AgriCore.getCoreLogger().trace(e);
 				return;
@@ -101,7 +103,7 @@ public final class AgriLoader {
 		if (Files.exists(location)) {
 			try (Reader reader = Files.newBufferedReader(location)) {
 				mutation = gson.fromJson(reader, AgriMutation.class);
-			} catch (IOException e) {
+			} catch (IOException | JsonParseException e) {
 				AgriCore.getCoreLogger().warn("Unable to load plant: " + location + "!");
 				AgriCore.getCoreLogger().trace(e);
 				return;

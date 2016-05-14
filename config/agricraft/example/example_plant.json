@@ -1,7 +1,10 @@
 {
   "name": "Wheat",
   "id": "wheat_plant",
-  "description": "Wheat, the gluten that founded human society.",
+  "description": {
+    "translations": {},
+    "default": "Wheat, the gluten that founded human society."
+  },
   "growth_chance": 1.0,
   "bonemeal": false,
   "tier": 1,

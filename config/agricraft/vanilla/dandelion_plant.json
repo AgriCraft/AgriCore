@@ -1,7 +1,10 @@
 {
   "name": "Yellow Flower",
   "id": "yellow_flower",
-  "description": "An annoying plant.",
+  "description": {
+    "translations": {},
+    "default": "Testing 1, 2, 3."
+  },
   "growth_chance": 100.0,
   "bonemeal": false,
   "tier": 1,

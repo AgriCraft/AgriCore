@@ -3,6 +3,7 @@
 package com.agricraft.agricore.plant;
 
 import com.agricraft.agricore.core.AgriCore;
+import com.agricraft.agricore.lang.AgriString;
 import java.util.Random;
 
 /**
@@ -13,7 +14,7 @@ public class AgriPlant {
 
 	private final String name;
 	private final String id;
-	private final String description;
+	private final AgriString description;
 
 	private final double growth_chance;
 	private final boolean bonemeal;
@@ -26,7 +27,7 @@ public class AgriPlant {
 	public AgriPlant() {
 		this.name = "Weed";
 		this.id = "weed_plant";
-		this.description = "An annoying plant.";
+		this.description = new AgriString("An annoying plant.");
 		this.bonemeal = true;
 		this.tier = 1;
 		this.growth_chance = 0.9;
@@ -35,7 +36,7 @@ public class AgriPlant {
 		this.texture = new AgriTexture();
 	}
 
-	public AgriPlant(String name, String id, String description, boolean bonemeal, int tier, double growth_chance, AgriProductList products, AgriRequirement requirement, AgriTexture texture) {
+	public AgriPlant(String name, String id, AgriString description, boolean bonemeal, int tier, double growth_chance, AgriProductList products, AgriRequirement requirement, AgriTexture texture) {
 		this.name = name;
 		this.id = id;
 		this.description = description;
@@ -55,7 +56,7 @@ public class AgriPlant {
 		return name;
 	}
 
-	public String getDescription() {
+	public AgriString getDescription() {
 		return description;
 	}
 
