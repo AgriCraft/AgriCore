@@ -26,14 +26,6 @@ before_install:
 script:
   - ./gradlew test
 
-# Release Build File
-deploy:
-  provider: releases
-  user: "GITHUB USERNAME"
-  password: "GITHUB PASSWORD"
-  file: "/build/libs/AgriCore.jar"
-  skip_cleanup: true
-
 # Clean up after Gradle
 env:
   global:
