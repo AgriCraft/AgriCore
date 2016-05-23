@@ -33,8 +33,6 @@ deploy:
   password: "GITHUB PASSWORD"
   file: "/build/libs/AgriCore.jar"
   skip_cleanup: true
-  on:
-    tags: true
 
 # Clean up after Gradle
 env:
