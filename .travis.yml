@@ -26,10 +26,15 @@ before_install:
 script:
   - ./gradlew test
 
-# Push success to CurseForge for release.
-# after_success:
-#  - ./gradlew curse -S
-# Removed for ForgeGradle 2
+# Release Build File
+deploy:
+  provider: releases
+  user: "GITHUB USERNAME"
+  password: "GITHUB PASSWORD"
+  file: "/build/libs/AgriCore.jar"
+  skip_cleanup: true
+  on:
+    tags: true
 
 # Clean up after Gradle
 env:
