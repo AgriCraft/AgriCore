@@ -66,13 +66,13 @@ public class AgriMutation {
 
 	public boolean validate() {
 		if (!AgriCore.getPlants().hasPlant(child)) {
-			AgriCore.getCoreLogger().info("Invalid Mutation: Invalid Child!");
+			AgriCore.getCoreLogger().info("Invalid Mutation: Invalid Child: '{0}'!", child);
 			return false;
 		} else if (!AgriCore.getPlants().hasPlant(parent1)) {
-			AgriCore.getCoreLogger().info("Invalid Mutation: Invalid Parent 1!");
+			AgriCore.getCoreLogger().info("Invalid Mutation: Invalid Parent 1: '{0}'!", parent1);
 			return false;
 		} else if (!AgriCore.getPlants().hasPlant(parent2)) {
-			AgriCore.getCoreLogger().info("Invalid Mutation: Invalid Parent 2!");
+			AgriCore.getCoreLogger().info("Invalid Mutation: Invalid Parent 2: '{0}'!", parent2);
 			return false;
 		} else if (!this.requirement.validate()) {
 			AgriCore.getCoreLogger().info("Invalid Mutation: Invalid Requirement!");
