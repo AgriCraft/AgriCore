@@ -18,22 +18,18 @@ public class AgriMutation {
 	private final String parent1;
 	private final String parent2;
 
-	private final AgriRequirement requirement;
-
 	public AgriMutation() {
 		this.chance = 0;
 		this.child = "carrot_plant";
 		this.parent1 = "wheat_plant";
 		this.parent2 = "potato_plant";
-		this.requirement = new AgriRequirement();
 	}
 
-	public AgriMutation(double chance, String child, String parent1, String parent2, AgriRequirement requirement) {
+	public AgriMutation(double chance, String child, String parent1, String parent2) {
 		this.chance = chance;
 		this.child = child;
 		this.parent1 = parent1;
 		this.parent2 = parent2;
-		this.requirement = requirement;
 	}
 	
 	public boolean isChild(String child) {
@@ -66,16 +62,13 @@ public class AgriMutation {
 
 	public boolean validate() {
 		if (!AgriCore.getPlants().hasPlant(child)) {
-			AgriCore.getCoreLogger().info("Invalid Mutation: Invalid Child: '{0}'!", child);
+			AgriCore.getCoreLogger().info("Invalid Mutation: Invalid Child: \"{0}\"!\n{1}", child, this);
 			return false;
 		} else if (!AgriCore.getPlants().hasPlant(parent1)) {
-			AgriCore.getCoreLogger().info("Invalid Mutation: Invalid Parent 1: '{0}'!", parent1);
+			AgriCore.getCoreLogger().info("Invalid Mutation: Invalid Parent 1: \"{0}\"!\n{1}", parent1, this);
 			return false;
 		} else if (!AgriCore.getPlants().hasPlant(parent2)) {
-			AgriCore.getCoreLogger().info("Invalid Mutation: Invalid Parent 2: '{0}'!", parent2);
-			return false;
-		} else if (!this.requirement.validate()) {
-			AgriCore.getCoreLogger().info("Invalid Mutation: Invalid Requirement!");
+			AgriCore.getCoreLogger().info("Invalid Mutation: Invalid Parent 2: \"{0}\"!\n{1}", parent2, this);
 			return false;
 		} else {
 			return true;
@@ -90,7 +83,6 @@ public class AgriMutation {
 		sb.append("\t\t- Parent 2: ").append(parent2).append("\n");
 		sb.append("\t- Child: ").append(child).append("\n");
 		sb.append("\t- Chance: ").append(chance).append("\n");
-		sb.append("\t- ").append(requirement.toString().replaceAll("\n", "\n\t").trim()).append("\n");
 		return sb.toString();
 	}
 

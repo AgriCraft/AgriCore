@@ -33,16 +33,9 @@ public class TestMutation {
 	public final AgriMutation mutation;
 
 	public TestMutation() {
-		
-		// Setup Nearby
-		Map<String, Integer> nearby = new HashMap<>();
-		nearby.put("gold", 1);
-		
-		// Setup Requirement
-		AgriRequirement requirement = new AgriRequirement(Arrays.asList("dirt"), Arrays.asList("stone"), nearby, 0, 10);
 
 		// Setup Mutation
-		this.mutation = new AgriMutation(0.5, "Wheat", "Wheat", "Wheat", requirement);
+		this.mutation = new AgriMutation(0.5, "Wheat", "Wheat", "Wheat");
 		
 	}
 
