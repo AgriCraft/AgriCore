@@ -3,6 +3,7 @@
 package com.agricraft.agricore.config;
 
 import com.agricraft.agricore.core.AgriCore;
+import com.agricraft.agricore.util.ReflectionHelper;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
@@ -18,14 +19,12 @@ public class AgriConfig {
 
 	private final AgriConfigAdapter provider;
 
-	private final Map<Class, List<Field>> configurableClasses;
-	private final Map<Object, List<Field>> configurableObjects;
+	private final Map<Object, List<Field>> configurables;
 
 	private final List<AgriConfigListener> configurationListeners;
 
 	public AgriConfig(AgriConfigAdapter provider) {
-		this.configurableClasses = new HashMap<>();
-		this.configurableObjects = new HashMap<>();
+		this.configurables = new HashMap<>();
 		this.configurationListeners = new ArrayList<>();
 		this.provider = provider;
 	}
@@ -33,14 +32,9 @@ public class AgriConfig {
 	public void load() {
 		//AgriCore.getCoreLogger().debug("Loading Config!");
 		this.provider.load();
-		this.configurableClasses.forEach(
+		this.configurables.forEach(
 				(configurable, fields) -> fields.forEach(
-						(field) -> handleConfigurable(null, field)
-				)
-		);
-		this.configurableObjects.forEach(
-				(configurable, fields) -> fields.forEach(
-						(field) -> handleConfigurable(configurable, field)
+						(field) -> handleConfigurable(configurable instanceof Class ? null : configurable, field)
 				)
 		);
 		this.configurationListeners.forEach(AgriConfigListener::onConfigChanged);
@@ -67,41 +61,18 @@ public class AgriConfig {
 		}
 	}
 
-	public final synchronized void addConfigurable(Class configurable) {
-		if (!configurableClasses.containsKey(configurable)) {
-			//AgriCore.getCoreLogger().debug("Registering Configurable Class: " + configurable.getCanonicalName());
-			List<Field> fields = new ArrayList<>();
-			for (Field f : configurable.getDeclaredFields()) {
-				if (f.getAnnotation(AgriConfigurable.class) != null) {
-					//AgriCore.getCoreLogger().debug("Handling Configurable Field: " + f.getName());
-					if (Modifier.isFinal(f.getModifiers())) {
-						AgriCore.getCoreLogger().error("Configurable Field: " + f.getName() + " is final!");
-					} else if (Modifier.isStatic(f.getModifiers())) {
-						handleConfigurable(configurable, f);
-						fields.add(f);
-					}
-				}
-			}
-			configurableObjects.put(configurable, fields);
-		}
-	}
-
 	public final synchronized void addConfigurable(Object configurable) {
-		if (!configurableObjects.containsKey(configurable)) {
+		if (!configurables.containsKey(configurable)) {
 			List<Field> fields = new ArrayList<>();
-			//AgriCore.getCoreLogger().debug("Registering Configurable: " + clazz.getCanonicalName());
-			for (Field f : configurable.getClass().getDeclaredFields()) {
-				if (f.getAnnotation(AgriConfigurable.class) != null) {
-					//AgriCore.getCoreLogger().debug("Handling Configurable Field: " + f.getName());
-					if (Modifier.isFinal(f.getModifiers())) {
-						AgriCore.getCoreLogger().error("Configurable Field: " + f.getName() + " is final!");
-					} else {
-						handleConfigurable(configurable, f);
-						fields.add(f);
-					}
+			ReflectionHelper.forEachField(configurable, AgriConfigurable.class, (field, anno) -> {
+				if (Modifier.isFinal(field.getModifiers())) {
+					AgriCore.getCoreLogger().error("Configurable Field: " + field.getName() + " is final!");
+				} else {
+					handleConfigurable(configurable, field);
+					fields.add(field);
 				}
-			}
-			configurableObjects.put(configurable, fields);
+			});
+			configurables.put(configurable, fields);
 		}
 	}
 
