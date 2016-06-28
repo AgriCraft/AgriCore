@@ -17,6 +17,12 @@ public final class AgriManifestEntry {
 		this.path = path;
 		this.enabled = enabled;
 	}
+	
+	public AgriManifestEntry() {
+		this.type = AgriManifestEntryType.INVALID;
+		this.path = "";
+		this.enabled = false;
+	}
 
 	@Override
 	public String toString() {

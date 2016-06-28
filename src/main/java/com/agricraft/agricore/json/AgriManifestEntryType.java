@@ -15,6 +15,8 @@ public enum AgriManifestEntryType {
 	@SerializedName(value="plant", alternate={"PLANT", "p", "P"})
 	PLANT,
 	@SerializedName(value="mutation", alternate={"MUTATION", "m", "M"})
-	MUTATION;
+	MUTATION,
+	@SerializedName(value="invalid")
+	INVALID;
 	
 }
