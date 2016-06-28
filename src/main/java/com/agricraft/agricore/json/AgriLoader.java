@@ -3,14 +3,10 @@
 package com.agricraft.agricore.json;
 
 import com.agricraft.agricore.core.AgriCore;
-import com.agricraft.agricore.base.AgriItem;
-import com.agricraft.agricore.base.AgriRecipe;
 import com.agricraft.agricore.plant.AgriMutation;
 import com.agricraft.agricore.plant.AgriPlant;
-import com.agricraft.agricore.registry.AgriItems;
 import com.agricraft.agricore.registry.AgriMutations;
 import com.agricraft.agricore.registry.AgriPlants;
-import com.agricraft.agricore.registry.AgriRecipes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParseException;
@@ -33,7 +29,7 @@ public final class AgriLoader {
 	private AgriLoader() {
 	}
 
-	public static boolean loadManifest(Path location, AgriPlants plants, AgriMutations mutations, AgriRecipes recipes, AgriItems items) {
+	public static boolean loadManifest(Path location, AgriPlants plants, AgriMutations mutations) {
 
 		AgriManifest manifest;
 
@@ -50,19 +46,13 @@ public final class AgriLoader {
 			if (e.enabled) {
 				switch (e.type) {
 					case GROUP:
-						loadManifest(location.resolve(e.path), plants, mutations, recipes, items);
+						loadManifest(location.resolve(e.path), plants, mutations);
 						break;
 					case PLANT:
 						loadElement(location.resolve(e.path), "plant", AgriPlant.class, plants::addPlant);
 						break;
 					case MUTATION:
 						loadElement(location.resolve(e.path), "mutation", AgriMutation.class, mutations::addMutation);
-						break;
-					case RECIPE:
-						loadElement(location.resolve(e.path), "recipe", AgriRecipe.class, recipes::addRecipe);
-						break;
-					case ITEM:
-						loadElement(location.resolve(e.path), "item", AgriItem.class, items::addItem);
 						break;
 					default:
 						AgriCore.getCoreLogger().warn("Bad manifest entry: " + e);

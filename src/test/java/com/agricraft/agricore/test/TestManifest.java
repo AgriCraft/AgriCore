@@ -55,7 +55,7 @@ public class TestManifest {
 
 		assertNotNull(p);
 
-		AgriLoader.loadManifest(p, AgriCore.getPlants(), AgriCore.getMutations(), AgriCore.getRecipes(), AgriCore.getItems());
+		AgriLoader.loadManifest(p, AgriCore.getPlants(), AgriCore.getMutations());
 
 		AgriCore.getCoreLogger().info(AgriCore.getPlants());
 
