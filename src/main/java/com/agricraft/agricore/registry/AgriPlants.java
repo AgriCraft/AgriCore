@@ -44,9 +44,9 @@ public class AgriPlants {
 	public String toString() {
 		final StringBuilder sb = new StringBuilder();
 		sb.append("\nPlants:");
-		for (Map.Entry<String, AgriPlant> e : plants.entrySet()) {
+		for (AgriPlant plant : plants.values()) {
 			sb.append("\n\t- Plant: ");
-			sb.append(e.getValue().toString().replaceAll("\n", "\n\t").trim());
+			sb.append(plant.toString().replaceAll("\n", "\n\t").trim());
 		}
 		return sb.append("\n").toString();
 	}

@@ -12,6 +12,8 @@ import com.agricraft.agricore.util.AgriValidator;
 import com.agricraft.agricore.config.AgriConfigAdapter;
 import com.agricraft.agricore.log.AgriLogAdapter;
 import com.agricraft.agricore.lang.AgriTranslationAdapter;
+import com.agricraft.agricore.registry.AgriItems;
+import com.agricraft.agricore.registry.AgriRecipes;
 import com.agricraft.agricore.util.AgriConverter;
 
 /**
@@ -34,10 +36,20 @@ public final class AgriCore {
 	
 	private static AgriPlants plants;
 	
+	private static AgriRecipes recipes;
+	
+	private static AgriItems items;
+	
 	private AgriCore() {
 	}
 	
-	public static void init(AgriLogAdapter log, AgriTranslationAdapter trans, AgriValidator validator, AgriConverter converter, AgriConfigAdapter provider) {
+	public static void init(
+			AgriLogAdapter log,
+			AgriTranslationAdapter trans,
+			AgriValidator validator,
+			AgriConverter converter,
+			AgriConfigAdapter provider
+	) {
 		AgriCore.logManager = new AgriLogManager(log);
 		AgriCore.translator = new AgriTranslator(trans);
 		AgriLogger logger = AgriCore.getCoreLogger();
@@ -47,6 +59,8 @@ public final class AgriCore {
 		AgriCore.config = new AgriConfig(provider);
 		AgriCore.plants = new AgriPlants();
 		AgriCore.mutations = new AgriMutations();
+		AgriCore.recipes = new AgriRecipes();
+		AgriCore.items = new AgriItems();
 		logger.info("Loading config!");
 		AgriCore.config.load();
 		logger.info("Loaded config!");
@@ -55,6 +69,8 @@ public final class AgriCore {
 		AgriCore.config.addConfigurable(validator);
 		AgriCore.config.addConfigurable(plants);
 		AgriCore.config.addConfigurable(mutations);
+		AgriCore.config.addConfigurable(recipes);
+		AgriCore.config.addConfigurable(items);
 		logger.info("Configured modules!");
 		logger.info("Saving config!");
 		AgriCore.config.save();
@@ -96,6 +112,14 @@ public final class AgriCore {
 
 	public static AgriPlants getPlants() {
 		return plants;
+	}
+
+	public static AgriRecipes getRecipes() {
+		return recipes;
+	}
+
+	public static AgriItems getItems() {
+		return items;
 	}
 	
 }

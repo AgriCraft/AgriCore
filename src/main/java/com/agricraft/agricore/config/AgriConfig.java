@@ -64,7 +64,7 @@ public class AgriConfig {
 	public final synchronized void addConfigurable(Object configurable) {
 		if (!configurables.containsKey(configurable)) {
 			List<Field> fields = new ArrayList<>();
-			ReflectionHelper.forEachField(configurable, AgriConfigurable.class, (field, anno) -> {
+			ReflectionHelper.forEachFieldIn(configurable, AgriConfigurable.class, (field, anno) -> {
 				if (Modifier.isFinal(field.getModifiers())) {
 					AgriCore.getCoreLogger().error("Configurable Field: " + field.getName() + " is final!");
 				} else {

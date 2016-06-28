@@ -4,7 +4,6 @@ package com.agricraft.agricore.test;
 
 import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.plant.AgriMutation;
-import com.agricraft.agricore.plant.AgriRequirement;
 import com.agricraft.agricore.test.defaults.AgriCoreDefaultInitializer;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -14,9 +13,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 import org.junit.After;
 import org.junit.AfterClass;

@@ -22,7 +22,7 @@ public class ReflectionHelper {
 
 	public static <T> void forEachIn(Object from, Class<T> type, Consumer<T> consumer) {
 		final Object target = from instanceof Class ? null : from;
-		forEachField(from, (field) -> {
+		forEachFieldIn(from, (field) -> {
 			try {
 				field.setAccessible(true);
 				Object obj = field.get(target);
@@ -42,7 +42,7 @@ public class ReflectionHelper {
 
 	public static <T, A extends Annotation> void forEachIn(Object from, Class<T> type, Class<A> annotation, BiConsumer<T, A> consumer) {
 		final Object target = from instanceof Class ? null : from;
-		forEachField(from, annotation, (field, anno) -> {
+		ReflectionHelper.forEachFieldIn(from, annotation, (field, anno) -> {
 			try {
 				field.setAccessible(true);
 				Object obj = field.get(target);
@@ -60,15 +60,15 @@ public class ReflectionHelper {
 		});
 	}
 
-	public static <A extends Annotation> void forEachField(Object from, Class<A> annotation, BiConsumer<Field, A> consumer) {
-		forEachField(from, (field) -> {
+	public static <A extends Annotation> void forEachFieldIn(Object from, Class<A> annotation, BiConsumer<Field, A> consumer) {
+		forEachFieldIn(from, (field) -> {
 			if (field.isAnnotationPresent(annotation)) {
 				consumer.accept(field, field.getAnnotation(annotation));
 			}
 		});
 	}
 
-	public static void forEachField(Object from, Consumer<Field> consumer) {
+	public static void forEachFieldIn(Object from, Consumer<Field> consumer) {
 		final boolean isInstance = !(from instanceof Class);
 		final Class clazz = isInstance ? from.getClass() : (Class) from;
 		for (Field f : clazz.getDeclaredFields()) {
