@@ -2,20 +2,26 @@
  */
 package com.agricraft.agricore.log;
 
+import com.agricraft.agricore.config.AgriConfigCategory;
+import com.agricraft.agricore.config.AgriConfigurable;
+import com.agricraft.agricore.config.AgriConfigurableInstance;
 import com.agricraft.agricore.core.AgriCore;
 
 /**
  *
  * @author RlonRyan
  */
-public class AgriLogger {
+public class AgriLogger implements AgriConfigurableInstance {
 
 	private final AgriLogAdapter adapter;
 	private final Object source;
 
+	@AgriConfigurable(key = "${log}_log", category = AgriConfigCategory.LOGGING, comment = "Set to true to enable logging on the ${log} channel.")
 	private boolean enabled = true;
-	private boolean debugEnabled = true;
+	@AgriConfigurable(key = "${log}_log_info", category = AgriConfigCategory.LOGGING, comment = "Set to true to enable logging on the ${log} channel.")
 	private boolean infoEnabled = true;
+	@AgriConfigurable(key = "${log}_log_debug", category = AgriConfigCategory.LOGGING, comment = "Set to true to enable logging on the ${log} channel.")
+	private boolean debugEnabled = true;
 
 	AgriLogger(AgriLogAdapter adapter, Object source) {
 		this.adapter = adapter;
@@ -86,6 +92,11 @@ public class AgriLogger {
 		if (isEnabled() && isDebugEnabled()) {
 			adapter.trace(source, e);
 		}
+	}
+
+	@Override
+	public String resolve(String input) {
+		return input.replaceAll("\\$\\{log\\}", String.valueOf(source).toLowerCase());
 	}
 
 }

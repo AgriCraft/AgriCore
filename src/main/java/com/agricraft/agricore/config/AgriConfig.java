@@ -84,23 +84,34 @@ public class AgriConfig {
 
 			f.setAccessible(true);
 			Object obj = f.get(configurable);
+			
+			String key = anno.key();
+			String comment = anno.comment();
+			
+			final String category = anno.category().name();
+			
+			if (configurable instanceof AgriConfigurableInstance) {
+				AgriConfigurableInstance ins = (AgriConfigurableInstance) configurable;
+				key = ins.resolve(key).replaceAll("\\s+", "_");
+				comment = ins.resolve(comment);
+			}
 
 			if (obj instanceof String) {
-				f.set(configurable, provider.getString(anno.key(), anno.category().name(), (String) obj, anno.comment()));
+				f.set(configurable, provider.getString(key, category, (String) obj, comment));
 			} else if (obj instanceof Boolean) {
-				f.set(configurable, provider.getBoolean(anno.key(), anno.category().name(), (boolean) obj, anno.comment()));
+				f.set(configurable, provider.getBoolean(key, category, (boolean) obj, comment));
 			} else if (obj instanceof Integer) {
 				int min = Integer.parseInt(anno.min());
 				int max = Integer.parseInt(anno.max());
-				f.set(configurable, provider.getInt(anno.key(), anno.category().name(), (int) obj, min, max, anno.comment()));
+				f.set(configurable, provider.getInt(key, category, (int) obj, min, max, comment));
 			} else if (obj instanceof Float) {
 				float min = Float.parseFloat(anno.min());
 				float max = Float.parseFloat(anno.max());
-				f.set(configurable, provider.getFloat(anno.key(), anno.category().name(), (float) obj, min, max, anno.comment()));
+				f.set(configurable, provider.getFloat(key, category, (float) obj, min, max, comment));
 			} else if (obj instanceof Double) {
 				double min = Double.parseDouble(anno.min());
 				double max = Double.parseDouble(anno.max());
-				f.set(configurable, provider.getDouble(anno.key(), anno.category().name(), (double) obj, min, max, anno.comment()));
+				f.set(configurable, provider.getDouble(key, category, (double) obj, min, max, comment));
 			} else {
 				AgriCore.getCoreLogger().debug("Bad Type: " + f.getType().toString());
 			}

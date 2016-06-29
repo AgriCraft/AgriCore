@@ -46,11 +46,11 @@ public final class AgriCore {
 	) {
 		AgriCore.logManager = new AgriLogManager(log);
 		AgriCore.translator = new AgriTranslator(trans);
+		AgriCore.config = new AgriConfig(provider);
 		AgriLogger logger = AgriCore.getCoreLogger();
 		logger.info("Initializing core!");
 		AgriCore.validator = validator;
 		AgriCore.converter = converter;
-		AgriCore.config = new AgriConfig(provider);
 		AgriCore.plants = new AgriPlants();
 		AgriCore.mutations = new AgriMutations();
 		logger.info("Loading config!");
