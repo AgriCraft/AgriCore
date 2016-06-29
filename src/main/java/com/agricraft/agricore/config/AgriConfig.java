@@ -92,7 +92,7 @@ public class AgriConfig {
 			
 			if (configurable instanceof AgriConfigurableInstance) {
 				AgriConfigurableInstance ins = (AgriConfigurableInstance) configurable;
-				key = ins.resolve(key).replaceAll("\\s+", "_");
+				key = ins.resolve(key).replaceAll("\\s+", "_").toLowerCase();
 				comment = ins.resolve(comment);
 			}
 

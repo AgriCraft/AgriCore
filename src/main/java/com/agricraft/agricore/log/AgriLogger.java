@@ -96,7 +96,7 @@ public class AgriLogger implements AgriConfigurableInstance {
 
 	@Override
 	public String resolve(String input) {
-		return input.replaceAll("\\$\\{log\\}", String.valueOf(source).toLowerCase());
+		return input.replaceAll("\\$\\{log\\}", String.valueOf(source));
 	}
 
 }
