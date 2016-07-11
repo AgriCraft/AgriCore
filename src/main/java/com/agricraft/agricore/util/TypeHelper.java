@@ -5,7 +5,9 @@ package com.agricraft.agricore.util;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * A class to help with using types.
@@ -22,6 +24,15 @@ public class TypeHelper {
 	
 	public static <T> List<T> asList(T... elements) {
 		return Arrays.asList(elements);
+	}
+	
+	public static <T> Set<T> asSet(T... elements) {
+		return new HashSet<>(Arrays.asList(elements));
+	}
+	
+	public static <T, C extends Collection<T>> C addAll(C collection, T... elements) {
+		collection.addAll(Arrays.asList(elements));
+		return collection;
 	}
 	
 	public static boolean isAllTypes(Object obj, Class... types) {
