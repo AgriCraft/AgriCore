@@ -12,7 +12,7 @@ import java.util.Map;
  *
  * @author RlonRyan
  */
-public class AgriPlants {
+public class AgriPlants implements AgriLoadableRegistry<AgriPlant> {
 
 	private final Map<String, AgriPlant> plants;
 
@@ -49,6 +49,21 @@ public class AgriPlants {
 			sb.append(plant.toString().replaceAll("\n", "\n\t").trim());
 		}
 		return sb.append("\n").toString();
+	}
+
+	@Override
+	public boolean acceptsElement(String filename) {
+		return filename.toLowerCase().endsWith("_plant.json");
+	}
+
+	@Override
+	public Class<AgriPlant> getElementClass() {
+		return AgriPlant.class;
+	}
+
+	@Override
+	public void registerElement(AgriPlant element) {
+		this.addPlant(element);
 	}
 
 }

@@ -12,7 +12,7 @@ import java.util.Set;
  *
  * @author RlonRyan
  */
-public class AgriMutations {
+public class AgriMutations implements AgriLoadableRegistry<AgriMutation> {
 
 	private final Set<AgriMutation> mutations;
 
@@ -82,6 +82,21 @@ public class AgriMutations {
 			sb.append("\n\t- ").append(mutation).append("\n\t");
 		}
 		return sb.append("\n").toString();
+	}
+
+	@Override
+	public boolean acceptsElement(String filename) {
+		return filename.toLowerCase().endsWith("_mutation.json");
+	}
+
+	@Override
+	public Class<AgriMutation> getElementClass() {
+		return AgriMutation.class;
+	}
+
+	@Override
+	public void registerElement(AgriMutation element) {
+		this.addMutation(element);
 	}
 
 }
