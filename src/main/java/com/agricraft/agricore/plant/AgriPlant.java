@@ -3,6 +3,7 @@
 package com.agricraft.agricore.plant;
 
 import com.agricraft.agricore.core.AgriCore;
+import com.agricraft.agricore.json.AgriSerializable;
 import com.agricraft.agricore.lang.AgriString;
 import java.util.Random;
 
@@ -10,7 +11,10 @@ import java.util.Random;
  *
  * @author RlonRyan
  */
-public class AgriPlant {
+public class AgriPlant implements AgriSerializable {
+	
+	private boolean enabled;
+	private String path;
 
 	private final String name;
 	private final String id;
@@ -25,6 +29,8 @@ public class AgriPlant {
 	private final AgriTexture texture;
 
 	public AgriPlant() {
+		this.enabled = false;
+		this.path = "default/weed_plant.json";
 		this.name = "Weed";
 		this.id = "weed_plant";
 		this.description = new AgriString("An annoying plant.");
@@ -36,7 +42,9 @@ public class AgriPlant {
 		this.texture = new AgriTexture();
 	}
 
-	public AgriPlant(String name, String id, AgriString description, boolean bonemeal, int tier, double growth_chance, AgriProductList products, AgriRequirement requirement, AgriTexture texture) {
+	public AgriPlant(String name, String id, AgriString description, boolean bonemeal, int tier, double growth_chance, AgriProductList products, AgriRequirement requirement, AgriTexture texture, String path, boolean enabled) {
+		this.enabled = enabled;
+		this.path = path;
 		this.name = name;
 		this.id = id;
 		this.description = description;
@@ -109,6 +117,26 @@ public class AgriPlant {
 		sb.append("\t- ").append(products.toString().replaceAll("\n", "\n\t").trim()).append("\n");
 		sb.append("\t- ").append(requirement.toString().replaceAll("\n", "\n\t").trim()).append("\n");
 		return sb.toString();
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return this.enabled;
+	}
+
+	@Override
+	public String getPath() {
+		return this.path;
+	}
+
+	@Override
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	@Override
+	public void setPath(String path) {
+		this.path = path;
 	}
 
 }

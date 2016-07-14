@@ -31,7 +31,7 @@ public class TestMutation {
 	public TestMutation() {
 
 		// Setup Mutation
-		this.mutation = new AgriMutation(0.5, "Wheat", "Wheat", "Wheat");
+		this.mutation = new AgriMutation(0.5, "Wheat", "Wheat", "Wheat", "test/wheat_mutation.json", true);
 		
 	}
 

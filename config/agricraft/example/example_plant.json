@@ -1,4 +1,6 @@
 {
+  "enabled": true,
+  "path": "default/wheat_plant.json",
   "name": "Wheat",
   "id": "wheat_plant",
   "description": {

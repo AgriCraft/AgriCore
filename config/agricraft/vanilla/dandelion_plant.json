@@ -1,4 +1,6 @@
 {
+  "enabled": false,
+  "path": "vanilla/dandelion_plant.json",
   "name": "Yellow Flower",
   "id": "yellow_flower",
   "description": {

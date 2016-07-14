@@ -1,4 +1,6 @@
 {
+  "enabled": true,
+  "path": "test/wheat_mutation.json",
   "chance": 0.5,
   "child": "Wheat",
   "parent1": "Wheat",

@@ -4,9 +4,6 @@ package com.agricraft.agricore.test;
 
 import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.json.AgriLoader;
-import com.agricraft.agricore.json.AgriManifest;
-import com.agricraft.agricore.json.AgriManifestEntry;
-import com.agricraft.agricore.json.AgriManifestEntryType;
 import com.agricraft.agricore.test.defaults.AgriCoreDefaultInitializer;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -21,9 +18,9 @@ import org.junit.Test;
  *
  * @author RlonRyan
  */
-public class TestManifest {
+public class TestLoad {
 
-	public TestManifest() {
+	public TestLoad() {
 	}
 
 	@BeforeClass
@@ -51,26 +48,13 @@ public class TestManifest {
 	@Test
 	public void testLoad() {
 
-		Path p = Paths.get("config", "agricraft", "manifest.json");
+		Path p = Paths.get("config", "agricraft");
 
 		assertNotNull(p);
 
-		AgriLoader.loadManifest(p, AgriCore.getPlants(), AgriCore.getMutations());
+		AgriLoader.loadDirectory(p, AgriCore.getPlants(), AgriCore.getMutations());
 
 		AgriCore.getCoreLogger().info(AgriCore.getPlants());
-
-	}
-
-	@Test
-	public void testSave() {
-
-		AgriManifest manifest = AgriManifest.getEmptyManifest();
-
-		manifest.elements.add(new AgriManifestEntry(AgriManifestEntryType.GROUP, "vanilla/vanilla_group.json", false));
-		manifest.elements.add(new AgriManifestEntry(AgriManifestEntryType.PLANT, "vanilla/wheat_plant.json", false));
-		manifest.elements.add(new AgriManifestEntry(AgriManifestEntryType.MUTATION, "vanilla/wheat_mutation.json", false));
-
-		AgriManifest.save(Paths.get("config", "agricraft", "example", "example_group.json"), manifest);
 
 	}
 

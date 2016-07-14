@@ -17,6 +17,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.function.Consumer;
+import java.util.stream.Stream;
 
 /**
  *
@@ -29,44 +30,42 @@ public final class AgriLoader {
 	private AgriLoader() {
 	}
 
-	public static boolean loadManifest(Path location, AgriPlants plants, AgriMutations mutations) {
-
-		AgriManifest manifest;
-
-		try {
-			manifest = AgriManifest.load(location);
-		} catch (IOException | JsonParseException e) {
-			AgriCore.getCoreLogger().warn("No manifest at: " + location + "!");
-			return false;
+	public static void loadDirectory(Path dir, AgriPlants plants, AgriMutations mutations) {
+		try (Stream<Path> stream = Files.walk(dir)) {
+			stream.forEach(p -> handleFile(dir, p, plants, mutations));
+		} catch (IOException e) {
+			AgriCore.getCoreLogger().debug("Unable to load directory: \"{0}\"!", dir);
 		}
-
-		location = location.getParent();
-
-		for (AgriManifestEntry e : manifest.elements) {
-			if (e.enabled) {
-				switch (e.type) {
-					case GROUP:
-						loadManifest(location.resolve(e.path), plants, mutations);
-						break;
-					case PLANT:
-						loadElement(location.resolve(e.path), "plant", AgriPlant.class, plants::addPlant);
-						break;
-					case MUTATION:
-						loadElement(location.resolve(e.path), "mutation", AgriMutation.class, mutations::addMutation);
-						break;
-					default:
-						AgriCore.getCoreLogger().warn("Bad manifest entry: " + e);
-				}
-			}
-		}
-		return true;
 	}
 
-	private static <T> void loadElement(Path location, String typename, Class<T> type, Consumer<T> registry) {
+	private static void handleFile(final Path root, Path location, AgriPlants plants, AgriMutations mutations) {
+		switch (getType(location.getFileName().toString())) {
+			case "plant":
+				loadElement(root, location, "plant", AgriPlant.class, plants::addPlant);
+				break;
+			case "mutation":
+				loadElement(root, location, "mutation", AgriMutation.class, mutations::addMutation);
+				break;
+		}
+	}
+
+	private static String getType(String file) {
+		String[] parts = file.split("_");
+		if (parts.length < 2) {
+			return "";
+		}
+		parts = parts[parts.length - 1].split("\\.");
+		if (parts.length < 2) {
+			return "";
+		}
+		return parts[0].toLowerCase();
+	}
+
+	private static <T> void loadElement(final Path root, final Path location, String typename, Class<T> type, Consumer<T> registry) {
 
 		// The Mutation to Read
 		T obj;
-		
+
 		// Load the backup.
 		try {
 			obj = type.newInstance();
@@ -80,6 +79,9 @@ public final class AgriLoader {
 		if (Files.exists(location)) {
 			try (Reader reader = Files.newBufferedReader(location)) {
 				obj = gson.fromJson(reader, type);
+				if (obj instanceof AgriSerializable) {
+					((AgriSerializable) obj).setPath(root.relativize(location).toString().replaceAll("\\\\", "/"));
+				}
 			} catch (IOException | JsonParseException e) {
 				AgriCore.getCoreLogger().warn("Unable to load " + typename + ": " + location + "!");
 				AgriCore.getCoreLogger().trace(e);
@@ -89,16 +91,33 @@ public final class AgriLoader {
 
 		// Writeback, to keep file formatted.
 		// If fails, ignore.
-		try (Writer writer = Files.newBufferedWriter(location, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING)) {
-			gson.toJson(obj, writer);
-			writer.append("\n");
-		} catch (IOException e) {
-			AgriCore.getCoreLogger().warn("Unable to write back " + typename + ": " + location + "!");
-		}
+		saveElement(location, obj);
 
 		// Add Mutation to Registry
 		registry.accept(obj);
 
+	}
+	
+	public static void saveDirectory(Path dir, AgriPlants plants, AgriMutations mutations) {
+		plants.getAll().forEach(p -> saveElement(dir, p));
+		mutations.getAll().forEach(m -> saveElement(dir, m));
+	}
+
+	public static void saveElement(Path location, Object obj) {
+		if (location.getFileName().toString().indexOf('.') == -1 && obj instanceof AgriSerializable) {
+			location = location.resolve(((AgriSerializable)obj).getPath());
+		}
+		try {
+			Files.createDirectories(location.getParent());
+		} catch (IOException e) {
+			AgriCore.getCoreLogger().warn("Unable to create directories for element: \"{0}\"!", location);
+		}
+		try (Writer writer = Files.newBufferedWriter(location, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING)) {
+			gson.toJson(obj, writer);
+			writer.append("\n");
+		} catch (IOException e) {
+			AgriCore.getCoreLogger().warn("Unable to save element: \"{0}\"!", location);
+		}
 	}
 
 }

@@ -3,13 +3,17 @@
 package com.agricraft.agricore.plant;
 
 import com.agricraft.agricore.core.AgriCore;
+import com.agricraft.agricore.json.AgriSerializable;
 import java.util.Random;
 
 /**
  *
  * @author RlonRyan
  */
-public class AgriMutation {
+public class AgriMutation implements AgriSerializable{
+	
+	private boolean enabled;
+	private String path;
 
 	private final double chance;
 
@@ -19,13 +23,17 @@ public class AgriMutation {
 	private final String parent2;
 
 	public AgriMutation() {
+		this.enabled = false;
+		this.path = "default/default_mutation.json";
 		this.chance = 0;
 		this.child = "carrot_plant";
 		this.parent1 = "wheat_plant";
 		this.parent2 = "potato_plant";
 	}
 
-	public AgriMutation(double chance, String child, String parent1, String parent2) {
+	public AgriMutation(double chance, String child, String parent1, String parent2, String path, boolean enabled) {
+		this.enabled = enabled;
+		this.path = path;
 		this.chance = chance;
 		this.child = child;
 		this.parent1 = parent1;
@@ -84,6 +92,26 @@ public class AgriMutation {
 		sb.append("\t- Child: ").append(child).append("\n");
 		sb.append("\t- Chance: ").append(chance).append("\n");
 		return sb.toString();
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return this.enabled;
+	}
+
+	@Override
+	public String getPath() {
+		return this.path;
+	}
+
+	@Override
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	@Override
+	public void setPath(String path) {
+		this.path = path;
 	}
 
 }
