@@ -7,8 +7,19 @@ repositories {
     mavenCentral()
 }
 
+configurations {
+	pack
+	compile.extendsFrom pack
+}
+
 dependencies {
-    compile 'com.google.code.gson:gson:2.6.2'
-	compile 'org.reflections:reflections:0.9.10'
+    pack 'com.google.code.gson:gson:2.6.2'
+	pack 'org.reflections:reflections:0.9.10'
     testCompile 'junit:junit:4.12'
+}
+
+jar {
+    configurations.pack.copyRecursive().setTransitive(false).each { artifact ->
+		from (zipTree(artifact))
+	}
 }
