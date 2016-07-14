@@ -8,18 +8,18 @@ repositories {
 }
 
 configurations {
-	pack
-	compile.extendsFrom pack
+	shade
+	compile.extendsFrom shade
 }
 
 dependencies {
-    pack 'com.google.code.gson:gson:2.6.2'
-	pack 'org.reflections:reflections:0.9.10'
+    shade 'com.google.code.gson:gson:2.6.2'
+	shade 'org.reflections:reflections:0.9.10'
     testCompile 'junit:junit:4.12'
 }
 
 jar {
-    configurations.pack.copyRecursive().setTransitive(false).each { artifact ->
+    configurations.shade.each { artifact ->
 		from (zipTree(artifact))
 	}
 }
