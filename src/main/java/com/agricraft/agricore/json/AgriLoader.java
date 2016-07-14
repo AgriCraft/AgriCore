@@ -37,11 +37,7 @@ public final class AgriLoader {
 	private AgriLoader() {
 	}
 
-	public static void loadDirectory(Path dir, AgriPlants plants, AgriMutations mutations) {
-		loadDirectory(dir, TypeHelper.asSet(plants, mutations));
-	}
-
-	public static void loadDirectory(Path dir, Set<AgriLoadableRegistry> registries) {
+	public static void loadDirectory(Path dir, AgriLoadableRegistry... registries) {
 		try (Stream<Path> stream = Files.walk(dir)) {
 			stream.forEach(p -> handleFile(dir, p, registries));
 		} catch (IOException e) {
@@ -49,7 +45,7 @@ public final class AgriLoader {
 		}
 	}
 
-	private static void handleFile(final Path root, Path location, Set<AgriLoadableRegistry> registries) {
+	private static void handleFile(final Path root, Path location, AgriLoadableRegistry... registries) {
 		// Debug
 		AgriCore.getCoreLogger().debug("Looking at file: \"{0}\"!", location);
 		for (AgriLoadableRegistry r : registries) {

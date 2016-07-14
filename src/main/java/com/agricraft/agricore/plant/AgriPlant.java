@@ -16,9 +16,11 @@ public class AgriPlant implements AgriSerializable {
 	private boolean enabled;
 	private String path;
 
-	private final String name;
 	private final String id;
+	private final String plant_name;
+	private final String seed_name;
 	private final AgriString description;
+	
 
 	private final double growth_chance;
 	private final boolean bonemeal;
@@ -31,8 +33,9 @@ public class AgriPlant implements AgriSerializable {
 	public AgriPlant() {
 		this.enabled = false;
 		this.path = "default/weed_plant.json";
-		this.name = "Weed";
 		this.id = "weed_plant";
+		this.plant_name = "Weed";
+		this.seed_name = "Weed Seeds";
 		this.description = new AgriString("An annoying plant.");
 		this.bonemeal = true;
 		this.tier = 1;
@@ -42,11 +45,12 @@ public class AgriPlant implements AgriSerializable {
 		this.texture = new AgriTexture();
 	}
 
-	public AgriPlant(String name, String id, AgriString description, boolean bonemeal, int tier, double growth_chance, AgriProductList products, AgriRequirement requirement, AgriTexture texture, String path, boolean enabled) {
+	public AgriPlant(String id, String plant_name, String seed_name, AgriString description, boolean bonemeal, int tier, double growth_chance, AgriProductList products, AgriRequirement requirement, AgriTexture texture, String path, boolean enabled) {
 		this.enabled = enabled;
 		this.path = path;
-		this.name = name;
 		this.id = id;
+		this.plant_name = plant_name;
+		this.seed_name = seed_name;
 		this.description = description;
 		this.bonemeal = bonemeal;
 		this.tier = tier;
@@ -60,8 +64,12 @@ public class AgriPlant implements AgriSerializable {
 		return id;
 	}
 
-	public String getName() {
-		return name;
+	public String getPlantName() {
+		return plant_name;
+	}
+	
+	public String getSeedName() {
+		return seed_name;
 	}
 
 	public AgriString getDescription() {
@@ -94,13 +102,13 @@ public class AgriPlant implements AgriSerializable {
 
 	public boolean validate() {
 		if (!this.requirement.validate()) {
-			AgriCore.getCoreLogger().debug("Invalid Plant: {0}! Invalid Requirement!", name);
+			AgriCore.getCoreLogger().debug("Invalid Plant: {0}! Invalid Requirement!", id);
 			return false;
 		} else if (!this.products.validate()) {
-			AgriCore.getCoreLogger().debug("Invalid Plant: {0}! Invalid Product!", name);
+			AgriCore.getCoreLogger().debug("Invalid Plant: {0}! Invalid Product!", id);
 			return false;
 		} else if (!this.texture.validate()) {
-			AgriCore.getCoreLogger().debug("Invalid Plant: {0}! Invalid Texture!", name);
+			AgriCore.getCoreLogger().debug("Invalid Plant: {0}! Invalid Texture!", id);
 			return false;
 		} else {
 			return true;
@@ -110,8 +118,9 @@ public class AgriPlant implements AgriSerializable {
 	@Override
 	public String toString() {
 		final StringBuilder sb = new StringBuilder();
-		sb.append("\n").append(name).append(":\n");
-		sb.append("\t- Id: ").append(id).append("\n");
+		sb.append("\n").append(id).append(":\n");
+		sb.append("\t- Plant Name: ").append(plant_name).append("\n");
+		sb.append("\t- Seed Name: ").append(seed_name).append("\n");
 		sb.append("\t- Bonemeal: ").append(bonemeal).append("\n");
 		sb.append("\t- Growth Chance: ").append(growth_chance).append("\n");
 		sb.append("\t- ").append(products.toString().replaceAll("\n", "\n\t").trim()).append("\n");

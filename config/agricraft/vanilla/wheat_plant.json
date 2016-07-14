@@ -1,8 +1,9 @@
 {
   "enabled": false,
   "path": "vanilla/wheat_plant.json",
-  "name": "Wheat",
   "id": "wheat_plant",
+  "plant_name": "Weed",
+  "seed_name": "Generic Seeds",
   "description": {
     "translations": {},
     "default": "Testing 1, 2, 3."

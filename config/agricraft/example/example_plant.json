@@ -1,8 +1,9 @@
 {
   "enabled": true,
   "path": "default/wheat_plant.json",
-  "name": "Wheat",
   "id": "wheat_plant",
+  "plant_name": "Wheat",
+  "seed_name": "Wheat Seeds",
   "description": {
     "translations": {},
     "default": "Wheat, the gluten that founded human society."
