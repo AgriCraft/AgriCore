@@ -2,10 +2,10 @@
  */
 package com.agricraft.agricore.test.defaults;
 
+import com.agricraft.agricore.lang.AgriTranslationAdapter;
 import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
-import com.agricraft.agricore.lang.AgriTranslationAdapter;
 
 /**
  *

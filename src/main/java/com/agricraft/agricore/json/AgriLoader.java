@@ -6,9 +6,6 @@ import com.agricraft.agricore.config.AgriConfigCategory;
 import com.agricraft.agricore.config.AgriConfigurable;
 import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.registry.AgriLoadableRegistry;
-import com.agricraft.agricore.registry.AgriMutations;
-import com.agricraft.agricore.registry.AgriPlants;
-import com.agricraft.agricore.util.TypeHelper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParseException;
@@ -16,7 +13,6 @@ import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Set;
 import java.util.stream.Stream;
 
 /**
@@ -46,8 +42,6 @@ public final class AgriLoader {
 	}
 
 	private static void handleFile(final Path root, Path location, AgriLoadableRegistry... registries) {
-		// Debug
-		AgriCore.getCoreLogger().debug("Looking at file: \"{0}\"!", location);
 		for (AgriLoadableRegistry r : registries) {
 			if (r.acceptsElement(location.getFileName().toString())) {
 				loadElement(root, location, r);

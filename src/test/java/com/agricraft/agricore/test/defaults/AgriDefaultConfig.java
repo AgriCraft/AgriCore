@@ -2,6 +2,7 @@
  */
 package com.agricraft.agricore.test.defaults;
 
+import com.agricraft.agricore.config.AgriConfigAdapter;
 import com.agricraft.agricore.core.AgriCore;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -10,7 +11,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.Properties;
-import com.agricraft.agricore.config.AgriConfigAdapter;
 
 /**
  *
