@@ -13,13 +13,15 @@ configurations {
 }
 
 dependencies {
-    shade 'com.google.code.gson:gson:2.6.2'
 	shade 'org.reflections:reflections:0.9.10'
+	shade 'com.google.code.gson:gson:2.6.2'
     testCompile 'junit:junit:4.12'
 }
 
 jar {
-    configurations.shade.each { artifact ->
-		from (zipTree(artifact))
+    configurations.shade.copyRecursive().setTransitive(false).each { artifact ->
+		from (zipTree(artifact)) {
+			exclude 'META-INF', 'META-INF/**'
+		}
 	}
 }
