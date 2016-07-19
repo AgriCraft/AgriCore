@@ -66,4 +66,9 @@ public class AgriPlants implements AgriLoadableRegistry<AgriPlant> {
 		this.addPlant(element);
 	}
 
+	@Override
+	public void clearElements() {
+		this.plants.clear();
+	}
+
 }

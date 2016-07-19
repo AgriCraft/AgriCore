@@ -98,5 +98,9 @@ public class AgriMutations implements AgriLoadableRegistry<AgriMutation> {
 	public void registerElement(AgriMutation element) {
 		this.addMutation(element);
 	}
+	
+	public void clearElements() {
+		this.mutations.clear();
+	}
 
 }

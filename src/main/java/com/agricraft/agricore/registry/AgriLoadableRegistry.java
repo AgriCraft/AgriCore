@@ -14,4 +14,6 @@ public interface AgriLoadableRegistry<T> {
 	
 	void registerElement(T element);
 	
+	void clearElements();
+	
 }

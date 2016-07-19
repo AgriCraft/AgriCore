@@ -3,7 +3,9 @@
 package com.agricraft.agricore.plant;
 
 import com.agricraft.agricore.core.AgriCore;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  *
@@ -65,6 +67,13 @@ public class AgriTexture {
 //		res |= (seed_color[0] & 0b11111111) << 16;
 //		return res;
 //	}
+	
+	public List<String> getAllTextures() {
+		final List<String> tex = new ArrayList<>(plant_textures.length + 1);
+		tex.addAll(Arrays.asList(plant_textures));
+		tex.add(seed_texture);
+		return tex;
+	}
 
 	public String[] getPlantTextures() {
 		return Arrays.copyOf(plant_textures, plant_textures.length);

@@ -69,4 +69,12 @@ public class TypeHelper {
 		return type.isAssignableFrom(clazz);
 	}
 	
+	public static boolean isNull(Object obj) {
+		return obj == null;
+	}
+	
+	public static boolean isNonNull(Object obj) {
+		return obj != null;
+	}
+	
 }

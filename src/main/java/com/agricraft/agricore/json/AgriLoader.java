@@ -49,13 +49,14 @@ public final class AgriLoader {
 		}
 	}
 
-	private static <T> void loadElement(Path root, Path location, AgriLoadableRegistry<T> registry) {
+	private static <T extends AgriSerializable> void loadElement(Path root, Path location, AgriLoadableRegistry<T> registry) {
 
 		// The Element
 		T obj;
 
 		// Ensure File Exists
 		if (!Files.exists(location)) {
+			AgriCore.getCoreLogger().warn("Tried to load non-existant File: \"{0}\"!", location);
 			return;
 		}
 
@@ -63,11 +64,7 @@ public final class AgriLoader {
 		// If fails, return.
 		try (Reader reader = Files.newBufferedReader(location)) {
 			obj = GSON.fromJson(reader, registry.getElementClass());
-			if (obj instanceof AgriSerializable) {
-				((AgriSerializable) obj).setPath(
-						root.relativize(location).toString().replaceAll("\\\\", "/")
-				);
-			}
+			obj.setPath(root.relativize(location).toString().replaceAll("\\\\", "/"));
 		} catch (IOException | JsonParseException e) {
 			AgriCore.getCoreLogger().warn("Unable to load Element: \"{0}\"!", location);
 			AgriCore.getCoreLogger().trace(e);
