@@ -21,10 +21,14 @@ public class AgriPlant implements AgriSerializable {
 	private final String seed_name;
 	private final AgriString description;
 	
-
 	private final double growth_chance;
 	private final boolean bonemeal;
 	private final int tier;
+	
+	private final boolean weedable;
+	private final boolean aggressive;
+	private final double spread_chance;
+	private final double spawn_chance;
 
 	private final AgriProductList products;
 	private final AgriRequirement requirement;
@@ -40,12 +44,16 @@ public class AgriPlant implements AgriSerializable {
 		this.bonemeal = true;
 		this.tier = 1;
 		this.growth_chance = 0.9;
+		this.weedable = false;
+		this.aggressive = false;
+		this.spread_chance = 0.1;
+		this.spawn_chance = 0;
 		this.products = new AgriProductList();
 		this.requirement = new AgriRequirement();
 		this.texture = new AgriTexture();
 	}
 
-	public AgriPlant(String id, String plant_name, String seed_name, AgriString description, boolean bonemeal, int tier, double growth_chance, AgriProductList products, AgriRequirement requirement, AgriTexture texture, String path, boolean enabled) {
+	public AgriPlant(String id, String plant_name, String seed_name, AgriString description, boolean bonemeal, int tier, double growth_chance, boolean weedable, boolean agressive, double spread_chance, double spawn_chance, AgriProductList products, AgriRequirement requirement, AgriTexture texture, String path, boolean enabled) {
 		this.enabled = enabled;
 		this.path = path;
 		this.id = id;
@@ -55,6 +63,10 @@ public class AgriPlant implements AgriSerializable {
 		this.bonemeal = bonemeal;
 		this.tier = tier;
 		this.growth_chance = growth_chance;
+		this.weedable = weedable;
+		this.aggressive = agressive;
+		this.spread_chance = spread_chance;
+		this.spawn_chance = spawn_chance;
 		this.products = products;
 		this.requirement = requirement;
 		this.texture = texture;
@@ -95,9 +107,37 @@ public class AgriPlant implements AgriSerializable {
 	public boolean canBonemeal() {
 		return bonemeal;
 	}
+	
+	public boolean isWeedable() {
+		return weedable;
+	}
+	
+	public boolean isAgressive() {
+		return aggressive;
+	}
+	
+	public double getSpawnChance() {
+		return spawn_chance;
+	}
+	
+	public double getSpreadChance() {
+		return spread_chance;
+	}
+	
+	public double getGrowthChance() {
+		return growth_chance;
+	}
+	
+	public boolean shouldSpawn(Random rand) {
+		return spawn_chance > rand.nextDouble();
+	}
+	
+	public boolean shouldSpread(Random rand) {
+		return spread_chance > rand.nextDouble();
+	}
 
 	public boolean shouldGrow(Random rand) {
-		return this.growth_chance > rand.nextDouble();
+		return growth_chance > rand.nextDouble();
 	}
 
 	public boolean validate() {

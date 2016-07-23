@@ -11,6 +11,9 @@
   "growth_chance": 1.0,
   "bonemeal": false,
   "tier": 1,
+  "weedable": false,
+  "aggressive": false,
+  "spread_chance": 0.1,
   "products": {
     "products": [
       {
