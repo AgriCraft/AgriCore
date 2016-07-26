@@ -4,7 +4,6 @@ package com.agricraft.agricore.test;
 
 import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.json.AgriLoader;
-import com.agricraft.agricore.test.defaults.AgriCoreDefaultInitializer;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import org.junit.After;
@@ -33,7 +32,6 @@ public class TestLoad {
 
 	@Before
 	public void setUp() {
-		AgriCoreDefaultInitializer.initCore();
 	}
 
 	@After

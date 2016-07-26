@@ -1,6 +1,6 @@
 /*
  */
-package com.agricraft.agricore.test.defaults;
+package com.agricraft.agricore.defaults;
 
 import com.agricraft.agricore.lang.AgriTranslationAdapter;
 import java.util.Locale;

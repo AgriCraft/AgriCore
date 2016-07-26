@@ -4,7 +4,6 @@ package com.agricraft.agricore.test;
 
 import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.log.AgriLogger;
-import com.agricraft.agricore.test.defaults.AgriCoreDefaultInitializer;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -30,7 +29,6 @@ public class TestLogger {
 	
 	@Before
 	public void setUp() {
-		AgriCoreDefaultInitializer.initCore();
 	}
 	
 	@After

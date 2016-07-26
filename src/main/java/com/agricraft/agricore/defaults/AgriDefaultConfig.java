@@ -1,6 +1,6 @@
 /*
  */
-package com.agricraft.agricore.test.defaults;
+package com.agricraft.agricore.defaults;
 
 import com.agricraft.agricore.config.AgriConfigAdapter;
 import com.agricraft.agricore.core.AgriCore;

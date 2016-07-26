@@ -10,7 +10,6 @@ import com.agricraft.agricore.plant.AgriProductList;
 import com.agricraft.agricore.plant.AgriRenderType;
 import com.agricraft.agricore.plant.AgriRequirement;
 import com.agricraft.agricore.plant.AgriTexture;
-import com.agricraft.agricore.test.defaults.AgriCoreDefaultInitializer;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.io.BufferedWriter;
@@ -74,7 +73,6 @@ public class TestPlant {
 
 	@Before
 	public void setUp() {
-		AgriCoreDefaultInitializer.initCore();
 	}
 
 	@After

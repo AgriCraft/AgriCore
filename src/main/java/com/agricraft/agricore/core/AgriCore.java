@@ -4,6 +4,11 @@ package com.agricraft.agricore.core;
 
 import com.agricraft.agricore.config.AgriConfig;
 import com.agricraft.agricore.config.AgriConfigAdapter;
+import com.agricraft.agricore.defaults.AgriDefaultConfig;
+import com.agricraft.agricore.defaults.AgriDefaultConverter;
+import com.agricraft.agricore.defaults.AgriDefaultLog;
+import com.agricraft.agricore.defaults.AgriDefaultTranslator;
+import com.agricraft.agricore.defaults.AgriDefaultValidator;
 import com.agricraft.agricore.lang.AgriTranslationAdapter;
 import com.agricraft.agricore.lang.AgriTranslator;
 import com.agricraft.agricore.log.AgriLogAdapter;
@@ -13,6 +18,7 @@ import com.agricraft.agricore.registry.AgriMutations;
 import com.agricraft.agricore.registry.AgriPlants;
 import com.agricraft.agricore.util.AgriConverter;
 import com.agricraft.agricore.util.AgriValidator;
+import java.nio.file.Paths;
 
 /**
  *
@@ -35,6 +41,16 @@ public final class AgriCore {
 	private static AgriPlants plants;
 	
 	private AgriCore() {
+	}
+	
+	static {
+		AgriCore.init(
+				new AgriDefaultLog(),
+				new AgriDefaultTranslator(),
+				new AgriDefaultValidator(),
+				new AgriDefaultConverter(),
+				new AgriDefaultConfig(Paths.get("config", "AgriCore", "agricore.config"))
+		);
 	}
 	
 	public static void init(
@@ -67,7 +83,7 @@ public final class AgriCore {
 		logger.info("Saved config!");
 		logger.info("Initialized core!");
 	}
-
+	
 	public static AgriLogger getCoreLogger() {
 		return getLogger("AgriCore");
 	}
@@ -75,31 +91,31 @@ public final class AgriCore {
 	public static AgriLogger getLogger(Object source) {
 		return logManager.getLogger(source);
 	}
-
+	
 	public static AgriTranslator getTranslator() {
 		return translator;
 	}
-
+	
 	public static AgriLogManager getLogManager() {
 		return logManager;
 	}
-
+	
 	public static AgriValidator getValidator() {
 		return validator;
 	}
-
+	
 	public static AgriConverter getConverter() {
 		return converter;
 	}
-
+	
 	public static AgriConfig getConfig() {
 		return config;
 	}
-
+	
 	public static AgriMutations getMutations() {
 		return mutations;
 	}
-
+	
 	public static AgriPlants getPlants() {
 		return plants;
 	}
