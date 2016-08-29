@@ -23,8 +23,8 @@
       {
         "item": "yellow_dye",
         "meta": 0,
-        "base": 0,
-        "range": 5,
+        "min": 5,
+        "max": 5,
         "chance": 500.0,
         "required": true
       }

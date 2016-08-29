@@ -23,8 +23,8 @@
       {
         "item": "wheat",
         "meta": 0,
-        "base": 1,
-        "range": 3,
+        "min": 5,
+        "max": 5,
         "chance": 500.0,
         "required": true
       }

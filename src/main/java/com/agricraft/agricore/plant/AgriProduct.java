@@ -14,8 +14,8 @@ public class AgriProduct {
 	private final String item;
 
 	private final int meta;
-	private final int base;
-	private final int range;
+	private final int min;
+	private final int max;
 
 	private final double chance;
 	
@@ -24,17 +24,17 @@ public class AgriProduct {
 	public AgriProduct() {
 		this.item = "minecraft:wheat";
 		this.meta = 0;
-		this.base = 5;
-		this.range = 5;
+		this.min = 5;
+		this.max = 5;
 		this.chance = 0.99;
 		this.required = true;
 	}
 
-	public AgriProduct(String item, int meta, int base, int range, double chance, boolean required) {
+	public AgriProduct(String item, int meta, int min, int max, double chance, boolean required) {
 		this.item = item;
 		this.meta = meta;
-		this.base = base;
-		this.range = range;
+		this.min = min;
+		this.max = max;
 		this.chance = chance;
 		this.required = required;
 	}
@@ -43,7 +43,13 @@ public class AgriProduct {
 		if (!AgriCore.getValidator().isValidItem(item)) {
 			AgriCore.getCoreLogger().info("Invalid Product: Invalid Item: {0}:{1}!", item, meta);
 			return false;
-		} else {
+		} else if (min < 1) {
+            AgriCore.getCoreLogger().info("Invalid Product: Min Amount Less Than One!");
+			return false;
+        } else if (max < min) {
+            AgriCore.getCoreLogger().info("Invalid Product: Min Amount Greater Than Max: {0} > {1}!", min, max);
+			return false;
+        } else {
 			return true;
 		}
 	}
@@ -57,11 +63,11 @@ public class AgriProduct {
 	}
 	
 	public int getAmount(final Random rand) {
-		return base + rand.nextInt(range);
+		return min + rand.nextInt(max - min + 1);
 	}
 
 	public Object toStack() {
-		return AgriCore.getConverter().toStack(this.item, this.base + 1, this.meta);
+		return AgriCore.getConverter().toStack(this.item, this.min, this.meta);
 	}
 
 	public Object toStack(Random rand) {
@@ -74,8 +80,8 @@ public class AgriProduct {
 		sb.append("\nProduct:");
 		sb.append("\n\t- Item: ").append(item);
 		sb.append("\n\t- Meta: ").append(meta);
-		sb.append("\n\t- Base Amount: ").append(base);
-		sb.append("\n\t- Range Amount: ").append(range);
+		sb.append("\n\t- Min Amount: ").append(min);
+		sb.append("\n\t- Max Amount: ").append(max);
 		sb.append("\n\t- Probability: ").append(chance);
 		return sb.toString();
 	}
