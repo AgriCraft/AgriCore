@@ -60,7 +60,7 @@ public class TestPlant {
         AgriTexture texture = new AgriTexture(AgriRenderType.CROSS, "seed_wheat", new String[0]);
 
         // Setup Plant
-        plant = new AgriPlant("wheat_plant", "Wheat", "Wheat Seeds", "minecraft:wheat_seeds", new AgriString("Wheat, the gluten that founded human society."), false, 1, 1.0, false, false, 0.1, 0, products, requirement, texture, "default/wheat_plant.json", true);
+        plant = new AgriPlant("wheat_plant", "Wheat", "Wheat Seeds", Arrays.asList("minecraft:wheat_seeds"), new AgriString("Wheat, the gluten that founded human society."), false, 1, 1.0, false, false, 0.1, 0, products, requirement, texture, "default/wheat_plant.json", true);
     }
 
     @BeforeClass
