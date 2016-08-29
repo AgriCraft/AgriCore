@@ -19,6 +19,7 @@ public class AgriPlant implements AgriSerializable {
 	private final String id;
 	private final String plant_name;
 	private final String seed_name;
+    private final String seed_item;
 	private final AgriString description;
 	
 	private final double growth_chance;
@@ -40,6 +41,7 @@ public class AgriPlant implements AgriSerializable {
 		this.id = "weed_plant";
 		this.plant_name = "Weed";
 		this.seed_name = "Weed Seeds";
+        this.seed_item = "agricraft:agri_seed";
 		this.description = new AgriString("An annoying plant.");
 		this.bonemeal = true;
 		this.tier = 1;
@@ -53,12 +55,13 @@ public class AgriPlant implements AgriSerializable {
 		this.texture = new AgriTexture();
 	}
 
-	public AgriPlant(String id, String plant_name, String seed_name, AgriString description, boolean bonemeal, int tier, double growth_chance, boolean weedable, boolean agressive, double spread_chance, double spawn_chance, AgriProductList products, AgriRequirement requirement, AgriTexture texture, String path, boolean enabled) {
+	public AgriPlant(String id, String plant_name, String seed_name, String seed_item, AgriString description, boolean bonemeal, int tier, double growth_chance, boolean weedable, boolean agressive, double spread_chance, double spawn_chance, AgriProductList products, AgriRequirement requirement, AgriTexture texture, String path, boolean enabled) {
 		this.enabled = enabled;
 		this.path = path;
 		this.id = id;
 		this.plant_name = plant_name;
 		this.seed_name = seed_name;
+        this.seed_item = seed_item;
 		this.description = description;
 		this.bonemeal = bonemeal;
 		this.tier = tier;
@@ -83,6 +86,10 @@ public class AgriPlant implements AgriSerializable {
 	public String getSeedName() {
 		return seed_name;
 	}
+
+    public String getSeedItem() {
+        return seed_item;
+    }
 
 	public AgriString getDescription() {
 		return description;
