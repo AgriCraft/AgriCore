@@ -16,6 +16,7 @@ import com.agricraft.agricore.log.AgriLogManager;
 import com.agricraft.agricore.log.AgriLogger;
 import com.agricraft.agricore.registry.AgriMutations;
 import com.agricraft.agricore.registry.AgriPlants;
+import com.agricraft.agricore.registry.AgriSoils;
 import com.agricraft.agricore.util.AgriConverter;
 import com.agricraft.agricore.util.AgriValidator;
 import java.nio.file.Paths;
@@ -36,9 +37,11 @@ public final class AgriCore {
 	
 	private static AgriConfig config;
 	
-	private static AgriMutations mutations;
-	
 	private static AgriPlants plants;
+    
+    private static AgriMutations mutations;
+    
+    private static AgriSoils soils;
 	
 	private AgriCore() {
 	}
@@ -69,6 +72,7 @@ public final class AgriCore {
 		AgriCore.converter = converter;
 		AgriCore.plants = new AgriPlants();
 		AgriCore.mutations = new AgriMutations();
+        AgriCore.soils = new AgriSoils();
 		logger.info("Loading config!");
 		AgriCore.config.load();
 		logger.info("Loaded config!");
@@ -77,6 +81,7 @@ public final class AgriCore {
 		AgriCore.config.addConfigurable(validator);
 		AgriCore.config.addConfigurable(plants);
 		AgriCore.config.addConfigurable(mutations);
+        AgriCore.config.addConfigurable(soils);
 		logger.info("Configured modules!");
 		logger.info("Saving config!");
 		AgriCore.config.save();
@@ -119,5 +124,9 @@ public final class AgriCore {
 	public static AgriPlants getPlants() {
 		return plants;
 	}
+    
+    public static AgriSoils getSoils() {
+        return soils;
+    }
 	
 }

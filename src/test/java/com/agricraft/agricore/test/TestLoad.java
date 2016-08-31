@@ -50,7 +50,7 @@ public class TestLoad {
 
 		assertNotNull(p);
 
-		AgriLoader.loadDirectory(p, AgriCore.getPlants(), AgriCore.getMutations());
+		AgriLoader.loadDirectory(p, AgriCore.getSoils(), AgriCore.getPlants(), AgriCore.getMutations());
 
 		AgriCore.getCoreLogger().info(AgriCore.getPlants());
 

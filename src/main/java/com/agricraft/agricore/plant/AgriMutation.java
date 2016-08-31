@@ -10,7 +10,7 @@ import java.util.Random;
  *
  * @author RlonRyan
  */
-public class AgriMutation implements AgriSerializable{
+public class AgriMutation implements AgriSerializable {
 	
 	private boolean enabled;
 	private String path;

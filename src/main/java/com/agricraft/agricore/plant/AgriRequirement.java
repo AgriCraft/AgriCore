@@ -31,7 +31,7 @@ public class AgriRequirement {
 	}
 
 	public AgriRequirement(List<String> soils, List<String> bases, Map<String, Integer> nearby, int min_light, int max_light) {
-		this.soils = soils;
+		this.soils = new ArrayList<>(soils);
 		this.bases = bases;
 		this.nearby = nearby;
 		this.min_light = 10;
@@ -80,12 +80,14 @@ public class AgriRequirement {
 	}
 
 	public boolean validate() {
-		for (String block : soils) {
-			if (!AgriCore.getValidator().isValidBlock(block)) {
-				AgriCore.getCoreLogger().info("Invalid Requirement: Invalid Soil: {0}!", block);
-				return false;
-			}
-		}
+        this.soils.removeIf(soil -> {
+            if (!AgriCore.getSoils().hasSoil(soil)) {
+                AgriCore.getCoreLogger().info("Invalid Requirement: Invalid Soil: {0}! Removing!", soil);
+                return true;
+            } else {
+                return false;
+            }
+        });
 		for (String block : bases) {
 			if (!AgriCore.getValidator().isValidBlock(block)) {
 				AgriCore.getCoreLogger().info("Invalid Requirement: Invalid Base: {0}!", block);
@@ -110,7 +112,7 @@ public class AgriRequirement {
 		sb.append("\t\t- Max: ").append(max_light).append("\n");
 		sb.append("\t- Soil:\n");
 		this.soils.forEach((e) -> {
-			sb.append("\t\t- Block: ").append(e).append("\n");
+			sb.append("\t\t- AgriSoil: ").append(e).append("\n");
 		});
 		sb.append("\t- Base:\n");
 		this.bases.forEach((e) -> {
