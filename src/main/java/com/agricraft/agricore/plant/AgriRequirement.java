@@ -3,10 +3,12 @@
 package com.agricraft.agricore.plant;
 
 import com.agricraft.agricore.core.AgriCore;
+import com.agricraft.agricore.util.TypeHelper;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -46,15 +48,11 @@ public class AgriRequirement {
 		return max_light;
 	}
 
-	public List<Object> getSoils() {
-		List<Object> res = new ArrayList<>(this.soils.size());
-		soils.forEach((s) -> {
-			Object stack = AgriCore.getConverter().toStack(s);
-			if (stack != null) {
-				res.add(stack);
-			}
-		});
-		return res;
+	public List<AgriSoil> getSoils() {
+		return this.soils.stream()
+                .map(AgriCore.getSoils()::getSoil)
+                .filter(TypeHelper::isNonNull)
+                .collect(Collectors.toList());
 	}
 
 	public List<Object> getBases() {
