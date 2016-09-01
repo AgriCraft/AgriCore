@@ -21,12 +21,16 @@
   "products": {
     "products": [
       {
-        "item": "wheat",
-        "meta": 0,
         "min": 5,
         "max": 5,
         "chance": 500.0,
-        "required": true
+        "required": true,
+        "item": "wheat",
+        "meta": 0,
+        "tags": "",
+        "ignoreMeta": false,
+        "ignoreTags": false,
+        "useOreDict": false
       }
     ]
   },

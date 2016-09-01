@@ -3,6 +3,13 @@
   "id": "dirt_soil",
   "name": "Dirt",
   "varients": [
-    "minecraft:dirt"
+    {
+      "item": "minecraft:stone",
+      "meta": 0,
+      "tags": "",
+      "ignoreMeta": false,
+      "ignoreTags": false,
+      "useOreDict": false
+    }
   ]
 }

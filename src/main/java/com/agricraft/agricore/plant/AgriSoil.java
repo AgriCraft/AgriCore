@@ -19,15 +19,15 @@ public class AgriSoil implements AgriSerializable {
 
     private final String id;
     private final String name;
-    private final List<String> varients;
+    private final List<AgriStack> varients;
 
     public AgriSoil() {
         this.id = "dirt_soil";
         this.name = "Dirt";
-        this.varients = TypeHelper.asList("minecraft:dirt");
+        this.varients = TypeHelper.asList(new AgriStack());
     }
 
-    public AgriSoil(String id, String name, List<String> varients) {
+    public AgriSoil(String id, String name, List<AgriStack> varients) {
         this.id = id;
         this.name = name;
         this.varients = varients;
@@ -43,14 +43,14 @@ public class AgriSoil implements AgriSerializable {
 
     public List<Object> getVarients() {
         return this.varients.stream()
-                .map(AgriCore.getConverter()::toStack)
+                .map(t -> t.toStack())
                 .filter(TypeHelper::isNonNull)
                 .collect(Collectors.toList());
     }
 
     public boolean validate() {
         this.varients.removeIf(block -> {
-            if (!AgriCore.getValidator().isValidBlock(block)) {
+            if (!block.validate()) {
                 AgriCore.getCoreLogger().info("Invalid Soil Varient: {0}! Removing!", block);
                 return true;
             } else {

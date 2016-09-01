@@ -62,7 +62,7 @@ public class AgriProductList {
 		sb.append("\nProduct List:\n");
 		sb.append("\t- Products: ");
 		this.products.forEach((e) -> {
-			sb.append(e.toString().replaceAll("\n", "\n\t"));
+			sb.append("\n\t\t- ").append(e.toString().replaceAll("\n", "\n\t\t").trim());
 		});
 		return sb.toString();
 	}

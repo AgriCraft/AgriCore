@@ -11,13 +11,8 @@ import com.agricraft.agricore.util.AgriConverter;
 public class AgriDefaultConverter implements AgriConverter {
 
 	@Override
-	public Object toStack(String element) {
-		return String.format("Stack: { Element: '%s' }", element);
-	}
-
-	@Override
-	public Object toStack(String element, int amount, int meta) {
-		return String.format("Stack: { Element: '%s', Amount: %d, Meta: %d }", element, amount, meta);
+	public Object toStack(String element, int meta, int amount, String tags) {
+		return String.format("Stack: { Element: '%s', Meta: %d, Amount: %d, Tags: '%s' }", element, meta, amount, tags);
 	}
 
 }
