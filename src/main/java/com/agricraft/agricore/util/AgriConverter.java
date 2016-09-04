@@ -18,9 +18,9 @@ public interface AgriConverter {
     }
 
     default Object toStack(String element, int meta, int amount) {
-        return this.toStack(element, meta, amount, "");
+        return this.toStack(element, meta, amount, "", false, false, false);
     }
-
-    Object toStack(String element, int meta, int amount, String tags);
+    
+    Object toStack(String element, int meta, int amount, String tags, boolean ignoreMeta, boolean ignoreTags, boolean useOreDict);
 
 }

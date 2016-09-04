@@ -51,7 +51,7 @@ public class AgriSoil implements AgriSerializable {
     public boolean validate() {
         this.varients.removeIf(block -> {
             if (!block.validate()) {
-                AgriCore.getCoreLogger().info("Invalid Soil Varient: {0}! Removing!", block);
+                AgriCore.getCoreLogger().info("Invalid Soil Varient: {0}\nRemoving!", block);
                 return true;
             } else {
                 return false;

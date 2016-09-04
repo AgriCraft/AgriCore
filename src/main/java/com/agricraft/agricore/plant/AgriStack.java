@@ -22,7 +22,7 @@ public class AgriStack {
     protected final boolean useOreDict;
 
     public AgriStack() {
-        this.item = "minecraft:stone";
+        this.item = "minecraft:dirt";
         this.meta = 0;
         this.tags = "";
         this.ignoreMeta = false;
@@ -68,7 +68,7 @@ public class AgriStack {
     }
     
     public Object toStack(int amount) {
-        return AgriCore.getConverter().toStack(item, meta, amount, tags);
+        return AgriCore.getConverter().toStack(item, meta, amount, tags, ignoreMeta, ignoreTags, useOreDict);
     }
     
     public boolean validate() {

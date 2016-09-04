@@ -76,5 +76,13 @@ public class TypeHelper {
 	public static boolean isNonNull(Object obj) {
 		return obj != null;
 	}
+    
+    public static <T> T typeCast(Object obj, Class<T> type) {
+        if (type.isAssignableFrom(obj.getClass())) {
+            return type.cast(obj);
+        } else {
+            return null;
+        }
+    }
 	
 }
