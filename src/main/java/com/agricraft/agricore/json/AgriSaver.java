@@ -26,7 +26,9 @@ public class AgriSaver {
 	}
 
 	public static void saveElements(Path location, List<? extends AgriSerializable> objects) {
+        //AgriCore.getCoreLogger().debug("Saving AgriSerializables To: {0}!", location);
 		objects.forEach(obj -> saveElement(location, obj));
+        //AgriCore.getCoreLogger().debug("Finished Saving AgriSerializables To: {0}!", location);
 	}
 
 	public static void saveElement(Path location, AgriSerializable obj) {

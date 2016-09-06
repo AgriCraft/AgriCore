@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  *
@@ -70,5 +71,25 @@ public class AgriPlants implements AgriLoadableRegistry<AgriPlant> {
 	public void clearElements() {
 		this.plants.clear();
 	}
+
+    @Override
+    public int hashCode() {
+        return this.plants.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final AgriPlants other = (AgriPlants) obj;
+        return this.plants.equals(other.plants);
+    }
 
 }

@@ -6,6 +6,7 @@ import com.agricraft.agricore.plant.AgriMutation;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -102,5 +103,25 @@ public class AgriMutations implements AgriLoadableRegistry<AgriMutation> {
 	public void clearElements() {
 		this.mutations.clear();
 	}
+
+    @Override
+    public int hashCode() {
+        return this.mutations.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final AgriMutations other = (AgriMutations) obj;
+        return this.mutations.equals(other.mutations);
+    }
 
 }
