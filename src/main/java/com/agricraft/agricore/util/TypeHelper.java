@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -77,11 +78,11 @@ public class TypeHelper {
 		return obj != null;
 	}
     
-    public static <T> T typeCast(Object obj, Class<T> type) {
+    public static <T> Optional<T> cast(Object obj, Class<T> type) {
         if (type.isAssignableFrom(obj.getClass())) {
-            return type.cast(obj);
+            return Optional.of(type.cast(obj));
         } else {
-            return null;
+            return Optional.empty();
         }
     }
 	
