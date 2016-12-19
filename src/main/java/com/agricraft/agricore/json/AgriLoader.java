@@ -20,66 +20,66 @@ import java.util.stream.Stream;
  * @author RlonRyan
  */
 public final class AgriLoader {
-	
-	private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
-	@AgriConfigurable(key = "Enable JSON Writeback", category = AgriConfigCategory.CORE, comment = "Set to false to disable automatic JSON writeback.")
-	private static boolean writeback = true;
-	
-	static {
-		AgriCore.getConfig().addConfigurable(AgriLoader.class);
-	}
-	
-	private AgriLoader() {
-	}
+    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
-	public static void loadDirectory(Path dir, AgriLoadableRegistry... registries) {
-		try (Stream<Path> stream = Files.walk(dir)) {
-			stream.forEach(p -> handleFile(dir, p, registries));
-		} catch (IOException e) {
-			AgriCore.getCoreLogger().debug("Unable to load directory: \"{0}\"!", dir);
-		}
-	}
+    @AgriConfigurable(key = "Enable JSON Writeback", category = AgriConfigCategory.CORE, comment = "Set to false to disable automatic JSON writeback.")
+    private static boolean writeback = true;
 
-	private static void handleFile(final Path root, Path location, AgriLoadableRegistry... registries) {
-		for (AgriLoadableRegistry r : registries) {
-			if (r.acceptsElement(location.getFileName().toString())) {
-				loadElement(root, location, r);
-			}
-		}
-	}
+    static {
+        AgriCore.getConfig().addConfigurable(AgriLoader.class);
+    }
 
-	private static <T extends AgriSerializable> void loadElement(Path root, Path location, AgriLoadableRegistry<T> registry) {
+    private AgriLoader() {
+    }
 
-		// The Element
-		T obj;
+    public static void loadDirectory(Path dir, AgriLoadableRegistry... registries) {
+        try (Stream<Path> stream = Files.walk(dir)) {
+            stream.forEach(p -> handleFile(dir, p, registries));
+        } catch (IOException e) {
+            AgriCore.getCoreLogger().debug("Unable to load directory: \"{0}\"!", dir);
+        }
+    }
 
-		// Ensure File Exists
-		if (!Files.exists(location)) {
-			AgriCore.getCoreLogger().warn("Tried to load non-existant File: \"{0}\"!", location);
-			return;
-		}
+    private static void handleFile(final Path root, Path location, AgriLoadableRegistry... registries) {
+        for (AgriLoadableRegistry r : registries) {
+            if (r.acceptsElement(location.getFileName().toString())) {
+                loadElement(root, location, r);
+            }
+        }
+    }
 
-		// Attempt to load element.
-		// If fails, return.
-		try (Reader reader = Files.newBufferedReader(location)) {
-			obj = GSON.fromJson(reader, registry.getElementClass());
-			obj.setPath(root.relativize(location).toString().replaceAll("\\\\", "/"));
-		} catch (IOException | JsonParseException e) {
-			AgriCore.getCoreLogger().warn("Unable to load Element: \"{0}\"!", location);
-			AgriCore.getCoreLogger().trace(e);
-			return;
-		}
+    private static <T extends AgriSerializable> void loadElement(Path root, Path location, AgriLoadableRegistry<T> registry) {
 
-		// Writeback, to keep file formatted.
-		// If fails, ignore.
-		if (writeback) {
-			AgriSaver.saveElement(location, obj);
-		}
+        // The Element
+        T obj;
 
-		// Register the Element.
-		registry.registerElement(obj);
+        // Ensure File Exists
+        if (!Files.exists(location)) {
+            AgriCore.getCoreLogger().warn("Tried to load non-existant File: \"{0}\"!", location);
+            return;
+        }
 
-	}
+        // Attempt to load element.
+        // If fails, return.
+        try (Reader reader = Files.newBufferedReader(location)) {
+            obj = GSON.fromJson(reader, registry.getElementClass());
+            obj.setPath(root.relativize(location).toString().replaceAll("\\\\", "/"));
+        } catch (IOException | JsonParseException e) {
+            AgriCore.getCoreLogger().warn("Unable to load Element: \"{0}\"!", location);
+            AgriCore.getCoreLogger().trace(e);
+            return;
+        }
+
+        // Writeback, to keep file formatted.
+        // If fails, ignore.
+        if (writeback) {
+            AgriSaver.saveElement(location, obj);
+        }
+
+        // Register the Element.
+        registry.registerElement(obj);
+
+    }
 
 }

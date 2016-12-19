@@ -10,6 +10,6 @@ package com.agricraft.agricore.config;
  */
 public interface AgriConfigurableInstance {
 
-	String resolve(String input);
+    String resolve(String input);
 
 }

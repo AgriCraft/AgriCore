@@ -13,34 +13,34 @@ import java.util.ResourceBundle;
  */
 public class AgriDefaultTranslator implements AgriTranslationAdapter {
 
-	private Locale locale;
-	private ResourceBundle messages;
+    private Locale locale;
+    private ResourceBundle messages;
 
-	public AgriDefaultTranslator() {
-		setLocale(new Locale("EN", "US"));
-	}
+    public AgriDefaultTranslator() {
+        setLocale(new Locale("EN", "US"));
+    }
 
-	public final void setLocale(Locale locale) {
-		try {
-			this.locale = locale;
-			this.messages = ResourceBundle.getBundle("com.agricraft.agricore.localization.dictionary", locale);
-		} catch (MissingResourceException e) {
-			// Do nothing.
-		}
-	}
+    public final void setLocale(Locale locale) {
+        try {
+            this.locale = locale;
+            this.messages = ResourceBundle.getBundle("com.agricraft.agricore.localization.dictionary", locale);
+        } catch (MissingResourceException e) {
+            // Do nothing.
+        }
+    }
 
-	@Override
-	public String translateKey(String key) {
-		try {
-			return this.messages.getString(key);
-		} catch (NullPointerException | MissingResourceException e) {
-			return key;
-		}
-	}
+    @Override
+    public String translateKey(String key) {
+        try {
+            return this.messages.getString(key);
+        } catch (NullPointerException | MissingResourceException e) {
+            return key;
+        }
+    }
 
-	@Override
-	public String getLocale() {
-		return this.locale.toString();
-	}
+    @Override
+    public String getLocale() {
+        return this.locale.toString();
+    }
 
 }

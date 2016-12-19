@@ -16,14 +16,14 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 public @interface AgriConfigurable {
 
-	AgriConfigCategory category();
+    AgriConfigCategory category();
 
-	String key();
+    String key();
 
-	String comment();
-	
-	String min() default "0";
-	
-	String max() default "1";
+    String comment();
+
+    String min() default "0";
+
+    String max() default "1";
 
 }

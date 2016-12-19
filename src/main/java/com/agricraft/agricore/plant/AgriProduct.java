@@ -27,7 +27,7 @@ public class AgriProduct extends AgriStack {
         this.chance = 0.99;
         this.required = true;
     }
-    
+
     public AgriProduct(String item, int meta, int min, int max, double chance, boolean required, String... ignoreTags) {
         this(item, meta, min, max, chance, required, Arrays.asList(ignoreTags));
     }

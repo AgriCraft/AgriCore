@@ -9,13 +9,13 @@ package com.agricraft.agricore.json;
  * @author RlonRyan
  */
 public interface AgriSerializable {
-	
-	boolean isEnabled();
-	
-	String getPath();
-	
-	void setEnabled(boolean enabled);
-	
-	void setPath(String path);
+
+    boolean isEnabled();
+
+    String getPath();
+
+    void setEnabled(boolean enabled);
+
+    void setPath(String path);
 
 }

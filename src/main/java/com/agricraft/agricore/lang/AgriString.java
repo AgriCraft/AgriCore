@@ -12,25 +12,25 @@ import java.util.Map;
  * @author RlonRyan
  */
 public class AgriString {
-	
-	private final Map<String, String> translations;
-	
-	@SerializedName(value = "default", alternate = {"normal"})
-	private final String normal;
 
-	public AgriString() {
-		this.translations = new HashMap<>();
-		this.normal = "Testing 1, 2, 3.";
-	}
+    private final Map<String, String> translations;
 
-	public AgriString(String value) {
-		this.translations = new HashMap<>(0);
-		this.normal = value;
-	}
+    @SerializedName(value = "default", alternate = {"normal"})
+    private final String normal;
 
-	@Override
-	public String toString() {
-		return this.translations.getOrDefault(AgriCore.getTranslator().getLocale(), normal);
-	}
-	
+    public AgriString() {
+        this.translations = new HashMap<>();
+        this.normal = "Testing 1, 2, 3.";
+    }
+
+    public AgriString(String value) {
+        this.translations = new HashMap<>(0);
+        this.normal = value;
+    }
+
+    @Override
+    public String toString() {
+        return this.translations.getOrDefault(AgriCore.getTranslator().getLocale(), normal);
+    }
+
 }
