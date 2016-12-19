@@ -3,6 +3,9 @@
 package com.agricraft.agricore.plant;
 
 import com.agricraft.agricore.core.AgriCore;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  *
@@ -17,7 +20,7 @@ public class AgriStack {
     
     protected final boolean ignoreMeta;
     
-    protected final boolean ignoreTags;
+    protected final List<String> ignoreTags;
     
     protected final boolean useOreDict;
 
@@ -26,11 +29,15 @@ public class AgriStack {
         this.meta = 0;
         this.tags = "";
         this.ignoreMeta = false;
-        this.ignoreTags = false;
+        this.ignoreTags = new ArrayList<>();
         this.useOreDict = false;
     }
+    
+    public AgriStack(String item, int meta, String tags, boolean ignoreMeta, boolean useOreDict, String... ignoreTags) {
+        this(item, meta, tags, ignoreMeta, useOreDict, Arrays.asList(ignoreTags));
+    }
 
-    public AgriStack(String item, int meta, String tags, boolean ignoreMeta, boolean ignoreTags, boolean useOreDict) {
+    public AgriStack(String item, int meta, String tags, boolean ignoreMeta, boolean useOreDict, List<String> ignoreTags) {
         this.item = item;
         this.meta = meta;
         this.tags = tags;
@@ -50,13 +57,13 @@ public class AgriStack {
     public String getTags() {
         return tags;
     }
+    
+    public List<String> getIgnoreTags() {
+        return ignoreTags;
+    }
 
     public boolean isIgnoreMeta() {
         return ignoreMeta;
-    }
-
-    public boolean isIgnoreTags() {
-        return ignoreTags;
     }
 
     public boolean isUseOreDict() {
@@ -68,7 +75,7 @@ public class AgriStack {
     }
     
     public Object toStack(int amount) {
-        return AgriCore.getConverter().toStack(item, meta, amount, tags, ignoreMeta, ignoreTags, useOreDict);
+        return AgriCore.getConverter().toStack(item, meta, amount, tags, ignoreMeta, useOreDict, ignoreTags);
     }
     
     public boolean validate() {

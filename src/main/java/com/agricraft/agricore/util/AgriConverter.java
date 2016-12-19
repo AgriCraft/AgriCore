@@ -2,6 +2,9 @@
  */
 package com.agricraft.agricore.util;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  *
  * @author RlonRyan
@@ -18,9 +21,13 @@ public interface AgriConverter {
     }
 
     default Object toStack(String element, int meta, int amount) {
-        return this.toStack(element, meta, amount, "", false, false, false);
+        return this.toStack(element, meta, amount, "", false, false);
     }
     
-    Object toStack(String element, int meta, int amount, String tags, boolean ignoreMeta, boolean ignoreTags, boolean useOreDict);
+    default Object toStack(String element, int meta, int amount, String tags, boolean ignoreMeta, boolean useOreDict, String... ignoreTags) {
+        return this.toStack(element, meta, amount, tags, ignoreMeta, useOreDict, Arrays.asList(ignoreTags));
+    }
+    
+    Object toStack(String element, int meta, int amount, String tags, boolean ignoreMeta, boolean useOreDict, List<String> ignoreTags);
 
 }
