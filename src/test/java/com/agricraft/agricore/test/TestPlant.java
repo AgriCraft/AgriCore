@@ -9,6 +9,7 @@ import com.agricraft.agricore.plant.AgriProduct;
 import com.agricraft.agricore.plant.AgriProductList;
 import com.agricraft.agricore.plant.AgriRenderType;
 import com.agricraft.agricore.plant.AgriRequirement;
+import com.agricraft.agricore.plant.AgriStack;
 import com.agricraft.agricore.plant.AgriTexture;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -43,6 +44,9 @@ public class TestPlant {
 
         // Setup Product
         AgriProduct item = new AgriProduct("wheat", 0, 1, 3, .5, true);
+        
+        // Setup Seed
+        AgriStack seed = new AgriStack("minecraft:wheat_seeds", 0, "", true, true, true);
 
         // Setup Products
         List<AgriProduct> items = new ArrayList<>();
@@ -60,7 +64,7 @@ public class TestPlant {
         AgriTexture texture = new AgriTexture(AgriRenderType.CROSS, "seed_wheat", new String[0]);
 
         // Setup Plant
-        plant = new AgriPlant("wheat_plant", "Wheat", "Wheat Seeds", Arrays.asList("minecraft:wheat_seeds"), new AgriString("Wheat, the gluten that founded human society."), false, 1, 1.0, false, false, 0.1, 0, products, requirement, texture, "default/wheat_plant.json", true);
+        plant = new AgriPlant("wheat_plant", "Wheat", "Wheat Seeds", Arrays.asList(seed), new AgriString("Wheat, the gluten that founded human society."), false, 1, 1.0, false, false, 0.1, 0, products, requirement, texture, "default/wheat_plant.json", true);
     }
 
     @BeforeClass

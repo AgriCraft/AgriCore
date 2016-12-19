@@ -5,6 +5,7 @@ package com.agricraft.agricore.plant;
 import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.json.AgriSerializable;
 import com.agricraft.agricore.lang.AgriString;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -22,7 +23,7 @@ public class AgriPlant implements AgriSerializable {
     private final String id;
     private final String plant_name;
     private final String seed_name;
-    private final List<String> seed_items;
+    private final List<AgriStack> seed_items;
     private final AgriString description;
 
     private final double growth_chance;
@@ -44,7 +45,7 @@ public class AgriPlant implements AgriSerializable {
         this.id = "weed_plant";
         this.plant_name = "Weed";
         this.seed_name = "Weed Seeds";
-        this.seed_items = Arrays.asList("agricraft:agri_seed");
+        this.seed_items = new ArrayList<>();
         this.description = new AgriString("An annoying plant.");
         this.bonemeal = true;
         this.tier = 1;
@@ -58,7 +59,7 @@ public class AgriPlant implements AgriSerializable {
         this.texture = new AgriTexture();
     }
 
-    public AgriPlant(String id, String plant_name, String seed_name, List<String> seed_items, AgriString description, boolean bonemeal, int tier, double growth_chance, boolean weedable, boolean agressive, double spread_chance, double spawn_chance, AgriProductList products, AgriRequirement requirement, AgriTexture texture, String path, boolean enabled) {
+    public AgriPlant(String id, String plant_name, String seed_name, List<AgriStack> seed_items, AgriString description, boolean bonemeal, int tier, double growth_chance, boolean weedable, boolean agressive, double spread_chance, double spawn_chance, AgriProductList products, AgriRequirement requirement, AgriTexture texture, String path, boolean enabled) {
         this.enabled = enabled;
         this.path = path;
         this.id = id;
@@ -90,7 +91,7 @@ public class AgriPlant implements AgriSerializable {
         return seed_name;
     }
 
-    public Collection<String> getSeedItems() {
+    public Collection<AgriStack> getSeedItems() {
         return seed_items;
     }
 
@@ -161,7 +162,7 @@ public class AgriPlant implements AgriSerializable {
             AgriCore.getCoreLogger().debug("Invalid Plant: {0}! Invalid Texture!", id);
             return false;
         }
-        this.seed_items.removeIf(s -> !AgriCore.getValidator().isValidItem(s));
+        this.seed_items.removeIf(s -> !s.validate());
         return true;
     }
 
