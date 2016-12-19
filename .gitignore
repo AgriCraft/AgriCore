@@ -32,4 +32,6 @@ $RECYCLE.BIN/
 
 # Mac Junk
 .DS_Store
-config/agricraft/agricraft.config
+
+# Ignore Auto-generated Configuration Files
+[Cc]onfig/**
