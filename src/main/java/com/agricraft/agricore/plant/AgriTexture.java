@@ -57,17 +57,11 @@ public class AgriTexture {
     public String getSeedTexture() {
         return seed_texture;
     }
+    
+    public int getGrowthStages() {
+        return plant_textures.length;
+    }
 
-//	public int[] getSeedColor() {
-//		return Arrays.copyOf(seed_color, seed_color.length);
-//	}
-//
-//	public int getSeedColorRGB() {
-//		int res = (seed_color[2] & 0b11111111);
-//		res |= (seed_color[1] & 0b11111111) << 8;
-//		res |= (seed_color[0] & 0b11111111) << 16;
-//		return res;
-//	}
     public List<String> getAllTextures() {
         final List<String> tex = new ArrayList<>(plant_textures.length + 1);
         tex.addAll(Arrays.asList(plant_textures));
@@ -101,11 +95,8 @@ public class AgriTexture {
     public String toString() {
         StringBuilder sb = new StringBuilder().append("Icon Set:\n");
         sb.append("\t- Seed Texture: ").append(this.seed_texture).append("\n");
-        sb.append("\t- Seed Color:\n");
-//		sb.append("\t\t- Red:   ").append(seed_color[0]).append("\n");
-//		sb.append("\t\t- Green: ").append(seed_color[1]).append("\n");
-//		sb.append("\t\t- Blue:  ").append(seed_color[2]).append("\n");
         sb.append("\t- Render Type: ").append(this.render_type).append("\n");
+        sb.append("\t- Supported Number of Growth Stages:").append(this.plant_textures.length).append("\n");
         sb.append("\t- Plant Textures:\n");
         for (int i = 0; i < this.plant_textures.length; i++) {
             sb.append("\t\t- ").append(i).append(" : ").append(this.plant_textures[i]).append("\n");

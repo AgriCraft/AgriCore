@@ -93,6 +93,10 @@ public class AgriPlant implements AgriSerializable {
     public Collection<AgriStack> getSeedItems() {
         return seed_items;
     }
+    
+    public int getGrowthStages() {
+        return texture.getGrowthStages();
+    }
 
     public AgriString getDescription() {
         return description;
