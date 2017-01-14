@@ -4,11 +4,11 @@ package com.agricraft.agricore.core;
 
 import com.agricraft.agricore.config.AgriConfig;
 import com.agricraft.agricore.config.AgriConfigAdapter;
-import com.agricraft.agricore.defaults.AgriDefaultConfig;
 import com.agricraft.agricore.defaults.AgriDefaultConverter;
 import com.agricraft.agricore.defaults.AgriDefaultLog;
 import com.agricraft.agricore.defaults.AgriDefaultTranslator;
 import com.agricraft.agricore.defaults.AgriDefaultValidator;
+import com.agricraft.agricore.defaults.AgriDefaultConfig;
 import com.agricraft.agricore.lang.AgriTranslationAdapter;
 import com.agricraft.agricore.lang.AgriTranslator;
 import com.agricraft.agricore.log.AgriLogAdapter;
@@ -19,7 +19,6 @@ import com.agricraft.agricore.registry.AgriPlants;
 import com.agricraft.agricore.registry.AgriSoils;
 import com.agricraft.agricore.util.AgriConverter;
 import com.agricraft.agricore.util.AgriValidator;
-import java.nio.file.Paths;
 
 /**
  *
@@ -47,13 +46,14 @@ public final class AgriCore {
     }
 
     static {
-        AgriCore.init(
-                new AgriDefaultLog(),
-                new AgriDefaultTranslator(),
-                new AgriDefaultValidator(),
-                new AgriDefaultConverter(),
-                new AgriDefaultConfig(Paths.get("config", "AgriCore", "agricore.config"))
-        );
+        AgriCore.logManager = new AgriLogManager(new AgriDefaultLog());
+        AgriCore.translator = new AgriTranslator(new AgriDefaultTranslator());
+        AgriCore.config = new AgriConfig(new AgriDefaultConfig());
+        AgriCore.validator = new AgriDefaultValidator();
+        AgriCore.converter = new AgriDefaultConverter();
+        AgriCore.plants = new AgriPlants();
+        AgriCore.mutations = new AgriMutations();
+        AgriCore.soils = new AgriSoils();
     }
 
     public static void init(

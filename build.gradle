@@ -10,5 +10,5 @@ repositories {
 dependencies {
 	compile 'org.reflections:reflections:0.9.10'
 	compile 'com.google.code.gson:gson:2.6.2'
-  testCompile 'junit:junit:4.12'
+    testCompile 'junit:junit:4.12'
 }
