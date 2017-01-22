@@ -13,5 +13,7 @@ public interface AgriValidator {
     boolean isValidItem(final String item);
 
     boolean isValidTexture(final String texture);
+    
+    boolean isValidMod(final String modid);
 
 }

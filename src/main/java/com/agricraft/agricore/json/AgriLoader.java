@@ -13,7 +13,6 @@ import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.stream.Stream;
 
 /**
  *
@@ -21,10 +20,10 @@ import java.util.stream.Stream;
  */
 public final class AgriLoader {
 
-    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
+    public static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
     @AgriConfigurable(key = "Enable JSON Writeback", category = AgriConfigCategory.CORE, comment = "Set to false to disable automatic JSON writeback.")
-    private static boolean writeback = true;
+    public static boolean writeback = true;
 
     static {
         AgriCore.getConfig().addConfigurable(AgriLoader.class);
@@ -34,22 +33,14 @@ public final class AgriLoader {
     }
 
     public static void loadDirectory(Path dir, AgriLoadableRegistry... registries) {
-        try (Stream<Path> stream = Files.walk(dir)) {
-            stream.forEach(p -> handleFile(dir, p, registries));
+        try {
+            Files.walkFileTree(dir, new AgriFileWalker(dir, registries));
         } catch (IOException e) {
             AgriCore.getCoreLogger().debug("Unable to load directory: \"{0}\"!", dir);
         }
     }
 
-    private static void handleFile(final Path root, Path location, AgriLoadableRegistry... registries) {
-        for (AgriLoadableRegistry r : registries) {
-            if (r.acceptsElement(location.getFileName().toString())) {
-                loadElement(root, location, r);
-            }
-        }
-    }
-
-    private static <T extends AgriSerializable> void loadElement(Path root, Path location, AgriLoadableRegistry<T> registry) {
+    protected static <T extends AgriSerializable> void loadElement(Path root, Path location, AgriLoadableRegistry<T> registry) {
 
         // The Element
         T obj;

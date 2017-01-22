@@ -41,4 +41,14 @@ public class AgriDefaultValidator implements AgriValidator {
         return true;
     }
 
+    @Override
+    public boolean isValidMod(String modid) {
+        if (modid == null) {
+            AgriCore.getCoreLogger().warn("Null Mod Id!");
+            return false;
+        }
+        AgriCore.getCoreLogger().warn("Faking valid result for modid: " + modid + "!");
+        return true;
+    }
+
 }
