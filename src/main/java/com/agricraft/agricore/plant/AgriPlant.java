@@ -16,8 +16,9 @@ import java.util.Random;
  */
 public class AgriPlant implements AgriSerializable {
 
-    private boolean enabled;
     private String path;
+    
+    private final boolean enabled;
 
     private final String id;
     private final String plant_name;
@@ -93,7 +94,7 @@ public class AgriPlant implements AgriSerializable {
     public Collection<AgriStack> getSeedItems() {
         return seed_items;
     }
-    
+
     public int getGrowthStages() {
         return texture.getGrowthStages();
     }
@@ -155,7 +156,10 @@ public class AgriPlant implements AgriSerializable {
     }
 
     public boolean validate() {
-        if (!this.requirement.validate()) {
+        if (!this.enabled) {
+            AgriCore.getCoreLogger().debug("Disabled Plant: {0}!", id);
+            return false;
+        } else if (!this.requirement.validate()) {
             AgriCore.getCoreLogger().debug("Invalid Plant: {0}! Invalid Requirement!", id);
             return false;
         } else if (!this.products.validate()) {
@@ -190,11 +194,6 @@ public class AgriPlant implements AgriSerializable {
     @Override
     public String getPath() {
         return this.path;
-    }
-
-    @Override
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
     }
 
     @Override

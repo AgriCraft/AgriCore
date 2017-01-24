@@ -14,8 +14,6 @@ public interface AgriSerializable {
 
     String getPath();
 
-    void setEnabled(boolean enabled);
-
     void setPath(String path);
 
 }

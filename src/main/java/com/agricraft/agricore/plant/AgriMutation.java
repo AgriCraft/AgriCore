@@ -12,8 +12,9 @@ import java.util.Random;
  */
 public class AgriMutation implements AgriSerializable {
 
-    private boolean enabled;
     private String path;
+    
+    private final boolean enabled;
 
     private final double chance;
 
@@ -69,7 +70,10 @@ public class AgriMutation implements AgriSerializable {
     }
 
     public boolean validate() {
-        if (!AgriCore.getPlants().hasPlant(child)) {
+        if (!this.enabled) {
+            AgriCore.getCoreLogger().info("Disabled Mutation: {0}", this);
+            return false;
+        } else if (!AgriCore.getPlants().hasPlant(child)) {
             AgriCore.getCoreLogger().info("Invalid Mutation: Invalid Child: \"{0}\"!\n{1}", child, this);
             return false;
         } else if (!AgriCore.getPlants().hasPlant(parent1)) {
@@ -102,11 +106,6 @@ public class AgriMutation implements AgriSerializable {
     @Override
     public String getPath() {
         return this.path;
-    }
-
-    @Override
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
     }
 
     @Override

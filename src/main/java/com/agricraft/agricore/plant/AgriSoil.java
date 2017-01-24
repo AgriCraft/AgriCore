@@ -14,20 +14,23 @@ import java.util.stream.Collectors;
  */
 public class AgriSoil implements AgriSerializable {
 
-    private boolean enabled;
     private String path;
+    
+    private final boolean enabled;
 
     private final String id;
     private final String name;
     private final List<AgriStack> varients;
 
     public AgriSoil() {
+        this.enabled = true;
         this.id = "dirt_soil";
         this.name = "Dirt";
         this.varients = TypeHelper.asList(new AgriStack());
     }
 
     public AgriSoil(String id, String name, List<AgriStack> varients) {
+        this.enabled = true;
         this.id = id;
         this.name = name;
         this.varients = varients;
@@ -80,11 +83,6 @@ public class AgriSoil implements AgriSerializable {
     @Override
     public String getPath() {
         return this.path;
-    }
-
-    @Override
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
     }
 
     @Override
