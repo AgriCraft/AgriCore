@@ -3,9 +3,9 @@
 package com.agricraft.agricore.registry;
 
 import com.agricraft.agricore.plant.AgriPlant;
-import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -32,8 +32,8 @@ public class AgriPlants implements AgriLoadableRegistry<AgriPlant> {
         return this.plants.get(id);
     }
 
-    public List<AgriPlant> getAll() {
-        return new ArrayList<>(this.plants.values());
+    public Collection<AgriPlant> getAll() {
+        return Collections.unmodifiableCollection(this.plants.values());
     }
 
     public void validate() {

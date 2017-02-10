@@ -62,9 +62,12 @@ public class TestPlant {
 
         // Setup Icon
         AgriTexture texture = new AgriTexture(AgriRenderType.CROSS, "seed_wheat", new String[0]);
+        
+        // Setup Description
+        AgriString description = new AgriString("Wheat, the gluten that founded human society.");
 
         // Setup Plant
-        plant = new AgriPlant("wheat_plant", "Wheat", "Wheat Seeds", Arrays.asList(seed), new AgriString("Wheat, the gluten that founded human society."), false, 1, 1.0, false, false, 0.1, 0, products, requirement, texture, "default/wheat_plant.json", true);
+        plant = new AgriPlant("wheat_plant", "Wheat", "Wheat Seeds", Arrays.asList(seed), description, false, 1, 1.0, false, false, 0.1, 0, 0, products, requirement, texture, "default/wheat_plant.json", true);
     }
 
     @BeforeClass

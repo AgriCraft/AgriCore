@@ -34,6 +34,7 @@ public class AgriPlant implements AgriSerializable {
     private final boolean aggressive;
     private final double spread_chance;
     private final double spawn_chance;
+    private final double grass_drop_chance;
 
     private final AgriProductList products;
     private final AgriRequirement requirement;
@@ -54,12 +55,13 @@ public class AgriPlant implements AgriSerializable {
         this.aggressive = false;
         this.spread_chance = 0.1;
         this.spawn_chance = 0;
+        this.grass_drop_chance = 0.0;
         this.products = new AgriProductList();
         this.requirement = new AgriRequirement();
         this.texture = new AgriTexture();
     }
 
-    public AgriPlant(String id, String plant_name, String seed_name, List<AgriStack> seed_items, AgriString description, boolean bonemeal, int tier, double growth_chance, boolean weedable, boolean agressive, double spread_chance, double spawn_chance, AgriProductList products, AgriRequirement requirement, AgriTexture texture, String path, boolean enabled) {
+    public AgriPlant(String id, String plant_name, String seed_name, List<AgriStack> seed_items, AgriString description, boolean bonemeal, int tier, double growth_chance, boolean weedable, boolean agressive, double spread_chance, double spawn_chance, double grass_drop_chance, AgriProductList products, AgriRequirement requirement, AgriTexture texture, String path, boolean enabled) {
         this.enabled = enabled;
         this.path = path;
         this.id = id;
@@ -74,6 +76,7 @@ public class AgriPlant implements AgriSerializable {
         this.aggressive = agressive;
         this.spread_chance = spread_chance;
         this.spawn_chance = spawn_chance;
+        this.grass_drop_chance = grass_drop_chance;
         this.products = products;
         this.requirement = requirement;
         this.texture = texture;
@@ -143,6 +146,10 @@ public class AgriPlant implements AgriSerializable {
         return growth_chance;
     }
 
+    public double getGrassDropChance() {
+        return grass_drop_chance;
+    }
+
     public boolean shouldSpawn(Random rand) {
         return spawn_chance > rand.nextDouble();
     }
@@ -152,6 +159,10 @@ public class AgriPlant implements AgriSerializable {
     }
 
     public boolean shouldGrow(Random rand) {
+        return growth_chance > rand.nextDouble();
+    }
+    
+    public boolean shouldGrassDrop(Random rand) {
         return growth_chance > rand.nextDouble();
     }
 

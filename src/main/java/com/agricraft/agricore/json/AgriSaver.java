@@ -11,6 +11,7 @@ import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -25,7 +26,7 @@ public class AgriSaver {
         saveElements(location, TypeHelper.asList(objects));
     }
 
-    public static void saveElements(Path location, List<? extends AgriSerializable> objects) {
+    public static void saveElements(Path location, Collection<? extends AgriSerializable> objects) {
         //AgriCore.getCoreLogger().debug("Saving AgriSerializables To: {0}!", location);
         objects.forEach(obj -> saveElement(location, obj));
         //AgriCore.getCoreLogger().debug("Finished Saving AgriSerializables To: {0}!", location);

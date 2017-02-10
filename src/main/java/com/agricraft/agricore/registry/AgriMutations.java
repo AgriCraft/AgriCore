@@ -4,6 +4,8 @@ package com.agricraft.agricore.registry;
 
 import com.agricraft.agricore.plant.AgriMutation;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -66,8 +68,8 @@ public class AgriMutations implements AgriLoadableRegistry<AgriMutation> {
         return results;
     }
 
-    public List<AgriMutation> getAll() {
-        return new ArrayList<>(this.mutations);
+    public Collection<AgriMutation> getAll() {
+        return Collections.unmodifiableCollection(this.mutations);
     }
 
     public void validate() {
