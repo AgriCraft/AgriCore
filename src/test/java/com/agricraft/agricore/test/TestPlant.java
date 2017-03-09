@@ -46,7 +46,7 @@ public class TestPlant {
         AgriProduct item = new AgriProduct("wheat", 0, 1, 3, .5, true);
         
         // Setup Seed
-        AgriStack seed = new AgriStack("minecraft:wheat_seeds", 0, "", true, true, "*");
+        AgriStack seed = new AgriStack("minecraft:wheat_seeds", 0, true, true, "", "*");
 
         // Setup Products
         List<AgriProduct> items = new ArrayList<>();

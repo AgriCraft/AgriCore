@@ -56,20 +56,17 @@ public class AgriRequirement {
     }
 
     public List<Object> getBases() {
-        List<Object> res = new ArrayList<>(this.bases.size());
-        bases.forEach((b) -> {
-            Object stack = AgriCore.getConverter().toStack(b);
-            if (stack != null) {
-                res.add(stack);
-            }
-        });
-        return res;
+        return bases.stream()
+                .map(AgriStack::fromString)
+                .map(AgriStack::toStack)
+                .filter(TypeHelper::isNonNull)
+                .collect(Collectors.toList());
     }
 
     public Map<Object, Integer> getNearby() {
         Map<Object, Integer> res = new HashMap<>();
         nearby.forEach((block, dist) -> {
-            Object stack = AgriCore.getConverter().toStack(block);
+            Object stack = AgriStack.fromString(block).toStack();
             if (stack != null) {
                 res.put(stack, dist);
             }

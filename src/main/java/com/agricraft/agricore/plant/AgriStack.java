@@ -3,6 +3,7 @@
 package com.agricraft.agricore.plant;
 
 import com.agricraft.agricore.core.AgriCore;
+import com.agricraft.agricore.util.MathHelper;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -25,19 +26,30 @@ public class AgriStack {
     protected final boolean useOreDict;
 
     public AgriStack() {
-        this.item = "minecraft:dirt";
-        this.meta = 0;
-        this.tags = "";
-        this.ignoreMeta = false;
-        this.ignoreTags = new ArrayList<>();
-        this.useOreDict = false;
+        this("minecraft:dirt");
+    }
+    
+    public AgriStack(String item) {
+        this(item, 0, true);
+    }
+    
+    public AgriStack(String item, int meta) {
+        this(item, meta, false);
+    }
+    
+    public AgriStack(String item, int meta, boolean ignoreMeta) {
+        this(item, meta, ignoreMeta, false);
+    }
+    
+    public AgriStack(String item, int meta, boolean ignoreMeta, boolean useOreDict) {
+        this(item, meta, ignoreMeta, useOreDict, "");
     }
 
-    public AgriStack(String item, int meta, String tags, boolean ignoreMeta, boolean useOreDict, String... ignoreTags) {
-        this(item, meta, tags, ignoreMeta, useOreDict, Arrays.asList(ignoreTags));
+    public AgriStack(String item, int meta, boolean ignoreMeta, boolean useOreDict, String tags, String... ignoreTags) {
+        this(item, meta, ignoreMeta, useOreDict, tags, Arrays.asList(ignoreTags));
     }
 
-    public AgriStack(String item, int meta, String tags, boolean ignoreMeta, boolean useOreDict, List<String> ignoreTags) {
+    public AgriStack(String item, int meta, boolean ignoreMeta, boolean useOreDict, String tags, List<String> ignoreTags) {
         this.item = item;
         this.meta = meta;
         this.tags = tags;
@@ -93,6 +105,16 @@ public class AgriStack {
         sb.append("\n\t- IgnoreTags: ").append(ignoreTags);
         sb.append("\n\t- UseOreDict: ").append(useOreDict);
         return sb.toString();
+    }
+    
+    public static final AgriStack fromString(String s) {
+        final String[] parts = s.split(":");
+        switch(parts.length) {
+            case 3:
+                return new AgriStack(parts[0] + ":" + parts[1], MathHelper.parseIntOr(parts[2], 0));
+            default:
+                return new AgriStack(s);
+        }
     }
 
 }

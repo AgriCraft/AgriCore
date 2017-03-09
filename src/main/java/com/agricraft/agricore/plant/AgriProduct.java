@@ -33,7 +33,7 @@ public class AgriProduct extends AgriStack {
     }
 
     public AgriProduct(String item, int meta, int min, int max, double chance, boolean required, List<String> ignoreTags) {
-        super(item, meta, "", false, false, ignoreTags);
+        super(item, meta, false, false, "", ignoreTags);
         this.min = min;
         this.max = max;
         this.chance = chance;
