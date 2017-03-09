@@ -27,6 +27,7 @@ public class AgriPlant implements AgriSerializable {
     private final AgriString description;
 
     private final double growth_chance;
+    private final double growth_bonus;
     private final boolean bonemeal;
     private final int tier;
 
@@ -51,6 +52,7 @@ public class AgriPlant implements AgriSerializable {
         this.bonemeal = true;
         this.tier = 1;
         this.growth_chance = 0.9;
+        this.growth_bonus = 0.025;
         this.weedable = false;
         this.aggressive = false;
         this.spread_chance = 0.1;
@@ -61,7 +63,7 @@ public class AgriPlant implements AgriSerializable {
         this.texture = new AgriTexture();
     }
 
-    public AgriPlant(String id, String plant_name, String seed_name, List<AgriStack> seed_items, AgriString description, boolean bonemeal, int tier, double growth_chance, boolean weedable, boolean agressive, double spread_chance, double spawn_chance, double grass_drop_chance, AgriProductList products, AgriRequirement requirement, AgriTexture texture, String path, boolean enabled) {
+    public AgriPlant(String id, String plant_name, String seed_name, List<AgriStack> seed_items, AgriString description, boolean bonemeal, int tier, double growth_chance, double growth_bonus, boolean weedable, boolean agressive, double spread_chance, double spawn_chance, double grass_drop_chance, AgriProductList products, AgriRequirement requirement, AgriTexture texture, String path, boolean enabled) {
         this.enabled = enabled;
         this.path = path;
         this.id = id;
@@ -72,6 +74,7 @@ public class AgriPlant implements AgriSerializable {
         this.bonemeal = bonemeal;
         this.tier = tier;
         this.growth_chance = growth_chance;
+        this.growth_bonus = growth_bonus;
         this.weedable = weedable;
         this.aggressive = agressive;
         this.spread_chance = spread_chance;
@@ -144,6 +147,10 @@ public class AgriPlant implements AgriSerializable {
 
     public double getGrowthChance() {
         return growth_chance;
+    }
+
+    public double getGrowthBonus() {
+        return growth_bonus;
     }
 
     public double getGrassDropChance() {
