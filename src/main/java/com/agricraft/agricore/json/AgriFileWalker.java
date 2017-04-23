@@ -64,11 +64,23 @@ public class AgriFileWalker extends SimpleFileVisitor<Path> {
         Objects.requireNonNull(file);
         Objects.requireNonNull(attrs);
 
+        // Boolean Marker to Detect Skipped JSON Files.
+        boolean wasAccepted = false;
+
         // Load Registries
         for (AgriLoadableRegistry r : registries) {
             if (r.acceptsElement(file.getFileName().toString())) {
                 AgriLoader.loadElement(root, file, r);
+                wasAccepted = true;
             }
+        }
+
+        // If the file was not accepted, give the user a warning.
+        if (!wasAccepted && file.getFileName().toString().toLowerCase().endsWith(".json")) {
+            AgriCore.getCoreLogger().info(
+                    "Found a JSON file that was not accepted by any loader! Perhaps it has the wrong name?\n{0}",
+                    file
+            );
         }
 
         return FileVisitResult.CONTINUE;
