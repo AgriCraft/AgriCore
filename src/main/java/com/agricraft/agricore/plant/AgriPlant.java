@@ -36,6 +36,8 @@ public class AgriPlant implements AgriSerializable {
     private final double spread_chance;
     private final double spawn_chance;
     private final double grass_drop_chance;
+    private final double seed_drop_chance;
+    private final double seed_drop_bonus;
 
     private final AgriProductList products;
     private final AgriRequirement requirement;
@@ -58,12 +60,14 @@ public class AgriPlant implements AgriSerializable {
         this.spread_chance = 0.1;
         this.spawn_chance = 0;
         this.grass_drop_chance = 0.0;
+        this.seed_drop_chance = 1.0;
+        this.seed_drop_bonus = 0.0;
         this.products = new AgriProductList();
         this.requirement = new AgriRequirement();
         this.texture = new AgriTexture();
     }
 
-    public AgriPlant(String id, String plant_name, String seed_name, List<AgriStack> seed_items, AgriString description, boolean bonemeal, int tier, double growth_chance, double growth_bonus, boolean weedable, boolean agressive, double spread_chance, double spawn_chance, double grass_drop_chance, AgriProductList products, AgriRequirement requirement, AgriTexture texture, String path, boolean enabled) {
+    public AgriPlant(String id, String plant_name, String seed_name, List<AgriStack> seed_items, AgriString description, boolean bonemeal, int tier, double growth_chance, double growth_bonus, boolean weedable, boolean agressive, double spread_chance, double spawn_chance, double grass_drop_chance, double seed_drop_chance, double seed_drop_bonus, AgriProductList products, AgriRequirement requirement, AgriTexture texture, String path, boolean enabled) {
         this.enabled = enabled;
         this.path = path;
         this.id = id;
@@ -80,6 +84,8 @@ public class AgriPlant implements AgriSerializable {
         this.spread_chance = spread_chance;
         this.spawn_chance = spawn_chance;
         this.grass_drop_chance = grass_drop_chance;
+        this.seed_drop_chance = seed_drop_chance;
+        this.seed_drop_bonus = seed_drop_bonus;
         this.products = products;
         this.requirement = requirement;
         this.texture = texture;
@@ -156,21 +162,13 @@ public class AgriPlant implements AgriSerializable {
     public double getGrassDropChance() {
         return grass_drop_chance;
     }
-
-    public boolean shouldSpawn(Random rand) {
-        return spawn_chance > rand.nextDouble();
-    }
-
-    public boolean shouldSpread(Random rand) {
-        return spread_chance > rand.nextDouble();
-    }
-
-    public boolean shouldGrow(Random rand) {
-        return growth_chance > rand.nextDouble();
+    
+    public double getSeedDropChance() {
+        return seed_drop_chance;
     }
     
-    public boolean shouldGrassDrop(Random rand) {
-        return growth_chance > rand.nextDouble();
+    public double getSeedDropBonus() {
+        return seed_drop_bonus;
     }
 
     public boolean validate() {
@@ -199,6 +197,10 @@ public class AgriPlant implements AgriSerializable {
         sb.append("\t- Seed Name: ").append(seed_name).append("\n");
         sb.append("\t- Bonemeal: ").append(bonemeal).append("\n");
         sb.append("\t- Growth Chance: ").append(growth_chance).append("\n");
+        sb.append("\t- Growth Bonus: ").append(growth_bonus).append("\n");
+        sb.append("\t- Seed Drop Chance: ").append(seed_drop_chance).append("\n");
+        sb.append("\t- Seed Drop Bonus: ").append(seed_drop_bonus).append("\n");
+        sb.append("\t- Grass Drop Chance: ").append(grass_drop_chance).append("\n");
         sb.append("\t- ").append(products.toString().replaceAll("\n", "\n\t").trim()).append("\n");
         sb.append("\t- ").append(requirement.toString().replaceAll("\n", "\n\t").trim()).append("\n");
         return sb.toString();

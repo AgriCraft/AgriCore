@@ -65,7 +65,7 @@ public class TestPlant {
 		AgriString description = new AgriString("Wheat, the gluten that founded human society.");
 
 		// Setup Plant
-		plant = new AgriPlant("wheat_plant", "Wheat", "Wheat Seeds", Arrays.asList(seed), description, false, 1, 1.0, 0.01, false, false, 0.1, 0, 0, products, requirement, texture, "default/wheat_plant.json", true);
+		plant = new AgriPlant("wheat_plant", "Wheat", "Wheat Seeds", Arrays.asList(seed), description, false, 1, 1.0, 0.01, false, false, 0.1, 0, 0, 1, 0, products, requirement, texture, "default/wheat_plant.json", true);
 	}
 
 	@BeforeClass
