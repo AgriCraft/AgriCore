@@ -56,7 +56,10 @@ public final class AgriLoader {
         try (Reader reader = Files.newBufferedReader(location)) {
             obj = GSON.fromJson(reader, registry.getElementClass());
             obj.setPath(root.relativize(location).toString().replaceAll("\\\\", "/"));
-        } catch (IOException | JsonParseException e) {
+        } catch (IOException | JsonParseException | NullPointerException e) {
+            // IOException is thrown when unable to read file.
+            // JsonParseExeption is thrown when JSON format is wrong.
+            // NullPointerException is thrown when the file is empty.
             AgriCore.getCoreLogger().warn("Unable to load Element: \"{0}\"!", location);
             AgriCore.getCoreLogger().trace(e);
             return;
