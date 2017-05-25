@@ -56,6 +56,18 @@ public class AgriProduct extends AgriStack {
         }
     }
 
+    public int getMin() {
+        return min;
+    }
+
+    public int getMax() {
+        return max;
+    }
+
+    public double getChance() {
+        return chance;
+    }
+
     public boolean isRequired() {
         return required;
     }
