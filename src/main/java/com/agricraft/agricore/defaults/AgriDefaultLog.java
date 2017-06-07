@@ -12,7 +12,7 @@ import java.util.logging.Logger;
  */
 public class AgriDefaultLog implements AgriLogAdapter {
 
-    public static final Logger logger = Logger.getLogger("AgriCore");
+    public static final Logger logger = Logger.getLogger("agricore");
 
     public void log(Level level, String format, Object... objects) {
         logger.log((Level) level, format, objects);

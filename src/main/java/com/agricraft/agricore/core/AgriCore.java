@@ -90,7 +90,7 @@ public final class AgriCore {
     }
 
     public static AgriLogger getCoreLogger() {
-        return getLogger("AgriCore");
+        return getLogger("agricore");
     }
 
     public static AgriLogger getLogger(Object source) {

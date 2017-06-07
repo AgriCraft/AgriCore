@@ -6,6 +6,7 @@ import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.json.AgriSerializable;
 import com.agricraft.agricore.util.TypeHelper;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -44,10 +45,11 @@ public class AgriSoil implements AgriSerializable {
         return name;
     }
 
-    public List<Object> getVarients() {
+    public <T> List<T> getVarients(Class<T> token) {
         return this.varients.stream()
-                .map(t -> t.toStack())
-                .filter(TypeHelper::isNonNull)
+                .map(t -> t.toStack(token))
+                .filter(Optional::isPresent)
+                .map(Optional::get)
                 .collect(Collectors.toList());
     }
 

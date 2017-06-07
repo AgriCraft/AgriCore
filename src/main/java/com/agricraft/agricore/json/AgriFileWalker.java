@@ -19,10 +19,10 @@ public class AgriFileWalker extends SimpleFileVisitor<Path> {
 
     public static final String MOD_PREFIX = "mod_";
 
-    private final AgriLoadableRegistry[] registries;
+    private final AgriLoadableRegistry<? extends AgriSerializable>[] registries;
     private final Path root;
 
-    public AgriFileWalker(Path root, AgriLoadableRegistry... registries) {
+    public AgriFileWalker(Path root, AgriLoadableRegistry<? extends AgriSerializable>... registries) {
         this.root = Objects.requireNonNull(root);
         this.registries = Objects.requireNonNull(registries);
     }
@@ -68,7 +68,7 @@ public class AgriFileWalker extends SimpleFileVisitor<Path> {
         boolean wasAccepted = false;
 
         // Load Registries
-        for (AgriLoadableRegistry r : registries) {
+        for (AgriLoadableRegistry<? extends AgriSerializable> r : registries) {
             if (r.acceptsElement(file.getFileName().toString())) {
                 AgriLoader.loadElement(root, file, r);
                 wasAccepted = true;

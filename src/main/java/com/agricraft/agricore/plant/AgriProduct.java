@@ -5,6 +5,7 @@ package com.agricraft.agricore.plant;
 import com.agricraft.agricore.core.AgriCore;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 /**
@@ -80,8 +81,8 @@ public class AgriProduct extends AgriStack {
         return min + rand.nextInt(max - min + 1);
     }
 
-    public Object toStack(Random rand) {
-        return this.toStack(this.getAmount(rand));
+    public <T> Optional<T> toStack(Class<T> token, Random rand) {
+        return this.toStack(token, this.getAmount(rand));
     }
 
     @Override

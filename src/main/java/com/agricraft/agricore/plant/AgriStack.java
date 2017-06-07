@@ -4,9 +4,9 @@ package com.agricraft.agricore.plant;
 
 import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.util.MathHelper;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 /**
  *
@@ -82,12 +82,12 @@ public class AgriStack {
         return useOreDict;
     }
 
-    public Object toStack() {
-        return this.toStack(1);
+    public <T> Optional<T> toStack(Class<T> token) {
+        return this.toStack(token, 1);
     }
 
-    public Object toStack(int amount) {
-        return AgriCore.getConverter().toStack(item, meta, amount, tags, ignoreMeta, useOreDict, ignoreTags);
+    public <T> Optional<T> toStack(Class<T> token, int amount) {
+        return AgriCore.getConverter().toStack(token, item, meta, amount, tags, ignoreMeta, useOreDict, ignoreTags);
     }
 
     public boolean validate() {

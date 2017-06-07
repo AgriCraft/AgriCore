@@ -10,6 +10,7 @@ import java.util.function.Consumer;
  *
  * @author RlonRyan
  */
+@SuppressWarnings("unchecked")
 public class TypeConsumerMap {
 
     private final Map<Class, Consumer> consumers;

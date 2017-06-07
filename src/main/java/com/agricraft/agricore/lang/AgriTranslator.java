@@ -30,17 +30,17 @@ public class AgriTranslator {
         return condition ? translate(message) : String.valueOf(message);
     }
 
-    public List<String> translate(List message) {
+    public List<String> translate(List<?> message) {
         if (message != null) {
-            List translation = new ArrayList<>(message.size());
-            message.forEach((e) -> translation.add(translate(e)));
+            List<String> translation = new ArrayList<>(message.size());
+            message.forEach(e -> translation.add(translate(e)));
             return translation;
         } else {
             return null;
         }
     }
 
-    public List<String> translateIf(List message, boolean condition) {
+    public List<String> translateIf(List<String> message, boolean condition) {
         return condition ? translate(message) : message;
     }
 

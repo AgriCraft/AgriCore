@@ -18,7 +18,6 @@ public class AgriProductList {
 
     public AgriProductList() {
         this.products = new ArrayList<>();
-        this.products.add(new AgriProduct());
     }
 
     public AgriProductList(List<AgriProduct> products) {
