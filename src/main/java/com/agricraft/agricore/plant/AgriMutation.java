@@ -12,7 +12,7 @@ import java.util.Random;
  */
 public class AgriMutation implements AgriSerializable {
 
-    private String path;
+    private transient String path;
     
     private final boolean enabled;
 
