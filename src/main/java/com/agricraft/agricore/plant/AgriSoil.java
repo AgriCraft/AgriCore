@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
  */
 public class AgriSoil implements AgriSerializable {
 
-    private String path;
+    private transient String path;
     
     private final boolean enabled;
 
