@@ -30,8 +30,8 @@ public class AgriRequirement {
     public AgriRequirement(List<String> soils, List<AgriCondition> conditions, int min_light, int max_light) {
         this.soils = new ArrayList<>(soils);
         this.conditions = conditions;
-        this.min_light = 10;
-        this.max_light = 16;
+        this.min_light = min_light;
+        this.max_light = max_light;
     }
 
     public int getMinLight() {
