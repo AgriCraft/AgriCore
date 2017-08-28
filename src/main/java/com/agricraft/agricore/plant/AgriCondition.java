@@ -6,6 +6,7 @@ import com.agricraft.agricore.core.AgriCore;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  *
@@ -79,6 +80,15 @@ public class AgriCondition extends AgriStack {
 		} else {
 			return true;
 		}
+	}
+
+	/**
+	 * Attempts to create a stack of the desired class, wrapped in an Optional.
+	 * It uses `amount` from this instance for the stack size, instead of 1.
+	 */
+	@Override
+	public <T> Optional<T> toStack(Class<T> token) {
+		return this.toStack(token, amount);
 	}
 
 	@Override
