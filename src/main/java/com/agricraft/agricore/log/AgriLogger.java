@@ -5,7 +5,7 @@ package com.agricraft.agricore.log;
 import com.agricraft.agricore.config.AgriConfigCategory;
 import com.agricraft.agricore.config.AgriConfigurable;
 import com.agricraft.agricore.config.AgriConfigurableInstance;
-import com.agricraft.agricore.core.AgriCore;
+import java.util.Objects;
 
 /**
  *
@@ -34,37 +34,37 @@ public class AgriLogger implements AgriConfigurableInstance {
 
     public void all(Object format, Object... objects) {
         if (this.enabled) {
-            adapter.all(source, AgriCore.getTranslator().translate(format), objects);
+            adapter.all(source, Objects.toString(format), objects);
         }
     }
 
     public void severe(Object format, Object... objects) {
         if (this.enabled) {
-            adapter.severe(source, AgriCore.getTranslator().translate(format), objects);
+            adapter.severe(source, Objects.toString(format), objects);
         }
     }
 
     public void info(Object format, Object... objects) {
         if (this.enabled) {
-            adapter.info(source, AgriCore.getTranslator().translate(format), objects);
+            adapter.info(source, Objects.toString(format), objects);
         }
     }
 
     public void warn(Object format, Object... objects) {
         if (this.enabled) {
-            adapter.warn(source, AgriCore.getTranslator().translate(format), objects);
+            adapter.warn(source, Objects.toString(format), objects);
         }
     }
 
     public void debug(Object format, Object... objects) {
         if (this.enabled) {
-            adapter.debug(source, AgriCore.getTranslator().translate(format), objects);
+            adapter.debug(source, Objects.toString(format), objects);
         }
     }
 
     public void error(Object format, Object... objects) {
         if (this.enabled) {
-            adapter.error(source, AgriCore.getTranslator().translate(format), objects);
+            adapter.error(source, Objects.toString(format), objects);
         }
     }
 
