@@ -46,7 +46,7 @@ public class AgriProduct extends AgriStack {
         if (!super.validate()) {
             AgriCore.getCoreLogger().info("Invalid Product: Invalid Item: {0}!", item);
             return false;
-        } else if (min < 1) {
+        } else if (min < 0) {
             AgriCore.getCoreLogger().info("Invalid Product: Min Amount Less Than One!");
             return false;
         } else if (max < min) {

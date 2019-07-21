@@ -4,7 +4,6 @@ package com.agricraft.agricore.plant;
 
 import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.json.AgriSerializable;
-import com.agricraft.agricore.lang.AgriString;
 import com.agricraft.agricore.util.TypeHelper;
 import java.util.List;
 import java.util.Optional;
@@ -13,32 +12,25 @@ import java.util.stream.Collectors;
 /**
  *
  * @author RlonRyan
- * @modify Yuri
  */
-public class AgriSoil implements AgriSerializable {
+public class AgriSoilOld implements AgriSerializable {
 
     private String path;
+    
     private final boolean enabled;
+
     private final String id;
-    private final AgriString name;
+    private final String name;
     private final List<AgriStack> varients;
 
-    public AgriSoil(AgriSerializable as) {
-        final AgriSoilOld old = (AgriSoilOld) as;
-        this.enabled = old.isEnabled();
-        this.id = old.getId();
-        this.name = new AgriString(old.getName());
-        this.varients = old.getVarients();
-    }
-
-    public AgriSoil() {
+    public AgriSoilOld() {
         this.enabled = true;
         this.id = "dirt_soil";
-        this.name = new AgriString("Dirt");
+        this.name = "Dirt";
         this.varients = TypeHelper.asList(new AgriStack());
     }
 
-    public AgriSoil(String id, AgriString name, List<AgriStack> varients) {
+    public AgriSoilOld(String id, String name, List<AgriStack> varients) {
         this.enabled = true;
         this.id = id;
         this.name = name;
@@ -50,9 +42,13 @@ public class AgriSoil implements AgriSerializable {
     }
 
     public String getName() {
-        return name.getNormal();
+        return name;
     }
 
+    public List<AgriStack> getVarients() {
+        return varients;
+    }
+    
     public <T> List<T> getVarients(Class<T> token) {
         return this.varients.stream()
                 .map(t -> t.toStack(token))

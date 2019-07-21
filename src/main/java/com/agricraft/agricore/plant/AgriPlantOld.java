@@ -8,23 +8,24 @@ import com.agricraft.agricore.lang.AgriString;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Random;
 
 /**
  *
  * @author RlonRyan
- * @modify Yuri
  */
-public class AgriPlant implements AgriSerializable {
+public class AgriPlantOld implements AgriSerializable {
 
     private String path;
-
+    
     private final boolean enabled;
 
     private final String id;
-    private final AgriString plant_name;
-    private final AgriString seed_name;
+    private final String plant_name;
+    private final String seed_name;
     private final List<AgriStack> seed_items;
     private final AgriString description;
+
     private final double growth_chance;
     private final double growth_bonus;
     private final boolean bonemeal;
@@ -42,42 +43,12 @@ public class AgriPlant implements AgriSerializable {
     private final AgriRequirement requirement;
     private final AgriTexture texture;
 
-    public AgriPlant(AgriSerializable as) {
-        final AgriPlantOld old = (AgriPlantOld) as;
-        
-        this.path = old.getPath();
-        this.enabled = old.isEnabled();
-        this.id = old.getId();
-        this.plant_name = new AgriString(old.getPlantName());
-        this.seed_name = new AgriString(old.getSeedName());
-        this.seed_items = old.getSeed_items();
-        if(old.getDescription().getTranslations().isEmpty()){
-            this.description = new AgriString(old.getDescription().getNormal());
-        }else{
-            this.description = old.getDescription();
-        }
-        this.growth_chance = old.getGrowthChance();
-        this.growth_bonus = old.getGrowthBonus();
-        this.bonemeal = old.isBonemeal();
-        this.tier = old.getTier();
-        this.weedable = old.isWeedable();
-        this.aggressive = old.isAggressive();
-        this.spread_chance = old.getSpreadChance();
-        this.spawn_chance = old.getSpawnChance();
-        this.grass_drop_chance = old.getGrassDropChance();
-        this.seed_drop_chance = old.getSeedDropChance();
-        this.seed_drop_bonus = old.getSeedDropBonus();
-        this.products = old.getProducts();
-        this.requirement = old.getRequirement();
-        this.texture = old.getTexture();
-    }
-    
-    public AgriPlant() {
+    public AgriPlantOld() {
         this.enabled = false;
         this.path = "default/weed_plant.json";
         this.id = "weed_plant";
-        this.plant_name = new AgriString("Weed");
-        this.seed_name = new AgriString("Weed Seeds");
+        this.plant_name = "Weed";
+        this.seed_name = "Weed Seeds";
         this.seed_items = new ArrayList<>();
         this.description = new AgriString("An annoying plant.");
         this.bonemeal = true;
@@ -94,9 +65,9 @@ public class AgriPlant implements AgriSerializable {
         this.products = new AgriProductList();
         this.requirement = new AgriRequirement();
         this.texture = new AgriTexture();
-     }
+    }
 
-    public AgriPlant(String id, AgriString plant_name, AgriString seed_name, List<AgriStack> seed_items, AgriString description, boolean bonemeal, int tier, double growth_chance, double growth_bonus, boolean weedable, boolean agressive, double spread_chance, double spawn_chance, double grass_drop_chance, double seed_drop_chance, double seed_drop_bonus, AgriProductList products, AgriRequirement requirement, AgriTexture texture, String path, boolean enabled) {
+    public AgriPlantOld(String id, String plant_name, String seed_name, List<AgriStack> seed_items, AgriString description, boolean bonemeal, int tier, double growth_chance, double growth_bonus, boolean weedable, boolean agressive, double spread_chance, double spawn_chance, double grass_drop_chance, double seed_drop_chance, double seed_drop_bonus, AgriProductList products, AgriRequirement requirement, AgriTexture texture, String path, boolean enabled) {
         this.enabled = enabled;
         this.path = path;
         this.id = id;
@@ -119,17 +90,17 @@ public class AgriPlant implements AgriSerializable {
         this.requirement = requirement;
         this.texture = texture;
     }
-    
+
     public String getId() {
         return id;
     }
 
     public String getPlantName() {
-        return plant_name.toString();
+        return plant_name;
     }
 
     public String getSeedName() {
-        return seed_name.toString();
+        return seed_name;
     }
 
     public Collection<AgriStack> getSeedItems() {
@@ -191,11 +162,11 @@ public class AgriPlant implements AgriSerializable {
     public double getGrassDropChance() {
         return grass_drop_chance;
     }
-
+    
     public double getSeedDropChance() {
         return seed_drop_chance;
     }
-
+    
     public double getSeedDropBonus() {
         return seed_drop_bonus;
     }
@@ -248,6 +219,54 @@ public class AgriPlant implements AgriSerializable {
     @Override
     public void setPath(String path) {
         this.path = path;
+    }
+
+    public String getPlant_name() {
+        return plant_name;
+    }
+
+    public String getSeed_name() {
+        return seed_name;
+    }
+
+    public List<AgriStack> getSeed_items() {
+        return seed_items;
+    }
+
+    public double getGrowth_chance() {
+        return growth_chance;
+    }
+
+    public double getGrowth_bonus() {
+        return growth_bonus;
+    }
+
+    public boolean isBonemeal() {
+        return bonemeal;
+    }
+
+    public boolean isAggressive() {
+        return aggressive;
+    }
+
+    public double getSpread_chance() {
+        return spread_chance;
+    }
+
+    public double getSpawn_chance() {
+        return spawn_chance;
+    }
+
+    public double getGrass_drop_chance() {
+        return grass_drop_chance;
+    }
+
+    public double getSeed_drop_chance() {
+        return seed_drop_chance;
+    }
+
+    public double getSeed_drop_bonus() {
+        return seed_drop_bonus;
     }
 
 }
