@@ -50,7 +50,7 @@ public class AgriSoil implements AgriSerializable {
     }
 
     public String getName() {
-        return name.getNormal();
+        return name.toString();
     }
 
     public <T> List<T> getVarients(Class<T> token) {

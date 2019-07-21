@@ -43,12 +43,12 @@ public final class AgriLoader {
         }
     }
 
-    protected static <T extends AgriSerializable> void ConvertAndBackup(Path location, AgriLoadableRegistry<T> registry) {
+    protected static <T extends AgriSerializable> void ConvertAndBackup(Path location, Class<T> newClass) {
 
         Class[] cArr = {AgriPlant.class, AgriSoil.class};
 
         for (Class c : cArr) {
-            if (c != registry.getElementClass()) {
+            if (c != newClass) {
                 continue;
             }
 
@@ -87,7 +87,7 @@ public final class AgriLoader {
             return;
         }
 
-        ConvertAndBackup(location, registry);
+        ConvertAndBackup(location, registry.getElementClass());
         
         // Attempt to load element.
         // If fails, return.
