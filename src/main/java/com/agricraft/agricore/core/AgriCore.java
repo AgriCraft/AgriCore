@@ -1,5 +1,3 @@
-/*
- */
 package com.agricraft.agricore.core;
 
 import com.agricraft.agricore.config.AgriConfig;
@@ -20,10 +18,6 @@ import com.agricraft.agricore.registry.AgriSoils;
 import com.agricraft.agricore.util.AgriConverter;
 import com.agricraft.agricore.util.AgriValidator;
 
-/**
- *
- * @author RlonRyan
- */
 public final class AgriCore {
 
     private static AgriLogManager logManager;

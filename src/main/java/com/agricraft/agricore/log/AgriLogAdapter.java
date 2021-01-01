@@ -1,11 +1,5 @@
-/*
- */
 package com.agricraft.agricore.log;
 
-/**
- *
- * @author RlonRyan
- */
 public interface AgriLogAdapter {
 
     void all(Object Source, String format, Object... object);

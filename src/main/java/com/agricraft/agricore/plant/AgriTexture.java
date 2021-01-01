@@ -1,5 +1,3 @@
-/*
- */
 package com.agricraft.agricore.plant;
 
 import com.agricraft.agricore.core.AgriCore;
@@ -7,10 +5,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- *
- * @author RlonRyan
- */
 public class AgriTexture {
 
     private AgriRenderType render_type = AgriRenderType.HASH;

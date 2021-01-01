@@ -1,5 +1,3 @@
-/*
- */
 package com.agricraft.agricore.lang;
 
 import com.agricraft.agricore.core.AgriCore;
@@ -7,10 +5,6 @@ import com.google.gson.annotations.SerializedName;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- *
- * @author RlonRyan
- */
 public class AgriString {
 
     private final Map<String, String> translations;

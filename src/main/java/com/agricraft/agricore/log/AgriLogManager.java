@@ -1,15 +1,9 @@
-/*
- */
 package com.agricraft.agricore.log;
 
 import com.agricraft.agricore.core.AgriCore;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- *
- * @author RlonRyan
- */
 public class AgriLogManager {
 
     private final AgriLogAdapter adapter;

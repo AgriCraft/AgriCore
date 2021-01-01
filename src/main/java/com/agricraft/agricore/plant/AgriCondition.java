@@ -1,17 +1,10 @@
-/*
- */
 package com.agricraft.agricore.plant;
 
 import com.agricraft.agricore.core.AgriCore;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
-/**
- *
- * @author Ryan
- */
 public class AgriCondition extends AgriStack {
 
 	protected final int amount;
@@ -33,12 +26,12 @@ public class AgriCondition extends AgriStack {
 		this.max_z = 0;
 	}
 
-	public AgriCondition(int amount, int min_x, int min_y, int min_z, int max_x, int max_y, int max_z, String item, int meta, boolean ignoreMeta, boolean useOreDict, String tags, String... ignoreTags) {
-		this(amount, min_x, min_y, min_z, max_x, max_y, max_z, item, meta, ignoreMeta, useOreDict, tags, Arrays.asList(ignoreTags));
+	public AgriCondition(int amount, int min_x, int min_y, int min_z, int max_x, int max_y, int max_z, String item, boolean useOreDict, String tags, String... ignoreTags) {
+		this(amount, min_x, min_y, min_z, max_x, max_y, max_z, item, useOreDict, tags, Arrays.asList(ignoreTags));
 	}
 
-	public AgriCondition(int amount, int min_x, int min_y, int min_z, int max_x, int max_y, int max_z, String item, int meta, boolean ignoreMeta, boolean useOreDict, String tags, List<String> ignoreTags) {
-		super(item, meta, ignoreMeta, useOreDict, tags, ignoreTags);
+	public AgriCondition(int amount, int min_x, int min_y, int min_z, int max_x, int max_y, int max_z, String item, boolean useOreDict, String tags, List<String> ignoreTags) {
+		super(item, useOreDict, tags, ignoreTags);
 		this.amount = amount;
 		this.min_x = min_x;
 		this.min_y = min_y;

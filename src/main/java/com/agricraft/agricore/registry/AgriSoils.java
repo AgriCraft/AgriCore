@@ -1,5 +1,3 @@
-/*
- */
 package com.agricraft.agricore.registry;
 
 import com.agricraft.agricore.plant.AgriSoil;
@@ -8,10 +6,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- *
- * @author RlonRyan
- */
 public class AgriSoils implements AgriLoadableRegistry<AgriSoil> {
 
     private final Map<String, AgriSoil> soils;

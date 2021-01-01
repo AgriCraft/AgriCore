@@ -1,14 +1,8 @@
-/*
- */
 package com.agricraft.agricore.defaults;
 
 import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.util.AgriValidator;
 
-/**
- *
- * @author RlonRyan
- */
 public class AgriDefaultValidator implements AgriValidator {
 
     @Override

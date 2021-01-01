@@ -1,5 +1,3 @@
-/*
- */
 package com.agricraft.agricore.json;
 
 import com.agricraft.agricore.config.AgriConfigCategory;
@@ -14,10 +12,6 @@ import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-/**
- *
- * @author RlonRyan
- */
 public final class AgriLoader {
 
     public static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
@@ -40,7 +34,7 @@ public final class AgriLoader {
         }
     }
 
-    protected static <T extends AgriSerializable> void loadElement(Path root, Path location, AgriLoadableRegistry<T> registry) {
+    protected static <T extends AgriSerializable & Comparable<T>> void loadElement(Path root, Path location, AgriLoadableRegistry<T> registry) {
 
         // The Element
         T obj;

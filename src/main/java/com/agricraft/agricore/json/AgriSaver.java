@@ -1,5 +1,3 @@
-/*
- */
 package com.agricraft.agricore.json;
 
 import com.agricraft.agricore.core.AgriCore;
@@ -14,10 +12,6 @@ import java.nio.file.StandardOpenOption;
 import java.util.Collection;
 import java.util.List;
 
-/**
- *
- * @author RlonRyan
- */
 public class AgriSaver {
 
     private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();

@@ -1,5 +1,3 @@
-/*
- */
 package com.agricraft.agricore.util;
 
 import java.lang.reflect.Array;
@@ -12,8 +10,6 @@ import java.util.Set;
 
 /**
  * A class to help with using types.
- *
- * @author RlonRyan
  */
 public class TypeHelper {
 

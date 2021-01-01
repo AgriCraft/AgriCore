@@ -1,11 +1,5 @@
-/*
- */
 package com.agricraft.agricore.util;
 
-/**
- *
- * @author RlonRyan
- */
 public interface AgriValidator {
 
     boolean isValidBlock(final String block);

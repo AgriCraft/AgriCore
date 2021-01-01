@@ -1,5 +1,3 @@
-/*
- */
 package com.agricraft.agricore.util;
 
 import com.agricraft.agricore.core.AgriCore;
@@ -12,10 +10,6 @@ import java.util.function.Predicate;
 import org.reflections.Reflections;
 import org.reflections.scanners.ResourcesScanner;
 
-/**
- *
- * @author RlonRyan
- */
 public class ResourceHelper {
 
     private static final Reflections REFLECTIONS = new Reflections(null, new ResourcesScanner());

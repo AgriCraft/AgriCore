@@ -1,13 +1,7 @@
-/*
- */
 package com.agricraft.agricore.defaults;
 
 import com.agricraft.agricore.config.AgriConfigAdapter;
 
-/**
- *
- * @author Ryan
- */
 public class AgriDefaultConfig implements AgriConfigAdapter {
 
     @Override

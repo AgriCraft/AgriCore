@@ -1,5 +1,3 @@
-/*
- */
 package com.agricraft.agricore.plant;
 
 import com.agricraft.agricore.core.AgriCore;
@@ -8,10 +6,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
-/**
- *
- * @author RlonRyan
- */
 public class AgriProduct extends AgriStack {
 
     private final int min;
@@ -29,12 +23,12 @@ public class AgriProduct extends AgriStack {
         this.required = true;
     }
 
-    public AgriProduct(String item, int meta, int min, int max, double chance, boolean required, String... ignoreTags) {
-        this(item, meta, min, max, chance, required, Arrays.asList(ignoreTags));
+    public AgriProduct(String item, int min, int max, double chance, boolean required, String... ignoreTags) {
+        this(item, min, max, chance, required, Arrays.asList(ignoreTags));
     }
 
-    public AgriProduct(String item, int meta, int min, int max, double chance, boolean required, List<String> ignoreTags) {
-        super(item, meta, false, false, "", ignoreTags);
+    public AgriProduct(String item, int min, int max, double chance, boolean required, List<String> ignoreTags) {
+        super(item, false, "", ignoreTags);
         this.min = min;
         this.max = max;
         this.chance = chance;

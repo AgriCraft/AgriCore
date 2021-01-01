@@ -1,5 +1,3 @@
-/*
- */
 package com.agricraft.agricore.plant;
 
 import com.agricraft.agricore.core.AgriCore;
@@ -8,10 +6,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
-/**
- *
- * @author RlonRyan
- */
 public class AgriProductList {
 
     private final List<AgriProduct> products;

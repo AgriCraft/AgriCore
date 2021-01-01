@@ -1,5 +1,3 @@
-/*
- */
 package com.agricraft.agricore.plant;
 
 import com.agricraft.agricore.core.AgriCore;
@@ -9,11 +7,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-/**
- *
- * @author RlonRyan
- */
-public class AgriSoil implements AgriSerializable {
+public class AgriSoil implements AgriSerializable, Comparable<AgriSoil> {
 
     private String path;
     
@@ -45,7 +39,7 @@ public class AgriSoil implements AgriSerializable {
         return name;
     }
 
-    public <T> List<T> getVarients(Class<T> token) {
+    public <T> List<T> getVariants(Class<T> token) {
         return this.varients.stream()
                 .map(t -> t.toStack(token))
                 .filter(Optional::isPresent)
@@ -92,4 +86,8 @@ public class AgriSoil implements AgriSerializable {
         this.path = path;
     }
 
+    @Override
+    public int compareTo(AgriSoil o) {
+        return this.id.compareTo(o.id);
+    }
 }

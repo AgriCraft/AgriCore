@@ -1,5 +1,3 @@
-/*
- */
 package com.agricraft.agricore.config;
 
 import com.agricraft.agricore.core.AgriCore;
@@ -11,10 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- *
- * @author RlonRyan
- */
 public class AgriConfig {
 
     private final AgriConfigAdapter provider;

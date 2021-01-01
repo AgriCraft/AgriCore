@@ -1,11 +1,5 @@
-/*
- */
 package com.agricraft.agricore.config;
 
-/**
- *
- * @author RlonRyan
- */
 public interface AgriConfigAdapter {
 
     void load();

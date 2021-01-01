@@ -1,5 +1,3 @@
-/*
- */
 package com.agricraft.agricore.plant;
 
 import com.agricraft.agricore.core.AgriCore;
@@ -8,13 +6,8 @@ import com.agricraft.agricore.lang.AgriString;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Random;
 
-/**
- *
- * @author RlonRyan
- */
-public class AgriPlant implements AgriSerializable {
+public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
 
     private String path;
     
@@ -221,4 +214,8 @@ public class AgriPlant implements AgriSerializable {
         this.path = path;
     }
 
+    @Override
+    public int compareTo(AgriPlant o) {
+        return this.getId().compareTo(o.getId());
+    }
 }

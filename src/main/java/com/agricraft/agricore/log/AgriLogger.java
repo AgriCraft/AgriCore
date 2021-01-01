@@ -1,5 +1,3 @@
-/*
- */
 package com.agricraft.agricore.log;
 
 import com.agricraft.agricore.config.AgriConfigCategory;
@@ -7,10 +5,6 @@ import com.agricraft.agricore.config.AgriConfigurable;
 import com.agricraft.agricore.config.AgriConfigurableInstance;
 import java.util.Objects;
 
-/**
- *
- * @author RlonRyan
- */
 public class AgriLogger implements AgriConfigurableInstance {
 
     private final AgriLogAdapter adapter;

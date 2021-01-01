@@ -1,14 +1,8 @@
-/*
- */
 package com.agricraft.agricore.lang;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author RlonRyan
- */
 public class AgriTranslator {
 
     private final AgriTranslationAdapter adapter;

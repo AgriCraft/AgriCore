@@ -1,5 +1,3 @@
-/*
- */
 package com.agricraft.agricore.util;
 
 import java.util.ArrayDeque;
@@ -8,10 +6,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.annotation.Nonnull;
 
-/**
- *
- * @author Ryan
- */
 public final class StringUtil {
 
 	public static final Pattern TOKENIZER = Pattern.compile("\"([^\"]*)\"|(\\S+)");

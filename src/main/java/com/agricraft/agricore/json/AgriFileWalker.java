@@ -1,5 +1,3 @@
-/*
- */
 package com.agricraft.agricore.json;
 
 import com.agricraft.agricore.core.AgriCore;
@@ -11,10 +9,6 @@ import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Objects;
 
-/**
- *
- * @author Ryan
- */
 public class AgriFileWalker extends SimpleFileVisitor<Path> {
 
     public static final String MOD_PREFIX = "mod_";
