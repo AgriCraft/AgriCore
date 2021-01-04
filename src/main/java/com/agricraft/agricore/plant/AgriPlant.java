@@ -3,7 +3,6 @@ package com.agricraft.agricore.plant;
 import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.json.AgriSerializable;
 import com.agricraft.agricore.lang.AgriString;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -14,8 +13,6 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
     private final boolean enabled;
 
     private final String id;
-    private final String plant_name;
-    private final String seed_name;
     private final List<AgriStack> seed_items;
     private final AgriString description;
 
@@ -36,36 +33,10 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
     private final AgriRequirement requirement;
     private final AgriTexture texture;
 
-    public AgriPlant() {
-        this.enabled = false;
-        this.path = "default/weed_plant.json";
-        this.id = "weed_plant";
-        this.plant_name = "Weed";
-        this.seed_name = "Weed Seeds";
-        this.seed_items = new ArrayList<>();
-        this.description = new AgriString("An annoying plant.");
-        this.bonemeal = true;
-        this.tier = 1;
-        this.growth_chance = 0.9;
-        this.growth_bonus = 0.025;
-        this.weedable = false;
-        this.aggressive = false;
-        this.spread_chance = 0.1;
-        this.spawn_chance = 0;
-        this.grass_drop_chance = 0.0;
-        this.seed_drop_chance = 1.0;
-        this.seed_drop_bonus = 0.0;
-        this.products = new AgriProductList();
-        this.requirement = new AgriRequirement();
-        this.texture = new AgriTexture();
-    }
-
-    public AgriPlant(String id, String plant_name, String seed_name, List<AgriStack> seed_items, AgriString description, boolean bonemeal, int tier, double growth_chance, double growth_bonus, boolean weedable, boolean agressive, double spread_chance, double spawn_chance, double grass_drop_chance, double seed_drop_chance, double seed_drop_bonus, AgriProductList products, AgriRequirement requirement, AgriTexture texture, String path, boolean enabled) {
+    public AgriPlant(String id, List<AgriStack> seed_items, AgriString description, boolean bonemeal, int tier, double growth_chance, double growth_bonus, boolean weedable, boolean agressive, double spread_chance, double spawn_chance, double grass_drop_chance, double seed_drop_chance, double seed_drop_bonus, AgriProductList products, AgriRequirement requirement, AgriTexture texture, String path, boolean enabled) {
         this.enabled = enabled;
         this.path = path;
         this.id = id;
-        this.plant_name = plant_name;
-        this.seed_name = seed_name;
         this.seed_items = seed_items;
         this.description = description;
         this.bonemeal = bonemeal;
@@ -86,14 +57,6 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
 
     public String getId() {
         return id;
-    }
-
-    public String getPlantName() {
-        return plant_name;
-    }
-
-    public String getSeedName() {
-        return seed_name;
     }
 
     public Collection<AgriStack> getSeedItems() {
@@ -186,8 +149,6 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
     public String toString() {
         final StringBuilder sb = new StringBuilder();
         sb.append("\n").append(id).append(":\n");
-        sb.append("\t- Plant Name: ").append(plant_name).append("\n");
-        sb.append("\t- Seed Name: ").append(seed_name).append("\n");
         sb.append("\t- Bonemeal: ").append(bonemeal).append("\n");
         sb.append("\t- Growth Chance: ").append(growth_chance).append("\n");
         sb.append("\t- Growth Bonus: ").append(growth_bonus).append("\n");

@@ -11,7 +11,7 @@ public enum AgriRenderType {
 
     private final char id;
 
-    private AgriRenderType(char id) {
+    AgriRenderType(char id) {
         this.id = id;
     }
 

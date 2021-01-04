@@ -1,16 +1,13 @@
 package com.agricraft.agricore.log;
 
-import com.agricraft.agricore.config.AgriConfigCategory;
-import com.agricraft.agricore.config.AgriConfigurable;
-import com.agricraft.agricore.config.AgriConfigurableInstance;
 import java.util.Objects;
 
-public class AgriLogger implements AgriConfigurableInstance {
+public class AgriLogger {
 
     private final AgriLogAdapter adapter;
     private final Object source;
 
-    @AgriConfigurable(key = "${log} Logging", category = AgriConfigCategory.LOGGING, comment = "Set to true to enable logging on the ${log} channel.")
+    //@AgriConfigurable(key = "${log} Logging", category = AgriConfigCategory.LOGGING, comment = "Set to true to enable logging on the ${log} channel.")
     private boolean enabled = true;
 
     AgriLogger(AgriLogAdapter adapter, Object source) {
@@ -68,9 +65,10 @@ public class AgriLogger implements AgriConfigurableInstance {
         }
     }
 
+    /*
     @Override
     public String resolve(String input) {
         return input.replaceAll("\\$\\{log\\}", String.valueOf(source));
     }
-
+    */
 }

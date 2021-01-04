@@ -1,7 +1,5 @@
 package com.agricraft.agricore.json;
 
-import com.agricraft.agricore.config.AgriConfigCategory;
-import com.agricraft.agricore.config.AgriConfigurable;
 import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.registry.AgriLoadableRegistry;
 import com.google.gson.Gson;
@@ -16,12 +14,14 @@ public final class AgriLoader {
 
     public static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
-    @AgriConfigurable(key = "Enable JSON Writeback", category = AgriConfigCategory.CORE, comment = "Set to false to disable automatic JSON writeback.")
+    //@AgriConfigurable(key = "Enable JSON Writeback", category = AgriConfigCategory.CORE, comment = "Set to false to disable automatic JSON writeback.")
     public static boolean writeback = true;
 
+    /*
     static {
         AgriCore.getConfig().addConfigurable(AgriLoader.class);
     }
+     */
 
     private AgriLoader() {
     }
