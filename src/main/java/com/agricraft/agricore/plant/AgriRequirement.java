@@ -12,7 +12,7 @@ public class AgriRequirement {
     private final int max_light;
 
     private final List<String> soils;
-    private final List<AgriCondition> conditions;
+    private final List<AgriBlockCondition> conditions;
 
     public AgriRequirement() {
         this.min_light = 10;
@@ -21,7 +21,7 @@ public class AgriRequirement {
         this.conditions = new ArrayList<>();
     }
 
-    public AgriRequirement(List<String> soils, List<AgriCondition> conditions, int min_light, int max_light) {
+    public AgriRequirement(List<String> soils, List<AgriBlockCondition> conditions, int min_light, int max_light) {
         this.soils = new ArrayList<>(soils);
         this.conditions = conditions;
         this.min_light = min_light;
@@ -43,7 +43,7 @@ public class AgriRequirement {
                 .collect(Collectors.toList());
     }
 
-    public List<AgriCondition> getConditions() {
+    public List<AgriBlockCondition> getConditions() {
         return new ArrayList<>(this.conditions);
     }
 
@@ -56,7 +56,7 @@ public class AgriRequirement {
                 return false;
             }
         });
-        for (AgriCondition condition : conditions) {
+        for (AgriBlockCondition condition : conditions) {
             if (!condition.validate()) {
                 AgriCore.getCoreLogger().info("Invalid Requirement: Invalid Condition!", condition);
                 return false;

@@ -5,8 +5,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-public class AgriCondition extends AgriStack {
+public class AgriBlockCondition extends AgriStack {
 
+	protected final int strength;
 	protected final int amount;
 	protected final int min_x;
 	protected final int min_y;
@@ -15,8 +16,9 @@ public class AgriCondition extends AgriStack {
 	protected final int max_y;
 	protected final int max_z;
 	
-	public AgriCondition() {
+	public AgriBlockCondition() {
 		super();
+		this.strength = 11;
 		this.amount = 1;
 		this.min_x = 0;
 		this.min_y = -2;
@@ -26,12 +28,15 @@ public class AgriCondition extends AgriStack {
 		this.max_z = 0;
 	}
 
-	public AgriCondition(int amount, int min_x, int min_y, int min_z, int max_x, int max_y, int max_z, String item, boolean useOreDict, String tags, String... ignoreTags) {
-		this(amount, min_x, min_y, min_z, max_x, max_y, max_z, item, useOreDict, tags, Arrays.asList(ignoreTags));
+	public AgriBlockCondition(int strength, int amount, int min_x, int min_y, int min_z, int max_x, int max_y, int max_z,
+							  String item, boolean useOreDict, String tags, String... ignoreTags) {
+		this(strength, amount, min_x, min_y, min_z, max_x, max_y, max_z, item, useOreDict, tags, Arrays.asList(ignoreTags));
 	}
 
-	public AgriCondition(int amount, int min_x, int min_y, int min_z, int max_x, int max_y, int max_z, String item, boolean useOreDict, String tags, List<String> ignoreTags) {
+	public AgriBlockCondition(int strength, int amount, int min_x, int min_y, int min_z, int max_x, int max_y, int max_z,
+							  String item, boolean useOreDict, String tags, List<String> ignoreTags) {
 		super(item, useOreDict, tags, ignoreTags);
+		this.strength = strength;
 		this.amount = amount;
 		this.min_x = min_x;
 		this.min_y = min_y;
@@ -41,28 +46,36 @@ public class AgriCondition extends AgriStack {
 		this.max_z = max_z;
 	}
 
+	public int getStrength() {
+		return this.strength;
+	}
+
+	public int getAmount() {
+		return this.amount;
+	}
+
 	public int getMinX() {
-		return min_x;
+		return this.min_x;
 	}
 
 	public int getMinY() {
-		return min_y;
+		return this.min_y;
 	}
 
 	public int getMinZ() {
-		return min_z;
+		return this.min_z;
 	}
 
 	public int getMaxX() {
-		return max_x;
+		return this.max_x;
 	}
 
 	public int getMaxY() {
-		return max_y;
+		return this.max_y;
 	}
 
 	public int getMaxZ() {
-		return max_z;
+		return this.max_z;
 	}
 
 	@Override

@@ -11,9 +11,9 @@ public class AgriStack {
 
     protected final String tags;
 
-    protected final List<String> ignoreTags;
+    protected final List<String> ignoredTags;
 
-    protected final boolean useOreDict;
+    protected final boolean useTag;
 
     public AgriStack() {
         this("minecraft:dirt");
@@ -23,19 +23,19 @@ public class AgriStack {
         this(item,false);
     }
     
-    public AgriStack(String item, boolean useOreDict) {
-        this(item, useOreDict, "");
+    public AgriStack(String item, boolean useTags) {
+        this(item, useTags, "");
     }
 
-    public AgriStack(String item, boolean useOreDict, String tags, String... ignoreTags) {
-        this(item, useOreDict, tags, Arrays.asList(ignoreTags));
+    public AgriStack(String item, boolean useTags, String tag, String... ignoredTags) {
+        this(item, useTags, tag, Arrays.asList(ignoredTags));
     }
 
-    public AgriStack(String item, boolean useOreDict, String tags, List<String> ignoreTags) {
+    public AgriStack(String item, boolean useTags, String tag, List<String> ignoredTags) {
         this.item = item;
-        this.tags = tags;
-        this.ignoreTags = ignoreTags;
-        this.useOreDict = useOreDict;
+        this.tags = tag;
+        this.ignoredTags = ignoredTags;
+        this.useTag = useTags;
     }
 
     public String getItem() {
@@ -46,12 +46,12 @@ public class AgriStack {
         return tags;
     }
 
-    public List<String> getIgnoreTags() {
-        return ignoreTags;
+    public List<String> getIgnoredTags() {
+        return ignoredTags;
     }
 
-    public boolean isUseOreDict() {
-        return useOreDict;
+    public boolean useTag() {
+        return useTag;
     }
 
     public <T> Optional<T> toStack(Class<T> token) {
@@ -59,7 +59,7 @@ public class AgriStack {
     }
 
     public <T> Optional<T> toStack(Class<T> token, int amount) {
-        return AgriCore.getConverter().toStack(token, item, amount, tags, useOreDict, ignoreTags);
+        return AgriCore.getConverter().toStack(token, item, amount, tags, useTag, ignoredTags);
     }
 
     public boolean validate() {
@@ -72,8 +72,8 @@ public class AgriStack {
         sb.append("\nStack:");
         sb.append("\n\t- Item: ").append(item);
         sb.append("\n\t- Tags: ").append(tags);
-        sb.append("\n\t- IgnoreTags: ").append(ignoreTags);
-        sb.append("\n\t- UseOreDict: ").append(useOreDict);
+        sb.append("\n\t- IgnoreTags: ").append(ignoredTags);
+        sb.append("\n\t- UseOreDict: ").append(useTag);
         return sb.toString();
     }
     
