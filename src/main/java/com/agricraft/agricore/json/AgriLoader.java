@@ -1,6 +1,8 @@
 package com.agricraft.agricore.json;
 
 import com.agricraft.agricore.core.AgriCore;
+import com.agricraft.agricore.plant.AgriPlant;
+import com.agricraft.agricore.plant.AgriSoil;
 import com.agricraft.agricore.registry.AgriLoadableRegistry;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -9,6 +11,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public final class AgriLoader {
 
@@ -34,6 +37,39 @@ public final class AgriLoader {
         }
     }
 
+    protected static <T extends AgriSerializable> void ConvertAndBackup(Path location, Class<T> newClass) {
+
+        Class[] cArr = {AgriPlant.class, AgriSoil.class};
+
+        for (Class c : cArr) {
+            if (c != newClass) {
+                continue;
+            }
+
+            try (Reader reader = Files.newBufferedReader(location)) {
+                Class<?> oldClass = Class.forName(c.getTypeName() + "Old");
+
+                //load old json
+                AgriSerializable oldObject = (AgriSerializable) GSON.fromJson(reader, oldClass);
+                //create backups
+                Path pBackup = Paths.get(location.toString().replaceAll("defaults", "backups"));
+                //save backups json
+                AgriSaver.saveElement(pBackup, oldObject);
+                //convert old json to new json
+                AgriSerializable newObject = (AgriSerializable) c.getConstructor(AgriSerializable.class).newInstance(oldObject);
+                //save new json
+                AgriSaver.saveElement(location, newObject);
+
+                AgriCore.getCoreLogger().info("Backup {0} to {1}.\nSuccessfully converted the {0} from {2} to {3}.",
+                        location.getFileName(), pBackup, oldClass.getSimpleName(), c.getSimpleName());
+            } catch (Exception e) {
+                AgriCore.getCoreLogger().warn("An error occurred while ConvertAndBackup the {0} from {1} to {2}. Maybe the target is already {2}.",
+                        location.getFileName(), c.getTypeName() + "Old", c.getTypeName());
+            }
+
+        }
+    }
+  
     protected static <T extends AgriSerializable & Comparable<T>> void loadElement(Path root, Path location, AgriLoadableRegistry<T> registry) {
 
         // The Element
@@ -45,6 +81,8 @@ public final class AgriLoader {
             return;
         }
 
+        ConvertAndBackup(location, registry.getElementClass());
+        
         // Attempt to load element.
         // If fails, return.
         try (Reader reader = Files.newBufferedReader(location)) {
