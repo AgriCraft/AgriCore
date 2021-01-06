@@ -1,9 +1,7 @@
 package com.agricraft.agricore.core;
 
-import com.agricraft.agricore.defaults.AgriDefaultConverter;
-import com.agricraft.agricore.defaults.AgriDefaultLog;
-import com.agricraft.agricore.defaults.AgriDefaultTranslator;
-import com.agricraft.agricore.defaults.AgriDefaultValidator;
+import com.agricraft.agricore.config.AgriConfigAdapter;
+import com.agricraft.agricore.defaults.*;
 import com.agricraft.agricore.lang.AgriTranslationAdapter;
 import com.agricraft.agricore.lang.AgriTranslator;
 import com.agricraft.agricore.log.AgriLogAdapter;
@@ -31,12 +29,15 @@ public final class AgriCore {
 
     private static AgriSoils soils;
 
+    private static AgriConfigAdapter config;
+
     private AgriCore() {
     }
 
     static {
         AgriCore.logManager = new AgriLogManager(new AgriDefaultLog());
         AgriCore.translator = new AgriTranslator(new AgriDefaultTranslator());
+        AgriCore.config = new AgriDefaultConfig();
         AgriCore.validator = new AgriDefaultValidator();
         AgriCore.converter = new AgriDefaultConverter();
         AgriCore.plants = new AgriPlants();
@@ -48,10 +49,12 @@ public final class AgriCore {
             AgriLogAdapter log,
             AgriTranslationAdapter trans,
             AgriValidator validator,
-            AgriConverter converter
+            AgriConverter converter,
+            AgriConfigAdapter config
     ) {
         AgriCore.logManager = new AgriLogManager(log);
         AgriCore.translator = new AgriTranslator(trans);
+        AgriCore.config = config;
         AgriLogger logger = AgriCore.getCoreLogger();
         logger.info("Initializing core!");
         AgriCore.validator = validator;
@@ -84,6 +87,10 @@ public final class AgriCore {
 
     public static AgriConverter getConverter() {
         return converter;
+    }
+
+    public static AgriConfigAdapter getConfig() {
+        return config;
     }
 
     public static AgriMutations getMutations() {

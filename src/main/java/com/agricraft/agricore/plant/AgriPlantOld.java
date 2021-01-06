@@ -1,5 +1,3 @@
-/*
- */
 package com.agricraft.agricore.plant;
 
 import com.agricraft.agricore.core.AgriCore;
@@ -8,12 +6,7 @@ import com.agricraft.agricore.lang.AgriString;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Random;
 
-/**
- *
- * @author RlonRyan
- */
 public class AgriPlantOld implements AgriSerializable {
 
     private String path;

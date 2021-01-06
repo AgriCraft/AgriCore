@@ -52,14 +52,14 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
         }else{
             this.description = old.getDescription();
         }
+        this.stages = 8;
+        this.harvestStage = 4;
         this.growth_chance = old.getGrowthChance();
         this.growth_bonus = old.getGrowthBonus();
         this.bonemeal = old.isBonemeal();
         this.tier = old.getTier();
-        this.weedable = old.isWeedable();
-        this.aggressive = old.isAggressive();
+        this.cloneable = true;
         this.spread_chance = old.getSpreadChance();
-        this.spawn_chance = old.getSpawnChance();
         this.grass_drop_chance = old.getGrassDropChance();
         this.seed_drop_chance = old.getSeedDropChance();
         this.seed_drop_bonus = old.getSeedDropBonus();
@@ -68,7 +68,7 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
         this.texture = old.getTexture();
     }
 
-    public AgriPlant(String id, List<AgriStack> seed_items, AgriString description, int stages, int harvestStage,
+    public AgriPlant(String id, AgriString plant_name, AgriString seed_name, List<AgriStack> seed_items, AgriString description, int stages, int harvestStage,
                      boolean bonemeal, int tier, double growth_chance, double growth_bonus, boolean cloneable,
                      double spread_chance, double grass_drop_chance, double seed_drop_chance,
                      double seed_drop_bonus, AgriProductList products, AgriRequirement requirement, AgriTexture texture,
@@ -77,6 +77,8 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
         this.enabled = enabled;
         this.path = path;
         this.id = id;
+        this.plant_name = plant_name;
+        this.seed_name = seed_name;
         this.seed_items = seed_items;
         this.description = description;
         this.stages = stages;

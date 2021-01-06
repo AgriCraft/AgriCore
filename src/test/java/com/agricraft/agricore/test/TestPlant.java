@@ -1,5 +1,3 @@
-/*
- */
 package com.agricraft.agricore.test;
 
 import com.agricraft.agricore.core.AgriCore;
@@ -31,10 +29,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-/**
- *
- * @author RlonRyan
- */
 public class TestPlant {
 
     public final AgriPlant plant;
@@ -42,10 +36,10 @@ public class TestPlant {
     public TestPlant() {
 
         // Setup Product
-        AgriProduct item = new AgriProduct("wheat", 0, 1, 3, .5, true);
+        AgriProduct item = new AgriProduct("wheat", 0, 3, .5, true);
 
         // Setup Seed
-        AgriStack seed = new AgriStack("minecraft:wheat_seeds", 0, true, true, "", "*");
+        AgriStack seed = new AgriStack("minecraft:wheat_seeds", false, "", "*");
 
         // Setup Products
         List<AgriProduct> items = new ArrayList<>();
@@ -53,7 +47,7 @@ public class TestPlant {
         AgriProductList products = new AgriProductList(items);
 
         // Setup Condition
-        AgriCondition condition = new AgriBlockCondition(1, 0, -2, 0, 0, -2, 0, "minecraft:stone", 0, true, true, "");
+        AgriBlockCondition condition = new AgriBlockCondition(10, 1, 0, -2, 0, 0, -2, 0, "minecraft:stone", false, "");
 
         // Setup Requirement
         AgriRequirement requirement = new AgriRequirement(Arrays.asList("dirt"), Arrays.asList(condition), 0, 10);
@@ -65,7 +59,8 @@ public class TestPlant {
         AgriString description = new AgriString("Wheat, the gluten that founded human society.");
 
         // Setup Plant
-        plant = new AgriPlant("wheat_plant", new AgriString("Wheat"), new AgriString("Wheat Seeds"), Arrays.asList(seed), description, false, 1, 1.0, 0.01, false, false, 0.1, 0, 0, 1, 0, products, requirement, texture, "default/wheat_plant.json", true);
+        plant = new AgriPlant("wheat_plant", new AgriString("Wheat"), new AgriString("Wheat Seeds"), Arrays.asList(seed), description, 8, 4,
+                true, 1, 1.0, 0.01, false, 0.1, 0, 1, 0, products, requirement, texture, "default/wheat_plant.json", true);
     }
 
     @BeforeClass

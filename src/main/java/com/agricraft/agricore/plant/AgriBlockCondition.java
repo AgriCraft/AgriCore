@@ -29,13 +29,13 @@ public class AgriBlockCondition extends AgriStack {
 	}
 
 	public AgriBlockCondition(int strength, int amount, int min_x, int min_y, int min_z, int max_x, int max_y, int max_z,
-							  String item, boolean useOreDict, String tags, String... ignoreTags) {
-		this(strength, amount, min_x, min_y, min_z, max_x, max_y, max_z, item, useOreDict, tags, Arrays.asList(ignoreTags));
+							  String item, boolean useTag, String tags, String... ignoreTags) {
+		this(strength, amount, min_x, min_y, min_z, max_x, max_y, max_z, item, useTag, tags, Arrays.asList(ignoreTags));
 	}
 
 	public AgriBlockCondition(int strength, int amount, int min_x, int min_y, int min_z, int max_x, int max_y, int max_z,
-							  String item, boolean useOreDict, String tags, List<String> ignoreTags) {
-		super(item, useOreDict, tags, ignoreTags);
+							  String item, boolean useTag, String tags, List<String> ignoreTags) {
+		super(item, useTag, tags, ignoreTags);
 		this.strength = strength;
 		this.amount = amount;
 		this.min_x = min_x;

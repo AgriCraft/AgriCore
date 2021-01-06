@@ -1,5 +1,3 @@
-/*
- */
 package com.agricraft.agricore.test;
 
 import com.agricraft.agricore.core.AgriCore;
@@ -10,10 +8,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-/**
- *
- * @author RlonRyan
- */
 public class TestLogger {
 	
 	public TestLogger() {

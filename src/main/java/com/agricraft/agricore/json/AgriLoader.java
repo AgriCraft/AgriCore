@@ -17,17 +17,11 @@ public final class AgriLoader {
 
     public static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
-    //@AgriConfigurable(key = "Enable JSON Writeback", category = AgriConfigCategory.CORE, comment = "Set to false to disable automatic JSON writeback.")
-    public static boolean writeback = true;
-
-    /*
-    static {
-        AgriCore.getConfig().addConfigurable(AgriLoader.class);
+    public static boolean doWriteBack() {
+        return AgriCore.getConfig().enableJsonWriteback();
     }
-     */
 
-    private AgriLoader() {
-    }
+    private AgriLoader() {}
 
     public static void loadDirectory(Path dir, AgriLoadableRegistry... registries) {
         try {
@@ -99,7 +93,7 @@ public final class AgriLoader {
 
         // Writeback, to keep file formatted.
         // If fails, ignore.
-        if (writeback) {
+        if (doWriteBack()) {
             AgriSaver.saveElement(location, obj);
         }
 
