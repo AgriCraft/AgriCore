@@ -1,13 +1,7 @@
-/*
- */
 package com.agricraft.agricore.plant;
 
 import com.google.gson.annotations.SerializedName;
 
-/**
- *
- * @author RlonRyan
- */
 public enum AgriRenderType {
 
     @SerializedName(value = "hash", alternate = {"HASH", "#"})
@@ -17,7 +11,7 @@ public enum AgriRenderType {
 
     private final char id;
 
-    private AgriRenderType(char id) {
+    AgriRenderType(char id) {
         this.id = id;
     }
 

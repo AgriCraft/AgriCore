@@ -4,7 +4,7 @@ package com.agricraft.agricore.test;
 
 import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.lang.AgriString;
-import com.agricraft.agricore.plant.AgriCondition;
+import com.agricraft.agricore.plant.AgriBlockCondition;
 import com.agricraft.agricore.plant.AgriPlant;
 import com.agricraft.agricore.plant.AgriProduct;
 import com.agricraft.agricore.plant.AgriProductList;
@@ -53,7 +53,7 @@ public class TestPlant {
         AgriProductList products = new AgriProductList(items);
 
         // Setup Condition
-        AgriCondition condition = new AgriCondition(1, 0, -2, 0, 0, -2, 0, "minecraft:stone", 0, true, true, "");
+        AgriCondition condition = new AgriBlockCondition(1, 0, -2, 0, 0, -2, 0, "minecraft:stone", 0, true, true, "");
 
         // Setup Requirement
         AgriRequirement requirement = new AgriRequirement(Arrays.asList("dirt"), Arrays.asList(condition), 0, 10);

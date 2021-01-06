@@ -1,5 +1,3 @@
-/*
- */
 package com.agricraft.agricore.defaults;
 
 import com.agricraft.agricore.lang.AgriTranslationAdapter;
@@ -7,10 +5,6 @@ import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
-/**
- *
- * @author RlonRyan
- */
 public class AgriDefaultTranslator implements AgriTranslationAdapter {
 
     private Locale locale;

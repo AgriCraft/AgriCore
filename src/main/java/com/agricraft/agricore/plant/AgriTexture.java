@@ -1,5 +1,3 @@
-/*
- */
 package com.agricraft.agricore.plant;
 
 import com.agricraft.agricore.core.AgriCore;
@@ -7,10 +5,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- *
- * @author RlonRyan
- */
 public class AgriTexture {
 
     private AgriRenderType render_type = AgriRenderType.HASH;
@@ -36,7 +30,7 @@ public class AgriTexture {
         this.render_type = render_type;
         this.seed_texture = seed_texture;
 
-        System.arraycopy(plant_textures, 0, this.plant_textures, 0, plant_textures.length < this.plant_textures.length ? plant_textures.length : this.plant_textures.length);
+        System.arraycopy(plant_textures, 0, this.plant_textures, 0, Math.min(plant_textures.length, this.plant_textures.length));
 
         // Distribute the textures.
         String last = "NO TEXTURE!";

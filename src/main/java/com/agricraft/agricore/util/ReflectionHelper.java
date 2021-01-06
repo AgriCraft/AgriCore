@@ -1,5 +1,3 @@
-/*
- */
 package com.agricraft.agricore.util;
 
 import com.agricraft.agricore.core.AgriCore;
@@ -11,8 +9,6 @@ import java.util.function.Consumer;
 
 /**
  * A class to aid in the execution of reflection magic.
- *
- * @author RlonRyan
  */
 public class ReflectionHelper {
 

@@ -1,15 +1,9 @@
-/*
- */
 package com.agricraft.agricore.util;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
 
-/**
- *
- * @author RlonRyan
- */
 @SuppressWarnings("unchecked")
 public class TypeConsumerMap {
 

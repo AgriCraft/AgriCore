@@ -1,9 +1,5 @@
-/*
- */
 package com.agricraft.agricore.json;
 
-import com.agricraft.agricore.config.AgriConfigCategory;
-import com.agricraft.agricore.config.AgriConfigurable;
 import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.plant.AgriPlant;
 import com.agricraft.agricore.plant.AgriSoil;
@@ -17,20 +13,18 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-/**
- *
- * @author RlonRyan
- */
 public final class AgriLoader {
 
     public static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
-    @AgriConfigurable(key = "Enable JSON Writeback", category = AgriConfigCategory.CORE, comment = "Set to false to disable automatic JSON writeback.")
+    //@AgriConfigurable(key = "Enable JSON Writeback", category = AgriConfigCategory.CORE, comment = "Set to false to disable automatic JSON writeback.")
     public static boolean writeback = true;
 
+    /*
     static {
         AgriCore.getConfig().addConfigurable(AgriLoader.class);
     }
+     */
 
     private AgriLoader() {
     }
@@ -75,8 +69,8 @@ public final class AgriLoader {
 
         }
     }
-
-    protected static <T extends AgriSerializable> void loadElement(Path root, Path location, AgriLoadableRegistry<T> registry) {
+  
+    protected static <T extends AgriSerializable & Comparable<T>> void loadElement(Path root, Path location, AgriLoadableRegistry<T> registry) {
 
         // The Element
         T obj;

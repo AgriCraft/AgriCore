@@ -1,5 +1,3 @@
-/*
- */
 package com.agricraft.agricore.lang;
 
 import com.agricraft.agricore.core.AgriCore;
@@ -8,11 +6,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
-/**
- *
- * @author RlonRyan
- * @modify Yuri
- */
 public class AgriString {
 
     @SerializedName(value = "default", alternate = {"normal"})

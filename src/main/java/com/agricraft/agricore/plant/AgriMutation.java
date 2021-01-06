@@ -1,16 +1,10 @@
-/*
- */
 package com.agricraft.agricore.plant;
 
 import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.json.AgriSerializable;
 import java.util.Random;
 
-/**
- *
- * @author RlonRyan
- */
-public class AgriMutation implements AgriSerializable {
+public class AgriMutation implements AgriSerializable, Comparable<AgriMutation> {
 
     private String path;
     
@@ -113,4 +107,8 @@ public class AgriMutation implements AgriSerializable {
         this.path = path;
     }
 
+    @Override
+    public int compareTo(AgriMutation o) {
+        return this.getPath().compareTo(o.getPath());
+    }
 }

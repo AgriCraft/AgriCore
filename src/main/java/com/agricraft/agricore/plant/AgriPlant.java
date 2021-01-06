@@ -1,39 +1,35 @@
-/*
- */
 package com.agricraft.agricore.plant;
 
 import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.json.AgriSerializable;
 import com.agricraft.agricore.lang.AgriString;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-/**
- *
- * @author RlonRyan
- * @modify Yuri
- */
-public class AgriPlant implements AgriSerializable {
+
+public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
 
     private String path;
 
     private final boolean enabled;
 
     private final String id;
+
     private final AgriString plant_name;
     private final AgriString seed_name;
     private final List<AgriStack> seed_items;
     private final AgriString description;
+
+    private final int stages;
+    private final int harvestStage;
+
     private final double growth_chance;
     private final double growth_bonus;
     private final boolean bonemeal;
     private final int tier;
 
-    private final boolean weedable;
-    private final boolean aggressive;
+    private final boolean cloneable;
     private final double spread_chance;
-    private final double spawn_chance;
     private final double grass_drop_chance;
     private final double seed_drop_chance;
     private final double seed_drop_bonus;
@@ -71,51 +67,30 @@ public class AgriPlant implements AgriSerializable {
         this.requirement = old.getRequirement();
         this.texture = old.getTexture();
     }
-    
-    public AgriPlant() {
-        this.enabled = false;
-        this.path = "default/weed_plant.json";
-        this.id = "weed_plant";
-        this.plant_name = new AgriString("Weed");
-        this.seed_name = new AgriString("Weed Seeds");
-        this.seed_items = new ArrayList<>();
-        this.description = new AgriString("An annoying plant.");
-        this.bonemeal = true;
-        this.tier = 1;
-        this.growth_chance = 0.9;
-        this.growth_bonus = 0.025;
-        this.weedable = false;
-        this.aggressive = false;
-        this.spread_chance = 0.1;
-        this.spawn_chance = 0;
-        this.grass_drop_chance = 0.0;
-        this.seed_drop_chance = 1.0;
-        this.seed_drop_bonus = 0.0;
-        this.products = new AgriProductList();
-        this.requirement = new AgriRequirement();
-        this.texture = new AgriTexture();
-     }
 
-    public AgriPlant(String id, AgriString plant_name, AgriString seed_name, List<AgriStack> seed_items, AgriString description, boolean bonemeal, int tier, double growth_chance, double growth_bonus, boolean weedable, boolean agressive, double spread_chance, double spawn_chance, double grass_drop_chance, double seed_drop_chance, double seed_drop_bonus, AgriProductList products, AgriRequirement requirement, AgriTexture texture, String path, boolean enabled) {
+    public AgriPlant(String id, List<AgriStack> seed_items, AgriString description, int stages, int harvestStage,
+                     boolean bonemeal, int tier, double growth_chance, double growth_bonus, boolean cloneable,
+                     double spread_chance, double grass_drop_chance, double seed_drop_chance,
+                     double seed_drop_bonus, AgriProductList products, AgriRequirement requirement, AgriTexture texture,
+                     String path, boolean enabled) {
+
         this.enabled = enabled;
         this.path = path;
         this.id = id;
-        this.plant_name = plant_name;
-        this.seed_name = seed_name;
         this.seed_items = seed_items;
         this.description = description;
+        this.stages = stages;
+        this.harvestStage = harvestStage;
         this.bonemeal = bonemeal;
         this.tier = tier;
         this.growth_chance = growth_chance;
         this.growth_bonus = growth_bonus;
-        this.weedable = weedable;
-        this.aggressive = agressive;
         this.spread_chance = spread_chance;
-        this.spawn_chance = spawn_chance;
         this.grass_drop_chance = grass_drop_chance;
         this.seed_drop_chance = seed_drop_chance;
         this.seed_drop_bonus = seed_drop_bonus;
         this.products = products;
+        this.cloneable = cloneable;
         this.requirement = requirement;
         this.texture = texture;
     }
@@ -137,7 +112,11 @@ public class AgriPlant implements AgriSerializable {
     }
 
     public int getGrowthStages() {
-        return texture.getGrowthStages();
+        return this.stages;
+    }
+
+    public int getStageAfterHarvest() {
+        return this.harvestStage;
     }
 
     public AgriString getDescription() {
@@ -146,6 +125,10 @@ public class AgriPlant implements AgriSerializable {
 
     public AgriProductList getProducts() {
         return products;
+    }
+
+    public boolean allowsCloning() {
+        return this.cloneable;
     }
 
     public AgriRequirement getRequirement() {
@@ -162,18 +145,6 @@ public class AgriPlant implements AgriSerializable {
 
     public boolean canBonemeal() {
         return bonemeal;
-    }
-
-    public boolean isWeedable() {
-        return weedable;
-    }
-
-    public boolean isAgressive() {
-        return aggressive;
-    }
-
-    public double getSpawnChance() {
-        return spawn_chance;
     }
 
     public double getSpreadChance() {
@@ -222,8 +193,6 @@ public class AgriPlant implements AgriSerializable {
     public String toString() {
         final StringBuilder sb = new StringBuilder();
         sb.append("\n").append(id).append(":\n");
-        sb.append("\t- Plant Name: ").append(plant_name).append("\n");
-        sb.append("\t- Seed Name: ").append(seed_name).append("\n");
         sb.append("\t- Bonemeal: ").append(bonemeal).append("\n");
         sb.append("\t- Growth Chance: ").append(growth_chance).append("\n");
         sb.append("\t- Growth Bonus: ").append(growth_bonus).append("\n");
@@ -250,4 +219,8 @@ public class AgriPlant implements AgriSerializable {
         this.path = path;
     }
 
+    @Override
+    public int compareTo(AgriPlant o) {
+        return this.getId().compareTo(o.getId());
+    }
 }

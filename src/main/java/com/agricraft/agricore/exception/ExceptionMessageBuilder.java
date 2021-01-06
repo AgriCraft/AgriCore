@@ -1,6 +1,3 @@
-/*
- * 
- */
 package com.agricraft.agricore.exception;
 
 import com.agricraft.agricore.util.StringUtil;
@@ -12,8 +9,6 @@ import javax.annotation.RegEx;
 
 /**
  * A simple class used for building detailed exception messages useful for improving debugging.
- *
- * @author Ryan
  */
 public final class ExceptionMessageBuilder {
 

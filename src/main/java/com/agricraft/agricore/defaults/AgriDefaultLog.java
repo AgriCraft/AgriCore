@@ -1,15 +1,9 @@
-/*
- */
 package com.agricraft.agricore.defaults;
 
 import com.agricraft.agricore.log.AgriLogAdapter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author RlonRyan
- */
 public class AgriDefaultLog implements AgriLogAdapter {
 
     public static final Logger logger = Logger.getLogger("agricore");

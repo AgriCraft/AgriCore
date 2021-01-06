@@ -1,11 +1,5 @@
-/*
- */
 package com.agricraft.agricore.util;
 
-/**
- *
- * @author RlonRyan
- */
 public class MathHelper {
 
     /**

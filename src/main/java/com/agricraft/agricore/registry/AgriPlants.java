@@ -1,17 +1,11 @@
-/*
- */
 package com.agricraft.agricore.registry;
 
 import com.agricraft.agricore.plant.AgriPlant;
-import java.util.Collection;
-import java.util.Collections;
+import com.google.common.collect.ImmutableSet;
+
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- *
- * @author RlonRyan
- */
 public class AgriPlants implements AgriLoadableRegistry<AgriPlant> {
 
     private final Map<String, AgriPlant> plants;
@@ -32,8 +26,8 @@ public class AgriPlants implements AgriLoadableRegistry<AgriPlant> {
         return this.plants.get(id);
     }
 
-    public Collection<AgriPlant> getAll() {
-        return Collections.unmodifiableCollection(this.plants.values());
+    public ImmutableSet<AgriPlant> getAllElements() {
+        return ImmutableSet.copyOf(this.plants.values());
     }
 
     public void validate() {

@@ -1,5 +1,3 @@
-/*
- */
 package com.agricraft.agricore.registry;
 
 import com.agricraft.agricore.plant.AgriMutation;
@@ -10,10 +8,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-/**
- *
- * @author RlonRyan
- */
 public class AgriMutations implements AgriLoadableRegistry<AgriMutation> {
 
     private final Set<AgriMutation> mutations;

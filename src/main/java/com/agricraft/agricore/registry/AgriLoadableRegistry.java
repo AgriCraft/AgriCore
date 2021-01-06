@@ -1,12 +1,6 @@
-/*
- */
 package com.agricraft.agricore.registry;
 
-/**
- *
- * @author RlonRyan
- */
-public interface AgriLoadableRegistry<T> {
+public interface AgriLoadableRegistry<T extends Comparable<T>> {
 
     boolean acceptsElement(String filename);
 
