@@ -16,6 +16,7 @@ public class AgriFileWalker extends SimpleFileVisitor<Path> {
     private final AgriLoadableRegistry<? extends AgriSerializable>[] registries;
     private final Path root;
 
+    @SafeVarargs
     public AgriFileWalker(Path root, AgriLoadableRegistry<? extends AgriSerializable>... registries) {
         this.root = Objects.requireNonNull(root);
         this.registries = Objects.requireNonNull(registries);
