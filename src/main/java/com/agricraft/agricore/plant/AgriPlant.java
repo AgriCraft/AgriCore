@@ -52,8 +52,8 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
         }else{
             this.description = old.getDescription();
         }
-        this.stages = 8;
-        this.harvestStage = 4;
+        this.stages = old.getTexture().getGrowthStages();
+        this.harvestStage = stages / 2;
         this.growth_chance = old.getGrowthChance();
         this.growth_bonus = old.getGrowthBonus();
         this.bonemeal = old.isBonemeal();

@@ -45,10 +45,7 @@ public class AgriString {
 
     @Override
     public String toString() {
-        if (getTranslations().containsKey(AgriCore.getTranslator().getLocale())){
-            return getTranslations().get(AgriCore.getTranslator().getLocale());
-        }
-        return normal;
+        return getTranslations().getOrDefault(AgriCore.getTranslator().getLocale(), normal);
     }
 
 }
