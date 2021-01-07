@@ -10,6 +10,12 @@ gradle.properties
 .nb-gradle
 nbproject
 
+# VSCode
+.vscode
+.classpath
+.project
+.settings
+
 # Locally stored "Eclipse launch configurations"
 *.launch
 

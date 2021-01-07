@@ -6,10 +6,11 @@ branches:
 # Tell Travis this is a Java project.
 language: java
 
-# Tell Travis this is a Java 8 project.
+# Tell Travis this is a Java 8 + 11 project.
 matrix:
   include:
-    - jdk: oraclejdk8
+    - jdk: openjdk8
+#    - jdk: openjdk11
 
 # Tell Travis we want container-based builds.
 sudo: false
