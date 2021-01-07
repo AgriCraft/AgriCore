@@ -3,6 +3,8 @@ package com.agricraft.agricore.plant;
 import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.json.AgriSerializable;
 import com.agricraft.agricore.lang.AgriString;
+import com.google.common.base.Preconditions;
+
 import java.util.Collection;
 import java.util.List;
 
@@ -73,6 +75,10 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
                      double spread_chance, double grass_drop_chance, double seed_drop_chance,
                      double seed_drop_bonus, AgriProductList products, AgriRequirement requirement, AgriTexture texture,
                      String path, boolean enabled) {
+
+        Preconditions.checkArgument(stages > 0, "The number of stages must be larger than 0");
+        Preconditions.checkArgument(harvestStage >= 0, "The harvest index can not be negative");
+        Preconditions.checkArgument(harvestStage < stages, "The harvest index must be smaller than the number of stages");
 
         this.enabled = enabled;
         this.path = path;
