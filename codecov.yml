@@ -18,3 +18,36 @@ comment:
   layout: "reach,diff,flags,files,footer"
   behavior: default
   require_changes: no
+
+flags:
+  config:
+    paths:
+      - src/main/java/com/agricraft/agricore/config
+  core:
+    paths:
+      - src/main/java/com/agricraft/agricore/core
+  defaults:
+    paths:
+      - src/main/java/com/agricraft/agricore/defaults
+  exceptions:
+    paths:
+      - src/main/java/com/agricraft/agricore/exception
+  json:
+    paths:
+      - src/main/java/com/agricraft/agricore/json
+  lang:
+    paths:
+      - src/main/java/com/agricraft/agricore/lang
+  log:
+    paths:
+      - src/main/java/com/agricraft/agricore/log
+  plant:
+    paths:
+      - src/main/java/com/agricraft/agricore/plant
+  registry:
+    paths:
+      - src/main/java/com/agricraft/agricore/registry
+  util:
+    paths:
+      - src/main/java/com/agricraft/agricore/util
+
