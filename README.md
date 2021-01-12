@@ -1,4 +1,4 @@
-# AgriCore ![branch] [![build-status]][build-link] [![curse]][curse-link]
+# AgriCore ![branch] [![build-status]][build-link] [![coverage]][coverage-link] [![curse]][curse-link]
 
 The core of agricultural farming extended.
 
@@ -23,6 +23,9 @@ this kind of information is, most of the time, only needed by pack creators and 
 
 [build-link]:https://travis-ci.org/AgriCraft/AgriCore
 [build-status]:https://travis-ci.org/AgriCraft/AgriCore.svg?branch=master "Travis-CI Build Status"
+
+[coverage]:https://codecov.io/gh/AgriCraft/AgriCore/branch/master/graph/badge.svg?token=DIEBA4U1AH
+[coverage-link]:https://codecov.io/gh/AgriCraft/AgriCore
 
 [curse-link]:https://agricraft.github.io/curse
 [curse]:http://cf.way2muchnoise.eu/full_agricraft_downloads.svg "CurseForge"
