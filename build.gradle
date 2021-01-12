@@ -1,4 +1,8 @@
-apply plugin: 'java'
+
+plugins {
+    id 'java'
+    id 'jacoco'
+}
 
 sourceCompatibility = '1.8'
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
@@ -8,7 +12,19 @@ repositories {
 }
 
 dependencies {
-	compile 'org.reflections:reflections:0.9.10'
-	compile 'com.google.code.gson:gson:2.6.2'
-    testCompile 'junit:junit:4.12'
+	implementation 'org.reflections:reflections:0.9.10'
+	implementation 'com.google.code.gson:gson:2.6.2'
+    testImplementation 'junit:junit:4.12'
+}
+
+test {
+    finalizedBy jacocoTestReport // report is always generated after tests run
+}
+
+jacocoTestReport {
+    dependsOn test // tests are required to run before generating the report
+    reports {
+        xml.enabled true
+        html.enabled false
+    }
 }
