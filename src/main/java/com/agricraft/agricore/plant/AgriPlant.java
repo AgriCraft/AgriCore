@@ -19,7 +19,7 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
 
     private final AgriString plant_name;
     private final AgriString seed_name;
-    private final List<AgriStack> seed_items;
+    private final List<AgriObject> seed_items;
     private final AgriString description;
 
     private final int stages;
@@ -70,7 +70,7 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
         this.texture = old.getTexture();
     }
 
-    public AgriPlant(String id, AgriString plant_name, AgriString seed_name, List<AgriStack> seed_items, AgriString description, int stages, int harvestStage,
+    public AgriPlant(String id, AgriString plant_name, AgriString seed_name, List<AgriObject> seed_items, AgriString description, int stages, int harvestStage,
                      boolean bonemeal, int tier, double growth_chance, double growth_bonus, boolean cloneable,
                      double spread_chance, double grass_drop_chance, double seed_drop_chance,
                      double seed_drop_bonus, AgriProductList products, AgriRequirement requirement, AgriTexture texture,
@@ -115,7 +115,7 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
         return seed_name.toString();
     }
 
-    public Collection<AgriStack> getSeedItems() {
+    public Collection<AgriObject> getSeedItems() {
         return seed_items;
     }
 

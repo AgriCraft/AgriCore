@@ -1,10 +1,16 @@
 package com.agricraft.agricore.util;
 
+import javax.annotation.Nonnull;
+
 public interface AgriValidator {
+    <T> boolean isValidObject(final Class<T> token, final String item);
 
-    boolean isValidBlock(final String block);
+    default boolean isValidObject(final String token, final String item) {
+        return this.isValidObject(this.getTokenClass(token), item);
+    }
 
-    boolean isValidItem(final String item);
+    @Nonnull
+    <T> Class<T> getTokenClass(String token);
 
     boolean isValidTexture(final String texture);
     

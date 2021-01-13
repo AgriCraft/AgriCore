@@ -2,14 +2,8 @@ package com.agricraft.agricore.test;
 
 import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.lang.AgriString;
-import com.agricraft.agricore.plant.AgriBlockCondition;
-import com.agricraft.agricore.plant.AgriPlant;
-import com.agricraft.agricore.plant.AgriProduct;
-import com.agricraft.agricore.plant.AgriProductList;
-import com.agricraft.agricore.plant.AgriRenderType;
-import com.agricraft.agricore.plant.AgriRequirement;
-import com.agricraft.agricore.plant.AgriStack;
-import com.agricraft.agricore.plant.AgriTexture;
+import com.agricraft.agricore.plant.*;
+import com.agricraft.agricore.plant.AgriObject;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.io.BufferedWriter;
@@ -39,7 +33,7 @@ public class TestPlant {
         AgriProduct item = new AgriProduct("wheat", 0, 3, .5, true);
 
         // Setup Seed
-        AgriStack seed = new AgriStack("minecraft:wheat_seeds", false, "", "*");
+        AgriObject seed = new AgriObject("minecraft:wheat_seeds", false, "", "*");
 
         // Setup Products
         List<AgriProduct> items = new ArrayList<>();

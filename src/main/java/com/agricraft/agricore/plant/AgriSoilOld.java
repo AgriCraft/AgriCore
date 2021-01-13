@@ -1,18 +1,11 @@
-/*
- */
 package com.agricraft.agricore.plant;
 
 import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.json.AgriSerializable;
 import com.agricraft.agricore.util.TypeHelper;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
-/**
- *
- * @author RlonRyan
- */
 public class AgriSoilOld implements AgriSerializable {
 
     private String path;
@@ -21,16 +14,16 @@ public class AgriSoilOld implements AgriSerializable {
 
     private final String id;
     private final String name;
-    private final List<AgriStack> varients;
+    private final List<AgriObject> varients;
 
     public AgriSoilOld() {
         this.enabled = true;
         this.id = "dirt_soil";
         this.name = "Dirt";
-        this.varients = TypeHelper.asList(new AgriStack());
+        this.varients = TypeHelper.asList(new AgriObject());
     }
 
-    public AgriSoilOld(String id, String name, List<AgriStack> varients) {
+    public AgriSoilOld(String id, String name, List<AgriObject> varients) {
         this.enabled = true;
         this.id = id;
         this.name = name;
@@ -45,15 +38,13 @@ public class AgriSoilOld implements AgriSerializable {
         return name;
     }
 
-    public List<AgriStack> getVarients() {
+    public List<AgriObject> getVarients() {
         return varients;
     }
     
     public <T> List<T> getVarients(Class<T> token) {
         return this.varients.stream()
-                .map(t -> t.toStack(token))
-                .filter(Optional::isPresent)
-                .map(Optional::get)
+                .flatMap(t -> t.convertAll(token).stream())
                 .collect(Collectors.toList());
     }
 

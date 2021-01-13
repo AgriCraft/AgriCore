@@ -3,26 +3,24 @@ package com.agricraft.agricore.defaults;
 import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.util.AgriValidator;
 
-public class AgriDefaultValidator implements AgriValidator {
+import javax.annotation.Nonnull;
 
+public class AgriDefaultValidator implements AgriValidator {
     @Override
-    public boolean isValidBlock(String block) {
-        if (block == null) {
-            AgriCore.getCoreLogger().warn("Null Block!");
+    public <T> boolean isValidObject(Class<T> token, String object) {
+        if (object == null) {
+            AgriCore.getCoreLogger().warn("Null Object!");
             return false;
         }
-        AgriCore.getCoreLogger().warn("Faking valid result for block: " + block + "!");
+        AgriCore.getCoreLogger().warn("Faking valid result for object: " + object + "!");
         return true;
     }
 
     @Override
-    public boolean isValidItem(String item) {
-        if (item == null) {
-            AgriCore.getCoreLogger().warn("Null Item!");
-            return false;
-        }
-        AgriCore.getCoreLogger().warn("Faking valid result for item: " + item + "!");
-        return true;
+    @Nonnull
+    @SuppressWarnings("unchecked")
+    public <T> Class<T> getTokenClass(String token) {
+        return (Class<T>) Object.class;
     }
 
     @Override
