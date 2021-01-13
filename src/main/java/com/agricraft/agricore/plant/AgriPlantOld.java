@@ -16,7 +16,7 @@ public class AgriPlantOld implements AgriSerializable {
     private final String id;
     private final String plant_name;
     private final String seed_name;
-    private final List<AgriStack> seed_items;
+    private final List<AgriObject> seed_items;
     private final AgriString description;
 
     private final double growth_chance;
@@ -60,7 +60,7 @@ public class AgriPlantOld implements AgriSerializable {
         this.texture = new AgriTexture();
     }
 
-    public AgriPlantOld(String id, String plant_name, String seed_name, List<AgriStack> seed_items, AgriString description, boolean bonemeal, int tier, double growth_chance, double growth_bonus, boolean weedable, boolean agressive, double spread_chance, double spawn_chance, double grass_drop_chance, double seed_drop_chance, double seed_drop_bonus, AgriProductList products, AgriRequirement requirement, AgriTexture texture, String path, boolean enabled) {
+    public AgriPlantOld(String id, String plant_name, String seed_name, List<AgriObject> seed_items, AgriString description, boolean bonemeal, int tier, double growth_chance, double growth_bonus, boolean weedable, boolean agressive, double spread_chance, double spawn_chance, double grass_drop_chance, double seed_drop_chance, double seed_drop_bonus, AgriProductList products, AgriRequirement requirement, AgriTexture texture, String path, boolean enabled) {
         this.enabled = enabled;
         this.path = path;
         this.id = id;
@@ -96,7 +96,7 @@ public class AgriPlantOld implements AgriSerializable {
         return seed_name;
     }
 
-    public Collection<AgriStack> getSeedItems() {
+    public Collection<AgriObject> getSeedItems() {
         return seed_items;
     }
 
@@ -222,7 +222,7 @@ public class AgriPlantOld implements AgriSerializable {
         return seed_name;
     }
 
-    public List<AgriStack> getSeed_items() {
+    public List<AgriObject> getSeed_items() {
         return seed_items;
     }
 

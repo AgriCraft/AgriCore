@@ -4,8 +4,8 @@ import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.json.AgriSerializable;
 import com.agricraft.agricore.lang.AgriString;
 import com.agricraft.agricore.util.TypeHelper;
+
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class AgriSoil implements AgriSerializable, Comparable<AgriSoil> {
@@ -13,7 +13,7 @@ public class AgriSoil implements AgriSerializable, Comparable<AgriSoil> {
     private final boolean enabled;
     private final String id;
     private final AgriString name;
-    private final List<AgriStack> varients;
+    private final List<AgriObject> varients;
 
     public AgriSoil(AgriSerializable as) {
         final AgriSoilOld old = (AgriSoilOld) as;
@@ -27,10 +27,10 @@ public class AgriSoil implements AgriSerializable, Comparable<AgriSoil> {
         this.enabled = true;
         this.id = "dirt_soil";
         this.name = new AgriString("Dirt");
-        this.varients = TypeHelper.asList(new AgriStack());
+        this.varients = TypeHelper.asList(new AgriObject());
     }
 
-    public AgriSoil(String id, AgriString name, List<AgriStack> varients) {
+    public AgriSoil(String id, AgriString name, List<AgriObject> varients) {
         this.enabled = true;
         this.id = id;
         this.name = name;
@@ -47,9 +47,7 @@ public class AgriSoil implements AgriSerializable, Comparable<AgriSoil> {
 
     public <T> List<T> getVariants(Class<T> token) {
         return this.varients.stream()
-                .map(t -> t.toStack(token))
-                .filter(Optional::isPresent)
-                .map(Optional::get)
+                .flatMap(t -> t.convertAll(token).stream())
                 .collect(Collectors.toList());
     }
 

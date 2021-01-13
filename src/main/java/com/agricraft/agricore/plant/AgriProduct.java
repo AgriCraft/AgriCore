@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
-public class AgriProduct extends AgriStack {
+public class AgriProduct extends AgriObject {
 
     private final int min;
     private final int max;
@@ -28,7 +28,7 @@ public class AgriProduct extends AgriStack {
     }
 
     public AgriProduct(String item, int min, int max, double chance, boolean required, List<String> ignoreTags) {
-        super(item, false, "", ignoreTags);
+        super("item", item, false, "", ignoreTags);
         this.min = min;
         this.max = max;
         this.chance = chance;
@@ -38,7 +38,7 @@ public class AgriProduct extends AgriStack {
     @Override
     public boolean validate() {
         if (!super.validate()) {
-            AgriCore.getCoreLogger().info("Invalid Product: Invalid Item: {0}!", item);
+            AgriCore.getCoreLogger().info("Invalid Product: Invalid Item: {0}!", object);
             return false;
         } else if (min < 0) {
             AgriCore.getCoreLogger().info("Invalid Product: Min Amount Less Than Zero!");
@@ -75,8 +75,8 @@ public class AgriProduct extends AgriStack {
         return min + rand.nextInt(max - min + 1);
     }
 
-    public <T> Optional<T> toStack(Class<T> token, Random rand) {
-        return this.toStack(token, this.getAmount(rand));
+    public <T> Optional<T> convertSingle(Class<T> token, Random random) {
+        return this.convertSingle(token, this.getAmount(random));
     }
 
     @Override

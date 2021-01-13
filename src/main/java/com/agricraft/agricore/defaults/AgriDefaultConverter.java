@@ -2,18 +2,20 @@ package com.agricraft.agricore.defaults;
 
 import com.agricraft.agricore.util.AgriConverter;
 import com.agricraft.agricore.util.TypeHelper;
+import com.google.common.collect.ImmutableList;
+
+import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 
 public class AgriDefaultConverter implements AgriConverter {
     @Override
-    public <T> Optional<T> toStack(Class<T> token, String element, int amount, String tags, boolean useOreDict, List<String> ignoreTags) {
+    public <T> Collection<T> convert(Class<T> token, String object, int amount, boolean useTag, String data, List<String> ignoreData) {
         if (TypeHelper.isType(String.class, token)) {
             @SuppressWarnings("unchecked")
-            final T stack = (T) String.format("Stack: { Token: '%s', Element: '%s', Amount: %d, Tags: '%s' }", token, element, amount, tags);
-            return Optional.of(stack);
+            final T string = (T) String.format("Object: { Token: '%s', Element: '%s', Amount: %d, Tags: '%s' }", token, amount, object, data);
+            return ImmutableList.of(string);
         } else {
-            return Optional.empty();
+            return ImmutableList.of();
         }
     }
 }

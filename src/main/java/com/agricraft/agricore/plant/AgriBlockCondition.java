@@ -3,10 +3,8 @@ package com.agricraft.agricore.plant;
 import com.agricraft.agricore.core.AgriCore;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
-public class AgriBlockCondition extends AgriStack {
-
+public class AgriBlockCondition extends AgriObject {
 	protected final int strength;
 	protected final int amount;
 	protected final int min_x;
@@ -35,7 +33,7 @@ public class AgriBlockCondition extends AgriStack {
 
 	public AgriBlockCondition(int strength, int amount, int min_x, int min_y, int min_z, int max_x, int max_y, int max_z,
 							  String item, boolean useTag, String tags, List<String> ignoreTags) {
-		super(item, useTag, tags, ignoreTags);
+		super("block", item, useTag, tags, ignoreTags);
 		this.strength = strength;
 		this.amount = amount;
 		this.min_x = min_x;
@@ -81,20 +79,11 @@ public class AgriBlockCondition extends AgriStack {
 	@Override
 	public boolean validate() {
 		if (!super.validate()) {
-			AgriCore.getCoreLogger().info("Invalid Condition: Invalid Item: {0}!", item);
+			AgriCore.getCoreLogger().info("Invalid Condition: Invalid Block: {0}!", object);
 			return false;
 		} else {
 			return true;
 		}
-	}
-
-	/**
-	 * Attempts to create a stack of the desired class, wrapped in an Optional.
-	 * It uses `amount` from this instance for the stack size, instead of 1.
-	 */
-	@Override
-	public <T> Optional<T> toStack(Class<T> token) {
-		return this.toStack(token, amount);
 	}
 
 	@Override
