@@ -33,7 +33,7 @@ public class TestPlant {
         AgriProduct item = new AgriProduct("wheat", 0, 3, .5, true);
 
         // Setup Seed
-        AgriObject seed = new AgriObject("minecraft:wheat_seeds", false, "", "*");
+        AgriObject seed = new AgriObject("item", "minecraft:wheat_seeds", false, "", "*");
 
         // Setup Products
         List<AgriProduct> items = new ArrayList<>();
