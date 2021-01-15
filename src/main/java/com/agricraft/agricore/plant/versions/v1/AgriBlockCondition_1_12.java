@@ -41,6 +41,6 @@ public class AgriBlockCondition_1_12 extends AgriStack_1_12 {
     }
 
     public AgriBlockCondition toNew() {
-        return new AgriBlockCondition(11, amount, min_x, min_y, min_z, max_x, max_y, max_z, item, useOreDict, tags, ignoreTags);
+        return new AgriBlockCondition(11, amount, min_x, min_y, min_z, max_x, max_y, max_z, this.transformItem(), this.useTag(), tags, ignoreTags);
     }
 }

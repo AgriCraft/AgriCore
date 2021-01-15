@@ -1,6 +1,7 @@
 package com.agricraft.agricore.plant.versions.v1;
 
 import com.agricraft.agricore.plant.AgriObject;
+import com.google.common.collect.ImmutableList;
 
 import java.util.Arrays;
 import java.util.List;
@@ -35,33 +36,53 @@ public class AgriStack_1_12 {
     }
 
     public AgriObject toNew(String type) {
-        return new AgriObject(type, this.getItem(), this.isUseOreDict(), this.getTags(), this.getIgnoreTags());
+        return new AgriObject(type, this.transformItem(), this.useTag(), this.tags, this.ignoreTags);
     }
 
-    public String getItem() {
-        return item;
+    private final List<String> TYPES = ImmutableList.of(
+            "ore",
+            "nugget",
+            "dust"
+    );
+
+    protected boolean useTag() {
+        return this.item.split(":")[0].equalsIgnoreCase("oredict");
     }
 
-    public String getTags() {
-        return tags;
+    protected String transformItem() {
+        if(this.useTag()) {
+            String[] split = this.item.split(":");
+            String domain;
+            String path;
+            if(split.length == 1) {
+                domain = "minecraft";
+                path = split[0];
+            } else {
+                domain = split[0];
+                path = split[1];
+            }
+            if(domain.equalsIgnoreCase("oredict")) {
+                domain = "forge";
+            }
+            for(String type : this.TYPES) {
+                String corrected = this.handlePath(type, path);
+                if(!corrected.equals(path)) {
+                    path = corrected;
+                    break;
+                }
+            }
+            return domain + ":" + path;
+        } else {
+            return this.item;
+        }
     }
 
-    public List<String> getIgnoreTags() {
-        return ignoreTags;
-    }
-
-    public boolean isUseOreDict() {
-        return useOreDict;
-    }
-
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder();
-        sb.append("\nStack:");
-        sb.append("\n\t- Item: ").append(item);
-        sb.append("\n\t- Tags: ").append(tags);
-        sb.append("\n\t- IgnoreTags: ").append(ignoreTags);
-        sb.append("\n\t- UseOreDict: ").append(useOreDict);
-        return sb.toString();
+    private String handlePath(String type, String path) {
+        if(path.contains(type)) {
+            int index = path.indexOf(type);
+            String sub = path.substring(index + type.length());
+            return type.toLowerCase() + "s/" + sub.toLowerCase();
+        }
+        return path;
     }
 }

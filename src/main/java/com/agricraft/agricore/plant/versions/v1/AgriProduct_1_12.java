@@ -21,12 +21,12 @@ public class AgriProduct_1_12 extends AgriStack_1_12 {
         this.required = true;
     }
 
-    public AgriProduct_1_12(String item, int min, int max, double chance, boolean required, String... ignoreTags) {
-        this(item, min, max, chance, required, Arrays.asList(ignoreTags));
+    public AgriProduct_1_12(String item, boolean useOreDict, int min, int max, double chance, boolean required, String tags, String... ignoreTags) {
+        this(item, useOreDict, min, max, chance, required, tags, Arrays.asList(ignoreTags));
     }
 
-    public AgriProduct_1_12(String item, int min, int max, double chance, boolean required, List<String> ignoreTags) {
-        super(item, false, "", ignoreTags);
+    public AgriProduct_1_12(String item, boolean useOreDict, int min, int max, double chance, boolean required, String tags, List<String> ignoreTags) {
+        super(item, useOreDict, tags, ignoreTags);
         this.min = min;
         this.max = max;
         this.chance = chance;
@@ -34,6 +34,6 @@ public class AgriProduct_1_12 extends AgriStack_1_12 {
     }
 
     public AgriProduct toNew() {
-        return new AgriProduct(item, min, max, chance, required, ignoreTags);
+        return new AgriProduct(this.transformItem(), this.useOreDict, min, max, chance, required, this.tags, ignoreTags);
     }
 }
