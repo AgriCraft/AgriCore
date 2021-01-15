@@ -3,7 +3,6 @@ package com.agricraft.agricore.plant.versions.v1;
 import com.agricraft.agricore.json.AgriSerializable;
 import com.agricraft.agricore.lang.AgriString;
 import com.agricraft.agricore.plant.AgriPlant;
-import com.agricraft.agricore.plant.AgriTexture;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +36,7 @@ public class AgriPlant_1_12 implements AgriSerializable {
 
     private final AgriProductList_1_12 products;
     private final AgriRequirement_1_12 requirement;
-    private final AgriTexture texture;
+    private final AgriTexture_1_12 texture;
 
     public AgriPlant_1_12() {
         this.enabled = false;
@@ -60,14 +59,14 @@ public class AgriPlant_1_12 implements AgriSerializable {
         this.seed_drop_bonus = 0.0;
         this.products = new AgriProductList_1_12();
         this.requirement = new AgriRequirement_1_12();
-        this.texture = new AgriTexture();
+        this.texture = new AgriTexture_1_12();
         this.version = Versions_1_12.VERSION;
     }
 
     public AgriPlant_1_12(String id, String plant_name, String seed_name, List<AgriStack_1_12> seed_items, AgriString description,
                           boolean bonemeal, int tier, double growth_chance, double growth_bonus, boolean weedable, boolean agressive,
                           double spread_chance, double spawn_chance, double grass_drop_chance, double seed_drop_chance, double seed_drop_bonus,
-                          AgriProductList_1_12 products, AgriRequirement_1_12 requirement, AgriTexture texture, String path, boolean enabled) {
+                          AgriProductList_1_12 products, AgriRequirement_1_12 requirement, AgriTexture_1_12 texture, String path, boolean enabled) {
         this.enabled = enabled;
         this.path = path;
         this.id = id;
@@ -96,7 +95,7 @@ public class AgriPlant_1_12 implements AgriSerializable {
         return new AgriPlant(this.id, new AgriString(this.plant_name), new AgriString(this.seed_name), this.seed_items.stream().map(stack -> stack.toNew("item")).collect(Collectors.toList()),
                 this.description, this.texture.getGrowthStages(), this.texture.getGrowthStages()/2, this.bonemeal, this.tier, this.growth_chance,
                 this.growth_bonus, this.isCloneable(), this.spread_chance, this.grass_drop_chance, this.seed_drop_chance, this.seed_drop_bonus, this.products.toNew(),
-                this.requirement.toNew(), this.texture, this.path, this.enabled);
+                this.requirement.toNew(), this.texture.toNew(), this.path, this.enabled);
     }
 
     protected boolean isCloneable() {
