@@ -1,9 +1,11 @@
-package com.agricraft.agricore.plant;
+package com.agricraft.agricore.plant.old.v1;
+
+import com.agricraft.agricore.plant.AgriProduct;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class AgriProductOld extends AgriStackOld {
+public class AgriProduct_1_12 extends AgriStack_1_12 {
     private final int min;
     private final int max;
 
@@ -11,7 +13,7 @@ public class AgriProductOld extends AgriStackOld {
 
     private final boolean required;
 
-    public AgriProductOld() {
+    public AgriProduct_1_12() {
         super();
         this.min = 5;
         this.max = 5;
@@ -19,11 +21,11 @@ public class AgriProductOld extends AgriStackOld {
         this.required = true;
     }
 
-    public AgriProductOld(String item, int min, int max, double chance, boolean required, String... ignoreTags) {
+    public AgriProduct_1_12(String item, int min, int max, double chance, boolean required, String... ignoreTags) {
         this(item, min, max, chance, required, Arrays.asList(ignoreTags));
     }
 
-    public AgriProductOld(String item, int min, int max, double chance, boolean required, List<String> ignoreTags) {
+    public AgriProduct_1_12(String item, int min, int max, double chance, boolean required, List<String> ignoreTags) {
         super(item, false, "", ignoreTags);
         this.min = min;
         this.max = max;
