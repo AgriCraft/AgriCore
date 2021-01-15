@@ -12,4 +12,6 @@ public interface AgriSerializable {
 
     void setPath(String path);
 
+    String getVersion();
+
 }

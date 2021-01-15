@@ -1,4 +1,4 @@
-package com.agricraft.agricore.plant.old.v1;
+package com.agricraft.agricore.plant.versions.v1;
 
 import com.agricraft.agricore.plant.AgriObject;
 
@@ -34,8 +34,8 @@ public class AgriStack_1_12 {
         this.useOreDict = useOreDict;
     }
 
-    public AgriObject toNew() {
-        return new AgriObject("item", this.getItem(), this.isUseOreDict(), this.getTags(), this.getIgnoreTags());
+    public AgriObject toNew(String type) {
+        return new AgriObject(type, this.getItem(), this.isUseOreDict(), this.getTags(), this.getIgnoreTags());
     }
 
     public String getItem() {

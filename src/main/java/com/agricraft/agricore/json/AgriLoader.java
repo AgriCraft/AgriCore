@@ -10,6 +10,7 @@ import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.function.Function;
 
 public final class AgriLoader {
 
@@ -32,7 +33,8 @@ public final class AgriLoader {
     protected static <T extends AgriSerializable> void convertAndBackup(Path location, AgriJsonVersion<T> newVersion) {
         // Check if a previous version exists
         AgriJsonVersion<?> oldVersion = newVersion.previousVersion();
-        if (oldVersion == null) {
+        Function<AgriSerializable, T> converter = newVersion.versionConverter();
+        if (oldVersion == null || converter == null) {
             return;
         }
         // Go deeper
@@ -49,12 +51,16 @@ public final class AgriLoader {
             //save backups json
             AgriSaver.saveElement(pBackup, oldObject);
             //convert old json to new json
-            AgriSerializable newObject = newClass.getConstructor(AgriSerializable.class).newInstance(oldObject);
+            AgriSerializable newObject = converter.apply(oldObject);
             //save new json
-            AgriSaver.saveElement(location, newObject);
-
-            AgriCore.getCoreLogger().info("Backup {0} to {1}.\nSuccessfully converted the {0} from {2} to {3}.",
-                    location.getFileName(), pBackup, oldVersion.descriptor(), newVersion.descriptor());
+            if(newObject != null) {
+                AgriSaver.saveElement(location, newObject);
+                AgriCore.getCoreLogger().info("Backup {0} to {1}.\nSuccessfully converted the {0} from {2} to {3}.",
+                        location.getFileName(), pBackup, oldVersion.descriptor(), newVersion.descriptor());
+            } else {
+                AgriCore.getCoreLogger().warn("An error occurred while ConvertAndBackup the {0} from {1} to {2}. Converter not correctly implemented.",
+                        location.getFileName(), oldVersion.descriptor(), newVersion.descriptor());
+            }
         } catch (Exception e) {
             AgriCore.getCoreLogger().warn("An error occurred while ConvertAndBackup the {0} from {1} to {2}. Maybe the target is already {2}.",
                     location.getFileName(), oldVersion.descriptor(), newVersion.descriptor());

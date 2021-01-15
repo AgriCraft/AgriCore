@@ -3,18 +3,17 @@ package com.agricraft.agricore.plant;
 import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.json.AgriSerializable;
 import com.agricraft.agricore.lang.AgriString;
-import com.agricraft.agricore.plant.old.v1.AgriPlant_1_12;
-import com.agricraft.agricore.plant.old.v1.AgriStack_1_12;
+import com.agricraft.agricore.plant.versions.v2.Versions_1_16;
 import com.google.common.base.Preconditions;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
-
 
 public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
 
     private String path;
+    private final String version;
 
     private final boolean enabled;
 
@@ -43,34 +42,29 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
     private final AgriRequirement requirement;
     private final AgriTexture texture;
 
-    public AgriPlant(AgriSerializable as) {
-        final AgriPlant_1_12 old = (AgriPlant_1_12) as;
-        
-        this.path = old.getPath();
-        this.enabled = old.isEnabled();
-        this.id = old.getId();
-        this.plant_name = new AgriString(old.getPlantName());
-        this.seed_name = new AgriString(old.getSeedName());
-        this.seed_items = old.getSeed_items().stream().map(AgriStack_1_12::toNew).collect(Collectors.toList());
-        if(old.getDescription().getTranslations().isEmpty()){
-            this.description = new AgriString(old.getDescription().getNormal());
-        }else{
-            this.description = old.getDescription();
-        }
-        this.stages = old.getTexture().getGrowthStages();
-        this.harvestStage = stages / 2;
-        this.growth_chance = old.getGrowthChance();
-        this.growth_bonus = old.getGrowthBonus();
-        this.bonemeal = old.isBonemeal();
-        this.tier = old.getTier();
+    public AgriPlant() {
+        this.enabled = false;
+        this.path = "default/weed_plant.json";
+        this.version = Versions_1_16.VERSION;
+        this.id = "weed_plant";
+        this.plant_name = new AgriString("Weed");
+        this.seed_name = new AgriString("Weed Seeds");
+        this.seed_items = new ArrayList<>();
+        this.description = new AgriString("An annoying plant.");
+        this.stages = 8;
+        this.harvestStage = 4;
+        this.bonemeal = true;
+        this.tier = 1;
         this.cloneable = true;
-        this.spread_chance = old.getSpreadChance();
-        this.grass_drop_chance = old.getGrassDropChance();
-        this.seed_drop_chance = old.getSeedDropChance();
-        this.seed_drop_bonus = old.getSeedDropBonus();
-        this.products = old.getProducts().toNew();
-        this.requirement = old.getRequirement().toNew();
-        this.texture = old.getTexture();
+        this.growth_chance = 0.9;
+        this.growth_bonus = 0.025;
+        this.spread_chance = 0.1;
+        this.grass_drop_chance = 0.0;
+        this.seed_drop_chance = 1.0;
+        this.seed_drop_bonus = 0.0;
+        this.products = new AgriProductList();
+        this.requirement = new AgriRequirement();
+        this.texture = new AgriTexture();
     }
 
     public AgriPlant(String id, AgriString plant_name, AgriString seed_name, List<AgriObject> seed_items, AgriString description, int stages, int harvestStage,
@@ -104,6 +98,7 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
         this.cloneable = cloneable;
         this.requirement = requirement;
         this.texture = texture;
+        this.version = Versions_1_16.VERSION;
     }
     
     public String getId() {
@@ -228,6 +223,11 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
     @Override
     public void setPath(String path) {
         this.path = path;
+    }
+
+    @Override
+    public String getVersion() {
+        return this.version;
     }
 
     @Override

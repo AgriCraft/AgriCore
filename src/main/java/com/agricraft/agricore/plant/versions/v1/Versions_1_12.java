@@ -1,8 +1,9 @@
-package com.agricraft.agricore.plant.old.v1;
+package com.agricraft.agricore.plant.versions.v1;
 
 import com.agricraft.agricore.json.AgriJsonVersion;
 
 public class Versions_1_12 {
+    public static final String VERSION = "1.12.2";
     public static final AgriJsonVersion<AgriPlant_1_12> PLANT = new AgriJsonVersion<AgriPlant_1_12>() {
         @Override
         public Class<AgriPlant_1_12> getElementClass() {
@@ -11,7 +12,7 @@ public class Versions_1_12 {
 
         @Override
         public String descriptor() {
-            return "1.12.2";
+            return VERSION;
         }
     };
 
@@ -23,7 +24,7 @@ public class Versions_1_12 {
 
         @Override
         public String descriptor() {
-            return "1.12.2";
+            return VERSION;
         }
     };
 }

@@ -1,4 +1,4 @@
-package com.agricraft.agricore.plant.old.v1;
+package com.agricraft.agricore.plant.versions.v1;
 
 import com.agricraft.agricore.plant.AgriProductList;
 
