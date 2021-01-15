@@ -7,7 +7,7 @@ import com.agricraft.agricore.util.TypeHelper;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class AgriSoil_1_12 implements AgriSerializable {
+public class AgriSoil_1_12 implements AgriSerializable, Comparable<AgriSoil_1_12> {
 
     private String path;
     private final String version;
@@ -59,4 +59,8 @@ public class AgriSoil_1_12 implements AgriSerializable {
         return this.version;
     }
 
+    @Override
+    public int compareTo(AgriSoil_1_12 o) {
+        return this.id.compareTo(o.id);
+    }
 }

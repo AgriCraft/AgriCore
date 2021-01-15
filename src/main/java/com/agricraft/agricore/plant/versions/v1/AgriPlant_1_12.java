@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class AgriPlant_1_12 implements AgriSerializable {
+public class AgriPlant_1_12 implements AgriSerializable, Comparable<AgriPlant_1_12> {
 
     private String path;
     private final String version;
@@ -120,5 +120,10 @@ public class AgriPlant_1_12 implements AgriSerializable {
     @Override
     public String getVersion() {
         return this.version;
+    }
+
+    @Override
+    public int compareTo(AgriPlant_1_12 o) {
+        return this.id.compareTo(o.id);
     }
 }
