@@ -34,6 +34,6 @@ public class AgriProduct_1_12 extends AgriStack_1_12 {
     }
 
     public AgriProduct toNew() {
-        return new AgriProduct(this.transformItem(), this.useOreDict, min, max, chance, required, this.tags, ignoreTags);
+        return new AgriProduct(this.transformItem(), this.useTag(), min, max, chance, required, this.tags, ignoreTags);
     }
 }
