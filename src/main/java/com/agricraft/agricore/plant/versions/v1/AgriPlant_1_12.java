@@ -93,7 +93,7 @@ public class AgriPlant_1_12 implements AgriSerializable {
     }
 
     public AgriPlant toNew() {
-        return new AgriPlant(this.id, new AgriString(this.plant_name), new AgriString(this.seed_name), this.seed_items.stream().map(stack -> stack.toNew("block")).collect(Collectors.toList()),
+        return new AgriPlant(this.id, new AgriString(this.plant_name), new AgriString(this.seed_name), this.seed_items.stream().map(stack -> stack.toNew("item")).collect(Collectors.toList()),
                 this.description, this.texture.getGrowthStages(), this.texture.getGrowthStages()/2, this.bonemeal, this.tier, this.growth_chance,
                 this.growth_bonus, this.isCloneable(), this.spread_chance, this.grass_drop_chance, this.seed_drop_chance, this.seed_drop_bonus, this.products.toNew(),
                 this.requirement.toNew(), this.texture, this.path, this.enabled);
