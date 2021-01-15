@@ -1,5 +1,6 @@
 package com.agricraft.agricore.registry;
 
+import com.agricraft.agricore.json.AgriJsonVersion;
 import com.agricraft.agricore.plant.AgriMutation;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -9,6 +10,17 @@ import java.util.List;
 import java.util.Set;
 
 public class AgriMutations implements AgriLoadableRegistry<AgriMutation> {
+    public static final AgriJsonVersion<AgriMutation> VERSION = new AgriJsonVersion<AgriMutation>() {
+        @Override
+        public Class<AgriMutation> getElementClass() {
+            return AgriMutation.class;
+        }
+
+        @Override
+        public String descriptor() {
+            return "1.16.4";
+        }
+    };
 
     private final Set<AgriMutation> mutations;
 
@@ -86,8 +98,8 @@ public class AgriMutations implements AgriLoadableRegistry<AgriMutation> {
     }
 
     @Override
-    public Class<AgriMutation> getElementClass() {
-        return AgriMutation.class;
+    public AgriJsonVersion<AgriMutation> getElementVersion() {
+        return VERSION;
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.agricraft.agricore.plant;
 import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.json.AgriSerializable;
 import com.agricraft.agricore.lang.AgriString;
+import com.agricraft.agricore.plant.old.v1.AgriSoil_1_12;
 import com.agricraft.agricore.util.TypeHelper;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public class AgriSoil implements AgriSerializable, Comparable<AgriSoil> {
     private final List<AgriObject> varients;
 
     public AgriSoil(AgriSerializable as) {
-        final AgriSoilOld old = (AgriSoilOld) as;
+        final AgriSoil_1_12 old = (AgriSoil_1_12) as;
         this.enabled = old.isEnabled();
         this.id = old.getId();
         this.name = new AgriString(old.getName());

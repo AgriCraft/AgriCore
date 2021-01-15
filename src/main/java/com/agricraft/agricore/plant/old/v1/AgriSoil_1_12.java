@@ -1,12 +1,13 @@
-package com.agricraft.agricore.plant;
+package com.agricraft.agricore.plant.old.v1;
 
 import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.json.AgriSerializable;
+import com.agricraft.agricore.plant.AgriObject;
 import com.agricraft.agricore.util.TypeHelper;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class AgriSoilOld implements AgriSerializable {
+public class AgriSoil_1_12 implements AgriSerializable {
 
     private String path;
     
@@ -16,14 +17,14 @@ public class AgriSoilOld implements AgriSerializable {
     private final String name;
     private final List<AgriObject> varients;
 
-    public AgriSoilOld() {
+    public AgriSoil_1_12() {
         this.enabled = true;
         this.id = "dirt_soil";
         this.name = "Dirt";
         this.varients = TypeHelper.asList(new AgriObject());
     }
 
-    public AgriSoilOld(String id, String name, List<AgriObject> varients) {
+    public AgriSoil_1_12(String id, String name, List<AgriObject> varients) {
         this.enabled = true;
         this.id = id;
         this.name = name;

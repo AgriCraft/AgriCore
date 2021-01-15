@@ -3,10 +3,13 @@ package com.agricraft.agricore.plant;
 import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.json.AgriSerializable;
 import com.agricraft.agricore.lang.AgriString;
+import com.agricraft.agricore.plant.old.v1.AgriPlant_1_12;
+import com.agricraft.agricore.plant.old.v1.AgriStack_1_12;
 import com.google.common.base.Preconditions;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
@@ -41,14 +44,14 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
     private final AgriTexture texture;
 
     public AgriPlant(AgriSerializable as) {
-        final AgriPlantOld old = (AgriPlantOld) as;
+        final AgriPlant_1_12 old = (AgriPlant_1_12) as;
         
         this.path = old.getPath();
         this.enabled = old.isEnabled();
         this.id = old.getId();
         this.plant_name = new AgriString(old.getPlantName());
         this.seed_name = new AgriString(old.getSeedName());
-        this.seed_items = old.getSeed_items();
+        this.seed_items = old.getSeed_items().stream().map(AgriStack_1_12::toNew).collect(Collectors.toList());
         if(old.getDescription().getTranslations().isEmpty()){
             this.description = new AgriString(old.getDescription().getNormal());
         }else{
@@ -65,8 +68,8 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
         this.grass_drop_chance = old.getGrassDropChance();
         this.seed_drop_chance = old.getSeedDropChance();
         this.seed_drop_bonus = old.getSeedDropBonus();
-        this.products = old.getProducts();
-        this.requirement = old.getRequirement();
+        this.products = old.getProducts().toNew();
+        this.requirement = old.getRequirement().toNew();
         this.texture = old.getTexture();
     }
 

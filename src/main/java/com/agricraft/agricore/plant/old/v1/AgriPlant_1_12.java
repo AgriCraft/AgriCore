@@ -1,13 +1,14 @@
-package com.agricraft.agricore.plant;
+package com.agricraft.agricore.plant.old.v1;
 
-import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.json.AgriSerializable;
 import com.agricraft.agricore.lang.AgriString;
+import com.agricraft.agricore.plant.AgriTexture;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class AgriPlantOld implements AgriSerializable {
+public class AgriPlant_1_12 implements AgriSerializable {
 
     private String path;
     
@@ -16,7 +17,7 @@ public class AgriPlantOld implements AgriSerializable {
     private final String id;
     private final String plant_name;
     private final String seed_name;
-    private final List<AgriObject> seed_items;
+    private final List<AgriStack_1_12> seed_items;
     private final AgriString description;
 
     private final double growth_chance;
@@ -32,11 +33,11 @@ public class AgriPlantOld implements AgriSerializable {
     private final double seed_drop_chance;
     private final double seed_drop_bonus;
 
-    private final AgriProductList products;
-    private final AgriRequirement requirement;
+    private final AgriProductList_1_12 products;
+    private final AgriRequirement_1_12 requirement;
     private final AgriTexture texture;
 
-    public AgriPlantOld() {
+    public AgriPlant_1_12() {
         this.enabled = false;
         this.path = "default/weed_plant.json";
         this.id = "weed_plant";
@@ -55,12 +56,12 @@ public class AgriPlantOld implements AgriSerializable {
         this.grass_drop_chance = 0.0;
         this.seed_drop_chance = 1.0;
         this.seed_drop_bonus = 0.0;
-        this.products = new AgriProductList();
-        this.requirement = new AgriRequirement();
+        this.products = new AgriProductList_1_12();
+        this.requirement = new AgriRequirement_1_12();
         this.texture = new AgriTexture();
     }
 
-    public AgriPlantOld(String id, String plant_name, String seed_name, List<AgriObject> seed_items, AgriString description, boolean bonemeal, int tier, double growth_chance, double growth_bonus, boolean weedable, boolean agressive, double spread_chance, double spawn_chance, double grass_drop_chance, double seed_drop_chance, double seed_drop_bonus, AgriProductList products, AgriRequirement requirement, AgriTexture texture, String path, boolean enabled) {
+    public AgriPlant_1_12(String id, String plant_name, String seed_name, List<AgriStack_1_12> seed_items, AgriString description, boolean bonemeal, int tier, double growth_chance, double growth_bonus, boolean weedable, boolean agressive, double spread_chance, double spawn_chance, double grass_drop_chance, double seed_drop_chance, double seed_drop_bonus, AgriProductList_1_12 products, AgriRequirement_1_12 requirement, AgriTexture texture, String path, boolean enabled) {
         this.enabled = enabled;
         this.path = path;
         this.id = id;
@@ -96,7 +97,7 @@ public class AgriPlantOld implements AgriSerializable {
         return seed_name;
     }
 
-    public Collection<AgriObject> getSeedItems() {
+    public Collection<AgriStack_1_12> getSeedItems() {
         return seed_items;
     }
 
@@ -108,11 +109,11 @@ public class AgriPlantOld implements AgriSerializable {
         return description;
     }
 
-    public AgriProductList getProducts() {
+    public AgriProductList_1_12 getProducts() {
         return products;
     }
 
-    public AgriRequirement getRequirement() {
+    public AgriRequirement_1_12 getRequirement() {
         return requirement;
     }
 
@@ -164,24 +165,6 @@ public class AgriPlantOld implements AgriSerializable {
         return seed_drop_bonus;
     }
 
-    public boolean validate() {
-        if (!this.enabled) {
-            AgriCore.getCoreLogger().debug("Disabled Plant: {0}!", id);
-            return false;
-        } else if (!this.requirement.validate()) {
-            AgriCore.getCoreLogger().debug("Invalid Plant: {0}! Invalid Requirement!", id);
-            return false;
-        } else if (!this.products.validate()) {
-            AgriCore.getCoreLogger().debug("Invalid Plant: {0}! Invalid Product!", id);
-            return false;
-        } else if (!this.texture.validate()) {
-            AgriCore.getCoreLogger().debug("Invalid Plant: {0}! Invalid Texture!", id);
-            return false;
-        }
-        this.seed_items.removeIf(s -> !s.validate());
-        return true;
-    }
-
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
@@ -222,7 +205,7 @@ public class AgriPlantOld implements AgriSerializable {
         return seed_name;
     }
 
-    public List<AgriObject> getSeed_items() {
+    public List<AgriStack_1_12> getSeed_items() {
         return seed_items;
     }
 

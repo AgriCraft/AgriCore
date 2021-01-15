@@ -1,8 +1,6 @@
 package com.agricraft.agricore.json;
 
 import com.agricraft.agricore.core.AgriCore;
-import com.agricraft.agricore.plant.AgriPlant;
-import com.agricraft.agricore.plant.AgriSoil;
 import com.agricraft.agricore.registry.AgriLoadableRegistry;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -31,36 +29,35 @@ public final class AgriLoader {
         }
     }
 
-    protected static <T extends AgriSerializable> void ConvertAndBackup(Path location, Class<T> newClass) {
+    protected static <T extends AgriSerializable> void convertAndBackup(Path location, AgriJsonVersion<T> newVersion) {
+        // Check if a previous version exists
+        AgriJsonVersion<?> oldVersion = newVersion.previousVersion();
+        if (oldVersion == null) {
+            return;
+        }
+        // Go deeper
+        convertAndBackup(location, oldVersion);
+        // Fetch old and new classes
+        Class<T> newClass = newVersion.getElementClass();
+        Class<?> oldClass = oldVersion.getElementClass();
+        // Convert and back up
+        try (Reader reader = Files.newBufferedReader(location)) {
+            //load old json
+            AgriSerializable oldObject = (AgriSerializable) GSON.fromJson(reader, oldClass);
+            //create backups
+            Path pBackup = Paths.get(location.toString().replaceAll("defaults", "backups/" + oldVersion.descriptor()));
+            //save backups json
+            AgriSaver.saveElement(pBackup, oldObject);
+            //convert old json to new json
+            AgriSerializable newObject = newClass.getConstructor(AgriSerializable.class).newInstance(oldObject);
+            //save new json
+            AgriSaver.saveElement(location, newObject);
 
-        Class[] cArr = {AgriPlant.class, AgriSoil.class};
-
-        for (Class c : cArr) {
-            if (c != newClass) {
-                continue;
-            }
-
-            try (Reader reader = Files.newBufferedReader(location)) {
-                Class<?> oldClass = Class.forName(c.getTypeName() + "Old");
-
-                //load old json
-                AgriSerializable oldObject = (AgriSerializable) GSON.fromJson(reader, oldClass);
-                //create backups
-                Path pBackup = Paths.get(location.toString().replaceAll("defaults", "backups"));
-                //save backups json
-                AgriSaver.saveElement(pBackup, oldObject);
-                //convert old json to new json
-                AgriSerializable newObject = (AgriSerializable) c.getConstructor(AgriSerializable.class).newInstance(oldObject);
-                //save new json
-                AgriSaver.saveElement(location, newObject);
-
-                AgriCore.getCoreLogger().info("Backup {0} to {1}.\nSuccessfully converted the {0} from {2} to {3}.",
-                        location.getFileName(), pBackup, oldClass.getSimpleName(), c.getSimpleName());
-            } catch (Exception e) {
-                AgriCore.getCoreLogger().warn("An error occurred while ConvertAndBackup the {0} from {1} to {2}. Maybe the target is already {2}.",
-                        location.getFileName(), c.getTypeName() + "Old", c.getTypeName());
-            }
-
+            AgriCore.getCoreLogger().info("Backup {0} to {1}.\nSuccessfully converted the {0} from {2} to {3}.",
+                    location.getFileName(), pBackup, oldVersion.descriptor(), newVersion.descriptor());
+        } catch (Exception e) {
+            AgriCore.getCoreLogger().warn("An error occurred while ConvertAndBackup the {0} from {1} to {2}. Maybe the target is already {2}.",
+                    location.getFileName(), oldVersion.descriptor(), newVersion.descriptor());
         }
     }
   
@@ -75,12 +72,13 @@ public final class AgriLoader {
             return;
         }
 
-        ConvertAndBackup(location, registry.getElementClass());
+        // Attempt to convert from previous versions
+        convertAndBackup(location, registry.getElementVersion());
         
         // Attempt to load element.
         // If fails, return.
         try (Reader reader = Files.newBufferedReader(location)) {
-            obj = GSON.fromJson(reader, registry.getElementClass());
+            obj = GSON.fromJson(reader, registry.getElementVersion().getElementClass());
             obj.setPath(root.relativize(location).toString().replaceAll("\\\\", "/"));
         } catch (IOException | JsonParseException | NullPointerException e) {
             // IOException is thrown when unable to read file.
