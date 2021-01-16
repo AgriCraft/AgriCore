@@ -37,6 +37,7 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
     private final double seed_drop_bonus;
 
     private final AgriProductList products;
+    private final AgriProductList clip_products;
     private final AgriRequirement requirement;
     private final AgriTexture texture;
 
@@ -61,14 +62,15 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
         this.seed_drop_chance = 1.0;
         this.seed_drop_bonus = 0.0;
         this.products = new AgriProductList();
+        this.clip_products = new AgriProductList();
         this.requirement = new AgriRequirement();
         this.texture = new AgriTexture();
     }
 
     public AgriPlant(String id, AgriString plant_name, AgriString seed_name, AgriSeed seed_items, AgriString description, int stages, int harvestStage,
                      boolean bonemeal, int tier, double growth_chance, double growth_bonus, boolean cloneable,
-                     double spread_chance, double grass_drop_chance, double seed_drop_chance,
-                     double seed_drop_bonus, AgriProductList products, AgriRequirement requirement, AgriTexture texture,
+                     double spread_chance, double grass_drop_chance, double seed_drop_chance, double seed_drop_bonus,
+                     AgriProductList products, AgriProductList clip_products, AgriRequirement requirement, AgriTexture texture,
                      String path, boolean enabled) {
 
         Preconditions.checkArgument(stages > 0, "The number of stages must be larger than 0");
@@ -93,6 +95,7 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
         this.seed_drop_chance = seed_drop_chance;
         this.seed_drop_bonus = seed_drop_bonus;
         this.products = products;
+        this.clip_products = clip_products;
         this.cloneable = cloneable;
         this.requirement = requirement;
         this.texture = texture;
@@ -133,6 +136,10 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
 
     public AgriProductList getProducts() {
         return products;
+    }
+
+    public AgriProductList getClip_products() {
+        return clip_products;
     }
 
     public boolean allowsCloning() {
@@ -188,6 +195,9 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
             return false;
         } else if (!this.products.validate()) {
             AgriCore.getCoreLogger().debug("Invalid Plant: {0}! Invalid Product!", id);
+            return false;
+        } else if (!this.clip_products.validate()) {
+            AgriCore.getCoreLogger().debug("Invalid Plant: {0}! Invalid Clip Product!", id);
             return false;
         } else if (!this.texture.validate()) {
             AgriCore.getCoreLogger().debug("Invalid Plant: {0}! Invalid Texture!", id);
