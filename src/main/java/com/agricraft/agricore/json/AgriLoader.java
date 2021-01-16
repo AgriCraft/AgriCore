@@ -5,6 +5,7 @@ import com.agricraft.agricore.plant.versions.v1.Versions_1_12;
 import com.agricraft.agricore.registry.AgriLoadableRegistry;
 import com.google.gson.*;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.io.IOException;
 import java.io.Reader;
@@ -23,7 +24,7 @@ public final class AgriLoader {
 
     private AgriLoader() {}
 
-    public static void loadDirectory(Path dir, AgriLoadableRegistry... registries) {
+    public static void loadDirectory(Path dir, AgriLoadableRegistry<?>... registries) {
         try {
             Files.walkFileTree(dir, new AgriFileWalker(dir, registries));
         } catch (IOException e) {
@@ -57,12 +58,13 @@ public final class AgriLoader {
         registry.registerElement(obj);
     }
 
+    @Nullable
     private static JsonElement readJson(Path location) {
         try (Reader reader = Files.newBufferedReader(location)) {
             return new JsonParser().parse(reader);
         } catch (IOException | JsonParseException | NullPointerException e) {
             // IOException is thrown when unable to read file.
-            // JsonParseExeption is thrown when JSON format is wrong.
+            // JsonParseException is thrown when JSON format is wrong.
             // NullPointerException is thrown when the file is empty.
             AgriCore.getCoreLogger().warn("Unable to read json: \"{0}\"!", location);
             AgriCore.getCoreLogger().trace(e);
@@ -114,6 +116,7 @@ public final class AgriLoader {
         }
     }
 
+    @Nonnull
     private static String parseVersion(JsonElement json, Path location) {
         JsonObject jsonObject = json.getAsJsonObject();
         if(jsonObject.has("version")) {
@@ -126,11 +129,12 @@ public final class AgriLoader {
         }
     }
 
+    @Nullable
     private static <T extends AgriSerializable & Comparable<T>> T parse(JsonElement json, Path location, Class<T> clazz) {
         try {
             return GSON.fromJson(json, clazz);
         } catch (JsonParseException | NullPointerException e) {
-            // JsonParseExeption is thrown when JSON format is wrong.
+            // JsonParseException is thrown when JSON format is wrong.
             AgriCore.getCoreLogger().warn("Unable to parse json: \"{0}\"!", location);
             AgriCore.getCoreLogger().trace(e);
             return null;
