@@ -1,13 +1,15 @@
 package com.agricraft.agricore.registry;
 
+import com.agricraft.agricore.json.AgriJsonVersion;
 import com.agricraft.agricore.plant.AgriSoil;
+import com.agricraft.agricore.plant.versions.v2.Versions_1_16;
+
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 public class AgriSoils implements AgriLoadableRegistry<AgriSoil> {
-
     private final Map<String, AgriSoil> soils;
 
     public AgriSoils() {
@@ -51,8 +53,8 @@ public class AgriSoils implements AgriLoadableRegistry<AgriSoil> {
     }
 
     @Override
-    public Class<AgriSoil> getElementClass() {
-        return AgriSoil.class;
+    public AgriJsonVersion<AgriSoil> getElementVersion() {
+        return Versions_1_16.SOIL;
     }
 
     @Override

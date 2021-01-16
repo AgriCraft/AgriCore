@@ -23,12 +23,12 @@ public class AgriProduct extends AgriObject {
         this.required = true;
     }
 
-    public AgriProduct(String item, int min, int max, double chance, boolean required, String... ignoreTags) {
-        this(item, min, max, chance, required, Arrays.asList(ignoreTags));
+    public AgriProduct(String item, boolean useTag, int min, int max, double chance, boolean required, String data, String... ignoreTags) {
+        this(item, useTag, min, max, chance, required, data, Arrays.asList(ignoreTags));
     }
 
-    public AgriProduct(String item, int min, int max, double chance, boolean required, List<String> ignoreTags) {
-        super("item", item, false, "", ignoreTags);
+    public AgriProduct(String item, boolean useTag, int min, int max, double chance, boolean required, String data, List<String> ignoreTags) {
+        super("item", item, false, data, ignoreTags);
         this.min = min;
         this.max = max;
         this.chance = chance;

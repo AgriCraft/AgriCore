@@ -1,6 +1,8 @@
 package com.agricraft.agricore.registry;
 
+import com.agricraft.agricore.json.AgriJsonVersion;
 import com.agricraft.agricore.plant.AgriPlant;
+import com.agricraft.agricore.plant.versions.v2.Versions_1_16;
 import com.google.common.collect.ImmutableSet;
 
 import java.util.HashMap;
@@ -51,8 +53,8 @@ public class AgriPlants implements AgriLoadableRegistry<AgriPlant> {
     }
 
     @Override
-    public Class<AgriPlant> getElementClass() {
-        return AgriPlant.class;
+    public AgriJsonVersion<AgriPlant> getElementVersion() {
+        return Versions_1_16.PLANT;
     }
 
     @Override

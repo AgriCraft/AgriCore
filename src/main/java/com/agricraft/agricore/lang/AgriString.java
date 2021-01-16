@@ -15,20 +15,17 @@ public class AgriString {
     public AgriString() {
         this.normal = "add translations in here.";
         this.translations = new HashMap<>();
-        this.translations.put("en_US", normal);
     }
 
     public AgriString(String value) {
         this.normal = value;
         this.translations = new HashMap<>();
-        this.translations.put("en_US", normal);
     }
 
     public AgriString(String normal, Map<String, String> translations) {
         this.normal = normal;
         this.translations = translations;
         if (this.translations.isEmpty()) {
-            this.translations.put("en_US", normal);
         }
 
     }

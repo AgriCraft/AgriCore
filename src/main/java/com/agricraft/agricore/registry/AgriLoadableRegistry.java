@@ -1,10 +1,13 @@
 package com.agricraft.agricore.registry;
 
-public interface AgriLoadableRegistry<T extends Comparable<T>> {
+import com.agricraft.agricore.json.AgriJsonVersion;
+import com.agricraft.agricore.json.AgriSerializable;
+
+public interface AgriLoadableRegistry<T extends AgriSerializable & Comparable<T>> {
 
     boolean acceptsElement(String filename);
 
-    Class<T> getElementClass();
+    AgriJsonVersion<T> getElementVersion();
 
     void registerElement(T element);
 

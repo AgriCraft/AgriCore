@@ -3,6 +3,7 @@ package com.agricraft.agricore.plant;
 import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.json.AgriSerializable;
 import com.agricraft.agricore.lang.AgriString;
+import com.agricraft.agricore.plant.versions.v2.Versions_1_16;
 import com.agricraft.agricore.util.TypeHelper;
 
 import java.util.List;
@@ -10,31 +11,26 @@ import java.util.stream.Collectors;
 
 public class AgriSoil implements AgriSerializable, Comparable<AgriSoil> {
     private String path;
+    private final String version;
     private final boolean enabled;
     private final String id;
     private final AgriString name;
     private final List<AgriObject> varients;
 
-    public AgriSoil(AgriSerializable as) {
-        final AgriSoilOld old = (AgriSoilOld) as;
-        this.enabled = old.isEnabled();
-        this.id = old.getId();
-        this.name = new AgriString(old.getName());
-        this.varients = old.getVarients();
-    }
-
     public AgriSoil() {
-        this.enabled = true;
         this.id = "dirt_soil";
         this.name = new AgriString("Dirt");
         this.varients = TypeHelper.asList(new AgriObject());
+        this.enabled = false;
+        this.version = Versions_1_16.VERSION;
     }
 
-    public AgriSoil(String id, AgriString name, List<AgriObject> varients) {
-        this.enabled = true;
+    public AgriSoil(String id, AgriString name, List<AgriObject> varients, boolean enabled) {
         this.id = id;
         this.name = name;
         this.varients = varients;
+        this.enabled = enabled;
+        this.version = Versions_1_16.VERSION;
     }
 
     public String getId() {
@@ -88,6 +84,11 @@ public class AgriSoil implements AgriSerializable, Comparable<AgriSoil> {
     @Override
     public void setPath(String path) {
         this.path = path;
+    }
+
+    @Override
+    public String getVersion() {
+        return this.version;
     }
 
     @Override

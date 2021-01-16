@@ -2,11 +2,14 @@ package com.agricraft.agricore.plant;
 
 import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.json.AgriSerializable;
+import com.agricraft.agricore.plant.versions.v2.Versions_1_16;
+
 import java.util.Random;
 
 public class AgriMutation implements AgriSerializable, Comparable<AgriMutation> {
 
     private String path;
+    private final String version;
     
     private final boolean enabled;
 
@@ -24,6 +27,7 @@ public class AgriMutation implements AgriSerializable, Comparable<AgriMutation> 
         this.child = "carrot_plant";
         this.parent1 = "wheat_plant";
         this.parent2 = "potato_plant";
+        this.version = Versions_1_16.VERSION;
     }
 
     public AgriMutation(double chance, String child, String parent1, String parent2, String path, boolean enabled) {
@@ -33,6 +37,7 @@ public class AgriMutation implements AgriSerializable, Comparable<AgriMutation> 
         this.child = child;
         this.parent1 = parent1;
         this.parent2 = parent2;
+        this.version = Versions_1_16.VERSION;
     }
 
     public boolean isChild(String child) {
@@ -105,6 +110,11 @@ public class AgriMutation implements AgriSerializable, Comparable<AgriMutation> 
     @Override
     public void setPath(String path) {
         this.path = path;
+    }
+
+    @Override
+    public String getVersion() {
+        return this.version;
     }
 
     @Override
