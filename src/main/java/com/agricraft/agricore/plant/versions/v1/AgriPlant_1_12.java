@@ -2,7 +2,9 @@ package com.agricraft.agricore.plant.versions.v1;
 
 import com.agricraft.agricore.json.AgriSerializable;
 import com.agricraft.agricore.lang.AgriString;
+import com.agricraft.agricore.plant.AgriObject;
 import com.agricraft.agricore.plant.AgriPlant;
+import com.agricraft.agricore.plant.AgriSeed;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,10 +94,25 @@ public class AgriPlant_1_12 implements AgriSerializable, Comparable<AgriPlant_1_
     }
 
     public AgriPlant toNew() {
-        return new AgriPlant(this.id, new AgriString(this.plant_name), new AgriString(this.seed_name), this.seed_items.stream().map(stack -> stack.toNew("item")).collect(Collectors.toList()),
+        return new AgriPlant(this.id, new AgriString(this.plant_name), new AgriString(this.seed_name), this.convertSeeds(),
                 this.description, this.texture.getGrowthStages(), this.texture.getGrowthStages()/2, this.bonemeal, this.tier, this.growth_chance,
                 this.growth_bonus, this.isCloneable(), this.spread_chance, this.grass_drop_chance, this.seed_drop_chance, this.seed_drop_bonus, this.products.toNew(),
                 this.requirement.toNew(), this.texture.toNew(), this.path, this.enabled);
+    }
+
+    private AgriSeed convertSeeds() {
+        if(this.seed_items.size() > 0) {
+            AgriObject first = this.seed_items.get(0).toNew("item");
+            return new AgriSeed(
+                    first.getObjectString(),
+                    first.useTag(),
+                    this.seed_items.stream().skip(1).map(obj -> obj.toNew("item")).collect(Collectors.toList()),
+                    first.getData(),
+                    first.getIgnoredData()
+            );
+        } else {
+            return new AgriSeed();
+        }
     }
 
     protected boolean isCloneable() {

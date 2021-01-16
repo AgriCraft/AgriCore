@@ -25,8 +25,8 @@ public class AgriObject {
         this(type, object, useTags, "");
     }
 
-    public AgriObject(String type, String object, boolean useTags, String tag, String... ignoredData) {
-        this(type, object, useTags, tag, Arrays.asList(ignoredData));
+    public AgriObject(String type, String object, boolean useTags, String data, String... ignoredData) {
+        this(type, object, useTags, data, Arrays.asList(ignoredData));
     }
 
     public AgriObject(String type, String object, boolean useTags, String data, List<String> ignoredData) {
