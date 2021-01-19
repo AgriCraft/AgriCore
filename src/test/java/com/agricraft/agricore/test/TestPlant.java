@@ -33,12 +33,14 @@ public class TestPlant {
         AgriProduct item = new AgriProduct("wheat", false, 0, 3, .5, true, "");
 
         // Setup Seed
-        AgriObject seed = new AgriObject("item", "minecraft:wheat_seeds", false, "", "*");
+        AgriSeed seed = new AgriSeed("minecraft:wheat_seeds");
 
         // Setup Products
         List<AgriProduct> items = new ArrayList<>();
         items.add(item);
+        List<AgriProduct> clip_items = new ArrayList<AgriProduct>();
         AgriProductList products = new AgriProductList(items);
+        AgriProductList clip_products = new AgriProductList(clip_items);
 
         // Setup Condition
         AgriBlockCondition condition = new AgriBlockCondition(10, 1, 0, -2, 0, 0, -2, 0, "minecraft:stone", false, "");
@@ -53,8 +55,8 @@ public class TestPlant {
         AgriString description = new AgriString("Wheat, the gluten that founded human society.");
 
         // Setup Plant
-        plant = new AgriPlant("wheat_plant", new AgriString("Wheat"), new AgriString("Wheat Seeds"), Arrays.asList(seed), description, 8, 4,
-                true, 1, 1.0, 0.01, false, 0.1, 0, 1, 0, products, requirement, texture, "default/wheat_plant.json", true);
+        plant = new AgriPlant("wheat_plant", new AgriString("Wheat"), new AgriString("Wheat Seeds"), seed, description, 8, 4,
+                true, 1, 1.0, 0.01, false, 0.1, 0, 1, 0, products, clip_products, requirement, texture, "default/wheat_plant.json", true);
     }
 
     @BeforeClass

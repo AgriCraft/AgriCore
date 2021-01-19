@@ -3,8 +3,8 @@ package com.agricraft.agricore.plant;
 import com.agricraft.agricore.core.AgriCore;
 import com.google.common.collect.ImmutableList;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,18 +14,19 @@ public class AgriSeed extends AgriObject {
     private final List<AgriObject> substitutes;
 
     public AgriSeed() {
-        super();
-        this.substitutes = new ArrayList<>();
+        this("minecraft:wheat_seeds");
+    }
+
+    public AgriSeed(String seed) {
+        this(seed, Collections.emptyList());
     }
 
     public AgriSeed(String seed, List<AgriObject> substitutes) {
-        super("item", seed);
-        this.substitutes = substitutes;
+        this(seed, false, substitutes);
     }
 
     public AgriSeed(String seed, boolean useTags, List<AgriObject> substitutes) {
-        super("item", seed, useTags);
-        this.substitutes = substitutes;
+        this(seed, useTags, substitutes, "");
     }
 
     public AgriSeed(String seed, boolean useTags, List<AgriObject> substitutes, String data, String... ignoredData) {
