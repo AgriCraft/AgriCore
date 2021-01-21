@@ -53,7 +53,7 @@ public class AgriTexture_1_12 {
     }
 
     private String correctTexture(String texture) {
-        if (texture.contains("agricraft")) {
+        if (texture.contains("agricraft") || texture.contains("minecraft")) {
             if (texture.contains("items")) {
                 return texture.replace("items", "item");
             } else if (texture.contains("blocks")) {
