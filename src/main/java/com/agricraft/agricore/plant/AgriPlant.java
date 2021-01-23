@@ -5,8 +5,9 @@ import com.agricraft.agricore.json.AgriSerializable;
 import com.agricraft.agricore.lang.AgriString;
 import com.agricraft.agricore.plant.versions.v2.Versions_1_16;
 import com.google.common.base.Preconditions;
+import com.google.common.collect.Lists;
 
-import java.util.Collection;
+import java.util.List;
 
 public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
 
@@ -19,7 +20,7 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
 
     private final AgriString plant_name;
     private final AgriString seed_name;
-    private final AgriSeed seed_items;
+    private final List<AgriSeed> seed_items;
     private final AgriString description;
 
     private final int stages;
@@ -48,7 +49,7 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
         this.id = "weed_plant";
         this.plant_name = new AgriString("Weed");
         this.seed_name = new AgriString("Weed Seeds");
-        this.seed_items = new AgriSeed();
+        this.seed_items = Lists.newArrayList();
         this.description = new AgriString("An annoying plant.");
         this.stages = 8;
         this.harvestStage = 4;
@@ -67,7 +68,7 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
         this.texture = new AgriTexture();
     }
 
-    public AgriPlant(String id, AgriString plant_name, AgriString seed_name, AgriSeed seed_items, AgriString description, int stages, int harvestStage,
+    public AgriPlant(String id, AgriString plant_name, AgriString seed_name, List<AgriSeed> seed_items, AgriString description, int stages, int harvestStage,
                      boolean bonemeal, int tier, double growth_chance, double growth_bonus, boolean cloneable,
                      double spread_chance, double grass_drop_chance, double seed_drop_chance, double seed_drop_bonus,
                      AgriProductList products, AgriProductList clip_products, AgriRequirement requirement, AgriTexture texture,
@@ -114,12 +115,8 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
         return seed_name.toString();
     }
 
-    public AgriSeed getSeed() {
+    public List<AgriSeed> getSeeds() {
         return this.seed_items;
-    }
-
-    public Collection<AgriObject> getSeedItems() {
-        return seed_items.getSeeds();
     }
 
     public int getGrowthStages() {
@@ -202,10 +199,8 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
         } else if (!this.texture.validate()) {
             AgriCore.getCoreLogger().debug("Invalid Plant: {0}! Invalid Texture!", id);
             return false;
-        } else if(!this.seed_items.validate()) {
-            AgriCore.getCoreLogger().debug("Invalid Plant: {0}! No valid seed!", id);
-            return false;
         }
+        this.seed_items.removeIf(seed -> !seed.validate());
         return true;
     }
 

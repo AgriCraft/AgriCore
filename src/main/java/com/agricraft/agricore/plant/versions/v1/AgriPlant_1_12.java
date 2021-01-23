@@ -2,7 +2,6 @@ package com.agricraft.agricore.plant.versions.v1;
 
 import com.agricraft.agricore.json.AgriSerializable;
 import com.agricraft.agricore.lang.AgriString;
-import com.agricraft.agricore.plant.AgriObject;
 import com.agricraft.agricore.plant.AgriPlant;
 import com.agricraft.agricore.plant.AgriProductList;
 import com.agricraft.agricore.plant.AgriSeed;
@@ -101,19 +100,11 @@ public class AgriPlant_1_12 implements AgriSerializable, Comparable<AgriPlant_1_
                 this.products.toNew(), new AgriProductList(), this.requirement.toNew(), this.texture.toNew(), this.path, this.enabled);
     }
 
-    private AgriSeed convertSeeds() {
-        if(this.seed_items.size() > 0) {
-            AgriObject first = this.seed_items.get(0).toNew("item");
-            return new AgriSeed(
-                    first.getObjectString(),
-                    first.useTag(),
-                    this.seed_items.stream().skip(1).map(obj -> obj.toNew("item")).collect(Collectors.toList()),
-                    first.getData(),
-                    first.getIgnoredData()
-            );
-        } else {
-            return new AgriSeed();
-        }
+    private List<AgriSeed> convertSeeds() {
+        return this.seed_items.stream()
+                .filter(stack -> !stack.item.equals("agricraft:agri_seed"))
+                .map(stack -> new AgriSeed(stack.item, stack.useOreDict, stack.tags, stack.ignoreTags))
+                .collect(Collectors.toList());
     }
 
     protected boolean isCloneable() {

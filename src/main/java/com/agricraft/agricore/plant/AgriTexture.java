@@ -8,27 +8,27 @@ import java.util.List;
 public class AgriTexture {
 
     private AgriRenderType render_type = AgriRenderType.HASH;
-    private String seed_texture = "minecraft:items/seeds_wheat";
+    private String seed_model = "minecraft:item/wheat_seeds";
 
     private final String[] plant_textures = new String[]{
-        "minecraft:blocks/wheat_stage_0",
-        "minecraft:blocks/wheat_stage_1",
-        "minecraft:blocks/wheat_stage_2",
-        "minecraft:blocks/wheat_stage_3",
-        "minecraft:blocks/wheat_stage_4",
-        "minecraft:blocks/wheat_stage_5",
-        "minecraft:blocks/wheat_stage_6",
-        "minecraft:blocks/wheat_stage_7"
+        "minecraft:block/wheat_stage0",
+        "minecraft:block/wheat_stage1",
+        "minecraft:block/wheat_stage2",
+        "minecraft:block/wheat_stage3",
+        "minecraft:block/wheat_stage4",
+        "minecraft:block/wheat_stage5",
+        "minecraft:block/wheat_stage6",
+        "minecraft:block/wheat_stage7"
     };
 
     // GSON Tricker
     public AgriTexture() {
     }
 
-    public AgriTexture(AgriRenderType render_type, String seed_texture, String[] plant_textures) {
+    public AgriTexture(AgriRenderType render_type, String seed_model, String[] plant_textures) {
 
         this.render_type = render_type;
-        this.seed_texture = seed_texture;
+        this.seed_model = seed_model;
 
         System.arraycopy(plant_textures, 0, this.plant_textures, 0, Math.min(plant_textures.length, this.plant_textures.length));
 
@@ -48,8 +48,8 @@ public class AgriTexture {
         return render_type;
     }
 
-    public String getSeedTexture() {
-        return seed_texture;
+    public String getSeedModel() {
+        return seed_model;
     }
     
     public int getGrowthStages() {
@@ -59,7 +59,7 @@ public class AgriTexture {
     public List<String> getAllTextures() {
         final List<String> tex = new ArrayList<>(plant_textures.length + 1);
         tex.addAll(Arrays.asList(plant_textures));
-        tex.add(seed_texture);
+        tex.add(seed_model);
         return tex;
     }
 
@@ -72,8 +72,8 @@ public class AgriTexture {
     }
 
     public boolean validate() {
-        if (!AgriCore.getValidator().isValidTexture(seed_texture)) {
-            AgriCore.getCoreLogger().debug("Invalid AgriTexture! Invalid Seed Texture: \"{0}\"!", seed_texture);
+        if (!AgriCore.getValidator().isValidTexture(seed_model)) {
+            AgriCore.getCoreLogger().debug("Invalid AgriTexture! Invalid Seed Texture: \"{0}\"!", seed_model);
             return false;
         }
         for (String texture : plant_textures) {
@@ -88,7 +88,7 @@ public class AgriTexture {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder().append("Icon Set:\n");
-        sb.append("\t- Seed Texture: ").append(this.seed_texture).append("\n");
+        sb.append("\t- Seed Texture: ").append(this.seed_model).append("\n");
         sb.append("\t- Render Type: ").append(this.render_type).append("\n");
         sb.append("\t- Supported Number of Growth Stages:").append(this.plant_textures.length).append("\n");
         sb.append("\t- Plant Textures:\n");
