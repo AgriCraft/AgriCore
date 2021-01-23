@@ -24,12 +24,12 @@ public class AgriDefaultValidator implements AgriValidator {
     }
 
     @Override
-    public boolean isValidTexture(String texture) {
-        if (texture == null) {
+    public boolean isValidResource(String resource) {
+        if (resource == null) {
             AgriCore.getCoreLogger().warn("Null Texture!");
             return false;
         }
-        AgriCore.getCoreLogger().warn("Faking valid result for texture: " + texture + "!");
+        AgriCore.getCoreLogger().warn("Faking valid result for texture: " + resource + "!");
         return true;
     }
 

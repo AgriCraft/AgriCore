@@ -59,7 +59,6 @@ public class AgriTexture {
     public List<String> getAllTextures() {
         final List<String> tex = new ArrayList<>(plant_textures.length + 1);
         tex.addAll(Arrays.asList(plant_textures));
-        tex.add(seed_model);
         return tex;
     }
 
@@ -72,12 +71,12 @@ public class AgriTexture {
     }
 
     public boolean validate() {
-        if (!AgriCore.getValidator().isValidTexture(seed_model)) {
+        if (!AgriCore.getValidator().isValidResource(seed_model)) {
             AgriCore.getCoreLogger().debug("Invalid AgriTexture! Invalid Seed Texture: \"{0}\"!", seed_model);
             return false;
         }
         for (String texture : plant_textures) {
-            if (!AgriCore.getValidator().isValidTexture(texture)) {
+            if (!AgriCore.getValidator().isValidResource(texture)) {
                 AgriCore.getCoreLogger().debug("Invalid AgriTexture! Invalid Plant Texture: \"{0}\"!", texture);
                 return false;
             }

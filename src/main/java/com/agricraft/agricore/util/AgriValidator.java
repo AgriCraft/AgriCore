@@ -12,7 +12,7 @@ public interface AgriValidator {
     @Nonnull
     <T> Class<T> getTokenClass(String token);
 
-    boolean isValidTexture(final String texture);
+    boolean isValidResource(final String resource);
     
     boolean isValidMod(final String modid);
 
