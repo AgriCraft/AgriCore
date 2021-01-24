@@ -3,7 +3,7 @@ package com.agricraft.agricore.test;
 import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.lang.AgriString;
 import com.agricraft.agricore.plant.*;
-import com.agricraft.agricore.plant.versions.v2.AgriSeed_1_16;
+import com.google.common.collect.Lists;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.io.BufferedWriter;
@@ -33,7 +33,7 @@ public class TestPlant {
         AgriProduct item = new AgriProduct("wheat", false, 0, 3, .5, true, "");
 
         // Setup Seed
-        AgriSeed_1_16 seed = new AgriSeed_1_16("minecraft:wheat_seeds");
+        AgriSeed seed = new AgriSeed("minecraft:wheat_seeds");
 
         // Setup Products
         List<AgriProduct> items = new ArrayList<>();
@@ -55,7 +55,7 @@ public class TestPlant {
         AgriString description = new AgriString("Wheat, the gluten that founded human society.");
 
         // Setup Plant
-        plant = new AgriPlant("wheat_plant", new AgriString("Wheat"), new AgriString("Wheat Seeds"), seed, description, 8, 4,
+        plant = new AgriPlant("wheat_plant", new AgriString("Wheat"), new AgriString("Wheat Seeds"), Lists.newArrayList(seed), description, 8, 4,
                 true, 1, 1.0, 0.01, false, 0.1, 0, 1, 0, products, clip_products, requirement, texture, "default/wheat_plant.json", true);
     }
 
