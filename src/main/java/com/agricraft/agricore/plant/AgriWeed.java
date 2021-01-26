@@ -1,6 +1,8 @@
 package com.agricraft.agricore.plant;
 
+import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.json.AgriSerializable;
+import com.agricraft.agricore.lang.AgriString;
 import com.agricraft.agricore.plant.versions.v2.Versions_1_16;
 
 public class AgriWeed implements AgriSerializable, Comparable<AgriWeed> {
@@ -11,22 +13,71 @@ public class AgriWeed implements AgriSerializable, Comparable<AgriWeed> {
 
     private final String id;
 
+    private final AgriString weed_name;
+    private final AgriString description;
+
+    private final int stages;
+
+    private final AgriTexture texture;
+
     public AgriWeed() {
         this.path = "default/weed_weed.json";
         this.version = Versions_1_16.VERSION;
         this.enabled = false;
         this.id = "weed_weed";
+        this.weed_name = new AgriString("weeds");
+        this.description = new AgriString("");
+        this.stages = 8;
+        this.texture = new AgriTexture();
     }
 
-    public AgriWeed(String id, String path, boolean enabled) {
+    public AgriWeed(String id, String path, AgriString weed_name, AgriString description, int stages, AgriTexture texture, boolean enabled) {
         this.id = id;
         this.path = path;
         this.enabled = enabled;
+        this.weed_name = weed_name;
+        this.description = description;
+        this.stages = stages;
+        this.texture = texture;
         this.version = Versions_1_16.VERSION;
     }
 
     public String getId() {
         return id;
+    }
+
+    public String getWeedName() {
+        return weed_name.toString();
+    }
+
+    public int getGrowthStages() {
+        return this.stages;
+    }
+
+    public AgriString getDescription() {
+        return description;
+    }
+
+    public AgriTexture getTexture() {
+        return texture;
+    }
+
+    public boolean validate() {
+        if (!this.enabled) {
+            AgriCore.getCoreLogger().debug("Disabled Weed: {0}!", id);
+            return false;
+        } else if (!this.texture.validate()) {
+            AgriCore.getCoreLogger().debug("Invalid Weed: {0}! Invalid Texture!", id);
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder();
+        sb.append("\n").append(id).append(":\n");
+        return sb.toString();
     }
 
     @Override

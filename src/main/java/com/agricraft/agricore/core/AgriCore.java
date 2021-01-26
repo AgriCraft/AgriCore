@@ -10,6 +10,7 @@ import com.agricraft.agricore.log.AgriLogger;
 import com.agricraft.agricore.registry.AgriMutations;
 import com.agricraft.agricore.registry.AgriPlants;
 import com.agricraft.agricore.registry.AgriSoils;
+import com.agricraft.agricore.registry.AgriWeeds;
 import com.agricraft.agricore.util.AgriConverter;
 import com.agricraft.agricore.util.AgriValidator;
 
@@ -24,6 +25,8 @@ public final class AgriCore {
     private static AgriConverter converter;
 
     private static AgriPlants plants;
+
+    private static AgriWeeds weeds;
 
     private static AgriMutations mutations;
 
@@ -41,6 +44,7 @@ public final class AgriCore {
         AgriCore.validator = new AgriDefaultValidator();
         AgriCore.converter = new AgriDefaultConverter();
         AgriCore.plants = new AgriPlants();
+        AgriCore.weeds = new AgriWeeds();
         AgriCore.mutations = new AgriMutations();
         AgriCore.soils = new AgriSoils();
     }
@@ -60,6 +64,7 @@ public final class AgriCore {
         AgriCore.validator = validator;
         AgriCore.converter = converter;
         AgriCore.plants = new AgriPlants();
+        AgriCore.weeds = new AgriWeeds();
         AgriCore.mutations = new AgriMutations();
         AgriCore.soils = new AgriSoils();
         logger.info("Initialized core!");
@@ -99,6 +104,10 @@ public final class AgriCore {
 
     public static AgriPlants getPlants() {
         return plants;
+    }
+
+    public static AgriWeeds getWeeds() {
+        return weeds;
     }
 
     public static AgriSoils getSoils() {
