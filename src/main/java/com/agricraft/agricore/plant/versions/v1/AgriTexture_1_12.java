@@ -41,7 +41,11 @@ public class AgriTexture_1_12 {
     }
 
     public AgriTexture toNew() {
-        return new AgriTexture(this.render_type, this.correctTexture(this.seed_texture), this.correctTextures());
+        return new AgriTexture(this.render_type, this.correctTextures());
+    }
+
+    public String seed_texture() {
+        return this.correctTexture(this.seed_texture);
     }
 
     private String[] correctTextures() {
