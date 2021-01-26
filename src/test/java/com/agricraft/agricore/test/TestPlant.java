@@ -49,14 +49,14 @@ public class TestPlant {
         AgriRequirement requirement = new AgriRequirement(Arrays.asList("dirt"), Arrays.asList(condition), 0, 10);
 
         // Setup Icon
-        AgriTexture texture = new AgriTexture(AgriRenderType.CROSS, "seed_wheat", new String[0]);
+        AgriTexture texture = new AgriTexture(AgriRenderType.CROSS, new String[0]);
 
         // Setup Description
         AgriString description = new AgriString("Wheat, the gluten that founded human society.");
 
         // Setup Plant
         plant = new AgriPlant("wheat_plant", new AgriString("Wheat"), new AgriString("Wheat Seeds"), Lists.newArrayList(seed), description, 8, 4,
-                true, 1, 1.0, 0.01, false, 0.1, 0, 1, 0, products, clip_products, requirement, texture, "default/wheat_plant.json", true);
+                true, 1, 1.0, 0.01, false, 0.1, 0, 1, 0, products, clip_products, requirement, texture, "seed_wheat", "default/wheat_plant.json", true);
     }
 
     @BeforeClass
