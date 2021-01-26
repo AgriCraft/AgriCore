@@ -7,7 +7,11 @@ public enum AgriRenderType {
     @SerializedName(value = "hash", alternate = {"HASH", "#"})
     HASH('#'),
     @SerializedName(value = "cross", alternate = {"CROSS", "x", "X"})
-    CROSS('X');
+    CROSS('X'),
+    @SerializedName(value = "plus", alternate = {"PLUS", "+"})
+    PLUS('+'),
+    @SerializedName(value = "rhombus", alternate = {"RHOMBUS", "⬦", "◇"})
+    RHOMBUS('◇');
 
     private final char id;
 
