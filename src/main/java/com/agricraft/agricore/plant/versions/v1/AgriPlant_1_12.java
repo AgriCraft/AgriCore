@@ -5,6 +5,7 @@ import com.agricraft.agricore.lang.AgriString;
 import com.agricraft.agricore.plant.AgriPlant;
 import com.agricraft.agricore.plant.AgriProductList;
 import com.agricraft.agricore.plant.AgriSeed;
+import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -97,7 +98,8 @@ public class AgriPlant_1_12 implements AgriSerializable, Comparable<AgriPlant_1_
         return new AgriPlant(this.id, new AgriString(this.plant_name), new AgriString(this.seed_name), this.convertSeeds(),
                 this.description, this.texture.getGrowthStages(), this.texture.getGrowthStages()/2, this.bonemeal, this.tier, this.growth_chance,
                 this.growth_bonus, this.isCloneable(), this.spread_chance, this.grass_drop_chance, this.seed_drop_chance, this.seed_drop_bonus,
-                this.products.toNew(), new AgriProductList(), this.requirement.toNew(), this.texture.toNew(), this.texture.seed_texture(), this.path, this.enabled);
+                this.products.toNew(), new AgriProductList(), this.requirement.toNew(), Lists.newArrayList(), this.texture.toNew(),
+                this.texture.seed_texture(), this.path, this.enabled);
     }
 
     private List<AgriSeed> convertSeeds() {

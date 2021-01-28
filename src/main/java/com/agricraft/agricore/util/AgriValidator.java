@@ -13,6 +13,8 @@ public interface AgriValidator {
     <T> Class<T> getTokenClass(String token);
 
     boolean isValidResource(final String resource);
+
+    boolean isValidCallback(final String callback);
     
     boolean isValidMod(final String modid);
 

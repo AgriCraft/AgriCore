@@ -34,6 +34,11 @@ public class AgriDefaultValidator implements AgriValidator {
     }
 
     @Override
+    public boolean isValidCallback(String callback) {
+        return true;
+    }
+
+    @Override
     public boolean isValidMod(String modid) {
         if (modid == null) {
             AgriCore.getCoreLogger().warn("Null Mod Id!");

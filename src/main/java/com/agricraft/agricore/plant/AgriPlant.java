@@ -7,6 +7,7 @@ import com.agricraft.agricore.plant.versions.v2.Versions_1_16;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
@@ -40,6 +41,7 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
     private final AgriProductList products;
     private final AgriProductList clip_products;
     private final AgriRequirement requirement;
+    private final List<String> callbacks;
     private final AgriTexture texture;
     private final String seed_model;
 
@@ -66,6 +68,7 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
         this.products = new AgriProductList();
         this.clip_products = new AgriProductList();
         this.requirement = new AgriRequirement();
+        this.callbacks = new ArrayList<>();
         this.texture = new AgriTexture();
         this.seed_model = "minecraft:item/wheat_seeds";
     }
@@ -73,8 +76,8 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
     public AgriPlant(String id, AgriString plant_name, AgriString seed_name, List<AgriSeed> seed_items, AgriString description, int stages, int harvestStage,
                      boolean bonemeal, int tier, double growth_chance, double growth_bonus, boolean cloneable,
                      double spread_chance, double grass_drop_chance, double seed_drop_chance, double seed_drop_bonus,
-                     AgriProductList products, AgriProductList clip_products, AgriRequirement requirement, AgriTexture texture, String seed_model,
-                     String path, boolean enabled) {
+                     AgriProductList products, AgriProductList clip_products, AgriRequirement requirement, List<String> callbacks, AgriTexture texture,
+                     String seed_model, String path, boolean enabled) {
 
         Preconditions.checkArgument(stages > 0, "The number of stages must be larger than 0");
         Preconditions.checkArgument(harvestStage >= 0, "The harvest index can not be negative");
@@ -101,6 +104,7 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
         this.clip_products = clip_products;
         this.cloneable = cloneable;
         this.requirement = requirement;
+        this.callbacks = callbacks;
         this.texture = texture;
         this.seed_model = seed_model;
         this.version = Versions_1_16.VERSION;
@@ -190,6 +194,10 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
         return seed_drop_bonus;
     }
 
+    public List<String> getCallbacks() {
+        return callbacks;
+    }
+
     public boolean validate() {
         if (!this.enabled) {
             AgriCore.getCoreLogger().debug("Disabled Plant: {0}!", id);
@@ -212,6 +220,7 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
             return false;
         }
         this.seed_items.removeIf(seed -> !seed.validate());
+        this.callbacks.removeIf(callback -> !AgriCore.getValidator().isValidCallback(callback));
         return true;
     }
 
