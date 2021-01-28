@@ -22,6 +22,8 @@ public class AgriWeed implements AgriSerializable, Comparable<AgriWeed> {
     private final boolean aggressive;
     private final boolean lethal;
 
+    private final AgriProductList rake_drops;
+
     private final AgriTexture texture;
 
     public AgriWeed() {
@@ -36,11 +38,13 @@ public class AgriWeed implements AgriSerializable, Comparable<AgriWeed> {
         this.growth_chance = 0.9;
         this.aggressive = true;
         this.lethal = true;
+        this.rake_drops = new AgriProductList();
         this.texture = new AgriTexture();
     }
 
     public AgriWeed(String id, String path, AgriString weed_name, AgriString description, int stages, double spawn_chance,
-                    double growth_chance, boolean aggressive, boolean lethal, AgriTexture texture, boolean enabled) {
+                    double growth_chance, boolean aggressive, boolean lethal, AgriProductList rake_drops,
+                    AgriTexture texture, boolean enabled) {
         this.id = id;
         this.path = path;
         this.enabled = enabled;
@@ -51,6 +55,7 @@ public class AgriWeed implements AgriSerializable, Comparable<AgriWeed> {
         this.growth_chance = growth_chance;
         this.aggressive = aggressive;
         this.lethal = lethal;
+        this.rake_drops = rake_drops;
         this.texture = texture;
         this.version = Versions_1_16.VERSION;
     }
@@ -61,6 +66,10 @@ public class AgriWeed implements AgriSerializable, Comparable<AgriWeed> {
 
     public String getWeedName() {
         return weed_name.toString();
+    }
+
+    public AgriString getDescription() {
+        return description;
     }
 
     public int getGrowthStages() {
@@ -83,8 +92,8 @@ public class AgriWeed implements AgriSerializable, Comparable<AgriWeed> {
         return this.lethal;
     }
 
-    public AgriString getDescription() {
-        return description;
+    public AgriProductList getRakeDrops() {
+        return this.rake_drops;
     }
 
     public AgriTexture getTexture() {
@@ -94,6 +103,9 @@ public class AgriWeed implements AgriSerializable, Comparable<AgriWeed> {
     public boolean validate() {
         if (!this.enabled) {
             AgriCore.getCoreLogger().debug("Disabled Weed: {0}!", id);
+            return false;
+        } else if (!this.rake_drops.validate()) {
+            AgriCore.getCoreLogger().debug("Invalid Weed: {0}! Invalid Rake Drops!", id);
             return false;
         } else if (!this.texture.validate()) {
             AgriCore.getCoreLogger().debug("Invalid Weed: {0}! Invalid Texture!", id);
