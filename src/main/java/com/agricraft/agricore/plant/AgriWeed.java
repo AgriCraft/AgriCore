@@ -17,6 +17,10 @@ public class AgriWeed implements AgriSerializable, Comparable<AgriWeed> {
     private final AgriString description;
 
     private final int stages;
+    private final double spawn_chance;
+    private final double growth_chance;
+    private final boolean aggressive;
+    private final boolean lethal;
 
     private final AgriTexture texture;
 
@@ -28,16 +32,25 @@ public class AgriWeed implements AgriSerializable, Comparable<AgriWeed> {
         this.weed_name = new AgriString("weeds");
         this.description = new AgriString("");
         this.stages = 8;
+        this.spawn_chance = 0.25;
+        this.growth_chance = 0.9;
+        this.aggressive = true;
+        this.lethal = true;
         this.texture = new AgriTexture();
     }
 
-    public AgriWeed(String id, String path, AgriString weed_name, AgriString description, int stages, AgriTexture texture, boolean enabled) {
+    public AgriWeed(String id, String path, AgriString weed_name, AgriString description, int stages, double spawn_chance,
+                    double growth_chance, boolean aggressive, boolean lethal, AgriTexture texture, boolean enabled) {
         this.id = id;
         this.path = path;
         this.enabled = enabled;
         this.weed_name = weed_name;
         this.description = description;
         this.stages = stages;
+        this.spawn_chance =spawn_chance;
+        this.growth_chance = growth_chance;
+        this.aggressive = aggressive;
+        this.lethal = lethal;
         this.texture = texture;
         this.version = Versions_1_16.VERSION;
     }
@@ -52,6 +65,22 @@ public class AgriWeed implements AgriSerializable, Comparable<AgriWeed> {
 
     public int getGrowthStages() {
         return this.stages;
+    }
+
+    public double getSpawnChance() {
+        return this.spawn_chance;
+    }
+
+    public double getGrowthChance() {
+        return this.growth_chance;
+    }
+
+    public boolean isAggressive() {
+        return this.aggressive;
+    }
+
+    public boolean isLethal() {
+        return this.lethal;
     }
 
     public AgriString getDescription() {
