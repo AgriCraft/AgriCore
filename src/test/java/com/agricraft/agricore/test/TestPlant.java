@@ -56,7 +56,7 @@ public class TestPlant {
 
         // Setup Plant
         plant = new AgriPlant("wheat_plant", new AgriString("Wheat"), new AgriString("Wheat Seeds"), Lists.newArrayList(seed), description, 8, 4,
-                true, 1, 1.0, 0.01, false, 0.1, 0, 1, 0, products, clip_products, requirement, texture, "seed_wheat", "default/wheat_plant.json", true);
+                true, 1, 1.0, 0.01, false, 0.1, 0, 1, 0, products, clip_products, requirement, Lists.newArrayList(), texture, "seed_wheat", "default/wheat_plant.json", true);
     }
 
     @BeforeClass
