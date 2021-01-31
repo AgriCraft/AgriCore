@@ -2,7 +2,6 @@ package com.agricraft.agricore.plant;
 
 import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.json.AgriSerializable;
-import com.agricraft.agricore.lang.AgriString;
 import com.agricraft.agricore.plant.versions.v2.Versions_1_16;
 
 public class AgriWeed implements AgriSerializable, Comparable<AgriWeed> {
@@ -13,8 +12,8 @@ public class AgriWeed implements AgriSerializable, Comparable<AgriWeed> {
 
     private final String id;
 
-    private final AgriString weed_name;
-    private final AgriString description;
+    private final String weed_lang_key;
+    private final String desc_lang_key;
 
     private final int stages;
     private final double spawn_chance;
@@ -31,8 +30,8 @@ public class AgriWeed implements AgriSerializable, Comparable<AgriWeed> {
         this.version = Versions_1_16.VERSION;
         this.enabled = false;
         this.id = "weed_weed";
-        this.weed_name = new AgriString("weeds");
-        this.description = new AgriString("");
+        this.weed_lang_key = "weeds";
+        this.desc_lang_key = "";
         this.stages = 8;
         this.spawn_chance = 0.25;
         this.growth_chance = 0.9;
@@ -42,14 +41,14 @@ public class AgriWeed implements AgriSerializable, Comparable<AgriWeed> {
         this.texture = new AgriTexture();
     }
 
-    public AgriWeed(String id, String path, AgriString weed_name, AgriString description, int stages, double spawn_chance,
+    public AgriWeed(String id, String path, String weed_lang_key, String desc_lang_key, int stages, double spawn_chance,
                     double growth_chance, boolean aggressive, boolean lethal, AgriProductList rake_drops,
                     AgriTexture texture, boolean enabled) {
         this.id = id;
         this.path = path;
         this.enabled = enabled;
-        this.weed_name = weed_name;
-        this.description = description;
+        this.weed_lang_key = weed_lang_key;
+        this.desc_lang_key = desc_lang_key;
         this.stages = stages;
         this.spawn_chance =spawn_chance;
         this.growth_chance = growth_chance;
@@ -64,12 +63,12 @@ public class AgriWeed implements AgriSerializable, Comparable<AgriWeed> {
         return id;
     }
 
-    public String getWeedName() {
-        return weed_name.toString();
+    public String getWeedLangKey() {
+        return weed_lang_key;
     }
 
-    public AgriString getDescription() {
-        return description;
+    public String getDescLangKey() {
+        return desc_lang_key;
     }
 
     public int getGrowthStages() {

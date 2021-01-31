@@ -2,7 +2,6 @@ package com.agricraft.agricore.plant;
 
 import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.json.AgriSerializable;
-import com.agricraft.agricore.lang.AgriString;
 import com.agricraft.agricore.plant.versions.v2.Versions_1_16;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
@@ -19,10 +18,10 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
 
     private final String id;
 
-    private final AgriString plant_name;
-    private final AgriString seed_name;
+    private final String plant_lang_key;
+    private final String seed_lang_key;
+    private final String desc_lang_key;
     private final List<AgriSeed> seed_items;
-    private final AgriString description;
 
     private final int stages;
     private final int harvestStage;
@@ -50,10 +49,10 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
         this.path = "default/weed_plant.json";
         this.version = Versions_1_16.VERSION;
         this.id = "weed_plant";
-        this.plant_name = new AgriString("Weed");
-        this.seed_name = new AgriString("Weed Seeds");
+        this.plant_lang_key = "agricraft.plant.weeds";
+        this.seed_lang_key = "agricraft.seed.weeds";
+        this.desc_lang_key = "agricraft.plant.weeds.desc";
         this.seed_items = Lists.newArrayList();
-        this.description = new AgriString("An annoying plant.");
         this.stages = 8;
         this.harvestStage = 4;
         this.bonemeal = true;
@@ -73,7 +72,7 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
         this.seed_model = "minecraft:item/wheat_seeds";
     }
 
-    public AgriPlant(String id, AgriString plant_name, AgriString seed_name, List<AgriSeed> seed_items, AgriString description, int stages, int harvestStage,
+    public AgriPlant(String id, String plant_lang_key, String seed_lang_key, String desc_lang_key, List<AgriSeed> seed_items, int stages, int harvestStage,
                      boolean bonemeal, int tier, double growth_chance, double growth_bonus, boolean cloneable,
                      double spread_chance, double grass_drop_chance, double seed_drop_chance, double seed_drop_bonus,
                      AgriProductList products, AgriProductList clip_products, AgriRequirement requirement, List<String> callbacks, AgriTexture texture,
@@ -86,10 +85,10 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
         this.enabled = enabled;
         this.path = path;
         this.id = id;
-        this.plant_name = plant_name;
-        this.seed_name = seed_name;
+        this.plant_lang_key = plant_lang_key;
+        this.seed_lang_key = seed_lang_key;
+        this.desc_lang_key = desc_lang_key;
         this.seed_items = seed_items;
-        this.description = description;
         this.stages = stages;
         this.harvestStage = harvestStage;
         this.bonemeal = bonemeal;
@@ -109,17 +108,21 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
         this.seed_model = seed_model;
         this.version = Versions_1_16.VERSION;
     }
-    
+
     public String getId() {
         return id;
     }
 
-    public String getPlantName() {
-        return plant_name.toString();
+    public String getPlantLangKey() {
+        return plant_lang_key.toString();
     }
 
-    public String getSeedName() {
-        return seed_name.toString();
+    public String getSeedLangKey() {
+        return seed_lang_key.toString();
+    }
+
+    public String getDescLangKey() {
+        return desc_lang_key;
     }
 
     public List<AgriSeed> getSeeds() {
@@ -132,10 +135,6 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
 
     public int getStageAfterHarvest() {
         return this.harvestStage;
-    }
-
-    public AgriString getDescription() {
-        return description;
     }
 
     public AgriProductList getProducts() {

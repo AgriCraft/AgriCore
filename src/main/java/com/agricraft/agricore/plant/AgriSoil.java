@@ -2,7 +2,6 @@ package com.agricraft.agricore.plant;
 
 import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.json.AgriSerializable;
-import com.agricraft.agricore.lang.AgriString;
 import com.agricraft.agricore.plant.versions.v2.Versions_1_16;
 import com.agricraft.agricore.util.TypeHelper;
 
@@ -14,20 +13,20 @@ public class AgriSoil implements AgriSerializable, Comparable<AgriSoil> {
     private final String version;
     private final boolean enabled;
     private final String id;
-    private final AgriString name;
+    private final String lang_key;
     private final List<AgriObject> varients;
 
     public AgriSoil() {
         this.id = "dirt_soil";
-        this.name = new AgriString("Dirt");
+        this.lang_key = "dirt";
         this.varients = TypeHelper.asList(new AgriObject());
         this.enabled = false;
         this.version = Versions_1_16.VERSION;
     }
 
-    public AgriSoil(String id, AgriString name, List<AgriObject> varients, boolean enabled) {
+    public AgriSoil(String id, String lang_key, List<AgriObject> varients, boolean enabled) {
         this.id = id;
-        this.name = name;
+        this.lang_key = lang_key;
         this.varients = varients;
         this.enabled = enabled;
         this.version = Versions_1_16.VERSION;
@@ -37,8 +36,8 @@ public class AgriSoil implements AgriSerializable, Comparable<AgriSoil> {
         return id;
     }
 
-    public String getName() {
-        return name.toString();
+    public String getLangKey() {
+        return lang_key;
     }
 
     public <T> List<T> getVariants(Class<T> token) {
@@ -64,7 +63,7 @@ public class AgriSoil implements AgriSerializable, Comparable<AgriSoil> {
         final StringBuilder sb = new StringBuilder();
         sb.append("\nSoil:\n");
         sb.append("\t- Id: ").append(id).append("\n");
-        sb.append("\t- Name: ").append(name).append("\n");
+        sb.append("\t- Name: ").append(lang_key).append("\n");
         this.varients.forEach((e) -> {
             sb.append("\t- Block: ").append(e).append("\n");
         });

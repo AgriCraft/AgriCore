@@ -1,28 +1,27 @@
-package com.agricraft.agricore.lang;
+package com.agricraft.agricore.plant.versions.v1;
 
-import com.agricraft.agricore.core.AgriCore;
 import com.google.gson.annotations.SerializedName;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class AgriString {
+public class AgriString_1_12 {
 
     @SerializedName(value = "default", alternate = {"normal"})
     private final String normal;
     private final Map<String, String> translations;
 
-    public AgriString() {
+    public AgriString_1_12() {
         this.normal = "add translations in here.";
         this.translations = new HashMap<>();
     }
 
-    public AgriString(String value) {
+    public AgriString_1_12(String value) {
         this.normal = value;
         this.translations = new HashMap<>();
     }
 
-    public AgriString(String normal, Map<String, String> translations) {
+    public AgriString_1_12(String normal, Map<String, String> translations) {
         this.normal = normal;
         this.translations = translations;
         if (this.translations.isEmpty()) {
@@ -42,7 +41,7 @@ public class AgriString {
 
     @Override
     public String toString() {
-        return getTranslations().getOrDefault(AgriCore.getTranslator().getLocale(), normal);
+        return getNormal();
     }
 
 }

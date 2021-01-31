@@ -1,7 +1,6 @@
 package com.agricraft.agricore.plant.versions.v1;
 
 import com.agricraft.agricore.json.AgriSerializable;
-import com.agricraft.agricore.lang.AgriString;
 import com.agricraft.agricore.plant.AgriPlant;
 import com.agricraft.agricore.plant.AgriProductList;
 import com.agricraft.agricore.plant.AgriSeed;
@@ -22,7 +21,7 @@ public class AgriPlant_1_12 implements AgriSerializable, Comparable<AgriPlant_1_
     private final String plant_name;
     private final String seed_name;
     private final List<AgriStack_1_12> seed_items;
-    private final AgriString description;
+    private final AgriString_1_12 description;
 
     private final double growth_chance;
     private final double growth_bonus;
@@ -48,7 +47,7 @@ public class AgriPlant_1_12 implements AgriSerializable, Comparable<AgriPlant_1_
         this.plant_name = "Weed";
         this.seed_name = "Weed Seeds";
         this.seed_items = new ArrayList<>();
-        this.description = new AgriString("An annoying plant.");
+        this.description = new AgriString_1_12("An annoying plant.");
         this.bonemeal = true;
         this.tier = 1;
         this.growth_chance = 0.9;
@@ -66,7 +65,7 @@ public class AgriPlant_1_12 implements AgriSerializable, Comparable<AgriPlant_1_
         this.version = Versions_1_12.VERSION;
     }
 
-    public AgriPlant_1_12(String id, String plant_name, String seed_name, List<AgriStack_1_12> seed_items, AgriString description,
+    public AgriPlant_1_12(String id, String plant_name, String seed_name, List<AgriStack_1_12> seed_items, AgriString_1_12 description,
                           boolean bonemeal, int tier, double growth_chance, double growth_bonus, boolean weedable, boolean agressive,
                           double spread_chance, double spawn_chance, double grass_drop_chance, double seed_drop_chance, double seed_drop_bonus,
                           AgriProductList_1_12 products, AgriRequirement_1_12 requirement, AgriTexture_1_12 texture, String path, boolean enabled) {
@@ -95,8 +94,8 @@ public class AgriPlant_1_12 implements AgriSerializable, Comparable<AgriPlant_1_
     }
 
     public AgriPlant toNew() {
-        return new AgriPlant(this.id, new AgriString(this.plant_name), new AgriString(this.seed_name), this.convertSeeds(),
-                this.description, this.texture.getGrowthStages(), this.texture.getGrowthStages()/2, this.bonemeal, this.tier, this.growth_chance,
+        return new AgriPlant(this.id, this.plant_name, this.seed_name, this.description.getNormal(), this.convertSeeds(), this.texture.getGrowthStages(),
+                this.texture.getGrowthStages()/2, this.bonemeal, this.tier, this.growth_chance,
                 this.growth_bonus, this.isCloneable(), this.spread_chance, this.grass_drop_chance, this.seed_drop_chance, this.seed_drop_bonus,
                 this.products.toNew(), new AgriProductList(), this.requirement.toNew(), Lists.newArrayList(), this.texture.toNew(),
                 this.texture.seed_texture(), this.path, this.enabled);
