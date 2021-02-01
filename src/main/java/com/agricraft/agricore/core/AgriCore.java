@@ -2,8 +2,6 @@ package com.agricraft.agricore.core;
 
 import com.agricraft.agricore.config.AgriConfigAdapter;
 import com.agricraft.agricore.defaults.*;
-import com.agricraft.agricore.lang.AgriTranslationAdapter;
-import com.agricraft.agricore.lang.AgriTranslator;
 import com.agricraft.agricore.log.AgriLogAdapter;
 import com.agricraft.agricore.log.AgriLogManager;
 import com.agricraft.agricore.log.AgriLogger;
@@ -17,8 +15,6 @@ import com.agricraft.agricore.util.AgriValidator;
 public final class AgriCore {
 
     private static AgriLogManager logManager;
-
-    private static AgriTranslator translator;
 
     private static AgriValidator validator;
 
@@ -39,7 +35,6 @@ public final class AgriCore {
 
     static {
         AgriCore.logManager = new AgriLogManager(new AgriDefaultLog());
-        AgriCore.translator = new AgriTranslator(new AgriDefaultTranslator());
         AgriCore.config = new AgriDefaultConfig();
         AgriCore.validator = new AgriDefaultValidator();
         AgriCore.converter = new AgriDefaultConverter();
@@ -51,13 +46,11 @@ public final class AgriCore {
 
     public static void init(
             AgriLogAdapter log,
-            AgriTranslationAdapter trans,
             AgriValidator validator,
             AgriConverter converter,
             AgriConfigAdapter config
     ) {
         AgriCore.logManager = new AgriLogManager(log);
-        AgriCore.translator = new AgriTranslator(trans);
         AgriCore.config = config;
         AgriLogger logger = AgriCore.getCoreLogger();
         logger.info("Initializing core!");
@@ -76,10 +69,6 @@ public final class AgriCore {
 
     public static AgriLogger getLogger(Object source) {
         return logManager.getLogger(source);
-    }
-
-    public static AgriTranslator getTranslator() {
-        return translator;
     }
 
     public static AgriLogManager getLogManager() {

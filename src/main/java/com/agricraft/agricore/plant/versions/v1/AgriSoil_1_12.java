@@ -1,7 +1,6 @@
 package com.agricraft.agricore.plant.versions.v1;
 
 import com.agricraft.agricore.json.AgriSerializable;
-import com.agricraft.agricore.lang.AgriString;
 import com.agricraft.agricore.plant.AgriSoil;
 import com.agricraft.agricore.util.TypeHelper;
 import java.util.List;
@@ -35,7 +34,7 @@ public class AgriSoil_1_12 implements AgriSerializable, Comparable<AgriSoil_1_12
     }
 
     public AgriSoil toNew() {
-        return new AgriSoil(this.id, new AgriString(this.name),
+        return new AgriSoil(this.id, this.name,
                 this.varients.stream().map(stack -> stack.toNew("block")).collect(Collectors.toList()), enabled);
     }
 
