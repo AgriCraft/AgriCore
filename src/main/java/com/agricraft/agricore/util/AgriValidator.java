@@ -12,6 +12,8 @@ public interface AgriValidator {
     @Nonnull
     <T> Class<T> getTokenClass(String token);
 
+    boolean isValidSeason(final String season);
+
     boolean isValidResource(final String resource);
 
     boolean isValidCallback(final String callback);

@@ -24,6 +24,11 @@ public class AgriDefaultValidator implements AgriValidator {
     }
 
     @Override
+    public boolean isValidSeason(String season) {
+        return false;
+    }
+
+    @Override
     public boolean isValidResource(String resource) {
         if (resource == null) {
             AgriCore.getCoreLogger().warn("Null Texture!");
