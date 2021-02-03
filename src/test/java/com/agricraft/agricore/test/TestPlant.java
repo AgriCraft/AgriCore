@@ -42,7 +42,8 @@ public class TestPlant {
         AgriProductList clip_products = new AgriProductList(clip_items);
 
         // Setup Condition
-        AgriBlockCondition condition = new AgriBlockCondition(10, 1, 0, -2, 0, 0, -2, 0, "minecraft:stone", false, "");
+        AgriBlockCondition condition = new AgriBlockCondition(
+                10, 1, 0, -2, 0, 0, -2, 0, "minecraft:stone", false, "");
 
         // Setup Requirement
         AgriRequirement requirement = new AgriRequirement(Arrays.asList("dirt"), Arrays.asList(condition), 0, 10);
@@ -51,8 +52,11 @@ public class TestPlant {
         AgriTexture texture = new AgriTexture(AgriRenderType.CROSS, new String[0]);
 
         // Setup Plant
-        plant = new AgriPlant("wheat_plant", "plant.wheat.plant", "plant.wheat.seed", "plant.wheat.desc", Lists.newArrayList(seed), 8, 4,
-                true, 1, 1.0, 0.01, false, 0.1, 0, 1, 0, products, clip_products, requirement, Lists.newArrayList(), texture, "seed_wheat", "default/wheat_plant.json", true);
+        plant = new AgriPlant("wheat_plant", "plant.wheat.plant", "plant.wheat.seed", "plant.wheat.desc",
+                Lists.newArrayList(seed), 8, 4, true, 1, 1.0, 0.01,
+                false, 0.1, 0, 1, 0,
+                products, clip_products, requirement, Lists.newArrayList(), Lists.newArrayList(), texture,
+                "seed_wheat", "default/wheat_plant.json", true);
     }
 
     @BeforeClass
