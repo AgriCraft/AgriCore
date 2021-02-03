@@ -3,12 +3,16 @@ package com.agricraft.agricore.plant;
 import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.json.AgriSerializable;
 import com.agricraft.agricore.plant.versions.v2.Versions_1_16;
+import com.google.common.collect.Lists;
+
+import java.util.List;
 
 public class AgriWeed implements AgriSerializable, Comparable<AgriWeed> {
 
     private String path;
     private final String version;
     private final boolean enabled;
+    private final List<String> mods;
 
     private final String id;
 
@@ -29,6 +33,7 @@ public class AgriWeed implements AgriSerializable, Comparable<AgriWeed> {
         this.path = "default/weed_weed.json";
         this.version = Versions_1_16.VERSION;
         this.enabled = false;
+        this.mods = Lists.newArrayList("agricraft", "minecraft");
         this.id = "weed_weed";
         this.weed_lang_key = "weeds";
         this.desc_lang_key = "";
@@ -40,13 +45,20 @@ public class AgriWeed implements AgriSerializable, Comparable<AgriWeed> {
         this.rake_drops = new AgriProductList();
         this.texture = new AgriTexture();
     }
-
     public AgriWeed(String id, String path, String weed_lang_key, String desc_lang_key, int stages, double spawn_chance,
                     double growth_chance, boolean aggressive, boolean lethal, AgriProductList rake_drops,
                     AgriTexture texture, boolean enabled) {
+        this(id, path, weed_lang_key, desc_lang_key, stages, spawn_chance, growth_chance, aggressive, lethal, rake_drops,
+                texture, enabled, Lists.newArrayList("agricraft", "minecraft"));
+    }
+
+    public AgriWeed(String id, String path, String weed_lang_key, String desc_lang_key, int stages, double spawn_chance,
+                    double growth_chance, boolean aggressive, boolean lethal, AgriProductList rake_drops,
+                    AgriTexture texture, boolean enabled, List<String> mods) {
         this.id = id;
         this.path = path;
         this.enabled = enabled;
+        this.mods = mods;
         this.weed_lang_key = weed_lang_key;
         this.desc_lang_key = desc_lang_key;
         this.stages = stages;
@@ -123,6 +135,11 @@ public class AgriWeed implements AgriSerializable, Comparable<AgriWeed> {
     @Override
     public boolean isEnabled() {
         return this.enabled;
+    }
+
+    @Override
+    public boolean checkMods() {
+        return this.mods.stream().allMatch(mod -> AgriCore.getValidator().isValidMod(mod));
     }
 
     @Override

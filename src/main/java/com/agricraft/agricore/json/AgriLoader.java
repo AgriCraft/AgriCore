@@ -55,7 +55,12 @@ public final class AgriLoader {
             AgriSaver.saveElement(location, obj);
         }
         // Register the Element.
-        registry.registerElement(obj);
+        if(obj.checkMods()) {
+            registry.registerElement(obj);
+            AgriCore.getCoreLogger().info("Successfully loaded {0}.", location.getFileName());
+        } else {
+            AgriCore.getCoreLogger().info("Skipping {0}, Missing required mods.", location.getFileName());
+        }
     }
 
     @Nullable

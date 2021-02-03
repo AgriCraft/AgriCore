@@ -8,6 +8,8 @@ public interface AgriSerializable {
 
     boolean isEnabled();
 
+    boolean checkMods();
+
     String getPath();
 
     void setPath(String path);

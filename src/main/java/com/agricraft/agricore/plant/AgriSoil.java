@@ -4,6 +4,7 @@ import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.json.AgriSerializable;
 import com.agricraft.agricore.plant.versions.v2.Versions_1_16;
 import com.agricraft.agricore.util.TypeHelper;
+import com.google.common.collect.Lists;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,6 +13,7 @@ public class AgriSoil implements AgriSerializable, Comparable<AgriSoil> {
     private String path;
     private final String version;
     private final boolean enabled;
+    private final List<String> mods;
     private final String id;
     private final String lang_key;
     private final List<AgriObject> varients;
@@ -21,14 +23,20 @@ public class AgriSoil implements AgriSerializable, Comparable<AgriSoil> {
         this.lang_key = "dirt";
         this.varients = TypeHelper.asList(new AgriObject());
         this.enabled = false;
+        this.mods = Lists.newArrayList("agricraft", "minecraft");
         this.version = Versions_1_16.VERSION;
     }
 
     public AgriSoil(String id, String lang_key, List<AgriObject> varients, boolean enabled) {
+        this(id, lang_key, varients, enabled, Lists.newArrayList("agricraft", "minecraft"));
+    }
+
+    public AgriSoil(String id, String lang_key, List<AgriObject> varients, boolean enabled, List<String> mods) {
         this.id = id;
         this.lang_key = lang_key;
         this.varients = varients;
         this.enabled = enabled;
+        this.mods = mods;
         this.version = Versions_1_16.VERSION;
     }
 
@@ -73,6 +81,11 @@ public class AgriSoil implements AgriSerializable, Comparable<AgriSoil> {
     @Override
     public boolean isEnabled() {
         return this.enabled;
+    }
+
+    @Override
+    public boolean checkMods() {
+        return this.mods.stream().allMatch(mod -> AgriCore.getValidator().isValidMod(mod));
     }
 
     @Override

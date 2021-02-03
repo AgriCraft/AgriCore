@@ -15,6 +15,7 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
     private final String version;
 
     private final boolean enabled;
+    private final List<String> mods;
 
     private final String id;
 
@@ -46,6 +47,7 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
 
     public AgriPlant() {
         this.enabled = false;
+        this.mods = Lists.newArrayList("agricraft", "minecraft");
         this.path = "default/weed_plant.json";
         this.version = Versions_1_16.VERSION;
         this.id = "weed_plant";
@@ -78,11 +80,24 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
                      AgriProductList products, AgriProductList clip_products, AgriRequirement requirement, List<String> callbacks, AgriTexture texture,
                      String seed_model, String path, boolean enabled) {
 
+        this(id, plant_lang_key, seed_lang_key, desc_lang_key, seed_items, stages, harvestStage, bonemeal, tier, growth_chance,
+                growth_bonus, cloneable, spread_chance, grass_drop_chance, seed_drop_chance, seed_drop_bonus,
+                products, clip_products, requirement, callbacks, texture, seed_model, path, enabled,
+                Lists.newArrayList("agricraft", "minecraft"));
+    }
+
+    public AgriPlant(String id, String plant_lang_key, String seed_lang_key, String desc_lang_key, List<AgriSeed> seed_items, int stages, int harvestStage,
+                     boolean bonemeal, int tier, double growth_chance, double growth_bonus, boolean cloneable,
+                     double spread_chance, double grass_drop_chance, double seed_drop_chance, double seed_drop_bonus,
+                     AgriProductList products, AgriProductList clip_products, AgriRequirement requirement, List<String> callbacks, AgriTexture texture,
+                     String seed_model, String path, boolean enabled, List<String> mods) {
+
         Preconditions.checkArgument(stages > 0, "The number of stages must be larger than 0");
         Preconditions.checkArgument(harvestStage >= 0, "The harvest index can not be negative");
         Preconditions.checkArgument(harvestStage < stages, "The harvest index must be smaller than the number of stages");
 
         this.enabled = enabled;
+        this.mods = mods;
         this.path = path;
         this.id = id;
         this.plant_lang_key = plant_lang_key;
@@ -241,6 +256,11 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
     @Override
     public boolean isEnabled() {
         return this.enabled;
+    }
+
+    @Override
+    public boolean checkMods() {
+        return this.mods.stream().allMatch(mod -> AgriCore.getValidator().isValidMod(mod));
     }
 
     @Override

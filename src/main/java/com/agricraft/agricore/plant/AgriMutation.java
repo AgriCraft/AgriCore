@@ -3,7 +3,9 @@ package com.agricraft.agricore.plant;
 import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.json.AgriSerializable;
 import com.agricraft.agricore.plant.versions.v2.Versions_1_16;
+import com.google.common.collect.Lists;
 
+import java.util.List;
 import java.util.Random;
 
 public class AgriMutation implements AgriSerializable, Comparable<AgriMutation> {
@@ -12,6 +14,7 @@ public class AgriMutation implements AgriSerializable, Comparable<AgriMutation> 
     private final String version;
     
     private final boolean enabled;
+    private final List<String> mods;
 
     private final double chance;
 
@@ -22,6 +25,7 @@ public class AgriMutation implements AgriSerializable, Comparable<AgriMutation> 
 
     public AgriMutation() {
         this.enabled = false;
+        this.mods = Lists.newArrayList("agricraft", "minecraft");
         this.path = "default/default_mutation.json";
         this.chance = 0;
         this.child = "carrot_plant";
@@ -31,7 +35,12 @@ public class AgriMutation implements AgriSerializable, Comparable<AgriMutation> 
     }
 
     public AgriMutation(double chance, String child, String parent1, String parent2, String path, boolean enabled) {
+        this(chance, child, parent1, parent2, path, enabled, Lists.newArrayList("agricraft", "minecraft"));
+    }
+
+    public AgriMutation(double chance, String child, String parent1, String parent2, String path, boolean enabled, List<String> mods) {
         this.enabled = enabled;
+        this.mods = mods;
         this.path = path;
         this.chance = chance;
         this.child = child;
@@ -100,6 +109,11 @@ public class AgriMutation implements AgriSerializable, Comparable<AgriMutation> 
     @Override
     public boolean isEnabled() {
         return this.enabled;
+    }
+
+    @Override
+    public boolean checkMods() {
+        return this.mods.stream().allMatch(mod -> AgriCore.getValidator().isValidMod(mod));
     }
 
     @Override

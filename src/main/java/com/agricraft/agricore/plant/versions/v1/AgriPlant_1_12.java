@@ -118,6 +118,11 @@ public class AgriPlant_1_12 implements AgriSerializable, Comparable<AgriPlant_1_
     }
 
     @Override
+    public boolean checkMods() {
+        return false;
+    }
+
+    @Override
     public String getPath() {
         return this.path;
     }
