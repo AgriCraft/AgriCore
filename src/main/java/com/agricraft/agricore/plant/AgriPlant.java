@@ -153,6 +153,10 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
         return this.stages.length;
     }
 
+    public int getGrowthStageHeight(int stage) {
+        return this.stages[stage];
+    }
+
     public int getStageAfterHarvest() {
         return this.harvestStage;
     }

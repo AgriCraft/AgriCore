@@ -94,6 +94,10 @@ public class AgriWeed implements AgriSerializable, Comparable<AgriWeed> {
         return this.stages.length;
     }
 
+    public int getGrowthStageHeight(int stage) {
+        return this.stages[stage];
+    }
+
     public double getSpawnChance() {
         return this.spawn_chance;
     }
