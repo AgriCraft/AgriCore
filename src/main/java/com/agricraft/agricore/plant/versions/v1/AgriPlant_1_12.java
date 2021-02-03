@@ -94,7 +94,7 @@ public class AgriPlant_1_12 implements AgriSerializable, Comparable<AgriPlant_1_
     }
 
     public AgriPlant toNew() {
-        return new AgriPlant(this.id, this.plant_name, this.seed_name, this.description.getNormal(), this.convertSeeds(), this.texture.getGrowthStages(),
+        return new AgriPlant(this.id, this.plant_name, this.seed_name, this.description.getNormal(), this.convertSeeds(), this.getStages(),
                 this.texture.getGrowthStages()/2, this.bonemeal, this.tier, this.growth_chance,
                 this.growth_bonus, this.isCloneable(), this.spread_chance, this.grass_drop_chance, this.seed_drop_chance,
                 this.seed_drop_bonus, this.products.toNew(), new AgriProductList(), this.requirement.toNew(),
@@ -111,6 +111,15 @@ public class AgriPlant_1_12 implements AgriSerializable, Comparable<AgriPlant_1_
 
     protected boolean isCloneable() {
         return !this.getPath().contains("resource");
+    }
+
+    protected int[] getStages() {
+        int count = this.texture.getGrowthStages();
+        int[] stages = new int[count];
+        for(int i = 0; i < count; i++) {
+            stages[i] = i == (count - 1) ? 16 : ((i + 1)*16)/count;
+        }
+        return stages;
     }
 
     @Override

@@ -24,7 +24,7 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
     private final String desc_lang_key;
     private final List<AgriSeed> seed_items;
 
-    private final int stages;
+    private final int[] stages;
     private final int harvestStage;
 
     private final double growth_chance;
@@ -56,7 +56,7 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
         this.seed_lang_key = "agricraft.seed.weeds";
         this.desc_lang_key = "agricraft.plant.weeds.desc";
         this.seed_items = Lists.newArrayList();
-        this.stages = 8;
+        this.stages = new int[]{2,4,6,8,10,12,14,16};
         this.harvestStage = 4;
         this.bonemeal = true;
         this.tier = 1;
@@ -76,7 +76,7 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
         this.seed_model = "minecraft:item/wheat_seeds";
     }
 
-    public AgriPlant(String id, String plant_lang_key, String seed_lang_key, String desc_lang_key, List<AgriSeed> seed_items, int stages, int harvestStage,
+    public AgriPlant(String id, String plant_lang_key, String seed_lang_key, String desc_lang_key, List<AgriSeed> seed_items, int[] stages, int harvestStage,
                      boolean bonemeal, int tier, double growth_chance, double growth_bonus, boolean cloneable,
                      double spread_chance, double grass_drop_chance, double seed_drop_chance, double seed_drop_bonus,
                      AgriProductList products, AgriProductList clip_products, AgriRequirement requirement,
@@ -89,16 +89,16 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
                 Lists.newArrayList("agricraft", "minecraft"));
     }
 
-    public AgriPlant(String id, String plant_lang_key, String seed_lang_key, String desc_lang_key, List<AgriSeed> seed_items, int stages, int harvestStage,
+    public AgriPlant(String id, String plant_lang_key, String seed_lang_key, String desc_lang_key, List<AgriSeed> seed_items, int[] stages, int harvestStage,
                      boolean bonemeal, int tier, double growth_chance, double growth_bonus, boolean cloneable,
                      double spread_chance, double grass_drop_chance, double seed_drop_chance, double seed_drop_bonus,
                      AgriProductList products, AgriProductList clip_products, AgriRequirement requirement,
                      List<String> seasons, List<String> callbacks, AgriTexture texture,
                      String seed_model, String path, boolean enabled, List<String> mods) {
 
-        Preconditions.checkArgument(stages > 0, "The number of stages must be larger than 0");
+        Preconditions.checkArgument(stages.length > 0, "The number of stages must be larger than 0");
         Preconditions.checkArgument(harvestStage >= 0, "The harvest index can not be negative");
-        Preconditions.checkArgument(harvestStage < stages, "The harvest index must be smaller than the number of stages");
+        Preconditions.checkArgument(harvestStage < stages.length, "The harvest index must be smaller than the number of stages");
 
         this.enabled = enabled;
         this.mods = mods;
@@ -150,7 +150,7 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
     }
 
     public int getGrowthStages() {
-        return this.stages;
+        return this.stages.length;
     }
 
     public int getStageAfterHarvest() {
