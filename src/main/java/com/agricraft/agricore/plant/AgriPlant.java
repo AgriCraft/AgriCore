@@ -165,7 +165,7 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
         return products;
     }
 
-    public AgriProductList getClip_products() {
+    public AgriProductList getClipProducts() {
         return clip_products;
     }
 
