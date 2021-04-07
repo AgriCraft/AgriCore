@@ -2,6 +2,8 @@ package com.agricraft.agricore.plant;
 
 import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.util.TypeHelper;
+import com.google.common.collect.Lists;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,17 +14,20 @@ public class AgriRequirement {
     private final int max_light;
 
     private final List<String> soils;
+    private final List<String> seasons;
     private final List<AgriBlockCondition> conditions;
 
     public AgriRequirement() {
         this.min_light = 10;
         this.max_light = 16;
         this.soils = new ArrayList<>();
+        this.seasons = Lists.newArrayList("spring", "summer", "autumn", "winter");
         this.conditions = new ArrayList<>();
     }
 
-    public AgriRequirement(List<String> soils, List<AgriBlockCondition> conditions, int min_light, int max_light) {
+    public AgriRequirement(List<String> soils, List<String> seasons, List<AgriBlockCondition> conditions, int min_light, int max_light) {
         this.soils = new ArrayList<>(soils);
+        this.seasons = new ArrayList<>(seasons);
         this.conditions = conditions;
         this.min_light = min_light;
         this.max_light = max_light;
@@ -41,6 +46,10 @@ public class AgriRequirement {
                 .map(AgriCore.getSoils()::getSoil)
                 .filter(TypeHelper::isNonNull)
                 .collect(Collectors.toList());
+    }
+
+    public List<String> getSeasons() {
+        return this.seasons;
     }
 
     public List<AgriBlockCondition> getConditions() {

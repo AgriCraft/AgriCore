@@ -1,6 +1,7 @@
 package com.agricraft.agricore.plant.versions.v1;
 
 import com.agricraft.agricore.plant.AgriRequirement;
+import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,12 @@ public class AgriRequirement_1_12 {
     }
 
     public AgriRequirement toNew() {
-        return new AgriRequirement(soils, conditions.stream().map(AgriBlockCondition_1_12::toNew).collect(Collectors.toList()), min_light, max_light);
+        return new AgriRequirement(
+                soils,
+                Lists.newArrayList("spring", "summer", "autumn", "winter"),
+                conditions.stream().map(AgriBlockCondition_1_12::toNew).collect(Collectors.toList()),
+                min_light,
+                max_light
+        );
     }
 }

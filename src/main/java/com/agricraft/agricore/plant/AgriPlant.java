@@ -41,7 +41,6 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
     private final AgriProductList products;
     private final AgriProductList clip_products;
     private final AgriRequirement requirement;
-    private final List<String> seasons;
     private final List<String> callbacks;
     private final AgriTexture texture;
     private final String seed_model;
@@ -70,7 +69,6 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
         this.products = new AgriProductList();
         this.clip_products = new AgriProductList();
         this.requirement = new AgriRequirement();
-        this.seasons = Lists.newArrayList("spring", "summer", "autumn", "winter");
         this.callbacks = new ArrayList<>();
         this.texture = new AgriTexture();
         this.seed_model = "minecraft:item/wheat_seeds";
@@ -80,12 +78,11 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
                      boolean bonemeal, int tier, double growth_chance, double growth_bonus, boolean cloneable,
                      double spread_chance, double grass_drop_chance, double seed_drop_chance, double seed_drop_bonus,
                      AgriProductList products, AgriProductList clip_products, AgriRequirement requirement,
-                     List<String> seasons, List<String> callbacks, AgriTexture texture,
-                     String seed_model, String path, boolean enabled) {
+                     List<String> callbacks, AgriTexture texture, String seed_model, String path, boolean enabled) {
 
         this(id, plant_lang_key, seed_lang_key, desc_lang_key, seed_items, stages, harvestStage, bonemeal, tier, growth_chance,
                 growth_bonus, cloneable, spread_chance, grass_drop_chance, seed_drop_chance, seed_drop_bonus,
-                products, clip_products, requirement, seasons, callbacks, texture, seed_model, path, enabled,
+                products, clip_products, requirement, callbacks, texture, seed_model, path, enabled,
                 Lists.newArrayList("agricraft", "minecraft"));
     }
 
@@ -93,7 +90,7 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
                      boolean bonemeal, int tier, double growth_chance, double growth_bonus, boolean cloneable,
                      double spread_chance, double grass_drop_chance, double seed_drop_chance, double seed_drop_bonus,
                      AgriProductList products, AgriProductList clip_products, AgriRequirement requirement,
-                     List<String> seasons, List<String> callbacks, AgriTexture texture,
+                     List<String> callbacks, AgriTexture texture,
                      String seed_model, String path, boolean enabled, List<String> mods) {
 
         Preconditions.checkArgument(stages.length > 0, "The number of stages must be larger than 0");
@@ -122,7 +119,6 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
         this.clip_products = clip_products;
         this.cloneable = cloneable;
         this.requirement = requirement;
-        this.seasons = seasons;
         this.callbacks = callbacks;
         this.texture = texture;
         this.seed_model = seed_model;
@@ -134,11 +130,11 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
     }
 
     public String getPlantLangKey() {
-        return plant_lang_key.toString();
+        return plant_lang_key;
     }
 
     public String getSeedLangKey() {
-        return seed_lang_key.toString();
+        return seed_lang_key;
     }
 
     public String getDescLangKey() {
@@ -175,10 +171,6 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
 
     public AgriRequirement getRequirement() {
         return requirement;
-    }
-
-    public List<String> getSeasons() {
-        return this.seasons;
     }
 
     public AgriTexture getTexture() {
