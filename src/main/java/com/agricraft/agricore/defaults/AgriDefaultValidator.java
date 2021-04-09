@@ -44,6 +44,21 @@ public class AgriDefaultValidator implements AgriValidator {
     }
 
     @Override
+    public boolean isValidHumidity(String humidity) {
+        return true;
+    }
+
+    @Override
+    public boolean isValidAcidity(String acidity) {
+        return true;
+    }
+
+    @Override
+    public boolean isValidNutrients(String nutrients) {
+        return true;
+    }
+
+    @Override
     public boolean isValidMod(String modid) {
         if (modid == null) {
             AgriCore.getCoreLogger().warn("Null Mod Id!");

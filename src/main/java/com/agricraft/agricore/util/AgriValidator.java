@@ -17,6 +17,12 @@ public interface AgriValidator {
     boolean isValidResource(final String resource);
 
     boolean isValidCallback(final String callback);
+
+    boolean isValidHumidity(final String humidity);
+
+    boolean isValidAcidity(final String acidity);
+
+    boolean isValidNutrients(final String nutrients);
     
     boolean isValidMod(final String modid);
 

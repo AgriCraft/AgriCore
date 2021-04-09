@@ -17,6 +17,9 @@ public class AgriSoil implements AgriSerializable, Comparable<AgriSoil> {
     private final String id;
     private final String lang_key;
     private final List<AgriObject> varients;
+    private final String humidity;
+    private final String acidity;
+    private final String nutrients;
 
     public AgriSoil() {
         this.id = "dirt_soil";
@@ -25,17 +28,24 @@ public class AgriSoil implements AgriSerializable, Comparable<AgriSoil> {
         this.enabled = false;
         this.mods = Lists.newArrayList("agricraft", "minecraft");
         this.version = Versions_1_16.VERSION;
+        this.humidity = "dry";
+        this.acidity = "neutral";
+        this.nutrients = "medium";
     }
 
-    public AgriSoil(String id, String lang_key, List<AgriObject> varients, boolean enabled) {
-        this(id, lang_key, varients, enabled, Lists.newArrayList("agricraft", "minecraft"));
+    public AgriSoil(String id, String lang_key, List<AgriObject> varients, String humidity, String acidity, String nutrients, boolean enabled) {
+        this(id, lang_key, varients, humidity, acidity, nutrients, enabled, Lists.newArrayList("agricraft", "minecraft"));
     }
 
-    public AgriSoil(String id, String lang_key, List<AgriObject> varients, boolean enabled, List<String> mods) {
+    public AgriSoil(String id, String lang_key, List<AgriObject> varients, String humidity, String acidity, String nutrients,
+                    boolean enabled, List<String> mods) {
         this.id = id;
         this.lang_key = lang_key;
         this.varients = varients;
         this.enabled = enabled;
+        this.humidity = humidity;
+        this.acidity = acidity;
+        this.nutrients = nutrients;
         this.mods = mods;
         this.version = Versions_1_16.VERSION;
     }
@@ -54,16 +64,43 @@ public class AgriSoil implements AgriSerializable, Comparable<AgriSoil> {
                 .collect(Collectors.toList());
     }
 
+    public String getHumidity() {
+        return this.humidity;
+    }
+
+    public String getAcidity() {
+        return this.acidity;
+    }
+
+    public String getNutrients() {
+        return this.nutrients;
+    }
+
     public boolean validate() {
         this.varients.removeIf(block -> {
             if (!block.validate()) {
-                AgriCore.getCoreLogger().info("Invalid Soil Varient: {0}\nRemoving!", block);
+                AgriCore.getCoreLogger().info("Invalid Soil Varient {0} for soil {1}, removing the variant!", block, this.getId());
                 return true;
             } else {
                 return false;
             }
         });
-        return !this.varients.isEmpty();
+        if(this.varients.isEmpty()) {
+            AgriCore.getCoreLogger().info("Invalid Soil: {0}, no valid variants found.", this.getId());
+        }
+        if(!AgriCore.getValidator().isValidHumidity(this.getHumidity())) {
+            AgriCore.getCoreLogger().info("Invalid Humidity ({\"0\"} on soil {1}.", this.getHumidity(), this.getId());
+            return false;
+        }
+        if(!AgriCore.getValidator().isValidAcidity(this.getAcidity())) {
+            AgriCore.getCoreLogger().info("Invalid Acidity ({\"0\"} on soil {1}.", this.getAcidity(), this.getId());
+            return false;
+        }
+        if(!AgriCore.getValidator().isValidNutrients(this.getNutrients())) {
+            AgriCore.getCoreLogger().info("Invalid Nutrients ({\"0\"} on soil {1}.", this.getNutrients(), this.getId());
+            return false;
+        }
+        return true;
     }
 
     @Override
