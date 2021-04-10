@@ -37,7 +37,7 @@ public class AgriSoil_1_12 implements AgriSerializable, Comparable<AgriSoil_1_12
         return new AgriSoil(
                 this.id, this.name,
                 this.varients.stream().map(stack -> stack.toNew("block")).collect(Collectors.toList()),
-                "moist", "neutral", "medium", enabled);
+                "moist", "neutral", "medium", 1.0, enabled);
     }
 
     @Override

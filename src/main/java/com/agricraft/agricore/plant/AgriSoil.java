@@ -17,9 +17,12 @@ public class AgriSoil implements AgriSerializable, Comparable<AgriSoil> {
     private final String id;
     private final String lang_key;
     private final List<AgriObject> varients;
+
     private final String humidity;
     private final String acidity;
     private final String nutrients;
+
+    private final double growth_modifier;
 
     public AgriSoil() {
         this.id = "dirt_soil";
@@ -31,14 +34,15 @@ public class AgriSoil implements AgriSerializable, Comparable<AgriSoil> {
         this.humidity = "dry";
         this.acidity = "neutral";
         this.nutrients = "medium";
+        this.growth_modifier = 1.0;
     }
 
-    public AgriSoil(String id, String lang_key, List<AgriObject> varients, String humidity, String acidity, String nutrients, boolean enabled) {
-        this(id, lang_key, varients, humidity, acidity, nutrients, enabled, Lists.newArrayList("agricraft", "minecraft"));
+    public AgriSoil(String id, String lang_key, List<AgriObject> varients, String humidity, String acidity, String nutrients, double growthMod, boolean enabled) {
+        this(id, lang_key, varients, humidity, acidity, nutrients, growthMod, enabled, Lists.newArrayList("agricraft", "minecraft"));
     }
 
     public AgriSoil(String id, String lang_key, List<AgriObject> varients, String humidity, String acidity, String nutrients,
-                    boolean enabled, List<String> mods) {
+                    double growthMod, boolean enabled, List<String> mods) {
         this.id = id;
         this.lang_key = lang_key;
         this.varients = varients;
@@ -46,6 +50,7 @@ public class AgriSoil implements AgriSerializable, Comparable<AgriSoil> {
         this.humidity = humidity;
         this.acidity = acidity;
         this.nutrients = nutrients;
+        this.growth_modifier = growthMod;
         this.mods = mods;
         this.version = Versions_1_16.VERSION;
     }
@@ -74,6 +79,10 @@ public class AgriSoil implements AgriSerializable, Comparable<AgriSoil> {
 
     public String getNutrients() {
         return this.nutrients;
+    }
+
+    public double getGrowthModifier() {
+        return this.growth_modifier;
     }
 
     public boolean validate() {

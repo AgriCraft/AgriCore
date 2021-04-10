@@ -1,5 +1,6 @@
 package com.agricraft.agricore.plant.versions.v1;
 
+import com.agricraft.agricore.plant.AgriObject;
 import com.agricraft.agricore.plant.AgriRequirement;
 import com.agricraft.agricore.plant.AgriSoilCondition;
 import com.google.common.collect.Lists;
@@ -34,11 +35,9 @@ public class AgriRequirement_1_12 {
                 new AgriSoilCondition(),
                 new AgriSoilCondition(),
                 new AgriSoilCondition(),
-                Lists.newArrayList("spring", "summer", "autumn", "winter"),
+                min_light, max_light, 0.5D, Lists.newArrayList("spring", "summer", "autumn", "winter"),
                 conditions.stream().map(AgriBlockCondition_1_12::toNew).collect(Collectors.toList()),
-                min_light,
-                max_light,
-                0.5D
+                new AgriObject("fluid", "minecraft:empty")
         );
     }
 }

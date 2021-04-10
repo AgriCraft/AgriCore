@@ -17,6 +17,7 @@ public class AgriRequirement {
 
     private final List<String> seasons;
     private final List<AgriBlockCondition> conditions;
+    private final AgriObject fluid;
 
     public AgriRequirement() {
         this.soil_humidity = new AgriSoilCondition("damp", "equal", 0.15D);
@@ -27,11 +28,12 @@ public class AgriRequirement {
         this.light_tolerance_factor = 0.5D;
         this.seasons = Lists.newArrayList("spring", "summer", "autumn", "winter");
         this.conditions = new ArrayList<>();
+        this.fluid = new AgriObject("fluid", "minecraft:empty");
     }
 
     public AgriRequirement(AgriSoilCondition soil_humidity, AgriSoilCondition soil_acidity, AgriSoilCondition soil_nutrients,
-                           List<String> seasons, List<AgriBlockCondition> conditions, int min_light, int max_light,
-                           double light_tolerance_factor) {
+                           int min_light, int max_light, double light_tolerance_factor, List<String> seasons,
+                           List<AgriBlockCondition> conditions, AgriObject fluid) {
         this.soil_humidity = soil_humidity;
         this.soil_acidity = soil_acidity;
         this.soil_nutrients = soil_nutrients;
@@ -40,6 +42,7 @@ public class AgriRequirement {
         this.light_tolerance_factor = light_tolerance_factor;
         this.seasons = new ArrayList<>(seasons);
         this.conditions = conditions;
+        this.fluid = fluid;
     }
 
     public AgriSoilCondition getHumiditySoilCondition() {
@@ -74,6 +77,10 @@ public class AgriRequirement {
         return new ArrayList<>(this.conditions);
     }
 
+    public AgriObject getFluid() {
+        return this.fluid;
+    }
+
     public boolean validate() {
         if(!this.getHumiditySoilCondition().validate(value -> AgriCore.getValidator().isValidHumidity(value))) {
             return false;
@@ -99,6 +106,10 @@ public class AgriRequirement {
                 AgriCore.getCoreLogger().info("Invalid Block Condition: {0}", condition);
                 return false;
             }
+        }
+        if(!this.getFluid().validate()) {
+            AgriCore.getCoreLogger().info("Invalid Fluid Condition: {0}", this.getFluid());
+            return false;
         }
         return true;
     }
