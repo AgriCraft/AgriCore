@@ -57,7 +57,7 @@ public class AgriTexture_1_12 {
     }
 
     private String correctTexture(String texture) {
-        if (texture.contains("minecraft") || texture.contains("agricraft")) {
+        if (texture.contains("minecraft")) {
             if (texture.contains("items")) {
                 return texture.replace("items", "item");
             } else if (texture.contains("blocks")) {
@@ -65,10 +65,14 @@ public class AgriTexture_1_12 {
             }
         }
         if(texture.contains("agricraft")) {
-            if (texture.contains("item")) {
-                return texture.replace("item", "seed");
+            if (texture.contains("items")) {
+                return texture.replace("seed_", "").replace("items", "seed");
+            } else if (texture.contains("blocks")) {
+                return texture.replace("crop_", "").replace("blocks", "plant");
+            } else if (texture.contains("item")) {
+                return texture.replace("seed_", "").replace("item", "plant");
             } else if (texture.contains("block")) {
-                return texture.replace("block", "plant");
+                return texture.replace("crop_", "").replace("block", "seed");
             }
         }
         return texture;
