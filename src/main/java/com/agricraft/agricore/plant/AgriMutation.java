@@ -12,6 +12,7 @@ public class AgriMutation implements AgriSerializable, Comparable<AgriMutation> 
 
     private String path;
     private final String version;
+    private final String json_documentation = "https://agridocs.readthedocs.io/en/master/agri_mutation/";
     
     private final boolean enabled;
     private final List<String> mods;

@@ -10,8 +10,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class AgriSoil implements AgriSerializable, Comparable<AgriSoil> {
+
     private String path;
     private final String version;
+    private final String json_documentation = "https://agridocs.readthedocs.io/en/master/agri_soil/";
+
     private final boolean enabled;
     private final List<String> mods;
     private final String id;
