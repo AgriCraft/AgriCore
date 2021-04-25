@@ -132,16 +132,16 @@ public class AgriWeed implements AgriSerializable, Comparable<AgriWeed> {
 
     public boolean validate() {
         if (!this.enabled) {
-            AgriCore.getCoreLogger().debug("Disabled Weed: {0}!", id);
+            AgriCore.getCoreLogger().info("Disabled Weed: {0}!", id);
             return false;
         } else if (!this.requirement.validate()) {
-            AgriCore.getCoreLogger().debug("Invalid Weed: {0}! Invalid Requirement!", id);
+            AgriCore.getCoreLogger().info("Invalid Weed: {0}! Invalid Requirement!", id);
             return false;
         } else if (!this.rake_drops.validate()) {
-            AgriCore.getCoreLogger().debug("Invalid Weed: {0}! Invalid Rake Drops!", id);
+            AgriCore.getCoreLogger().info("Invalid Weed: {0}! Invalid Rake Drops!", id);
             return false;
         } else if (!this.texture.validate()) {
-            AgriCore.getCoreLogger().debug("Invalid Weed: {0}! Invalid Texture!", id);
+            AgriCore.getCoreLogger().info("Invalid Weed: {0}! Invalid Texture!", id);
             return false;
         }
         return true;

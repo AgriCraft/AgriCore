@@ -220,23 +220,23 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
 
     public boolean validate() {
         if (!this.enabled) {
-            AgriCore.getCoreLogger().debug("Disabled Plant: {0}!", id);
+            AgriCore.getCoreLogger().info("Disabled Plant: {0}!", id);
             return false;
         } else if (!this.requirement.validate()) {
-            AgriCore.getCoreLogger().debug("Invalid Plant: {0}! Invalid Requirement!", id);
+            AgriCore.getCoreLogger().info("Invalid Plant: {0}! Invalid Requirement!", id);
             return false;
         } else if (!this.products.validate()) {
-            AgriCore.getCoreLogger().debug("Invalid Plant: {0}! Invalid Product!", id);
+            AgriCore.getCoreLogger().info("Invalid Plant: {0}! Invalid Product!", id);
             return false;
         } else if (!this.clip_products.validate()) {
-            AgriCore.getCoreLogger().debug("Invalid Plant: {0}! Invalid Clip Product!", id);
+            AgriCore.getCoreLogger().info("Invalid Plant: {0}! Invalid Clip Product!", id);
             return false;
         } else if (!this.texture.validate()) {
-            AgriCore.getCoreLogger().debug("Invalid Plant: {0}! Invalid Texture!", id);
+            AgriCore.getCoreLogger().info("Invalid Plant: {0}! Invalid Texture!", id);
             return false;
         }
         if (!AgriCore.getValidator().isValidResource(seed_model)) {
-            AgriCore.getCoreLogger().debug("Invalid AgriTexture! Invalid Seed Model: \"{0}\"!", seed_model);
+            AgriCore.getCoreLogger().info("Invalid AgriTexture! Invalid Seed Model: \"{0}\"!", seed_model);
             return false;
         }
         this.seed_items.removeIf(seed -> !seed.validate());

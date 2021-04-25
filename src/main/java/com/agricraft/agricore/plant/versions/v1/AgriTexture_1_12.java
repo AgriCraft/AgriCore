@@ -48,10 +48,10 @@ public class AgriTexture_1_12 {
         return this.correctTexture(this.seed_texture);
     }
 
-    private String[] correctTextures() {
-        String[] textures = new String[this.plant_textures.length];
+    private String[][] correctTextures() {
+        String[][] textures = new String[this.plant_textures.length][];
         for(int i = 0; i < textures.length; i++) {
-            textures[i] = this.correctTexture(this.plant_textures[i]);
+            textures[i] = new String[]{this.correctTexture(this.plant_textures[i])};
         }
         return textures;
     }
