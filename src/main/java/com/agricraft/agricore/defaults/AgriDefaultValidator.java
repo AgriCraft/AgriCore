@@ -25,7 +25,7 @@ public class AgriDefaultValidator implements AgriValidator {
 
     @Override
     public boolean isValidSeason(String season) {
-        return false;
+        return true;
     }
 
     @Override
