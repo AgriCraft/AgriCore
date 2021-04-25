@@ -12,7 +12,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import org.junit.After;
@@ -46,16 +45,16 @@ public class TestPlant {
                 10, 1, 0, -2, 0, 0, -2, 0, "minecraft:stone", false, "");
 
         // Setup Requirement
-        AgriRequirement requirement = new AgriRequirement(Arrays.asList("dirt"), Arrays.asList(condition), 0, 10);
+        AgriRequirement requirement = new AgriRequirement();
 
         // Setup Icon
-        AgriTexture texture = new AgriTexture(AgriRenderType.CROSS, new String[0]);
+        AgriTexture texture = new AgriTexture(AgriRenderType.CROSS, new String[0][0]);
 
         // Setup Plant
         plant = new AgriPlant("wheat_plant", "plant.wheat.plant", "plant.wheat.seed", "plant.wheat.desc",
                 Lists.newArrayList(seed), new int[]{2,4,6,8,10,12,14,16}, 4, true, 1, 1.0, 0.01,
                 false, 0.1, 0, 1, 0,
-                products, clip_products, requirement, Lists.newArrayList(), Lists.newArrayList(), texture,
+                products, clip_products, requirement, Lists.newArrayList(), texture,
                 "seed_wheat", "default/wheat_plant.json", true);
     }
 
