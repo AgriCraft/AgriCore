@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 public class AgriTexture {
 
     private AgriRenderType render_type = AgriRenderType.HASH;
-    private boolean models;
 
     private final String[][] plant_textures = new String[][]{
             new String[]{"minecraft:block/wheat_stage0"},
@@ -26,13 +25,8 @@ public class AgriTexture {
     }
 
     public AgriTexture(AgriRenderType render_type, String[][] plant_textures) {
-        this(render_type, plant_textures, false);
-    }
-
-    public AgriTexture(AgriRenderType render_type, String[][] plant_textures, boolean models) {
 
         this.render_type = render_type;
-        this.models = models;
 
         System.arraycopy(plant_textures, 0, this.plant_textures, 0, Math.min(plant_textures.length, this.plant_textures.length));
 
@@ -66,10 +60,6 @@ public class AgriTexture {
 
     public String[] getPlantTextures(int stage) {
         return this.plant_textures[stage % this.plant_textures.length];
-    }
-
-    public boolean useModels() {
-        return this.models;
     }
 
     public boolean validate() {
