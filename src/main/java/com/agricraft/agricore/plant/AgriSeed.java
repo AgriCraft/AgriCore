@@ -19,12 +19,12 @@ public class AgriSeed extends AgriObject {
 
     public AgriSeed(String seed, boolean useTags, String data, String... ignoredData) {
         super("item", seed, useTags, data, ignoredData);
-        this.overridePlanting = false;
+        this.overridePlanting = true;
     }
 
     public AgriSeed(String seed, boolean useTags, String data, List<String> ignoredData) {
         super("item", seed, useTags, data, ignoredData);
-        this.overridePlanting = false;
+        this.overridePlanting = true;
     }
 
     public boolean isOverridePlanting() {
