@@ -253,7 +253,7 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
             AgriCore.getCoreLogger().info("Invalid AgriTexture! Invalid Seed Model: \"{0}\"!", seed_model);
             return false;
         }
-        // TODO: 21/05/2021 validate particle effect
+        this.particle_effects.removeIf(particleEffect -> !particleEffect.validate());
         this.seed_items.removeIf(seed -> !seed.validate());
         this.callbacks.removeIf(callback -> !AgriCore.getValidator().isValidCallback(callback));
         return true;
