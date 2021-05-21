@@ -1,6 +1,7 @@
 package com.agricraft.agricore.plant.versions.v1;
 
 import com.agricraft.agricore.json.AgriSerializable;
+import com.agricraft.agricore.plant.AgriParticleEffect;
 import com.agricraft.agricore.plant.AgriPlant;
 import com.agricraft.agricore.plant.AgriProductList;
 import com.agricraft.agricore.plant.AgriSeed;
@@ -98,7 +99,7 @@ public class AgriPlant_1_12 implements AgriSerializable, Comparable<AgriPlant_1_
                 this.texture.getGrowthStages()/2, this.bonemeal, this.tier, this.growth_chance,
                 this.growth_bonus, this.isCloneable(), this.spread_chance, this.grass_drop_chance, this.seed_drop_chance,
                 this.seed_drop_bonus, this.products.toNew(), new AgriProductList(), this.requirement.toNew(),
-                Lists.newArrayList(), this.texture.toNew(), this.texture.seed_texture(), this.texture.seed_texture(), this.path, this.enabled);
+                Lists.newArrayList(), this.texture.toNew(), this.texture.seed_texture(), this.texture.seed_texture(), new ArrayList<>(),  this.path, this.enabled);
     }
 
     private List<AgriSeed> convertSeeds() {

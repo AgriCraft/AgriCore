@@ -46,6 +46,7 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
     private final AgriTexture texture;
     private final String seed_texture;
     private final String seed_model;
+    private final List<AgriParticleEffect> particle_effects;
 
     public AgriPlant() {
         this.enabled = false;
@@ -75,17 +76,18 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
         this.texture = new AgriTexture();
         this.seed_texture = "minecraft:item/wheat_seeds";
         this.seed_model = "minecraft:item/wheat_seeds";
+        this.particle_effects = new ArrayList<>();
     }
 
     public AgriPlant(String id, String plant_lang_key, String seed_lang_key, String desc_lang_key, List<AgriSeed> seed_items, int[] stages, int harvestStage,
                      boolean bonemeal, int tier, double growth_chance, double growth_bonus, boolean cloneable,
                      double spread_chance, double grass_drop_chance, double seed_drop_chance, double seed_drop_bonus,
                      AgriProductList products, AgriProductList clip_products, AgriRequirement requirement,
-                     List<String> callbacks, AgriTexture texture, String seed_texture, String seed_model, String path, boolean enabled) {
+                     List<String> callbacks, AgriTexture texture, String seed_texture, String seed_model, List<AgriParticleEffect> particle_effects, String path, boolean enabled) {
 
         this(id, plant_lang_key, seed_lang_key, desc_lang_key, seed_items, stages, harvestStage, bonemeal, tier, growth_chance,
                 growth_bonus, cloneable, spread_chance, grass_drop_chance, seed_drop_chance, seed_drop_bonus,
-                products, clip_products, requirement, callbacks, texture, seed_texture, seed_model, path, enabled,
+                products, clip_products, requirement, callbacks, texture, seed_texture, seed_model, particle_effects, path, enabled,
                 Lists.newArrayList("agricraft", "minecraft"));
     }
 
@@ -94,7 +96,7 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
                      double spread_chance, double grass_drop_chance, double seed_drop_chance, double seed_drop_bonus,
                      AgriProductList products, AgriProductList clip_products, AgriRequirement requirement,
                      List<String> callbacks, AgriTexture texture, String seed_texture,
-                     String seed_model, String path, boolean enabled, List<String> mods) {
+                     String seed_model, List<AgriParticleEffect> particle_effects, String path, boolean enabled, List<String> mods) {
 
         Preconditions.checkArgument(stages.length > 0, "The number of stages must be larger than 0");
         Preconditions.checkArgument(harvestStage >= 0, "The harvest index can not be negative");
@@ -126,6 +128,7 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
         this.texture = texture;
         this.seed_texture = seed_texture;
         this.seed_model = seed_model;
+        this.particle_effects = particle_effects;
         this.version = Versions_1_16.VERSION;
     }
 
@@ -189,6 +192,10 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
         return this.seed_model;
     }
 
+    public List<AgriParticleEffect> getParticleEffects() {
+        return this.particle_effects;
+    }
+
     public int getTier() {
         return tier;
     }
@@ -246,6 +253,7 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
             AgriCore.getCoreLogger().info("Invalid AgriTexture! Invalid Seed Model: \"{0}\"!", seed_model);
             return false;
         }
+        this.particle_effects.removeIf(particleEffect -> !particleEffect.validate());
         this.seed_items.removeIf(seed -> !seed.validate());
         this.callbacks.removeIf(callback -> !AgriCore.getValidator().isValidCallback(callback));
         return true;
@@ -263,6 +271,7 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
         sb.append("\t- Grass Drop Chance: ").append(grass_drop_chance).append("\n");
         sb.append("\t- ").append(products.toString().replaceAll("\n", "\n\t").trim()).append("\n");
         sb.append("\t- ").append(requirement.toString().replaceAll("\n", "\n\t").trim()).append("\n");
+        sb.append("\t- ").append(particle_effects.toString().replaceAll("\n", "\n\t").trim()).append("\n");
         return sb.toString();
     }
 
