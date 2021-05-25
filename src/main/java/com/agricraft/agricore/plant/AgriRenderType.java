@@ -11,7 +11,9 @@ public enum AgriRenderType {
     @SerializedName(value = "plus", alternate = {"PLUS", "+"})
     PLUS('+', 0.75F),
     @SerializedName(value = "rhombus", alternate = {"RHOMBUS", "⬦", "◇"})
-    RHOMBUS('◇');
+    RHOMBUS('◇'),
+    @SerializedName(value = "gourd", alternate = {"GOURD", "@"})
+    GOURD('@');
 
     private final char id;
     private final float heightModifier;
