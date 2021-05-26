@@ -8,7 +8,8 @@ import java.util.stream.Collectors;
 public class AgriTexture {
 
     private AgriRenderType render_type = AgriRenderType.HASH;
-    private boolean models;
+
+    private final String[] plant_models = new String[]{};
 
     private final String[][] plant_textures = new String[][]{
             new String[]{"minecraft:block/wheat_stage0"},
@@ -26,13 +27,8 @@ public class AgriTexture {
     }
 
     public AgriTexture(AgriRenderType render_type, String[][] plant_textures) {
-        this(render_type, plant_textures, false);
-    }
-
-    public AgriTexture(AgriRenderType render_type, String[][] plant_textures, boolean models) {
 
         this.render_type = render_type;
-        this.models = models;
 
         System.arraycopy(plant_textures, 0, this.plant_textures, 0, Math.min(plant_textures.length, this.plant_textures.length));
 
@@ -69,7 +65,11 @@ public class AgriTexture {
     }
 
     public boolean useModels() {
-        return this.models;
+        return this.plant_models.length > 0;
+    }
+
+    public String getPlantModel(int index) {
+        return this.plant_models[index % this.plant_models.length];
     }
 
     public boolean validate() {
@@ -77,6 +77,14 @@ public class AgriTexture {
             for(String texture : textures) {
                 if (!AgriCore.getValidator().isValidResource(texture)) {
                     AgriCore.getCoreLogger().info("Invalid AgriTexture! Invalid Plant Texture: \"{0}\"!", texture);
+                    return false;
+                }
+            }
+        }
+        if(this.useModels()) {
+            for(String model : plant_models) {
+                if (!AgriCore.getValidator().isValidResource(model)) {
+                    AgriCore.getCoreLogger().info("Invalid AgriTexture! Invalid Plant Model: \"{0}\"!", model);
                     return false;
                 }
             }
