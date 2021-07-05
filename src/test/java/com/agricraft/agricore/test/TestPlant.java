@@ -48,7 +48,7 @@ public class TestPlant {
         AgriRequirement requirement = new AgriRequirement();
 
         // Setup Icon
-        AgriTexture texture = new AgriTexture(AgriRenderType.CROSS, new String[0][0]);
+        AgriTexture texture = new AgriTexture("cross", new String[0][0]);
 
         // Setup Plant
         plant = new AgriPlant("wheat_plant", "plant.wheat.plant", "plant.wheat.seed", "plant.wheat.desc",

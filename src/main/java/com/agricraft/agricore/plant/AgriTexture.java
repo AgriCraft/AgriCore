@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class AgriTexture {
 
-    private AgriRenderType render_type = AgriRenderType.HASH;
+    private String render_type = "hash";
 
     private final String[] plant_models = new String[]{};
 
@@ -26,7 +26,7 @@ public class AgriTexture {
     public AgriTexture() {
     }
 
-    public AgriTexture(AgriRenderType render_type, String[][] plant_textures) {
+    public AgriTexture(String render_type, String[][] plant_textures) {
 
         this.render_type = render_type;
 
@@ -44,7 +44,7 @@ public class AgriTexture {
 
     }
 
-    public AgriRenderType getRenderType() {
+    public String getRenderType() {
         return render_type;
     }
     
@@ -88,6 +88,10 @@ public class AgriTexture {
                     return false;
                 }
             }
+        }
+        if(!AgriCore.getValidator().isValidRenderType(render_type)) {
+            AgriCore.getCoreLogger().info("Invalid AgriTexture! Invalid Render Type: \"{0}\"!", render_type);
+            return false;
         }
         return true;
     }

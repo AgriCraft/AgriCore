@@ -1,11 +1,10 @@
 package com.agricraft.agricore.plant.versions.v1;
 
-import com.agricraft.agricore.plant.AgriRenderType;
 import com.agricraft.agricore.plant.AgriTexture;
 
 public class AgriTexture_1_12 {
 
-    private AgriRenderType render_type = AgriRenderType.HASH;
+    private String render_type = "hash";
     private String seed_texture = "minecraft:items/seeds_wheat";
 
     private final String[] plant_textures = new String[]{
@@ -23,7 +22,7 @@ public class AgriTexture_1_12 {
     public AgriTexture_1_12() {
     }
 
-    public AgriTexture_1_12(AgriRenderType render_type, String seed_texture, String[] plant_textures) {
+    public AgriTexture_1_12(String render_type, String seed_texture, String[] plant_textures) {
         this.render_type = render_type;
         this.seed_texture = seed_texture;
 

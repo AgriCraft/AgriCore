@@ -24,6 +24,11 @@ public class AgriDefaultValidator implements AgriValidator {
     }
 
     @Override
+    public boolean isValidRenderType(String renderType) {
+        return true;
+    }
+
+    @Override
     public boolean isValidSeason(String season) {
         return true;
     }
