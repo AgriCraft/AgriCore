@@ -69,6 +69,11 @@ public class ResourceHelper {
      * and discard it afterwards
      */
     protected ResourceHelper(Collection<URL> urls) {
+        // Prevent logging from Reflections
+        if(Reflections.log != null) {
+            Reflections.log = null;
+        }
+        // Scan using Reflections
         this.reflections = new Reflections(
                 new ConfigurationBuilder()
                         .addScanners(new ResourcesScanner())
