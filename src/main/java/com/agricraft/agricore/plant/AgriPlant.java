@@ -30,7 +30,7 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
 
     private final double growth_chance;
     private final double growth_bonus;
-    private final boolean bonemeal;
+    private final List<String> fertilizers;
     private final int tier;
 
     private final boolean cloneable;
@@ -60,7 +60,7 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
         this.seed_items = Lists.newArrayList();
         this.stages = new int[]{2,4,6,8,10,12,14,16};
         this.harvestStage = 4;
-        this.bonemeal = true;
+        this.fertilizers = Lists.newArrayList("vanilla:bonemeal_fertilizer");
         this.tier = 1;
         this.cloneable = true;
         this.growth_chance = 0.9;
@@ -80,19 +80,19 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
     }
 
     public AgriPlant(String id, String plant_lang_key, String seed_lang_key, String desc_lang_key, List<AgriSeed> seed_items, int[] stages, int harvestStage,
-                     boolean bonemeal, int tier, double growth_chance, double growth_bonus, boolean cloneable,
+                     List<String> fertilizers, int tier, double growth_chance, double growth_bonus, boolean cloneable,
                      double spread_chance, double grass_drop_chance, double seed_drop_chance, double seed_drop_bonus,
                      AgriProductList products, AgriProductList clip_products, AgriRequirement requirement,
                      List<String> callbacks, AgriTexture texture, String seed_texture, String seed_model, List<AgriParticleEffect> particle_effects, String path, boolean enabled) {
 
-        this(id, plant_lang_key, seed_lang_key, desc_lang_key, seed_items, stages, harvestStage, bonemeal, tier, growth_chance,
+        this(id, plant_lang_key, seed_lang_key, desc_lang_key, seed_items, stages, harvestStage, fertilizers, tier, growth_chance,
                 growth_bonus, cloneable, spread_chance, grass_drop_chance, seed_drop_chance, seed_drop_bonus,
                 products, clip_products, requirement, callbacks, texture, seed_texture, seed_model, particle_effects, path, enabled,
                 Lists.newArrayList("agricraft", "minecraft"));
     }
 
     public AgriPlant(String id, String plant_lang_key, String seed_lang_key, String desc_lang_key, List<AgriSeed> seed_items, int[] stages, int harvestStage,
-                     boolean bonemeal, int tier, double growth_chance, double growth_bonus, boolean cloneable,
+                     List<String> fertilizers, int tier, double growth_chance, double growth_bonus, boolean cloneable,
                      double spread_chance, double grass_drop_chance, double seed_drop_chance, double seed_drop_bonus,
                      AgriProductList products, AgriProductList clip_products, AgriRequirement requirement,
                      List<String> callbacks, AgriTexture texture, String seed_texture,
@@ -112,7 +112,7 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
         this.seed_items = seed_items;
         this.stages = stages;
         this.harvestStage = harvestStage;
-        this.bonemeal = bonemeal;
+        this.fertilizers = fertilizers;
         this.tier = tier;
         this.growth_chance = growth_chance;
         this.growth_bonus = growth_bonus;
@@ -200,8 +200,8 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
         return tier;
     }
 
-    public boolean canBonemeal() {
-        return bonemeal;
+    public boolean canFertilize(String fertilizer) {
+        return this.fertilizers.contains(fertilizer);
     }
 
     public double getSpreadChance() {
@@ -256,6 +256,7 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
         this.particle_effects.removeIf(particleEffect -> !particleEffect.validate());
         this.seed_items.removeIf(seed -> !seed.validate());
         this.callbacks.removeIf(callback -> !AgriCore.getValidator().isValidCallback(callback));
+        this.fertilizers.removeIf(fertilizer -> !AgriCore.getValidator().isValidResource(fertilizer));
         return true;
     }
 
@@ -263,7 +264,7 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
     public String toString() {
         final StringBuilder sb = new StringBuilder();
         sb.append("\n").append(id).append(":\n");
-        sb.append("\t- Bonemeal: ").append(bonemeal).append("\n");
+        sb.append("\t- Fertilizers: ").append(listToString(fertilizers).replaceAll("\n", "\n\t").trim()).append("\n");
         sb.append("\t- Growth Chance: ").append(growth_chance).append("\n");
         sb.append("\t- Growth Bonus: ").append(growth_bonus).append("\n");
         sb.append("\t- Seed Drop Chance: ").append(seed_drop_chance).append("\n");
@@ -271,8 +272,12 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
         sb.append("\t- Grass Drop Chance: ").append(grass_drop_chance).append("\n");
         sb.append("\t- ").append(products.toString().replaceAll("\n", "\n\t").trim()).append("\n");
         sb.append("\t- ").append(requirement.toString().replaceAll("\n", "\n\t").trim()).append("\n");
-        sb.append("\t- ").append(particle_effects.toString().replaceAll("\n", "\n\t").trim()).append("\n");
+        sb.append("\t- ").append(listToString(particle_effects).replaceAll("\n", "\n\t").trim()).append("\n");
         return sb.toString();
+    }
+
+    private String listToString(List<?> list) {
+        return list.stream().collect(StringBuilder::new, (builder, item) -> builder.append("\n\t").append(item), StringBuilder::append).toString();
     }
 
     @Override
