@@ -28,7 +28,6 @@ public class AgriWeed implements AgriSerializable, Comparable<AgriWeed> {
     private final AgriProductList rake_drops;
 
     private final AgriRequirement requirement;
-    private final List<String> seasons;
 
     private final AgriTexture texture;
 
@@ -47,19 +46,18 @@ public class AgriWeed implements AgriSerializable, Comparable<AgriWeed> {
         this.lethal = true;
         this.rake_drops = new AgriProductList();
         this.requirement = new AgriRequirement();
-        this.seasons = Lists.newArrayList("spring", "summer", "autumn", "winter");
         this.texture = new AgriTexture();
     }
     public AgriWeed(String id, String path, String weed_lang_key, String desc_lang_key, int[] stages, double spawn_chance,
                     double growth_chance, boolean aggressive, boolean lethal, AgriProductList rake_drops,
-                    AgriRequirement requirement, List<String> seasons, AgriTexture texture, boolean enabled) {
+                    AgriRequirement requirement, AgriTexture texture, boolean enabled) {
         this(id, path, weed_lang_key, desc_lang_key, stages, spawn_chance, growth_chance, aggressive, lethal, rake_drops,
-                requirement, seasons, texture, enabled, Lists.newArrayList("agricraft", "minecraft"));
+                requirement, texture, enabled, Lists.newArrayList("agricraft", "minecraft"));
     }
 
     public AgriWeed(String id, String path, String weed_lang_key, String desc_lang_key, int[] stages, double spawn_chance,
                     double growth_chance, boolean aggressive, boolean lethal, AgriProductList rake_drops,
-                    AgriRequirement requirement, List<String> seasons, AgriTexture texture, boolean enabled, List<String> mods) {
+                    AgriRequirement requirement, AgriTexture texture, boolean enabled, List<String> mods) {
         this.id = id;
         this.path = path;
         this.enabled = enabled;
@@ -73,7 +71,6 @@ public class AgriWeed implements AgriSerializable, Comparable<AgriWeed> {
         this.lethal = lethal;
         this.rake_drops = rake_drops;
         this.requirement = requirement;
-        this.seasons = seasons;
         this.texture = texture;
         this.version = Versions_1_16.VERSION;
     }
@@ -123,7 +120,7 @@ public class AgriWeed implements AgriSerializable, Comparable<AgriWeed> {
     }
 
     public List<String> getSeasons() {
-        return this.seasons;
+        return this.requirement.getSeasons();
     }
 
     public AgriTexture getTexture() {
