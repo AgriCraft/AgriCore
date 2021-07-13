@@ -1,7 +1,8 @@
-package com.agricraft.agricore.plant;
+package com.agricraft.agricore.plant.fertilizer;
 
 import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.json.AgriSerializable;
+import com.agricraft.agricore.plant.AgriObject;
 import com.agricraft.agricore.plant.versions.v2.Versions_1_16;
 import com.agricraft.agricore.util.TypeHelper;
 import com.google.common.collect.Lists;
@@ -24,6 +25,7 @@ public class AgriFertilizer implements AgriSerializable, Comparable<AgriFertiliz
     private final boolean trigger_mutation;
     private final boolean trigger_weeds;
     private final int potency;
+    private final AgriFertilizerEffect effect;
 
     public AgriFertilizer() {
         this.id = "bone_meal_fertilizer";
@@ -35,14 +37,15 @@ public class AgriFertilizer implements AgriSerializable, Comparable<AgriFertiliz
         this.trigger_mutation = true;
         this.trigger_weeds = true;
         this.potency = 1;
+        this.effect = new AgriFertilizerEffect();
     }
 
-    public AgriFertilizer(String id, String lang_key, List<AgriObject> variants, boolean trigger_mutation, boolean trigger_weeds, int potency, boolean enabled) {
-        this(id, lang_key, variants, trigger_mutation, trigger_weeds, potency, enabled, Lists.newArrayList("agricraft", "minecraft"));
+    public AgriFertilizer(String id, String lang_key, List<AgriObject> variants, boolean trigger_mutation, boolean trigger_weeds, int potency, AgriFertilizerEffect effect, boolean enabled) {
+        this(id, lang_key, variants, trigger_mutation, trigger_weeds, potency, effect, enabled, Lists.newArrayList("agricraft", "minecraft"));
     }
 
     public AgriFertilizer(String id, String lang_key, List<AgriObject> variants, boolean trigger_mutation, boolean trigger_weeds, int potency,
-                          boolean enabled, List<String> mods) {
+                          AgriFertilizerEffect effect, boolean enabled, List<String> mods) {
         this.id = id;
         this.lang_key = lang_key;
         this.variants = variants;
@@ -50,16 +53,17 @@ public class AgriFertilizer implements AgriSerializable, Comparable<AgriFertiliz
         this.trigger_mutation = trigger_mutation;
         this.trigger_weeds = trigger_weeds;
         this.potency = potency;
+        this.effect = effect;
         this.mods = mods;
         this.version = Versions_1_16.VERSION;
     }
 
     public String getId() {
-        return id;
+        return this.id;
     }
 
     public String getLangKey() {
-        return lang_key;
+        return this.lang_key;
     }
 
     public <T> List<T> getVariants(Class<T> token) {
@@ -69,15 +73,23 @@ public class AgriFertilizer implements AgriSerializable, Comparable<AgriFertiliz
     }
 
     public boolean canTriggerMutation() {
-        return trigger_mutation;
+        return this.trigger_mutation;
     }
 
     public boolean canTriggerWeeds() {
-        return trigger_weeds;
+        return this.trigger_weeds;
     }
 
     public int getPotency() {
-        return potency;
+        return this.potency;
+    }
+
+    public AgriFertilizerEffect getEffect() {
+        return this.effect;
+    }
+
+    public boolean canFertilize(String plantId) {
+        return this.effect.canFertilize(plantId);
     }
 
     public boolean validate() {
@@ -92,6 +104,10 @@ public class AgriFertilizer implements AgriSerializable, Comparable<AgriFertiliz
         if(this.variants.isEmpty()) {
             AgriCore.getCoreLogger().info("Invalid Fertilizer: {0}, no valid variants found.", this.getId());
         }
+        if (!this.effect.validate()) {
+            AgriCore.getCoreLogger().info("Invalid Fertilizer: {0}, effect invalid.", this.getId());
+            return false;
+        }
         return true;
     }
 
@@ -104,6 +120,9 @@ public class AgriFertilizer implements AgriSerializable, Comparable<AgriFertiliz
         this.variants.forEach((e) -> {
             sb.append("\t- Item: ").append(e).append("\n");
         });
+        sb.append("\t- Trigger Weeds: ").append(trigger_weeds).append("\n");
+        sb.append("\t- Trigger Mutation: ").append(trigger_mutation).append("\n");
+        sb.append("\t- Effect: ").append(effect).append("\n");
         return sb.toString();
     }
 

@@ -94,7 +94,7 @@ public class AgriPlant_1_12 implements AgriSerializable, Comparable<AgriPlant_1_
 
     public AgriPlant toNew() {
         return new AgriPlant(this.id, this.plant_name, this.seed_name, this.description.getNormal(), this.convertSeeds(), this.getStages(),
-                this.texture.getGrowthStages()/2, Lists.newArrayList("vanilla:bone_meal_fertilizer"), this.tier, this.growth_chance,
+                this.texture.getGrowthStages()/2, this.tier, this.growth_chance,
                 this.growth_bonus, this.isCloneable(), this.spread_chance, this.grass_drop_chance, this.seed_drop_chance,
                 this.seed_drop_bonus, this.products.toNew(), new AgriProductList(), this.requirement.toNew(),
                 Lists.newArrayList(), this.texture.toNew(), this.texture.seed_texture(), this.texture.seed_texture(), new ArrayList<>(),  this.path, this.enabled);
