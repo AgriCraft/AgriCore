@@ -20,12 +20,11 @@ public class AgriPlantList {
         this.plant_list = plant_list;
     }
 
-    public boolean isBlacklist() {
-        return this.blacklist;
-    }
-
-    public boolean contains(String plantId) {
-        return this.plant_list.contains(plantId);
+    public boolean isAffected(String plantId) {
+        if (plant_list.contains(plantId)) {
+            return !blacklist;
+        }
+        return blacklist;
     }
 
     @Override

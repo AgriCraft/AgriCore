@@ -39,14 +39,23 @@ public class AgriFertilizerEffect {
     }
 
     public boolean canFertilize(String plantId) {
-        return positively_affected.contains(plantId) || negatively_affected.contains(plantId);
+        return positively_affected.isAffected(plantId) || negatively_affected.isAffected(plantId);
     }
 
+    public boolean isNegativelyAffected(String plantId) {
+        return negatively_affected.isAffected(plantId);
+    }
+
+    /**
+     * Retrieve the particles to spawn when applying the effect of the fertilizer on plant.
+     * @param plantId the id of the plant the fertilizer is used on.
+     * @return the list of particles to spawn for the plant.
+     */
     public List<AgriFertilizerParticle> getParticles(String plantId) {
         String type = "neutral";
-        if (negatively_affected.contains(plantId)) {
+        if (negatively_affected.isAffected(plantId)) {
             type = "negative";
-        } else if (positively_affected.contains(plantId)) {
+        } else if (positively_affected.isAffected(plantId)) {
             type = "positive";
         }
         String finalType = type;
