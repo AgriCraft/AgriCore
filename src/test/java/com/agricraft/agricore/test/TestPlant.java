@@ -52,7 +52,7 @@ public class TestPlant {
 
         // Setup Plant
         plant = new AgriPlant("wheat_plant", "plant.wheat.plant", "plant.wheat.seed", "plant.wheat.desc",
-                Lists.newArrayList(seed), new int[]{2,4,6,8,10,12,14,16}, 4, true, 1, 1.0, 0.01,
+                Lists.newArrayList(seed), new int[]{2,4,6,8,10,12,14,16}, 4, 1, 1.0, 0.01,
                 false, 0.1, 0, 1, 0,
                 products, clip_products, requirement, Lists.newArrayList(), texture,
                 "seed_wheat", "seed_wheat", new ArrayList<>(), "default/wheat_plant.json", true);
