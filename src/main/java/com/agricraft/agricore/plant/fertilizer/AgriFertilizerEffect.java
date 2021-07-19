@@ -48,18 +48,11 @@ public class AgriFertilizerEffect {
 
     /**
      * Retrieve the particles to spawn when applying the effect of the fertilizer on plant.
-     * @param plantId the id of the plant the fertilizer is used on.
+     * @param type the type of particles, either "positive", "negative", or "neutral"
      * @return the list of particles to spawn for the plant.
      */
-    public List<AgriFertilizerParticle> getParticles(String plantId) {
-        String type = "neutral";
-        if (negatively_affected.isAffected(plantId)) {
-            type = "negative";
-        } else if (positively_affected.isAffected(plantId)) {
-            type = "positive";
-        }
-        String finalType = type;
-        return particles.stream().filter(particle -> particle.shouldSpawn(finalType)).collect(Collectors.toList());
+    public List<AgriFertilizerParticle> getParticles(String type) {
+        return particles.stream().filter(particle -> particle.shouldSpawn(type)).collect(Collectors.toList());
 
     }
 
