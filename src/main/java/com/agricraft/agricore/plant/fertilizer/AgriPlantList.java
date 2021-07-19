@@ -37,11 +37,13 @@ public class AgriPlantList {
     }
 
     public boolean validate() {
-        for (String plantId : plant_list) {
-            if (!AgriCore.getPlants().hasPlant(plantId)) {
-                AgriCore.getCoreLogger().info("Invalid List: Invalid Plant: \"{0}\"!\n{1}", plantId, this);
-                return false;
+        if (!blacklist) {
+            for (String plantId : plant_list) {
+                if (AgriCore.getPlants().hasPlant(plantId)) {
+                    return true;
+                }
             }
+            AgriCore.getCoreLogger().info("Invalid List : The list does not contains \"{0}\"!");
         }
         return true;
     }
