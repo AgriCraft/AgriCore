@@ -7,7 +7,7 @@ import javax.annotation.Nonnull;
 
 public class AgriDefaultValidator implements AgriValidator {
     @Override
-    public <T> boolean isValidObject(Class<T> token, String object) {
+    public <T> boolean isValidObject(Class<T> token, String object, boolean useTag) {
         if (object == null) {
             AgriCore.getCoreLogger().warn("Null Object!");
             return false;

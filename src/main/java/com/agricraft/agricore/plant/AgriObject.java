@@ -70,7 +70,7 @@ public class AgriObject {
     }
 
     public boolean validate() {
-        return AgriCore.getValidator().isValidObject(type, object);
+        return AgriCore.getValidator().isValidObject(type, object, useTag);
     }
 
     @Override
