@@ -3,10 +3,10 @@ package com.agricraft.agricore.util;
 import javax.annotation.Nonnull;
 
 public interface AgriValidator {
-    <T> boolean isValidObject(final Class<T> token, final String item);
+    <T> boolean isValidObject(final Class<T> token, final String item, boolean useTag);
 
-    default boolean isValidObject(final String token, final String item) {
-        return this.isValidObject(this.getTokenClass(token), item);
+    default boolean isValidObject(final String token, final String item, boolean useTag) {
+        return this.isValidObject(this.getTokenClass(token), item, useTag);
     }
 
     @Nonnull

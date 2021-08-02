@@ -2,6 +2,7 @@ package com.agricraft.agricore.plant.fertilizer;
 
 import com.agricraft.agricore.core.AgriCore;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -43,7 +44,7 @@ public class AgriPlantList {
                     return true;
                 }
             }
-            AgriCore.getCoreLogger().info("Invalid List : The list does not contains \"{0}\"!");
+            AgriCore.getCoreLogger().info("Invalid Whitelist : The list does not contains valid plants!");
         }
         return true;
     }
