@@ -1,5 +1,7 @@
 package com.agricraft.agricore.util;
 
+import com.google.gson.JsonElement;
+
 import javax.annotation.Nonnull;
 
 public interface AgriValidator {
@@ -18,7 +20,7 @@ public interface AgriValidator {
 
     boolean isValidResource(final String resource);
 
-    boolean isValidCallback(final String callback);
+    boolean isValidCallback(final JsonElement callback);
 
     boolean isValidHumidity(final String humidity);
 

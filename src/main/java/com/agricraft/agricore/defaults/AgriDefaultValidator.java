@@ -2,6 +2,7 @@ package com.agricraft.agricore.defaults;
 
 import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.util.AgriValidator;
+import com.google.gson.JsonElement;
 
 import javax.annotation.Nonnull;
 
@@ -44,7 +45,7 @@ public class AgriDefaultValidator implements AgriValidator {
     }
 
     @Override
-    public boolean isValidCallback(String callback) {
+    public boolean isValidCallback(JsonElement callback) {
         return true;
     }
 
