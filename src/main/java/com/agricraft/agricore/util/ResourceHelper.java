@@ -12,6 +12,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -29,7 +30,7 @@ public class ResourceHelper {
      * @param toFunction function specifying the destination where each file should be copied to
      * @param overwrite specifies if files which already exist should be overwritten or not
      */
-    public static void copyResources(Stream<Path> pathStream, Predicate<String> nameFilter, Predicate<String> dirFilter, Function<String, Path> toFunction, boolean overwrite) {
+    public static void copyResources(Stream<Path> pathStream, Pattern nameFilter, Predicate<String> dirFilter, Function<String, Path> toFunction, boolean overwrite) {
         ResourceHelper helper = new ResourceHelper(collectURLs(pathStream));
         helper.findResources(nameFilter).stream()
                 .filter(dirFilter)
@@ -71,7 +72,7 @@ public class ResourceHelper {
     protected ResourceHelper(Collection<URL> urls) {
         // Prevent logging from Reflections
         if(Reflections.log != null) {
-            Reflections.log = null;
+            //Reflections.log = null;
         }
         // Scan using Reflections
         this.reflections = new Reflections(
@@ -85,8 +86,8 @@ public class ResourceHelper {
      * @param nameFilter file name predicate
      * @return set of all filenames matching the name filter
      */
-    protected Set<String> findResources(Predicate<String> nameFilter) {
-        return this.reflections.getResources(nameFilter::test);
+    protected Set<String> findResources(Pattern nameFilter) {
+        return this.reflections.getResources(nameFilter);
     }
 
     /**
