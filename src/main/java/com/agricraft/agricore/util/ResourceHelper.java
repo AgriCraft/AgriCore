@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.reflections.Reflections;
-import org.reflections.scanners.ResourcesScanner;
+import org.reflections.scanners.Scanners;
 import org.reflections.util.ConfigurationBuilder;
 
 public class ResourceHelper {
@@ -77,7 +77,7 @@ public class ResourceHelper {
         // Scan using Reflections
         this.reflections = new Reflections(
                 new ConfigurationBuilder()
-                        .addScanners(new ResourcesScanner())
+                        .addScanners(Scanners.Resources)
                         .addUrls(urls));
     }
 
