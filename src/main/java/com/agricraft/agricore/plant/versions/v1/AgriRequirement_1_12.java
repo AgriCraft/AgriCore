@@ -1,8 +1,8 @@
 package com.agricraft.agricore.plant.versions.v1;
 
 import com.agricraft.agricore.plant.AgriObject;
-import com.agricraft.agricore.plant.AgriRequirement;
 import com.agricraft.agricore.plant.AgriSoilCondition;
+import com.agricraft.agricore.plant.versions.v2.AgriRequirement_1_16;
 import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
@@ -30,8 +30,8 @@ public class AgriRequirement_1_12 {
         this.max_light = max_light;
     }
 
-    public AgriRequirement toNew() {
-        return new AgriRequirement(
+    public AgriRequirement_1_16 toNew() {
+        return new AgriRequirement_1_16(
                 new AgriSoilCondition(),
                 new AgriSoilCondition(),
                 new AgriSoilCondition(),

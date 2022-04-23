@@ -1,9 +1,8 @@
 package com.agricraft.agricore.registry;
 
 import com.agricraft.agricore.json.AgriJsonVersion;
-import com.agricraft.agricore.plant.AgriPlant;
 import com.agricraft.agricore.plant.AgriWeed;
-import com.agricraft.agricore.plant.versions.v2.Versions_1_16;
+import com.agricraft.agricore.plant.versions.v3.Versions_1_18;
 import com.google.common.collect.ImmutableSet;
 
 import java.util.HashMap;
@@ -55,7 +54,7 @@ public class AgriWeeds implements AgriLoadableRegistry<AgriWeed> {
 
     @Override
     public AgriJsonVersion<AgriWeed> getElementVersion() {
-        return Versions_1_16.WEED;
+        return Versions_1_18.WEED;
     }
 
     @Override

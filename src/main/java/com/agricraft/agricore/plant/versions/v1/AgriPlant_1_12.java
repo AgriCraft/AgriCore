@@ -2,7 +2,7 @@ package com.agricraft.agricore.plant.versions.v1;
 
 import com.agricraft.agricore.json.AgriSerializable;
 import com.agricraft.agricore.plant.*;
-import com.agricraft.agricore.util.TypeHelper;
+import com.agricraft.agricore.plant.versions.v2.AgriPlant_1_16;
 import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
@@ -92,8 +92,8 @@ public class AgriPlant_1_12 implements AgriSerializable, Comparable<AgriPlant_1_
         this.version = Versions_1_12.VERSION;
     }
 
-    public AgriPlant toNew() {
-        return new AgriPlant(this.id, this.plant_name, this.seed_name, this.description.getNormal(), this.convertSeeds(), this.getStages(),
+    public AgriPlant_1_16 toNew() {
+        return new AgriPlant_1_16(this.id, this.plant_name, this.seed_name, this.description.getNormal(), this.convertSeeds(), this.getStages(),
                 this.texture.getGrowthStages()/2, this.tier, this.growth_chance,
                 this.growth_bonus, this.isCloneable(), this.spread_chance, this.grass_drop_chance, this.seed_drop_chance,
                 this.seed_drop_bonus, this.products.toNew(), new AgriProductList(), this.requirement.toNew(),

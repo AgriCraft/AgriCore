@@ -3,6 +3,7 @@ package com.agricraft.agricore.plant;
 import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.json.AgriSerializable;
 import com.agricraft.agricore.plant.particle.AgriParticleEffect;
+import com.agricraft.agricore.plant.versions.Versions;
 import com.agricraft.agricore.plant.versions.v2.Versions_1_16;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
@@ -53,7 +54,7 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
         this.enabled = false;
         this.mods = Lists.newArrayList("agricraft", "minecraft");
         this.path = "default/weed_plant.json";
-        this.version = Versions_1_16.VERSION;
+        this.version = Versions.LATEST;
         this.id = "weed_plant";
         this.plant_lang_key = "agricraft.plant.weeds";
         this.seed_lang_key = "agricraft.seed.weeds";

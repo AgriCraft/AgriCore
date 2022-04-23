@@ -3,6 +3,7 @@ package com.agricraft.agricore.plant.fertilizer;
 import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.json.AgriSerializable;
 import com.agricraft.agricore.plant.AgriObject;
+import com.agricraft.agricore.plant.versions.Versions;
 import com.agricraft.agricore.plant.versions.v2.Versions_1_16;
 import com.agricraft.agricore.util.TypeHelper;
 import com.google.common.collect.Lists;
@@ -33,7 +34,7 @@ public class AgriFertilizer implements AgriSerializable, Comparable<AgriFertiliz
         this.variants = TypeHelper.asList(new AgriObject("item", "minecraft:bone_meal"));
         this.enabled = false;
         this.mods = Lists.newArrayList("agricraft", "minecraft");
-        this.version = Versions_1_16.VERSION;
+        this.version = Versions.LATEST;
         this.trigger_mutation = true;
         this.trigger_weeds = true;
         this.potency = 1;

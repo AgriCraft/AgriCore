@@ -2,7 +2,7 @@ package com.agricraft.agricore.registry;
 
 import com.agricraft.agricore.json.AgriJsonVersion;
 import com.agricraft.agricore.plant.AgriMutation;
-import com.agricraft.agricore.plant.versions.v2.Versions_1_16;
+import com.agricraft.agricore.plant.versions.v3.Versions_1_18;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -89,7 +89,7 @@ public class AgriMutations implements AgriLoadableRegistry<AgriMutation> {
 
     @Override
     public AgriJsonVersion<AgriMutation> getElementVersion() {
-        return Versions_1_16.MUTATION;
+        return Versions_1_18.MUTATION;
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.agricraft.agricore.plant;
 
 import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.json.AgriSerializable;
+import com.agricraft.agricore.plant.versions.Versions;
 import com.agricraft.agricore.plant.versions.v2.Versions_1_16;
 import com.agricraft.agricore.util.TypeHelper;
 import com.google.common.collect.Lists;
@@ -33,7 +34,7 @@ public class AgriSoil implements AgriSerializable, Comparable<AgriSoil> {
         this.varients = TypeHelper.asList(new AgriObject());
         this.enabled = false;
         this.mods = Lists.newArrayList("agricraft", "minecraft");
-        this.version = Versions_1_16.VERSION;
+        this.version = Versions.LATEST;
         this.humidity = "dry";
         this.acidity = "neutral";
         this.nutrients = "medium";

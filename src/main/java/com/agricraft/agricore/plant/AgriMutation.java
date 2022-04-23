@@ -2,6 +2,7 @@ package com.agricraft.agricore.plant;
 
 import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.json.AgriSerializable;
+import com.agricraft.agricore.plant.versions.Versions;
 import com.agricraft.agricore.plant.versions.v2.Versions_1_16;
 import com.google.common.collect.Lists;
 
@@ -32,7 +33,7 @@ public class AgriMutation implements AgriSerializable, Comparable<AgriMutation> 
         this.child = "carrot_plant";
         this.parent1 = "wheat_plant";
         this.parent2 = "potato_plant";
-        this.version = Versions_1_16.VERSION;
+        this.version = Versions.LATEST;
     }
 
     public AgriMutation(double chance, String child, String parent1, String parent2, String path, boolean enabled) {
