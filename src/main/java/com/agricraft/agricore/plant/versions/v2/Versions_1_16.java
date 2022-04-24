@@ -2,7 +2,6 @@ package com.agricraft.agricore.plant.versions.v2;
 
 import com.agricraft.agricore.json.AgriJsonVersion;
 import com.agricraft.agricore.json.AgriSerializable;
-import com.agricraft.agricore.plant.*;
 import com.agricraft.agricore.plant.versions.v1.AgriPlant_1_12;
 import com.agricraft.agricore.plant.versions.v1.AgriSoil_1_12;
 import com.agricraft.agricore.plant.versions.v1.Versions_1_12;
@@ -13,10 +12,10 @@ import java.util.function.Function;
 public class Versions_1_16 {
     public static final String VERSION = "1.16.4";
 
-    public static final AgriJsonVersion<AgriMutation> MUTATION = new AgriJsonVersion<AgriMutation>() {
+    public static final AgriJsonVersion<AgriMutation_1_16> MUTATION = new AgriJsonVersion<AgriMutation_1_16>() {
         @Override
-        public Class<AgriMutation> getElementClass() {
-            return AgriMutation.class;
+        public Class<AgriMutation_1_16> getElementClass() {
+            return AgriMutation_1_16.class;
         }
 
         @Override

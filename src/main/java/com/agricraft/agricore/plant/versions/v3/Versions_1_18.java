@@ -2,11 +2,7 @@ package com.agricraft.agricore.plant.versions.v3;
 
 import com.agricraft.agricore.json.AgriJsonVersion;
 import com.agricraft.agricore.json.AgriSerializable;
-import com.agricraft.agricore.plant.AgriMutation;
-import com.agricraft.agricore.plant.AgriPlant;
-import com.agricraft.agricore.plant.AgriSoil;
-import com.agricraft.agricore.plant.AgriWeed;
-import com.agricraft.agricore.plant.AgriFertilizer;
+import com.agricraft.agricore.plant.*;
 import com.agricraft.agricore.plant.versions.v1.AgriPlant_1_12;
 import com.agricraft.agricore.plant.versions.v1.AgriSoil_1_12;
 import com.agricraft.agricore.plant.versions.v2.*;
@@ -26,6 +22,22 @@ public class Versions_1_18 {
         @Override
         public String descriptor() {
             return VERSION;
+        }
+
+        @Nullable
+        public AgriJsonVersion<AgriMutation_1_16> previousVersion() {
+            return Versions_1_16.MUTATION;
+        }
+
+        @Nullable
+        public Function<AgriSerializable, AgriMutation> versionConverter() {
+            return (obj) -> {
+                if(obj instanceof AgriMutation_1_16) {
+                    return ((AgriMutation_1_16) obj).toNew();
+                } else {
+                    return null;
+                }
+            };
         }
     };
 
