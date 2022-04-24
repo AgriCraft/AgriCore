@@ -3,6 +3,7 @@ package com.agricraft.agricore.defaults;
 import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.util.AgriValidator;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
 import javax.annotation.Nonnull;
 import java.util.List;
@@ -46,7 +47,12 @@ public class AgriDefaultValidator implements AgriValidator {
     }
 
     @Override
-    public boolean isValidCallback(JsonElement callback) {
+    public boolean isValidPlantCallback(JsonElement callback) {
+        return true;
+    }
+
+    @Override
+    public boolean isValidMutationTrigger(String id, JsonObject args) {
         return true;
     }
 

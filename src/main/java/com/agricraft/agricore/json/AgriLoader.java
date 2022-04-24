@@ -1,7 +1,7 @@
 package com.agricraft.agricore.json;
 
 import com.agricraft.agricore.core.AgriCore;
-import com.agricraft.agricore.plant.versions.v1.Versions_1_12;
+import com.agricraft.agricore.templates.versions.v1.Versions_1_12;
 import com.agricraft.agricore.registry.AgriLoadableRegistry;
 import com.google.gson.*;
 

@@ -1,7 +1,7 @@
 package com.agricraft.agricore.test;
 
 import com.agricraft.agricore.core.AgriCore;
-import com.agricraft.agricore.plant.*;
+import com.agricraft.agricore.templates.*;
 import com.google.common.collect.Lists;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

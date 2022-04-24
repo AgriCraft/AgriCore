@@ -1,7 +1,7 @@
 package com.agricraft.agricore.test;
 
 import com.agricraft.agricore.core.AgriCore;
-import com.agricraft.agricore.plant.AgriMutation;
+import com.agricraft.agricore.templates.AgriMutation;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.io.BufferedWriter;

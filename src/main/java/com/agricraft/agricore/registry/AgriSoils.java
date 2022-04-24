@@ -1,8 +1,8 @@
 package com.agricraft.agricore.registry;
 
 import com.agricraft.agricore.json.AgriJsonVersion;
-import com.agricraft.agricore.plant.AgriSoil;
-import com.agricraft.agricore.plant.versions.v3.Versions_1_18;
+import com.agricraft.agricore.templates.AgriSoil;
+import com.agricraft.agricore.templates.versions.v3.Versions_1_18;
 
 import java.util.Collection;
 import java.util.Collections;
