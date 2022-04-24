@@ -27,7 +27,7 @@ public class AgriProduct_1_16 extends AgriObject_1_16 {
     }
 
     public AgriProduct_1_16(String item, boolean useTag, int min, int max, double chance, boolean required, String data, List<String> ignoreTags) {
-        super("item", item, false, data, ignoreTags);
+        super("item", item, useTag, data, ignoreTags);
         this.min = min;
         this.max = max;
         this.chance = chance;
