@@ -2,6 +2,7 @@ package com.agricraft.agricore.plant.versions.v1;
 
 import com.agricraft.agricore.json.AgriSerializable;
 import com.agricraft.agricore.plant.AgriSoil;
+import com.agricraft.agricore.plant.versions.v2.AgriSoil_1_16;
 import com.agricraft.agricore.util.TypeHelper;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,8 +34,8 @@ public class AgriSoil_1_12 implements AgriSerializable, Comparable<AgriSoil_1_12
         this.version = Versions_1_12.VERSION;
     }
 
-    public AgriSoil toNew() {
-        return new AgriSoil(
+    public AgriSoil_1_16 toNew() {
+        return new AgriSoil_1_16(
                 this.id, this.name,
                 this.varients.stream().map(stack -> stack.toNew("block")).collect(Collectors.toList()),
                 "moist", "neutral", "medium", 1.0, enabled);

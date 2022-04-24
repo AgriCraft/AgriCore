@@ -3,7 +3,6 @@ package com.agricraft.agricore.plant.versions.v2;
 import com.agricraft.agricore.json.AgriJsonVersion;
 import com.agricraft.agricore.json.AgriSerializable;
 import com.agricraft.agricore.plant.*;
-import com.agricraft.agricore.plant.fertilizer.AgriFertilizer;
 import com.agricraft.agricore.plant.versions.v1.AgriPlant_1_12;
 import com.agricraft.agricore.plant.versions.v1.AgriSoil_1_12;
 import com.agricraft.agricore.plant.versions.v1.Versions_1_12;
@@ -26,7 +25,7 @@ public class Versions_1_16 {
         }
     };
 
-    public static final AgriJsonVersion<AgriPlant_1_16> PLANT = new AgriJsonVersion<>() {
+    public static final AgriJsonVersion<AgriPlant_1_16> PLANT = new AgriJsonVersion<AgriPlant_1_16>() {
         @Override
         public Class<AgriPlant_1_16> getElementClass() {
             return AgriPlant_1_16.class;
@@ -54,10 +53,10 @@ public class Versions_1_16 {
         }
     };
 
-    public static final AgriJsonVersion<AgriWeed> WEED = new AgriJsonVersion<>() {
+    public static final AgriJsonVersion<AgriWeed_1_16> WEED = new AgriJsonVersion<AgriWeed_1_16>() {
         @Override
-        public Class<AgriWeed> getElementClass() {
-            return AgriWeed.class;
+        public Class<AgriWeed_1_16> getElementClass() {
+            return AgriWeed_1_16.class;
         }
 
         @Override
@@ -66,10 +65,10 @@ public class Versions_1_16 {
         }
     };
 
-    public static final AgriJsonVersion<AgriSoil> SOIL = new AgriJsonVersion<>() {
+    public static final AgriJsonVersion<AgriSoil_1_16> SOIL = new AgriJsonVersion<AgriSoil_1_16>() {
         @Override
-        public Class<AgriSoil> getElementClass() {
-            return AgriSoil.class;
+        public Class<AgriSoil_1_16> getElementClass() {
+            return AgriSoil_1_16.class;
         }
 
         @Override
@@ -83,7 +82,7 @@ public class Versions_1_16 {
         }
 
         @Nullable
-        public Function<AgriSerializable, AgriSoil> versionConverter() {
+        public Function<AgriSerializable, AgriSoil_1_16> versionConverter() {
             return (obj) -> {
                 if(obj instanceof AgriSoil_1_12) {
                     return ((AgriSoil_1_12) obj).toNew();
@@ -94,10 +93,10 @@ public class Versions_1_16 {
         }
     };
 
-    public static final AgriJsonVersion<AgriFertilizer> FERTILIZER = new AgriJsonVersion<>() {
+    public static final AgriJsonVersion<AgriFertilizer_1_16> FERTILIZER = new AgriJsonVersion<AgriFertilizer_1_16>() {
         @Override
-        public Class<AgriFertilizer> getElementClass() {
-            return AgriFertilizer.class;
+        public Class<AgriFertilizer_1_16> getElementClass() {
+            return AgriFertilizer_1_16.class;
         }
 
         @Override

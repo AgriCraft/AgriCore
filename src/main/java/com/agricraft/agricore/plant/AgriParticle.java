@@ -1,4 +1,4 @@
-package com.agricraft.agricore.plant.particle;
+package com.agricraft.agricore.plant;
 
 public abstract class AgriParticle {
 

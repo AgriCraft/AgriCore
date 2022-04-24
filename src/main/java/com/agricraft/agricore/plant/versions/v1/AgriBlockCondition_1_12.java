@@ -1,6 +1,6 @@
 package com.agricraft.agricore.plant.versions.v1;
 
-import com.agricraft.agricore.plant.AgriBlockCondition;
+import com.agricraft.agricore.plant.versions.v2.AgriBlockCondition_1_16;
 
 import java.util.Arrays;
 import java.util.List;
@@ -40,7 +40,7 @@ public class AgriBlockCondition_1_12 extends AgriStack_1_12 {
         this.max_z = max_z;
     }
 
-    public AgriBlockCondition toNew() {
-        return new AgriBlockCondition(11, amount, min_x, min_y, min_z, max_x, max_y, max_z, this.transformItem(), this.useTag(), tags, ignoreTags);
+    public AgriBlockCondition_1_16 toNew() {
+        return new AgriBlockCondition_1_16(11, amount, min_x, min_y, min_z, max_x, max_y, max_z, this.transformItem(), this.useTag(), tags, ignoreTags);
     }
 }

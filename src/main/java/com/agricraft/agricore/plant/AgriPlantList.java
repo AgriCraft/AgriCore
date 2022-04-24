@@ -1,8 +1,7 @@
-package com.agricraft.agricore.plant.fertilizer;
+package com.agricraft.agricore.plant;
 
 import com.agricraft.agricore.core.AgriCore;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 

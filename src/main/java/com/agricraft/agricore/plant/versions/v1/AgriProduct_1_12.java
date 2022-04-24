@@ -1,6 +1,6 @@
 package com.agricraft.agricore.plant.versions.v1;
 
-import com.agricraft.agricore.plant.AgriProduct;
+import com.agricraft.agricore.plant.versions.v2.AgriProduct_1_16;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,7 +33,7 @@ public class AgriProduct_1_12 extends AgriStack_1_12 {
         this.required = required;
     }
 
-    public AgriProduct toNew() {
-        return new AgriProduct(this.transformItem(), this.useTag(), min, max, chance, required, this.tags, ignoreTags);
+    public AgriProduct_1_16 toNew() {
+        return new AgriProduct_1_16(this.transformItem(), this.useTag(), min, max, chance, required, this.tags, ignoreTags);
     }
 }

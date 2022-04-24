@@ -1,6 +1,6 @@
 package com.agricraft.agricore.plant.versions.v1;
 
-import com.agricraft.agricore.plant.AgriProductList;
+import com.agricraft.agricore.plant.versions.v2.AgriProductList_1_16;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,8 +18,8 @@ public class AgriProductList_1_12 {
         this.products = products;
     }
 
-    public AgriProductList toNew() {
-        return new AgriProductList(this.products.stream().map(AgriProduct_1_12::toNew).collect(Collectors.toList()));
+    public AgriProductList_1_16 toNew() {
+        return new AgriProductList_1_16(this.products.stream().map(AgriProduct_1_12::toNew).collect(Collectors.toList()));
     }
 
 }

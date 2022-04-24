@@ -2,6 +2,7 @@ package com.agricraft.agricore.plant;
 
 import com.agricraft.agricore.core.AgriCore;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class AgriBlockCondition extends AgriObject {
@@ -13,6 +14,7 @@ public class AgriBlockCondition extends AgriObject {
 	protected final int max_x;
 	protected final int max_y;
 	protected final int max_z;
+	protected final List<String> stateDefinition;
 	
 	public AgriBlockCondition() {
 		super();
@@ -24,16 +26,17 @@ public class AgriBlockCondition extends AgriObject {
 		this.max_x = 0;
 		this.max_y = -2;
 		this.max_z = 0;
+		this.stateDefinition = Collections.emptyList();
 	}
 
 	public AgriBlockCondition(int strength, int amount, int min_x, int min_y, int min_z, int max_x, int max_y, int max_z,
-							  String item, boolean useTag, String tags, String... ignoreTags) {
-		this(strength, amount, min_x, min_y, min_z, max_x, max_y, max_z, item, useTag, tags, Arrays.asList(ignoreTags));
+							  String item, boolean useTag, List<String> stateDefinition, String nbt, String... ignoredNbt) {
+		this(strength, amount, min_x, min_y, min_z, max_x, max_y, max_z, item, useTag, stateDefinition, nbt, Arrays.asList(ignoredNbt));
 	}
 
 	public AgriBlockCondition(int strength, int amount, int min_x, int min_y, int min_z, int max_x, int max_y, int max_z,
-							  String item, boolean useTag, String tags, List<String> ignoreTags) {
-		super("block", item, useTag, tags, ignoreTags);
+							  String item, boolean useTag, List<String> stateDefinition, String nbt, List<String> ignoredNbt) {
+		super("block", item, useTag, nbt, ignoredNbt);
 		this.strength = strength;
 		this.amount = amount;
 		this.min_x = min_x;
@@ -42,6 +45,7 @@ public class AgriBlockCondition extends AgriObject {
 		this.max_x = max_x;
 		this.max_y = max_y;
 		this.max_z = max_z;
+		this.stateDefinition = Collections.emptyList();
 	}
 
 	public int getStrength() {
@@ -74,6 +78,10 @@ public class AgriBlockCondition extends AgriObject {
 
 	public int getMaxZ() {
 		return this.max_z;
+	}
+
+	public List<String> getStateDefinition() {
+		return this.stateDefinition;
 	}
 
 	@Override

@@ -20,7 +20,7 @@ public class AgriSoil implements AgriSerializable, Comparable<AgriSoil> {
     private final List<String> mods;
     private final String id;
     private final String lang_key;
-    private final List<AgriObject> varients;
+    private final List<AgriObject> variants;
 
     private final String humidity;
     private final String acidity;
@@ -31,7 +31,7 @@ public class AgriSoil implements AgriSerializable, Comparable<AgriSoil> {
     public AgriSoil() {
         this.id = "dirt_soil";
         this.lang_key = "dirt";
-        this.varients = TypeHelper.asList(new AgriObject());
+        this.variants = TypeHelper.asList(new AgriObject());
         this.enabled = false;
         this.mods = Lists.newArrayList("agricraft", "minecraft");
         this.version = Versions.LATEST;
@@ -41,15 +41,15 @@ public class AgriSoil implements AgriSerializable, Comparable<AgriSoil> {
         this.growth_modifier = 1.0;
     }
 
-    public AgriSoil(String id, String lang_key, List<AgriObject> varients, String humidity, String acidity, String nutrients, double growthMod, boolean enabled) {
-        this(id, lang_key, varients, humidity, acidity, nutrients, growthMod, enabled, Lists.newArrayList("agricraft", "minecraft"));
+    public AgriSoil(String id, String lang_key, List<AgriObject> variants, String humidity, String acidity, String nutrients, double growthMod, boolean enabled) {
+        this(id, lang_key, variants, humidity, acidity, nutrients, growthMod, enabled, Lists.newArrayList("agricraft", "minecraft"));
     }
 
-    public AgriSoil(String id, String lang_key, List<AgriObject> varients, String humidity, String acidity, String nutrients,
+    public AgriSoil(String id, String lang_key, List<AgriObject> variants, String humidity, String acidity, String nutrients,
                     double growthMod, boolean enabled, List<String> mods) {
         this.id = id;
         this.lang_key = lang_key;
-        this.varients = varients;
+        this.variants = variants;
         this.enabled = enabled;
         this.humidity = humidity;
         this.acidity = acidity;
@@ -68,7 +68,7 @@ public class AgriSoil implements AgriSerializable, Comparable<AgriSoil> {
     }
 
     public <T> List<T> getVariants(Class<T> token) {
-        return this.varients.stream()
+        return this.variants.stream()
                 .flatMap(t -> t.convertAll(token).stream())
                 .collect(Collectors.toList());
     }
@@ -90,7 +90,7 @@ public class AgriSoil implements AgriSerializable, Comparable<AgriSoil> {
     }
 
     public boolean validate() {
-        this.varients.removeIf(block -> {
+        this.variants.removeIf(block -> {
             if (!block.validate()) {
                 AgriCore.getCoreLogger().info("Invalid Soil Varient {0} for soil {1}, removing the variant!", block, this.getId());
                 return true;
@@ -98,7 +98,7 @@ public class AgriSoil implements AgriSerializable, Comparable<AgriSoil> {
                 return false;
             }
         });
-        if(this.varients.isEmpty()) {
+        if(this.variants.isEmpty()) {
             AgriCore.getCoreLogger().info("Invalid Soil: {0}, no valid variants found.", this.getId());
         }
         if(!AgriCore.getValidator().isValidHumidity(this.getHumidity())) {
@@ -122,7 +122,7 @@ public class AgriSoil implements AgriSerializable, Comparable<AgriSoil> {
         sb.append("\nSoil:\n");
         sb.append("\t- Id: ").append(id).append("\n");
         sb.append("\t- Name: ").append(lang_key).append("\n");
-        this.varients.forEach((e) -> {
+        this.variants.forEach((e) -> {
             sb.append("\t- Block: ").append(e).append("\n");
         });
         return sb.toString();

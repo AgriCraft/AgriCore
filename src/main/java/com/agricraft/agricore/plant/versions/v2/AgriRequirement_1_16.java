@@ -1,15 +1,14 @@
 package com.agricraft.agricore.plant.versions.v2;
 
-import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.plant.AgriBlockCondition;
-import com.agricraft.agricore.plant.AgriObject;
+import com.agricraft.agricore.plant.AgriListCondition;
 import com.agricraft.agricore.plant.AgriRequirement;
 import com.agricraft.agricore.plant.AgriSoilCondition;
 import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class AgriRequirement_1_16 {
     private final AgriSoilCondition soil_humidity;
@@ -21,8 +20,8 @@ public class AgriRequirement_1_16 {
     private final double light_tolerance_factor;
 
     private final List<String> seasons;
-    private final List<AgriBlockCondition> conditions;
-    private final AgriObject fluid;
+    private final List<AgriBlockCondition_1_16> conditions;
+    private final AgriObject_1_16 fluid;
 
     public AgriRequirement_1_16() {
         this.soil_humidity = new AgriSoilCondition("damp", "equal", 0.15D);
@@ -33,12 +32,12 @@ public class AgriRequirement_1_16 {
         this.light_tolerance_factor = 0.5D;
         this.seasons = Lists.newArrayList("spring", "summer", "autumn", "winter");
         this.conditions = new ArrayList<>();
-        this.fluid = new AgriObject("fluid", "minecraft:empty");
+        this.fluid = new AgriObject_1_16("fluid", "minecraft:empty");
     }
 
     public AgriRequirement_1_16(AgriSoilCondition soil_humidity, AgriSoilCondition soil_acidity, AgriSoilCondition soil_nutrients,
                                 int min_light, int max_light, double light_tolerance_factor, List<String> seasons,
-                                List<AgriBlockCondition> conditions, AgriObject fluid) {
+                                List<AgriBlockCondition_1_16> conditions, AgriObject_1_16 fluid) {
         this.soil_humidity = soil_humidity;
         this.soil_acidity = soil_acidity;
         this.soil_nutrients = soil_nutrients;
@@ -52,97 +51,12 @@ public class AgriRequirement_1_16 {
 
     public AgriRequirement toNew() {
         return new AgriRequirement(this.soil_humidity, this.soil_acidity, this.soil_nutrients, this.min_light, this.max_light,
-                this.light_tolerance_factor, Collections.emptyList(), true, Collections.emptyList(), true,
-                this.seasons, this.conditions, this.fluid);
+                this.light_tolerance_factor, new AgriListCondition(), new AgriListCondition(), this.seasons, this.convertConditions(), this.fluid.toNew());
     }
 
-    public AgriSoilCondition getHumiditySoilCondition() {
-        return this.soil_humidity;
+    private List<AgriBlockCondition> convertConditions() {
+        return this.conditions.stream()
+                .map(AgriBlockCondition_1_16::toNew)
+                .collect(Collectors.toList());
     }
-
-    public AgriSoilCondition getAciditySoilCondition() {
-        return this.soil_acidity;
-    }
-
-    public AgriSoilCondition getNutrientSoilCondition() {
-        return this.soil_nutrients;
-    }
-
-    public int getMinLight() {
-        return this.min_light;
-    }
-
-    public int getMaxLight() {
-        return this.max_light;
-    }
-
-    public double getLightToleranceFactor() {
-        return this.light_tolerance_factor;
-    }
-
-    public List<String> getSeasons() {
-        return this.seasons;
-    }
-
-    public List<AgriBlockCondition> getConditions() {
-        return new ArrayList<>(this.conditions);
-    }
-
-    public AgriObject getFluid() {
-        return this.fluid;
-    }
-
-    public boolean validate() {
-        if(!this.getHumiditySoilCondition().validate(value -> AgriCore.getValidator().isValidHumidity(value))) {
-            return false;
-        }
-        if(!this.getAciditySoilCondition().validate(value -> AgriCore.getValidator().isValidAcidity(value))) {
-            return false;
-        }
-        if(!this.getNutrientSoilCondition().validate(value -> AgriCore.getValidator().isValidNutrients(value))) {
-            return false;
-        }
-        if(this.getMinLight() > this.getMaxLight()) {
-            AgriCore.getCoreLogger().info("Minimum light value can not be higher than the maximum light value");
-            return false;
-        }
-        for(String season : this.getSeasons()) {
-            if(!AgriCore.getValidator().isValidSeason(season)) {
-                AgriCore.getCoreLogger().info("Invalid Season: \"{0}\"", season);
-                return false;
-            }
-        }
-        for (AgriBlockCondition condition : this.getConditions()) {
-            if (!condition.validate()) {
-                AgriCore.getCoreLogger().info("Invalid Block Condition: {0}", condition);
-                return false;
-            }
-        }
-        if(!this.getFluid().validate()) {
-            AgriCore.getCoreLogger().info("Invalid Fluid Condition: {0}", this.getFluid());
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder();
-        sb.append("\nRequirement:");
-        sb.append("\n\t- Soil Humidity:");
-        sb.append("\n\t\t").append(this.getHumiditySoilCondition().toString());
-        sb.append("\n\t- Soil Acidity:");
-        sb.append("\n\t\t").append(this.getAciditySoilCondition().toString());
-        sb.append("\n\t- Soil Nutrients:");
-        sb.append("\n\t\t").append(this.getNutrientSoilCondition().toString());
-        sb.append("\n\t- Light:");
-        sb.append("\n\t\t- Min: ").append(min_light);
-        sb.append("\n\t\t- Max: ").append(max_light);
-        sb.append("\n\t- Seasons: ");
-        this.getSeasons().forEach(s -> sb.append("\n\t\t").append(s));
-        sb.append("\n\t- Conditions:");
-        this.getConditions().forEach(c -> sb.append("\n\t\t- ").append(c.toString().replaceAll("\n", "\n\t\t").trim()));
-        return sb.toString();
-    }
-
 }

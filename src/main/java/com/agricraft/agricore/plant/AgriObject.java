@@ -10,8 +10,8 @@ public class AgriObject {
     protected final String type;
     protected final String object;
     protected final boolean useTag;
-    protected final String data;
-    protected final List<String> ignoredData;
+    protected final String nbt;
+    protected final List<String> ignoredNbt;
 
     public AgriObject() {
         this("block", "minecraft:dirt");
@@ -25,16 +25,16 @@ public class AgriObject {
         this(type, object, useTags, "");
     }
 
-    public AgriObject(String type, String object, boolean useTags, String data, String... ignoredData) {
-        this(type, object, useTags, data, Arrays.asList(ignoredData));
+    public AgriObject(String type, String object, boolean useTags, String nbt, String... ignoredNbt) {
+        this(type, object, useTags, nbt, Arrays.asList(ignoredNbt));
     }
 
-    public AgriObject(String type, String object, boolean useTags, String data, List<String> ignoredData) {
+    public AgriObject(String type, String object, boolean useTags, String nbt, List<String> ignoredNbt) {
         this.type = type;
         this.object = object;
         this.useTag = useTags;
-        this.data = data;
-        this.ignoredData = ignoredData;
+        this.nbt = nbt;
+        this.ignoredNbt = ignoredNbt;
     }
 
     public String getObjectString() {
@@ -45,12 +45,12 @@ public class AgriObject {
         return useTag;
     }
 
-    public String getData() {
-        return data;
+    public String getNbt() {
+        return nbt;
     }
 
-    public List<String> getIgnoredData() {
-        return ignoredData;
+    public List<String> getIgnoredNbt() {
+        return ignoredNbt;
     }
 
     public <T> Optional<T> convertSingle(Class<T> token) {
@@ -66,7 +66,7 @@ public class AgriObject {
     }
 
     public <T> Collection<T> convertAll(Class<T> token, int amount) {
-        return AgriCore.getConverter().convert(token, object, amount, useTag, data, ignoredData);
+        return AgriCore.getConverter().convert(token, object, amount, useTag, nbt, ignoredNbt);
     }
 
     public boolean validate() {
@@ -80,8 +80,8 @@ public class AgriObject {
         sb.append("\n\t- Type:").append(type);
         sb.append("\n\t- Object: ").append(object);
         sb.append("\n\t- UseTag: ").append(useTag);
-        sb.append("\n\t- Data: ").append(data);
-        sb.append("\n\t- IgnoreData: ").append(ignoredData);
+        sb.append("\n\t- Data: ").append(nbt);
+        sb.append("\n\t- IgnoreData: ").append(ignoredNbt);
         return sb.toString();
     }
 }

@@ -1,7 +1,7 @@
 package com.agricraft.agricore.registry;
 
 import com.agricraft.agricore.json.AgriJsonVersion;
-import com.agricraft.agricore.plant.fertilizer.AgriFertilizer;
+import com.agricraft.agricore.plant.AgriFertilizer;
 import com.agricraft.agricore.plant.versions.v3.Versions_1_18;
 
 import java.util.Collection;

@@ -1,6 +1,6 @@
 package com.agricraft.agricore.plant.versions.v1;
 
-import com.agricraft.agricore.plant.AgriObject;
+import com.agricraft.agricore.plant.versions.v2.AgriObject_1_16;
 import com.google.common.collect.ImmutableList;
 
 import java.util.Arrays;
@@ -35,8 +35,8 @@ public class AgriStack_1_12 {
         this.useOreDict = useOreDict;
     }
 
-    public AgriObject toNew(String type) {
-        return new AgriObject(type, this.transformItem(), this.useTag(), this.tags, this.ignoreTags);
+    public AgriObject_1_16 toNew(String type) {
+        return new AgriObject_1_16(type, this.transformItem(), this.useTag(), this.tags, this.ignoreTags);
     }
 
     private final List<String> TYPES = ImmutableList.of(

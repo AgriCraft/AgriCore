@@ -4,7 +4,6 @@ import com.agricraft.agricore.core.AgriCore;
 import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class AgriRequirement {
@@ -16,13 +15,8 @@ public class AgriRequirement {
     private final int max_light;
     private final double light_tolerance_factor;
 
-    private final List<String> biomes;
-    private final boolean biomeBlackList;
-    private final int biomeIgnoreStrength;
-
-    private final List<String> dimensions;
-    private final boolean dimensionBlackList;
-    private final int dimensionIgnoreStrength;
+    private final AgriListCondition biomes;
+    private final AgriListCondition dimensions;
 
     private final List<String> seasons;
     private final List<AgriBlockCondition> conditions;
@@ -35,21 +29,15 @@ public class AgriRequirement {
         this.min_light = 10;
         this.max_light = 16;
         this.light_tolerance_factor = 0.5D;
-        this.biomes = Collections.emptyList();
-        this.biomeBlackList = true;
-        this.biomeIgnoreStrength = 11;
-        this.dimensions = Collections.emptyList();
-        this.dimensionBlackList = true;
-        this.dimensionIgnoreStrength = 11;
+        this.biomes = new AgriListCondition();
+        this.dimensions = new AgriListCondition();
         this.seasons = Lists.newArrayList("spring", "summer", "autumn", "winter");
         this.conditions = new ArrayList<>();
         this.fluid = new AgriObject("fluid", "minecraft:empty");
     }
 
     public AgriRequirement(AgriSoilCondition soil_humidity, AgriSoilCondition soil_acidity, AgriSoilCondition soil_nutrients,
-                           int min_light, int max_light, double light_tolerance_factor,
-                           List<String> biomes, boolean biomeBlackList, int biomeIgnoreStrength,
-                           List<String> dimensions, boolean dimensionBlackList, int dimensionIgnoreStrength,
+                           int min_light, int max_light, double light_tolerance_factor, AgriListCondition biomes, AgriListCondition dimensions,
                            List<String> seasons, List<AgriBlockCondition> conditions, AgriObject fluid) {
         this.soil_humidity = soil_humidity;
         this.soil_acidity = soil_acidity;
@@ -58,11 +46,7 @@ public class AgriRequirement {
         this.max_light = max_light;
         this.light_tolerance_factor = light_tolerance_factor;
         this.biomes = biomes;
-        this.biomeBlackList = biomeBlackList;
-        this.biomeIgnoreStrength = biomeIgnoreStrength;
         this.dimensions = dimensions;
-        this.dimensionBlackList = dimensionBlackList;
-        this.dimensionIgnoreStrength = dimensionIgnoreStrength;
         this.seasons = new ArrayList<>(seasons);
         this.conditions = conditions;
         this.fluid = fluid;
@@ -92,28 +76,12 @@ public class AgriRequirement {
         return this.light_tolerance_factor;
     }
 
-    public List<String> getBiomes() {
+    public AgriListCondition getBiomeCondition() {
         return this.biomes;
     }
 
-    public boolean isBiomeBlackList() {
-        return this.biomeBlackList;
-    }
-
-    public int getBiomeIgnoreStrength() {
-        return this.biomeIgnoreStrength;
-    }
-
-    public List<String> getDimensions() {
+    public AgriListCondition getDimensionCondition() {
         return this.dimensions;
-    }
-
-    public boolean isDimensionBlackList() {
-        return this.dimensionBlackList;
-    }
-
-    public int getDimensionIgnoreStrength() {
-        return this.dimensionIgnoreStrength;
     }
 
     public List<String> getSeasons() {
@@ -174,6 +142,10 @@ public class AgriRequirement {
         sb.append("\n\t- Light:");
         sb.append("\n\t\t- Min: ").append(min_light);
         sb.append("\n\t\t- Max: ").append(max_light);
+        sb.append("\n\t- Biomes:");
+        sb.append("\n\t\t").append(this.getBiomeCondition().toString());
+        sb.append("\n\t- Dimensions:");
+        sb.append("\n\t\t").append(this.getDimensionCondition().toString());
         sb.append("\n\t- Seasons: ");
         this.getSeasons().forEach(s -> sb.append("\n\t\t").append(s));
         sb.append("\n\t- Conditions:");

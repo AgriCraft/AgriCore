@@ -1,6 +1,4 @@
-package com.agricraft.agricore.plant.fertilizer;
-
-import com.agricraft.agricore.plant.particle.AgriFertilizerParticle;
+package com.agricraft.agricore.plant;
 
 import java.util.ArrayList;
 import java.util.List;

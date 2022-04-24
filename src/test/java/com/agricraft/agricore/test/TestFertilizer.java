@@ -1,7 +1,7 @@
 package com.agricraft.agricore.test;
 
 import com.agricraft.agricore.core.AgriCore;
-import com.agricraft.agricore.plant.fertilizer.AgriFertilizer;
+import com.agricraft.agricore.plant.AgriFertilizer;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.junit.*;
