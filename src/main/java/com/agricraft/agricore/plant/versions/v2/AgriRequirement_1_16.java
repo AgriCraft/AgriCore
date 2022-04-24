@@ -51,7 +51,7 @@ public class AgriRequirement_1_16 {
 
     public AgriRequirement toNew() {
         return new AgriRequirement(this.soil_humidity, this.soil_acidity, this.soil_nutrients, this.min_light, this.max_light,
-                this.light_tolerance_factor, new AgriListCondition(), new AgriListCondition(), this.seasons, this.convertConditions(), this.fluid.toNew());
+                this.light_tolerance_factor, new AgriListCondition(), new AgriListCondition(), this.seasons, this.convertConditions(), this.fluid.toBlock());
     }
 
     private List<AgriBlockCondition> convertConditions() {

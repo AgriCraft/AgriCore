@@ -3,12 +3,13 @@ package com.agricraft.agricore.util;
 import com.google.gson.JsonElement;
 
 import javax.annotation.Nonnull;
+import java.util.List;
 
 public interface AgriValidator {
-    <T> boolean isValidObject(final Class<T> token, final String item, boolean useTag);
+    <T> boolean isValidObject(final Class<T> token, final String item, boolean useTag, List<String> stateDefinition);
 
-    default boolean isValidObject(final String token, final String item, boolean useTag) {
-        return this.isValidObject(this.getTokenClass(token), item, useTag);
+    default boolean isValidObject(final String token, final String item, boolean useTag, List<String> stateDefinition) {
+        return this.isValidObject(this.getTokenClass(token), item, useTag, stateDefinition);
     }
 
     @Nonnull

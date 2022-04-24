@@ -1,10 +1,8 @@
 package com.agricraft.agricore.plant;
 
 import com.agricraft.agricore.core.AgriCore;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
+
+import java.util.*;
 
 public class AgriObject {
     protected final String type;
@@ -66,11 +64,11 @@ public class AgriObject {
     }
 
     public <T> Collection<T> convertAll(Class<T> token, int amount) {
-        return AgriCore.getConverter().convert(token, object, amount, useTag, nbt, ignoredNbt);
+        return AgriCore.getConverter().convert(token, object, amount, useTag, Collections.emptyList(), nbt, ignoredNbt);
     }
 
     public boolean validate() {
-        return AgriCore.getValidator().isValidObject(type, object, useTag);
+        return AgriCore.getValidator().isValidObject(type, object, useTag, Collections.emptyList());
     }
 
     @Override

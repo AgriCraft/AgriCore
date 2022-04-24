@@ -20,7 +20,7 @@ public class AgriRequirement {
 
     private final List<String> seasons;
     private final List<AgriBlockCondition> conditions;
-    private final AgriObject fluid;
+    private final AgriStateObject fluid;
 
     public AgriRequirement() {
         this.soil_humidity = new AgriSoilCondition("damp", "equal", 0.15D);
@@ -33,12 +33,12 @@ public class AgriRequirement {
         this.dimensions = new AgriListCondition();
         this.seasons = Lists.newArrayList("spring", "summer", "autumn", "winter");
         this.conditions = new ArrayList<>();
-        this.fluid = new AgriObject("fluid", "minecraft:empty");
+        this.fluid = new AgriStateObject("fluid", "minecraft:empty");
     }
 
     public AgriRequirement(AgriSoilCondition soil_humidity, AgriSoilCondition soil_acidity, AgriSoilCondition soil_nutrients,
                            int min_light, int max_light, double light_tolerance_factor, AgriListCondition biomes, AgriListCondition dimensions,
-                           List<String> seasons, List<AgriBlockCondition> conditions, AgriObject fluid) {
+                           List<String> seasons, List<AgriBlockCondition> conditions, AgriStateObject fluid) {
         this.soil_humidity = soil_humidity;
         this.soil_acidity = soil_acidity;
         this.soil_nutrients = soil_nutrients;

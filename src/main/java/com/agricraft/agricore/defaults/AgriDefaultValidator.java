@@ -5,10 +5,11 @@ import com.agricraft.agricore.util.AgriValidator;
 import com.google.gson.JsonElement;
 
 import javax.annotation.Nonnull;
+import java.util.List;
 
 public class AgriDefaultValidator implements AgriValidator {
     @Override
-    public <T> boolean isValidObject(Class<T> token, String object, boolean useTag) {
+    public <T> boolean isValidObject(Class<T> token, String object, boolean useTag, List<String> stateDefinition) {
         if (object == null) {
             AgriCore.getCoreLogger().warn("Null Object!");
             return false;

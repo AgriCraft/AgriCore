@@ -2,10 +2,9 @@ package com.agricraft.agricore.plant;
 
 import com.agricraft.agricore.core.AgriCore;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
-public class AgriBlockCondition extends AgriBlock {
+public class AgriBlockCondition extends AgriStateObject {
 	protected final int strength;
 	protected final int amount;
 	protected final int min_x;
@@ -82,9 +81,17 @@ public class AgriBlockCondition extends AgriBlock {
 		if (!super.validate()) {
 			AgriCore.getCoreLogger().info("Invalid Condition: Invalid Block: {0}!", object);
 			return false;
-		} else {
-			return true;
 		}
+		if(this.min_x > this.max_x) {
+			AgriCore.getCoreLogger().info("Invalid Condition: min_x must not be larger than max_x: {0}!", object);
+		}
+		if(this.min_y > this.max_y) {
+			AgriCore.getCoreLogger().info("Invalid Condition: min_y must not be larger than max_y: {0}!", object);
+		}
+		if(this.min_z > this.max_z) {
+			AgriCore.getCoreLogger().info("Invalid Condition: min_z must not be larger than max_z: {0}!", object);
+		}
+		return true;
 	}
 
 	@Override

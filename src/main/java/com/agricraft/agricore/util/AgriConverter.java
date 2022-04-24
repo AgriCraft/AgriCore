@@ -5,5 +5,5 @@ import java.util.List;
 
 @FunctionalInterface
 public interface AgriConverter {
-    <T> Collection<T> convert(Class<T> token, String object, int amount, boolean useTag, String data, List<String> ignoreData);
+    <T> Collection<T> convert(Class<T> token, String object, int amount, boolean useTag, List<String> stateData, String nbt, List<String> ignoreNbt);
 }

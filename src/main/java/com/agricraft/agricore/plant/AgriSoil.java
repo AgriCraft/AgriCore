@@ -20,7 +20,7 @@ public class AgriSoil implements AgriSerializable, Comparable<AgriSoil> {
     private final List<String> mods;
     private final String id;
     private final String lang_key;
-    private final List<AgriBlock> variants;
+    private final List<AgriStateObject> variants;
 
     private final String humidity;
     private final String acidity;
@@ -31,7 +31,7 @@ public class AgriSoil implements AgriSerializable, Comparable<AgriSoil> {
     public AgriSoil() {
         this.id = "dirt_soil";
         this.lang_key = "dirt";
-        this.variants = TypeHelper.asList(new AgriBlock());
+        this.variants = TypeHelper.asList(new AgriStateObject());
         this.enabled = false;
         this.mods = Lists.newArrayList("agricraft", "minecraft");
         this.version = Versions.LATEST;
@@ -41,11 +41,11 @@ public class AgriSoil implements AgriSerializable, Comparable<AgriSoil> {
         this.growth_modifier = 1.0;
     }
 
-    public AgriSoil(String id, String lang_key, List<AgriBlock> variants, String humidity, String acidity, String nutrients, double growthMod, boolean enabled) {
+    public AgriSoil(String id, String lang_key, List<AgriStateObject> variants, String humidity, String acidity, String nutrients, double growthMod, boolean enabled) {
         this(id, lang_key, variants, humidity, acidity, nutrients, growthMod, enabled, Lists.newArrayList("agricraft", "minecraft"));
     }
 
-    public AgriSoil(String id, String lang_key, List<AgriBlock> variants, String humidity, String acidity, String nutrients,
+    public AgriSoil(String id, String lang_key, List<AgriStateObject> variants, String humidity, String acidity, String nutrients,
                     double growthMod, boolean enabled, List<String> mods) {
         this.id = id;
         this.lang_key = lang_key;
