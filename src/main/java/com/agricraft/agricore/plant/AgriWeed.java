@@ -3,7 +3,7 @@ package com.agricraft.agricore.plant;
 import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.json.AgriSerializable;
 import com.agricraft.agricore.plant.versions.Versions;
-import com.agricraft.agricore.plant.versions.v2.Versions_1_16;
+import com.agricraft.agricore.plant.versions.v3.Versions_1_18;
 import com.google.common.collect.Lists;
 
 import java.util.List;
@@ -73,7 +73,7 @@ public class AgriWeed implements AgriSerializable, Comparable<AgriWeed> {
         this.rake_drops = rake_drops;
         this.requirement = requirement;
         this.texture = texture;
-        this.version = Versions_1_16.VERSION;
+        this.version = Versions_1_18.VERSION;
     }
 
     public String getId() {

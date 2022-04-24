@@ -2,7 +2,7 @@ package com.agricraft.agricore.plant.versions.v2;
 
 import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.json.AgriSerializable;
-import com.agricraft.agricore.plant.AgriObject;
+import com.agricraft.agricore.plant.AgriBlock;
 import com.agricraft.agricore.plant.AgriSoil;
 import com.agricraft.agricore.plant.versions.Versions;
 import com.agricraft.agricore.util.TypeHelper;
@@ -64,9 +64,9 @@ public class AgriSoil_1_16 implements AgriSerializable, Comparable<AgriSoil_1_16
         return new AgriSoil(this.id, this.lang_key, this.convertVariants(), this.humidity, this.acidity, this.nutrients, this.growth_modifier, this.enabled, this.mods);
     }
 
-    private List<AgriObject> convertVariants() {
+    private List<AgriBlock> convertVariants() {
         return this.varients.stream()
-                .map(AgriObject_1_16::toNew)
+                .map(AgriObject_1_16::toBlock)
                 .collect(Collectors.toList());
     }
 

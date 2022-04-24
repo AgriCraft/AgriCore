@@ -3,7 +3,7 @@ package com.agricraft.agricore.plant;
 import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.json.AgriSerializable;
 import com.agricraft.agricore.plant.versions.Versions;
-import com.agricraft.agricore.plant.versions.v2.Versions_1_16;
+import com.agricraft.agricore.plant.versions.v3.Versions_1_18;
 import com.agricraft.agricore.util.TypeHelper;
 import com.google.common.collect.Lists;
 
@@ -20,7 +20,7 @@ public class AgriSoil implements AgriSerializable, Comparable<AgriSoil> {
     private final List<String> mods;
     private final String id;
     private final String lang_key;
-    private final List<AgriObject> variants;
+    private final List<AgriBlock> variants;
 
     private final String humidity;
     private final String acidity;
@@ -31,7 +31,7 @@ public class AgriSoil implements AgriSerializable, Comparable<AgriSoil> {
     public AgriSoil() {
         this.id = "dirt_soil";
         this.lang_key = "dirt";
-        this.variants = TypeHelper.asList(new AgriObject());
+        this.variants = TypeHelper.asList(new AgriBlock());
         this.enabled = false;
         this.mods = Lists.newArrayList("agricraft", "minecraft");
         this.version = Versions.LATEST;
@@ -41,11 +41,11 @@ public class AgriSoil implements AgriSerializable, Comparable<AgriSoil> {
         this.growth_modifier = 1.0;
     }
 
-    public AgriSoil(String id, String lang_key, List<AgriObject> variants, String humidity, String acidity, String nutrients, double growthMod, boolean enabled) {
+    public AgriSoil(String id, String lang_key, List<AgriBlock> variants, String humidity, String acidity, String nutrients, double growthMod, boolean enabled) {
         this(id, lang_key, variants, humidity, acidity, nutrients, growthMod, enabled, Lists.newArrayList("agricraft", "minecraft"));
     }
 
-    public AgriSoil(String id, String lang_key, List<AgriObject> variants, String humidity, String acidity, String nutrients,
+    public AgriSoil(String id, String lang_key, List<AgriBlock> variants, String humidity, String acidity, String nutrients,
                     double growthMod, boolean enabled, List<String> mods) {
         this.id = id;
         this.lang_key = lang_key;
@@ -56,7 +56,7 @@ public class AgriSoil implements AgriSerializable, Comparable<AgriSoil> {
         this.nutrients = nutrients;
         this.growth_modifier = growthMod;
         this.mods = mods;
-        this.version = Versions_1_16.VERSION;
+        this.version = Versions_1_18.VERSION;
     }
 
     public String getId() {

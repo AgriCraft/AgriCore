@@ -3,7 +3,7 @@ package com.agricraft.agricore.plant;
 import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.json.AgriSerializable;
 import com.agricraft.agricore.plant.versions.Versions;
-import com.agricraft.agricore.plant.versions.v2.Versions_1_16;
+import com.agricraft.agricore.plant.versions.v3.Versions_1_18;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import com.google.gson.JsonElement;
@@ -128,7 +128,7 @@ public class AgriPlant implements AgriSerializable, Comparable<AgriPlant> {
         this.seed_texture = seed_texture;
         this.seed_model = seed_model;
         this.particle_effects = particle_effects;
-        this.version = Versions_1_16.VERSION;
+        this.version = Versions_1_18.VERSION;
     }
 
     public String getId() {

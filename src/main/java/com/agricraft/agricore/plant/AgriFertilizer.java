@@ -3,7 +3,7 @@ package com.agricraft.agricore.plant;
 import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.json.AgriSerializable;
 import com.agricraft.agricore.plant.versions.Versions;
-import com.agricraft.agricore.plant.versions.v2.Versions_1_16;
+import com.agricraft.agricore.plant.versions.v3.Versions_1_18;
 import com.agricraft.agricore.util.TypeHelper;
 import com.google.common.collect.Lists;
 
@@ -55,7 +55,7 @@ public class AgriFertilizer implements AgriSerializable, Comparable<AgriFertiliz
         this.potency = potency;
         this.effect = effect;
         this.mods = mods;
-        this.version = Versions_1_16.VERSION;
+        this.version = Versions_1_18.VERSION;
     }
 
     public String getId() {

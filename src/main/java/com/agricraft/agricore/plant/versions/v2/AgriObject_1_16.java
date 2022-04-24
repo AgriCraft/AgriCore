@@ -1,8 +1,10 @@
 package com.agricraft.agricore.plant.versions.v2;
 
+import com.agricraft.agricore.plant.AgriBlock;
 import com.agricraft.agricore.plant.AgriObject;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class AgriObject_1_16 {
@@ -38,5 +40,9 @@ public class AgriObject_1_16 {
 
     public AgriObject toNew() {
         return new AgriObject(this.type, this.object, this.useTag, this.data, this.ignoredData);
+    }
+
+    public AgriBlock toBlock() {
+        return new AgriBlock(this.type, this.object, this.useTag, Collections.emptyList(), this.data, this.ignoredData);
     }
 }
