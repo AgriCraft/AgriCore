@@ -45,7 +45,7 @@ public class AgriPlant_1_16 implements AgriSerializable, Comparable<AgriPlant_1_
     private final AgriProductList_1_16 clip_products;
     private final AgriRequirement_1_16 requirement;
     private final List<JsonElement> callbacks;
-    private final AgriTexture texture;
+    private final AgriTexture_1_16 texture;
     private final String seed_texture;
     private final String seed_model;
     private final List<AgriParticleEffect> particle_effects;
@@ -74,7 +74,7 @@ public class AgriPlant_1_16 implements AgriSerializable, Comparable<AgriPlant_1_
         this.clip_products = new AgriProductList_1_16();
         this.requirement = new AgriRequirement_1_16();
         this.callbacks = new ArrayList<>();
-        this.texture = new AgriTexture();
+        this.texture = new AgriTexture_1_16();
         this.seed_texture = "minecraft:item/wheat_seeds";
         this.seed_model = "minecraft:item/wheat_seeds";
         this.particle_effects = new ArrayList<>();
@@ -84,7 +84,7 @@ public class AgriPlant_1_16 implements AgriSerializable, Comparable<AgriPlant_1_
                           int tier, double growth_chance, double growth_bonus, boolean cloneable,
                           double spread_chance, double grass_drop_chance, double seed_drop_chance, double seed_drop_bonus,
                           AgriProductList_1_16 products, AgriProductList_1_16 clip_products, AgriRequirement_1_16 requirement,
-                          List<JsonElement> callbacks, AgriTexture texture, String seed_texture, String seed_model, List<AgriParticleEffect> particle_effects, String path, boolean enabled) {
+                          List<JsonElement> callbacks, AgriTexture_1_16 texture, String seed_texture, String seed_model, List<AgriParticleEffect> particle_effects, String path, boolean enabled) {
 
         this(id, plant_lang_key, seed_lang_key, desc_lang_key, seed_items, stages, harvestStage, tier, growth_chance,
                 growth_bonus, cloneable, spread_chance, grass_drop_chance, seed_drop_chance, seed_drop_bonus,
@@ -96,7 +96,7 @@ public class AgriPlant_1_16 implements AgriSerializable, Comparable<AgriPlant_1_
                           int tier, double growth_chance, double growth_bonus, boolean cloneable,
                           double spread_chance, double grass_drop_chance, double seed_drop_chance, double seed_drop_bonus,
                           AgriProductList_1_16 products, AgriProductList_1_16 clip_products, AgriRequirement_1_16 requirement,
-                          List<JsonElement> callbacks, AgriTexture texture, String seed_texture,
+                          List<JsonElement> callbacks, AgriTexture_1_16 texture, String seed_texture,
                           String seed_model, List<AgriParticleEffect> particle_effects, String path, boolean enabled, List<String> mods) {
 
         Preconditions.checkArgument(stages.length > 0, "The number of stages must be larger than 0");
@@ -135,7 +135,7 @@ public class AgriPlant_1_16 implements AgriSerializable, Comparable<AgriPlant_1_
     public AgriPlant toNew() {
         return new AgriPlant(this.id, this.plant_lang_key, this.seed_lang_key, this.desc_lang_key, this.convertSeeds(), this.stages, this.harvestStage,
                 this.tier, this.growth_chance, this.growth_bonus, this.cloneable, this.spread_chance, this.grass_drop_chance, this.seed_drop_chance,
-                this.seed_drop_bonus, this.products.toNew(), this.clip_products.toNew(), this.requirement.toNew(), this.callbacks, this.texture, this.seed_texture,
+                this.seed_drop_bonus, this.products.toNew(), this.clip_products.toNew(), this.requirement.toNew(), this.callbacks, this.texture.toNew(), this.seed_texture,
                 this.seed_model, this.particle_effects, this.path, this.enabled, this.mods);
     }
 

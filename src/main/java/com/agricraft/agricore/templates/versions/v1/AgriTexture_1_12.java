@@ -1,6 +1,7 @@
 package com.agricraft.agricore.templates.versions.v1;
 
 import com.agricraft.agricore.templates.AgriTexture;
+import com.agricraft.agricore.templates.versions.v2.AgriTexture_1_16;
 
 public class AgriTexture_1_12 {
 
@@ -39,8 +40,8 @@ public class AgriTexture_1_12 {
         }
     }
 
-    public AgriTexture toNew() {
-        return new AgriTexture(this.render_type, this.correctTextures());
+    public AgriTexture_1_16 toNew() {
+        return new AgriTexture_1_16(this.render_type, this.correctTextures());
     }
 
     public String seed_texture() {

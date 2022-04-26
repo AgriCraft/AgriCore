@@ -1,59 +1,57 @@
 package com.agricraft.agricore.templates;
 
 import com.agricraft.agricore.core.AgriCore;
+import com.google.common.collect.Streams;
+
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class AgriTexture {
 
-    private String render_type = "hash";
-
-    private final String[] plant_models = new String[]{};
-
-    private final String[][] plant_textures = new String[][]{
-            new String[]{"minecraft:block/wheat_stage0"},
-            new String[]{"minecraft:block/wheat_stage1"},
-            new String[]{"minecraft:block/wheat_stage2"},
-            new String[]{"minecraft:block/wheat_stage3"},
-            new String[]{"minecraft:block/wheat_stage4"},
-            new String[]{"minecraft:block/wheat_stage5"},
-            new String[]{"minecraft:block/wheat_stage6"},
-            new String[]{"minecraft:block/wheat_stage7"}
-    };
+    private String render_type;
+    private final String[] plant_models;
+    private final String[][] plant_textures;
+    private final List<AgriJournalTexture> journal_overrides;
 
     // GSON Tricker
     public AgriTexture() {
+        this.render_type = "hash";
+        this.plant_models = new String[]{};
+        this.plant_textures = new String[][]{
+                new String[]{"minecraft:block/wheat_stage0"},
+                new String[]{"minecraft:block/wheat_stage1"},
+                new String[]{"minecraft:block/wheat_stage2"},
+                new String[]{"minecraft:block/wheat_stage3"},
+                new String[]{"minecraft:block/wheat_stage4"},
+                new String[]{"minecraft:block/wheat_stage5"},
+                new String[]{"minecraft:block/wheat_stage6"},
+                new String[]{"minecraft:block/wheat_stage7"}
+        };
+        this.journal_overrides = Collections.emptyList();
     }
 
-    public AgriTexture(String render_type, String[][] plant_textures) {
-
+    public AgriTexture(String render_type, String[][] plant_textures, String[] plant_models, List<AgriJournalTexture> journal_overrides) {
         this.render_type = render_type;
-
-        System.arraycopy(plant_textures, 0, this.plant_textures, 0, Math.min(plant_textures.length, this.plant_textures.length));
-
-        // Distribute the textures.
-        String[] last = new String[]{"NO TEXTURE!"};
-        for (int i = 0; i < this.plant_textures.length; i++) {
-            if (this.plant_textures[i] == null) {
-                this.plant_textures[i] = last;
-            } else {
-                last = this.plant_textures[i];
-            }
-        }
-
+        this.plant_textures = plant_textures;
+        this.plant_models = plant_models;
+        this.journal_overrides = journal_overrides;
     }
 
     public String getRenderType() {
         return render_type;
     }
-    
+
     public int getGrowthStages() {
         return plant_textures.length;
     }
 
     public List<String> getAllTextures() {
-        return Arrays.stream(this.plant_textures).flatMap(Arrays::stream).distinct().collect(Collectors.toList());
+        return Streams.concat(
+                Arrays.stream(this.plant_textures).flatMap(Arrays::stream),
+                this.getJournalOverrides().stream().map(AgriJournalTexture::getTexture)
+        ).distinct().collect(Collectors.toList());
     }
 
     public String[][] getPlantTextures() {
@@ -70,6 +68,10 @@ public class AgriTexture {
 
     public String getPlantModel(int index) {
         return this.plant_models[index % this.plant_models.length];
+    }
+
+    public List<AgriJournalTexture> getJournalOverrides() {
+        return this.journal_overrides;
     }
 
     public boolean validate() {
