@@ -3,20 +3,20 @@ package com.agricraft.agricore.templates;
 import com.agricraft.agricore.core.AgriCore;
 import com.google.gson.JsonObject;
 
-public class AgriMutationTrigger {
+public class AgriMutationCondition {
     private final String id;
     private final boolean required;
     private final double guaranteedChance;
     private final JsonObject parameters;
 
-    public AgriMutationTrigger() {
+    public AgriMutationCondition() {
         this.id = "none";
         this.required = false;
         this.guaranteedChance = 0;
         this.parameters = new JsonObject();
     }
 
-    public AgriMutationTrigger(String id, boolean required, double guaranteedChance, JsonObject parameters) {
+    public AgriMutationCondition(String id, boolean required, double guaranteedChance, JsonObject parameters) {
         this.id = id;
         this.required = required;
         this.guaranteedChance = guaranteedChance;

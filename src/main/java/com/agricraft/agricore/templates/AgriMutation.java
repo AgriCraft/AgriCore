@@ -26,7 +26,7 @@ public class AgriMutation implements AgriSerializable, Comparable<AgriMutation> 
     private final String parent1;
     private final String parent2;
 
-    private final List<AgriMutationTrigger> triggers;
+    private final List<AgriMutationCondition> conditions;
 
     public AgriMutation() {
         this.enabled = false;
@@ -36,15 +36,15 @@ public class AgriMutation implements AgriSerializable, Comparable<AgriMutation> 
         this.child = "carrot_plant";
         this.parent1 = "wheat_plant";
         this.parent2 = "potato_plant";
-        this.triggers = Collections.emptyList();
+        this.conditions = Collections.emptyList();
         this.version = Versions.LATEST;
     }
 
-    public AgriMutation(double chance, String child, String parent1, String parent2, List<AgriMutationTrigger> triggers, String path, boolean enabled) {
-        this(chance, child, parent1, parent2, triggers, path, enabled, Lists.newArrayList("agricraft", "minecraft"));
+    public AgriMutation(double chance, String child, String parent1, String parent2, List<AgriMutationCondition> conditions, String path, boolean enabled) {
+        this(chance, child, parent1, parent2, conditions, path, enabled, Lists.newArrayList("agricraft", "minecraft"));
     }
 
-    public AgriMutation(double chance, String child, String parent1, String parent2, List<AgriMutationTrigger> triggers, String path, boolean enabled, List<String> mods) {
+    public AgriMutation(double chance, String child, String parent1, String parent2, List<AgriMutationCondition> conditions, String path, boolean enabled, List<String> mods) {
         this.enabled = enabled;
         this.mods = mods;
         this.path = path;
@@ -52,7 +52,7 @@ public class AgriMutation implements AgriSerializable, Comparable<AgriMutation> 
         this.child = child;
         this.parent1 = parent1;
         this.parent2 = parent2;
-        this.triggers = triggers;
+        this.conditions = conditions;
         this.version = Versions_1_18.VERSION;
     }
 
@@ -84,8 +84,8 @@ public class AgriMutation implements AgriSerializable, Comparable<AgriMutation> 
         return (chance > rand.nextDouble());
     }
 
-    public List<AgriMutationTrigger> getTriggers() {
-        return this.triggers;
+    public List<AgriMutationCondition> getConditions() {
+        return this.conditions;
     }
 
     public boolean validate() {
@@ -102,7 +102,7 @@ public class AgriMutation implements AgriSerializable, Comparable<AgriMutation> 
             AgriCore.getCoreLogger().info("Invalid Mutation: Invalid Parent 2: \"{0}\"!\n{1}", parent2, this);
             return false;
         } else {
-            this.triggers.removeIf(trigger -> !trigger.validate());
+            this.conditions.removeIf(trigger -> !trigger.validate());
             return true;
         }
     }
