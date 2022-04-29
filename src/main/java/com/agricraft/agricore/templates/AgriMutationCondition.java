@@ -40,7 +40,7 @@ public class AgriMutationCondition {
     }
 
     public boolean validate() {
-        if(!AgriCore.getValidator().isValidMutationTrigger(this.getId(), this.getParameters())) {
+        if(!AgriCore.getValidator().isValidMutationCondition(this.getId(), this.getParameters())) {
             AgriCore.getCoreLogger().info("Invalid Mutation trigger {0}: {1}", this.getId(), this.getParameters());
             return false;
         }

@@ -24,7 +24,7 @@ public interface AgriValidator {
 
     boolean isValidPlantCallback(final JsonElement callback);
 
-    boolean isValidMutationTrigger(final String id, JsonObject args);
+    boolean isValidMutationCondition(final String id, JsonObject args);
 
     boolean isValidHumidity(final String humidity);
 

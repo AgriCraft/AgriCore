@@ -52,7 +52,7 @@ public class AgriDefaultValidator implements AgriValidator {
     }
 
     @Override
-    public boolean isValidMutationTrigger(String id, JsonObject args) {
+    public boolean isValidMutationCondition(String id, JsonObject args) {
         return true;
     }
 
