@@ -1,12 +1,20 @@
 package com.agricraft.agricore.util;
 
 import com.agricraft.agricore.core.AgriCore;
+
+import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.SimpleFileVisitor;
 import java.nio.file.StandardCopyOption;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Objects;
 import java.util.Set;
@@ -125,6 +133,57 @@ public class ResourceHelper {
     protected InputStream getResourceAsStream(String location) {
         InputStream in = Thread.currentThread().getContextClassLoader().getResourceAsStream(location);
         return in != null ? in : ResourceHelper.class.getResourceAsStream(location);
+    }
+
+    /**
+     * Resolve a directory from a path and rename it.
+     *
+     * @param path the path of the directory to rename.
+     * @param from the old directory name.
+     * @param to the new directory name.
+     * @param overwrite if the copy task should overwrite existing files.
+     */
+    public static void renameDirectory(Path path, String from, String to, boolean overwrite) {
+        if (!Files.exists(path.resolve(from))) {
+            return;
+        }
+        try {
+            Files.walkFileTree(path.resolve(from), new SimpleFileVisitor<>(){
+
+                @Override
+                public FileVisitResult visitFile(Path from, BasicFileAttributes attrs) throws IOException {
+                    String[] parts = from.toString().split(Pattern.quote(File.separator));
+                    int index = parts.length-3;
+                    parts[index] = to;
+                    Path to = Paths.get(String.join(File.separator, parts));
+                    AgriCore.getCoreLogger().info("moving {0} to {1}", from, to);
+                    if (overwrite || !Files.exists(to)) {
+                        Files.createDirectories(to.getParent());
+                        Files.copy(from, to, StandardCopyOption.REPLACE_EXISTING);
+                        Files.delete(from);
+                    } else {
+                        Path backupPath = Paths.get(from.toString().replaceAll("defaults", "backups/"));
+                        Files.createDirectories(backupPath.getParent());
+                        Files.copy(from, backupPath, StandardCopyOption.REPLACE_EXISTING);
+                        Files.delete(from);
+                    }
+                    return FileVisitResult.CONTINUE;
+                }
+
+                @Override
+                public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
+                    try (Stream<Path> entries = Files.list(dir)) {
+                        if (!entries.findFirst().isPresent()) {
+                            Files.delete(dir);
+                            return FileVisitResult.CONTINUE;
+                        }
+                    }
+                    return FileVisitResult.CONTINUE;
+                }
+            });
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

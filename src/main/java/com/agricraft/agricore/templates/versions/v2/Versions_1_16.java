@@ -103,4 +103,20 @@ public class Versions_1_16 {
             return VERSION;
         }
     };
+
+    static String convertId(String id) {
+        if (!id.contains(":")) {
+            return id;
+        }
+        String[] parts = id.split(":");
+        return switch (parts[0]) {
+            case "vanilla":
+                yield "minecraft:"+parts[1];
+            case "resource":
+                yield "agricraft:"+parts[1];
+            default:
+                yield id;
+        };
+    }
+
 }

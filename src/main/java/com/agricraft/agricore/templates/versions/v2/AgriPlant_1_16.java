@@ -133,7 +133,7 @@ public class AgriPlant_1_16 implements AgriSerializable, Comparable<AgriPlant_1_
     }
 
     public AgriPlant toNew() {
-        return new AgriPlant(this.id, this.plant_lang_key, this.seed_lang_key, this.desc_lang_key, this.convertSeeds(), this.stages, this.harvestStage,
+        return new AgriPlant(Versions_1_16.convertId(this.id), this.plant_lang_key, this.seed_lang_key, this.desc_lang_key, this.convertSeeds(), this.stages, this.harvestStage,
                 this.tier, this.growth_chance, this.growth_bonus, this.cloneable, this.spread_chance, this.grass_drop_chance, this.seed_drop_chance,
                 this.seed_drop_bonus, this.products.toNew(), this.clip_products.toNew(), this.requirement.toNew(), this.callbacks, new ArrayList<>(),
                 this.texture.toNew(), this.seed_texture, this.seed_model, this.particle_effects, this.path, this.enabled, this.mods);

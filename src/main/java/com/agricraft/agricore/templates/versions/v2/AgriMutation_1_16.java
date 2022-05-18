@@ -4,7 +4,6 @@ import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.json.AgriSerializable;
 import com.agricraft.agricore.templates.AgriMutation;
 import com.agricraft.agricore.templates.versions.Versions;
-import com.agricraft.agricore.templates.versions.v3.Versions_1_18;
 import com.google.common.collect.Lists;
 
 import java.util.Collections;
@@ -49,11 +48,11 @@ public class AgriMutation_1_16 implements AgriSerializable, Comparable<AgriMutat
         this.child = child;
         this.parent1 = parent1;
         this.parent2 = parent2;
-        this.version = Versions_1_18.VERSION;
+        this.version = Versions_1_16.VERSION;
     }
 
     public AgriMutation toNew() {
-        return new AgriMutation(this.chance, this.child, this.parent1, this.parent2, Collections.emptyList(), this.path, this.enabled, this.mods);
+        return new AgriMutation(this.chance, Versions_1_16.convertId(this.child), Versions_1_16.convertId(this.parent1), Versions_1_16.convertId(this.parent2), Collections.emptyList(), this.path, this.enabled, this.mods);
     }
 
     @Override
