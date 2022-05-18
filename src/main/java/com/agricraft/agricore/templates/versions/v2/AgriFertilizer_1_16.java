@@ -4,7 +4,6 @@ import com.agricraft.agricore.core.AgriCore;
 import com.agricraft.agricore.json.AgriSerializable;
 import com.agricraft.agricore.templates.AgriObject;
 import com.agricraft.agricore.templates.AgriFertilizer;
-import com.agricraft.agricore.templates.AgriFertilizerEffect;
 import com.agricraft.agricore.templates.versions.Versions;
 import com.agricraft.agricore.util.TypeHelper;
 import com.google.common.collect.Lists;
@@ -27,7 +26,7 @@ public class AgriFertilizer_1_16 implements AgriSerializable, Comparable<AgriFer
     private final boolean trigger_mutation;
     private final boolean trigger_weeds;
     private final int potency;
-    private final AgriFertilizerEffect effect;
+    private final AgriFertilizerEffect_1_16 effect;
 
     public AgriFertilizer_1_16() {
         this.id = "bone_meal_fertilizer";
@@ -39,15 +38,15 @@ public class AgriFertilizer_1_16 implements AgriSerializable, Comparable<AgriFer
         this.trigger_mutation = true;
         this.trigger_weeds = true;
         this.potency = 1;
-        this.effect = new AgriFertilizerEffect();
+        this.effect = new AgriFertilizerEffect_1_16();
     }
 
-    public AgriFertilizer_1_16(String id, String lang_key, List<AgriObject_1_16> variants, boolean trigger_mutation, boolean trigger_weeds, int potency, AgriFertilizerEffect effect, boolean enabled) {
+    public AgriFertilizer_1_16(String id, String lang_key, List<AgriObject_1_16> variants, boolean trigger_mutation, boolean trigger_weeds, int potency, AgriFertilizerEffect_1_16 effect, boolean enabled) {
         this(id, lang_key, variants, trigger_mutation, trigger_weeds, potency, effect, enabled, Lists.newArrayList("agricraft", "minecraft"));
     }
 
     public AgriFertilizer_1_16(String id, String lang_key, List<AgriObject_1_16> variants, boolean trigger_mutation, boolean trigger_weeds, int potency,
-                               AgriFertilizerEffect effect, boolean enabled, List<String> mods) {
+                               AgriFertilizerEffect_1_16 effect, boolean enabled, List<String> mods) {
         this.id = id;
         this.lang_key = lang_key;
         this.variants = variants;
@@ -61,7 +60,7 @@ public class AgriFertilizer_1_16 implements AgriSerializable, Comparable<AgriFer
     }
 
     public AgriFertilizer toNew() {
-        return new AgriFertilizer(this.id, this.lang_key, this.convertVariants(), this.trigger_mutation, this.trigger_weeds, this.potency, this.effect, this.enabled, this.mods);
+        return new AgriFertilizer(Versions_1_16.convertId(this.id), this.lang_key, this.convertVariants(), this.trigger_mutation, this.trigger_weeds, this.potency, this.effect.toNew(), this.enabled, this.mods);
     }
 
     public List<AgriObject> convertVariants() {
