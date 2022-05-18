@@ -10,6 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
 import java.util.Random;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -24,7 +25,7 @@ public class TestMutation {
 	public TestMutation() {
 
 		// Setup Mutation
-		this.mutation = new AgriMutation(0.5, "Wheat", "Wheat", "Wheat", "test/wheat_mutation.json", true);
+		this.mutation = new AgriMutation(0.5, "Wheat", "Wheat", "Wheat", new ArrayList<>(), "test/wheat_mutation.json", true);
 		
 	}
 

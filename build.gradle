@@ -14,7 +14,7 @@ repositories {
 
 dependencies {
     compileOnly 'org.slf4j:slf4j-api:1.7.31'
-    compileOnly 'com.google.guava:guava:31.1-jre'
+    implementation 'com.google.guava:guava:31.1-jre'
 	implementation 'org.reflections:reflections:0.10.2'
 	implementation 'com.google.code.gson:gson:2.8.9'    // Must be identical as version used by minecraft
     testImplementation 'junit:junit:4.13.2'             // GSON dependency, must be correct version as well
