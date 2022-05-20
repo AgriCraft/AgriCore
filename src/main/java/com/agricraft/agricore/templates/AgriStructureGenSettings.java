@@ -1,6 +1,7 @@
 package com.agricraft.agricore.templates;
 
-import java.util.Collections;
+import com.google.common.collect.Lists;
+
 import java.util.List;
 
 public class AgriStructureGenSettings {
@@ -10,7 +11,18 @@ public class AgriStructureGenSettings {
     private final int statsMax;
 
     public AgriStructureGenSettings() {
-        this.structures = Collections.emptyList();
+        this.structures = Lists.newArrayList(
+                "agricraft:village/desert/greenhouse",
+                "agricraft:village/plains/greenhouse",
+                "agricraft:village/savanna/greenhouse",
+                "agricraft:village/snowy/greenhouse",
+                "agricraft:village/taiga/greenhouse",
+                "agricraft:village/desert/greenhouse_irrigated",
+                "agricraft:village/plains/greenhouse_irrigated",
+                "agricraft:village/savanna/greenhouse_irrigated",
+                "agricraft:village/snowy/greenhouse_irrigated",
+                "agricraft:village/taiga/greenhouse_irrigated"
+        );
         this.weight = 10;
         this.statsMin = 1;
         this.statsMax = 10;
